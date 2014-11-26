@@ -13,7 +13,7 @@ using namespace std;
 vector<int> power_up::movement() const
 {
 
-	return this->position_;
+	return this->speed_;
 }
 
 int power_up::get_life() const
@@ -21,29 +21,12 @@ int power_up::get_life() const
 	return life_;
 }
 
-void power_up::hit(flying_objects& other)
-{
-	return;
-}
+//int power_up::hit(flying_objects&)
+//{
+//	return;
+//}
 
-void power_up_attack::reset_timer()
-	{
-		timer_=10000;
-	}
 
-int power_up_attack::get_timer()
-{
-	return timer_;
-}
-
-void power_up_attack::countdown_timer()
-{
-	--timer_;
-	if(timer_==0)
-	{
-		delete this;
-	}
-}
 /////////////////////////////////////////////////
 
 
