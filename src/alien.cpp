@@ -7,7 +7,7 @@ using namespace std;
 vector<int> alien::movement() const
 {
 
-	return this->position_;
+	return speed_;
 }
 
 

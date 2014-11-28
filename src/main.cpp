@@ -1,6 +1,8 @@
-#include <iostream>
+/*#include <iostream>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
+
+#include <SDL2/SDL_main.h>
 
 const int SCREEN_WIDTH = 800;
 const int SCREEN_HEIGHT = 600;
@@ -31,7 +33,7 @@ bool collides(const SDL_Rect& a, const SDL_Rect& b)
 
 int main(int argc, char *argv[]) {
 	// initialize SDL
-	if (SDL_Init(SDL_INIT_VIDEO /*|SDL_INIT_AUDIO*/) != 0) {
+	if (SDL_Init(SDL_INIT_VIDEO) != 0) {
 		cerr << "Error initializing SDL" << endl;
 		exit(1);
 	}
@@ -151,3 +153,4 @@ int main(int argc, char *argv[]) {
 	SDL_Quit();
 	return 0;
 }
+*/
