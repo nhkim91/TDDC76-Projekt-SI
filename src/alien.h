@@ -17,10 +17,10 @@ public:
 
 	// Datamedlemmar
 	int life_;
-	std::vector<int> position_;
+	std::vector<int> speed_;
 
 	// Konstruktor
-	alien(int life, std::vector<int> position): life_{life}, position_{position}{};
+	alien(int life, std::vector<int> speed): life_{life}, speed_{speed}{};
 
 	// Destruktor
 	 ~alien() = default;
@@ -28,6 +28,7 @@ public:
 	// Funktioner
 	int get_life() const override;
 	std::vector<int> movement() const override;
+
 
 };
 

@@ -6,6 +6,8 @@
 
 #include "flying_objects.h"
 
+
+
 class player :public flying_objects{
 
 public:
@@ -15,6 +17,8 @@ public:
 	int dmg_;
 	std::vector<int> speed_;
 	std::vector<class power_up_attack*> power_up_attack_;
+	std::vector<class power_up_shield*> power_up_shield_;
+
 
 
 	// Konstruktor
@@ -30,11 +34,9 @@ public:
 	 int get_life() const override;
 	 void hit(flying_objects&)  override;
 	 std::vector<int> movement() const override;
-	 std::vector<power_up_attack*> get_power_up()
-		{
-		 	 return power_up_attack_;
-		}
-
+	 std::vector<power_up_attack*> get_power_up_attack();
+	 std::vector<power_up_shield*> get_power_up_shield();
+	 class bullet attack();
 
 };
 #endif /* PLAYER_H_ */
