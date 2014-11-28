@@ -20,7 +20,7 @@ int main() {
 	player player_{6, 6, v};
 	bullet bullet_{1, 5, v};
 	meteorite_small meteorite_{3,v};
-	power_up_attack attack_{67, v};
+	power_up_attack attack_{67, v, 19};
 	//vector<int> post;
 	//post = meteorite_.movement();
 	//cout << post.size()<< endl;
@@ -37,8 +37,7 @@ int main() {
 	cout << player_.get_power_up().empty() << endl;
 	cout << player_.get_power_up().size() << endl;
 
-	attack_.countdown_timer();
-	cout << attack_.get_timer() << endl;
+
 	player_.hit(attack_);
 	cout << player_.get_power_up().empty() << endl;
 

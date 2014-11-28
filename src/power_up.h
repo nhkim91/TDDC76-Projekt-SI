@@ -29,6 +29,8 @@ public:
 	 int get_life() const override;
 	 std::vector<int> movement() const override;
 	 void hit(flying_objects&) override;
+	 int kill_me_when() const;
+	 int set_life_time() const;
 };
 ////////////////////////////////////////////////////////////////
 class power_up_attack : public power_up
@@ -44,7 +46,7 @@ public:
 	~power_up_attack()=default;
 
 	// Funktioner
-
+	void power_up_attack() const;
 };
 ////////////////////////////////////////////////////////////////
 class power_up_life : public power_up
