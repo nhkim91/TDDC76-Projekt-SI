@@ -17,7 +17,7 @@ public:
 	// Datamedlemmar
 	int life_;
 	std::vector<int> speed_;
-	int life_until_;
+	int life_until_ = 0;
 
 	// Konstruktor
 	power_up(int life, std::vector<int> speed, int life_until): life_{life}, speed_{speed}, life_until_{life_until}{};
@@ -37,7 +37,7 @@ class power_up_attack : public power_up
 {
 public:
 	// Datamedlemmar
-	int timer_{1000};
+
 
 	// Konstruktor
 	power_up_attack(int life, std::vector<int> speed, int life_until): power_up::power_up{life,speed,life_until}{};
@@ -46,7 +46,7 @@ public:
 	~power_up_attack()=default;
 
 	// Funktioner
-	void power_up_attack() const;
+	class bullet attack() const;
 };
 ////////////////////////////////////////////////////////////////
 class power_up_life : public power_up

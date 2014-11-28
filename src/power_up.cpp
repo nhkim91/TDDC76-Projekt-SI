@@ -32,9 +32,9 @@ int power_up::set_life_time() const
 	return life_until_;
 }
 
-void power_up_attack::power_up_attack() const;
+bullet power_up_attack::attack() const
 {
-	return;
+	return bullet{1, 1, {-1000, 0}};
 }
 
 //int power_up::hit(flying_objects&)

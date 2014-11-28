@@ -29,19 +29,19 @@ int main() {
 	cout << bullet_.get_dmg() << endl;
  	player_.hit(bullet_);
 	cout << player_.get_life() << endl;
-	player_.get_power_up();
-	if (player_.get_power_up().empty())
+	player_.get_power_up_attack();
+	if (player_.get_power_up_attack().empty())
 	{
 		cout << "ratt!" << endl;
 	}
-	cout << player_.get_power_up().empty() << endl;
-	cout << player_.get_power_up().size() << endl;
+	cout << player_.get_power_up_attack().empty() << endl;
+	cout << player_.get_power_up_attack().size() << endl;
 
 
 	player_.hit(attack_);
-	cout << player_.get_power_up().empty() << endl;
+	cout << player_.get_power_up_attack().empty() << endl;
 
-	cout << player_.get_power_up().at(0)->get_life() << endl;
+	cout << player_.get_power_up_attack().at(0)->get_life() << endl;
 
 
 
