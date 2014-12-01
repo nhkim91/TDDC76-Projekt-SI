@@ -21,30 +21,43 @@ int power_up::get_life() const
 	return life_;
 }
 
-int power_up::kill_me_when() const
+int power_up::kill_me_when()
 {
-	return life_until_;
+	return live_until_;
 }
 
-int power_up::set_life_time() const
+int power_up::set_life_time()
 {
-	life_until_ = SDL_GetTicks() + 10000;
-	return life_until_;
+	live_until_ = SDL_GetTicks() + 10000;
+	return live_until_;
 }
-
-bullet power_up_attack::attack() const
-{
-	return bullet{1, 1, {-1000, 0}};
-}
-
-//int power_up::hit(flying_objects&)
-//{
-//	return;
-//}
 
 
 /////////////////////////////////////////////////
 
+bullet power_up_attack::attack()
+{
+	return bullet{1, 1, {-1000, 0}};
+}
+
+void power_up_attack::hit(flying_objects&)
+{
+	return;
+}
+/////////////////////////////////////////////////
+void power_up_shield::hit(flying_objects&)
+{
+	return;
+}
+
+/////////////////////////////////////////////////
+
+void power_up_life::hit(flying_objects&)
+{
+	return;
+}
+
+/////////////////////////////////////////////////
 
 
 

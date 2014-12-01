@@ -27,6 +27,7 @@ public:
 
 	// Funktioner
 	int get_life() const override;
+	void check_living();
 	std::vector<int> movement() const override;
 
 

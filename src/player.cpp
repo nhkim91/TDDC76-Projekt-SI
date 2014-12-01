@@ -12,7 +12,17 @@ void player::operator=(const player& other)
 	speed_ = other.speed_;
 }
 
-
+void player::check_living()
+{
+	if(get_life()==0)
+	{
+		delete this;
+	}
+	else
+	{
+		return;
+	}
+}
 
 vector<int> player::movement() const
 {
@@ -34,6 +44,7 @@ vector<power_up_shield*> player::get_power_up_shield()
 	}
 
 void player::hit(flying_objects& other)
+
 {
 	flying_objects *ptr_;
 	ptr_ = &other;
@@ -119,10 +130,14 @@ void player::hit(flying_objects& other)
 		other_obj_7 = dynamic_cast<power_up_shield*>(ptr_);
 		if (other_obj_7 != nullptr)
 		{
-			++life_;
+			power_up_shield_.push_back(other_obj_7);
 			return;
 		}
-
+		else
+		{
+			power_up_shield_.at(0)->set_life_time();
+			return;
+		}
 	}
 
 	return;

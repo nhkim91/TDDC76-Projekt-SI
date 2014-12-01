@@ -32,6 +32,7 @@ public:
 
 	 // Funktioner
 	 int get_life() const override;
+	 void check_living();
 	 void hit(flying_objects&)  override;
 	 std::vector<int> movement() const override;
 	 std::vector<power_up_attack*> get_power_up_attack();

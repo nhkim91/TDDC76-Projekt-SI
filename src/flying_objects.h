@@ -23,7 +23,6 @@ public:
 	virtual std::vector<int> movement() const = 0;
 	virtual int get_life() const = 0;
 
-
 	virtual ~flying_objects() {}
 
 };

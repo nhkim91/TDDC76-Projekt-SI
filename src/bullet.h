@@ -23,6 +23,7 @@ public:
 	std::vector<int> speed_;
 
 	int get_life() const override;
+	void check_living();
 	std::vector<int> movement() const override;
 	int get_dmg() const;
 	void hit(flying_objects&) override;

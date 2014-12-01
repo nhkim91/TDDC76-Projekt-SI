@@ -11,6 +11,19 @@
 #include <vector>
 using namespace std;
 
+
+void bullet::check_living()
+{
+	if(get_life()==0)
+	{
+		delete this;
+	}
+	else
+	{
+		return;
+	}
+}
+
 vector<int> bullet::movement() const
 {
 

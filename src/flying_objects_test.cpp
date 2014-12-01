@@ -38,10 +38,10 @@ int main() {
 	cout << player_.get_power_up_attack().size() << endl;
 
 
-	player_.hit(attack_);
+	//player_.hit(attack_);
 	cout << player_.get_power_up_attack().empty() << endl;
 
-	cout << player_.get_power_up_attack().at(0)->get_life() << endl;
+	//cout << player_.get_power_up_attack().at(0)->get_life() << endl;
 
 
 
