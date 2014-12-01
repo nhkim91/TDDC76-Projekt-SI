@@ -12,11 +12,13 @@
 using namespace std;
 
 
+
 void bullet::check_living()
 {
-	if(get_life()==0)
+	if(get_life()<=0)
 	{
 		delete this;
+		return;
 	}
 	else
 	{
@@ -42,7 +44,54 @@ int bullet::get_dmg() const
 
 void bullet::hit(flying_objects& other)
 {
-	return;
+	flying_objects *ptr_;
+	ptr_ = &other;
+
+	meteorite* other_obj_1;
+	other_obj_1 = dynamic_cast<meteorite*>(ptr_);
+	if (other_obj_1 != nullptr)
+	{
+		life_= life_- other_obj_1->get_life();
+		check_living();
+		return;
+	}
+
+	alien* other_obj_2;
+	other_obj_2 = dynamic_cast<alien*>(ptr_);
+	if (other_obj_2 != nullptr)
+	{
+		life_= life_- other_obj_2->get_life();
+		check_living();
+		return;
+	}
+
+	player* other_obj_3;
+	other_obj_3 = dynamic_cast<player*>(ptr_);
+	if (other_obj_3 != nullptr)
+	{
+		life_= life_- other_obj_3->get_life();
+		check_living();
+		return;
+	}
+
+	bullet* other_obj_4;
+	other_obj_4 = dynamic_cast<bullet*>(ptr_);
+	if (other_obj_4 != nullptr)
+	{
+		life_= life_- other_obj_4->get_dmg();
+		check_living();
+		return;
+	}
+
+	power_up* other_obj_5;
+	other_obj_5 = dynamic_cast<power_up*>(ptr_);
+	if (other_obj_5 != nullptr)
+	{
+		--life_;
+		check_living();
+		return;
+	}
+
 }
 /////////////////////////////////////////////////
 

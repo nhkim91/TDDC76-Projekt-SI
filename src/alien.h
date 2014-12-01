@@ -29,6 +29,7 @@ public:
 	int get_life() const override;
 	void check_living();
 	std::vector<int> movement() const override;
+	void hit(flying_objects&)  override;
 
 
 };

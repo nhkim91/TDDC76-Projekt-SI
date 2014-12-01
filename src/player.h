@@ -14,15 +14,14 @@ public:
 
 	// Datamedlemmar
 	int life_;
-	int dmg_;
 	std::vector<int> speed_;
 	std::vector<class power_up_attack*> power_up_attack_;
 	std::vector<class power_up_shield*> power_up_shield_;
-
+	SDL_Texture* texture_{nullptr};
 
 
 	// Konstruktor
-	player(int life,int dmg, std::vector<int> speed): life_{life}, dmg_{dmg}, speed_{speed}{};
+	player(int life, std::vector<int> speed): life_{life}, speed_{speed}{};
 
 	//Operatorer
 	void operator=(const player&);

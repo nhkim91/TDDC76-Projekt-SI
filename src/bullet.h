@@ -33,7 +33,7 @@ public:
 	bullet(int life,int dmg, std::vector<int> speed): life_{life},dmg_{dmg}, speed_{speed}{};
 
 	// Destruktor
-	 ~bullet() = default;
+	 ~bullet()=default;
 };
 
 class bullet_mk1 : public bullet

@@ -8,15 +8,15 @@ using namespace std;
 void player::operator=(const player& other)
 {
 	life_ = other.life_;
-	dmg_ = other.dmg_;
 	speed_ = other.speed_;
 }
 
 void player::check_living()
 {
-	if(get_life()==0)
+	if(get_life()<=0)
 	{
 		delete this;
+		return;
 	}
 	else
 	{
@@ -35,13 +35,13 @@ int player::get_life() const
 }
 
 vector<power_up_attack*> player::get_power_up_attack()
-	{
-	 	 return power_up_attack_;
-	}
+{
+	return power_up_attack_;
+}
 vector<power_up_shield*> player::get_power_up_shield()
-	{
-	 	 return power_up_shield_;
-	}
+{
+	return power_up_shield_;
+}
 
 void player::hit(flying_objects& other)
 
@@ -56,6 +56,7 @@ void player::hit(flying_objects& other)
 		if (power_up_shield_.empty())
 		{
 			--life_;
+			check_living();
 			return;
 		}
 		else
@@ -71,6 +72,7 @@ void player::hit(flying_objects& other)
 		if (power_up_shield_.empty())
 		{
 			life_= life_-other_obj_2->get_dmg();
+			check_living();
 			return;
 		}
 		else
@@ -87,6 +89,7 @@ void player::hit(flying_objects& other)
 		if (power_up_shield_.empty())
 		{
 			--life_;
+			check_living();
 			return;
 		}
 		else
