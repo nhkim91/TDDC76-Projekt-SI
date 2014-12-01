@@ -18,9 +18,12 @@ public:
 	int life_;
 	std::vector<int> speed_;
 	int live_until_;
+	SDL_Texture* power_up_{nullptr};
+
 
 	// Konstruktor
 	power_up(int life, std::vector<int> speed, int live_until): life_{life}, speed_{speed}, live_until_{live_until}{};
+
 
 	// Destruktor
 	 ~power_up() = default;
@@ -30,6 +33,8 @@ public:
 	 std::vector<int> movement() const override;
 	 int kill_me_when();
 	 int set_life_time();
+	 void set_speed();
+	 void pick_up_position();
 };
 ////////////////////////////////////////////////////////////////
 class power_up_attack : public power_up
@@ -47,6 +52,7 @@ public:
 	// Funktioner
 	class bullet attack();
 	void hit(flying_objects&);
+
 
 };
 ////////////////////////////////////////////////////////////////

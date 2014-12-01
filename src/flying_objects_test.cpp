@@ -44,6 +44,26 @@ int main() {
 	//cout << player_.get_power_up_attack().at(0)->get_life() << endl;
 
 
+	//maggies test!
+
+	attack_.hit(player_);
+	cout << "I gave an attack_up to player!\n";
+	attack_.hit(meteorite_);
+	cout << "I hit a meteorite and nothing happend\n";
+
+	//alien alien_{67, v, 19};
+	//attack_.hit(alien_);
+
+	//attack_.hit(bullet_);
+	//cout << "i'm dead\n";
+
+	power_up_shield shield_{67, v, 19};
+	shield_.hit(player_);
+	cout << "I shielded a player!\n";
+
+	power_up_shield life_{67, v, 19};
+	life_.hit(player_);
+	cout << "I gave life to a player!\n";
 
 	return 0;
 }
