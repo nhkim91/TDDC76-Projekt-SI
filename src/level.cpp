@@ -6,7 +6,7 @@
 
 using namespace std;
 
-void level_1::spawn() //flying_object* level::spawn()
+void level_1::spawn() const //flying_object* level::spawn()
 {
     int i;
     i = rand() % 1000;
@@ -32,7 +32,7 @@ void level_1::spawn() //flying_object* level::spawn()
     return;
 }
 
-void level_2::spawn() //flying_object* level::spawn()
+void level_2::spawn() const //flying_object* level::spawn()
 {
     int i;
     i = rand() % 800;

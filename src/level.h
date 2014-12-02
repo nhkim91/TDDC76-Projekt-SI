@@ -10,7 +10,7 @@ public:
 
     level(const level& l);
 
-    virtual void spawn() const override = 0;
+    virtual void spawn() const = 0;
 
 };
 
@@ -20,7 +20,7 @@ public:
     level_1() = default;
     ~level_1();
 
-    void spawn();
+    void spawn() const override;
 
 };
 
@@ -31,7 +31,7 @@ public:
     level_2() = default;
     ~level_2();
 
-    void spawn();
+    void spawn() const override;
 
 };
 
