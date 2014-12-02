@@ -1,5 +1,5 @@
 
-
+/*
 #include "flying_objects.h"
 #include "player.h"
 #include "bullet.h"
@@ -73,3 +73,4 @@ int main() {
 
 	return 0;
 }
+*/

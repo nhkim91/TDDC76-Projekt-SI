@@ -1,5 +1,7 @@
-#ifndef LEVEL_H
-#define LEVEL_H
+/*
+
+#ifndef LEVEL_H_
+#define LEVEL_H_
 #include <vector>
 
 
@@ -7,7 +9,7 @@ class level
 {
 public:
     level() = default;
-    ~level() = default;
+    virtual ~level() = default;
 
     level(const level& l);
 
@@ -16,8 +18,8 @@ public:
 
 private:
 
-    std::vector<int>position(2);
-    position[0] = 100; //Startposition i bredd
+    std::vector<int> position (1,100);
+    //position[0] = 100; //Startposition i bredd
 };
 
 class level_1 : public level
@@ -40,3 +42,4 @@ public:
 
 #endif // LEVEL_H
 
+*/
