@@ -1,7 +1,5 @@
-#ifndef LEVEL_H_
-#define LEVEL_H_
-#include <vector>
-
+#ifndef LEVEL_H
+#define LEVEL_H
 
 
 class level
@@ -12,8 +10,7 @@ public:
 
     level(const level& l);
 
-    virtual void spawn();
-
+    virtual void spawn() const override = 0;
 
 };
 
@@ -24,6 +21,7 @@ public:
     ~level_1();
 
     void spawn();
+
 };
 
 
@@ -32,6 +30,8 @@ class level_2 : public level
 public:
     level_2() = default;
     ~level_2();
+
+    void spawn();
 
 };
 
