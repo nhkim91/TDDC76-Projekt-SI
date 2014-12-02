@@ -6,11 +6,9 @@
 #include "meteorite.h"
 #include "power_up.h"
 
-
 #include <iostream>
 #include <vector>
 using namespace std;
-
 
 int main() {
 

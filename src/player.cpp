@@ -15,7 +15,7 @@ void player::check_living()
 {
 	if(get_life()<=0)
 	{
-		delete this;
+		//delete this;
 		return;
 	}
 	else
