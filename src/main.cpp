@@ -49,21 +49,21 @@ int main(int argc, char *argv[]) {
 	SDL_RenderSetLogicalSize(renderer, SCREEN_WIDTH, SCREEN_HEIGHT);
 
 	// load ball
-	SDL_Texture* blue{nullptr};
-	SDL_Texture* green{nullptr};
+	SDL_Texture* player{nullptr};
+	SDL_Texture* alien{nullptr};
 	int ballWidth{0};
 	int ballHeight{0};
 	{
-		SDL_Surface* temp = IMG_Load("blue.png");
+		SDL_Surface* temp = IMG_Load("player.png");
 
-		blue = SDL_CreateTextureFromSurface(renderer, temp);
+		player = SDL_CreateTextureFromSurface(renderer, temp);
 		ballWidth = temp->w;
 		ballHeight = temp->h;
 
 		SDL_FreeSurface(temp);
 
-		temp = IMG_Load("green.png");
-		green = SDL_CreateTextureFromSurface(renderer, temp);
+		temp = IMG_Load("alien.png");
+		alien = SDL_CreateTextureFromSurface(renderer, temp);
 		SDL_FreeSurface(temp);
 	}
 
@@ -133,8 +133,8 @@ int main(int argc, char *argv[]) {
 		SDL_RenderClear(renderer);
 
 		// draw things
-		SDL_RenderCopy(renderer, blue, nullptr, &ballRect);
-		SDL_RenderCopy(renderer, green, nullptr, &mouseRect);
+		SDL_RenderCopy(renderer, player, nullptr, &ballRect);
+		SDL_RenderCopy(renderer, alien, nullptr, &mouseRect);
 
 		// show the newly drawn things
 		SDL_RenderPresent(renderer);
@@ -144,10 +144,10 @@ int main(int argc, char *argv[]) {
 	}
 
 	// free memory
-	SDL_DestroyTexture(blue);
-	blue = nullptr;
-	SDL_DestroyTexture(green);
-	green = nullptr;
+	SDL_DestroyTexture(player);
+	player = nullptr;
+	SDL_DestroyTexture(alien);
+	alien = nullptr;
 	SDL_DestroyRenderer(renderer);
 	SDL_DestroyWindow(window);
 
