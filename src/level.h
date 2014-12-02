@@ -1,6 +1,8 @@
-#ifndef LEVEL_H
-#define LEVEL_H
-#include <iostream>
+#ifndef LEVEL_H_
+#define LEVEL_H_
+#include <vector>
+
+
 
 class level
 {
@@ -11,6 +13,7 @@ public:
     level(const level& l);
 
     virtual void spawn();
+
 
 
 
@@ -36,4 +39,5 @@ public:
 
 
 #endif // LEVEL_H
+
 

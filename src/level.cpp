@@ -1,7 +1,6 @@
-
+#include "level.h"
 #include "alien.h"
 #include <vector>
-#include "level.h"
 
 using namespace std;
 
@@ -18,6 +17,6 @@ void level::spawn()
     {
         alien_mk1 alien_1(1,position);
     }
-}
 
+}
 
