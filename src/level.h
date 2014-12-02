@@ -15,8 +15,6 @@ public:
     virtual void spawn();
 
 
-
-
 };
 
 class level_1 : public level
@@ -39,5 +37,3 @@ public:
 
 
 #endif // LEVEL_H
-
-
