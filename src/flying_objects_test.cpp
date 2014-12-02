@@ -12,7 +12,7 @@
 using namespace std;
 
 
-int main() {
+int main(int,char**) {
 
 	vector<int> v(2);
 	v[0] = 7;
