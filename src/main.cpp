@@ -1,5 +1,4 @@
 #include <iostream>
-#include <stdio.h>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 
@@ -10,35 +9,6 @@ const int SCREEN_WIDTH = 800;
 const int SCREEN_HEIGHT = 600;
 
 using namespace std;
-
-bool init();
-
-SDL_Window* window = NULL;
-SDL_Renderer* renderer = NULL;
-
-bool init()
-{
-	bool success{true};
-	// initialize SDL
-	if (SDL_Init(SDL_INIT_VIDEO) != 0)
-	{
-		cerr << "Error initializing SDL" << endl;
-		success = false;
-	}
-	else
-	{
-
-	// create the window
-	window = SDL_CreateWindow("SDL Test", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_RESIZABLE);
-	renderer = SDL_CreateRenderer(window, -1, 0);
-
-	// make the scaled rendering look smoother
-	SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "linear");
-	// render at a virtual resolution then stretch to actual resolution
-	SDL_RenderSetLogicalSize(renderer, SCREEN_WIDTH, SCREEN_HEIGHT);
-	}
-	return success;
-}
 
 
 bool collides(const SDL_Rect& a, const SDL_Rect& b)
@@ -62,40 +32,40 @@ bool collides(const SDL_Rect& a, const SDL_Rect& b)
 }
 
 
-int main(int argc, char *argv[])
-{
-
-	//Start up SDL and create window
-	if( !init() )
-	{
-		cerr << "Failed to initialize!\n";
+int main(int argc, char *argv[]) {
+	// initialize SDL
+	if (SDL_Init(SDL_INIT_VIDEO) != 0) {
+		cerr << "Error initializing SDL" << endl;
+		exit(1);
 	}
 
+	// create the window
+	SDL_Window* window = SDL_CreateWindow("SDL Test", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_RESIZABLE);
+	SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, 0);
+
+	// make the scaled rendering look smoother
+	SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "linear");
+	// render at a virtual resolution then stretch to actual resolution
+	SDL_RenderSetLogicalSize(renderer, SCREEN_WIDTH, SCREEN_HEIGHT);
+
 	// load ball
-	SDL_Texture* player{nullptr};
-	SDL_Texture* alien{nullptr};
+	SDL_Texture* blue{nullptr};
+	SDL_Texture* green{nullptr};
 	int ballWidth{0};
 	int ballHeight{0};
 	{
-		SDL_Surface* temp = IMG_Load("player.png");
-		if(!temp)
-		{
-			std::cout << "LoadTexture() failed: Failed to load the image '" << "player.png" << "'.\nIMG_Load() :" << IMG_GetError() << std::endl;
-			return 1;
-		}
+		SDL_Surface* temp = IMG_Load("blue.png");
 
-		player = SDL_CreateTextureFromSurface(renderer, temp);
+		blue = SDL_CreateTextureFromSurface(renderer, temp);
 		ballWidth = temp->w;
 		ballHeight = temp->h;
 
 		SDL_FreeSurface(temp);
 
-		temp = IMG_Load("alien.png");
-		alien = SDL_CreateTextureFromSurface(renderer, temp);
+		temp = IMG_Load("green.png");
+		green = SDL_CreateTextureFromSurface(renderer, temp);
 		SDL_FreeSurface(temp);
 	}
-
-
 
 	// set ball position
 	SDL_Rect ballRect;
@@ -103,8 +73,8 @@ int main(int argc, char *argv[])
 	ballRect.y = 10;
 	ballRect.w = ballWidth;
 	ballRect.h = ballHeight;
-	int xSpeed{0};
-	int ySpeed{0};
+	int xSpeed{10};
+	int ySpeed{10};
 
 	SDL_Rect mouseRect{
 		-100,
@@ -127,21 +97,10 @@ int main(int argc, char *argv[])
 					running = false;
 				}
 				else if (event.key.keysym.sym == SDLK_x) {
-					xSpeed += 10;
+					xSpeed = -xSpeed;
 				}
 				else if (event.key.keysym.sym == SDLK_y) {
-					ySpeed += 10;
-				}
-			}
-			else if (event.type == SDL_KEYUP)
-			{
-				if (event.key.keysym.sym == SDLK_x)
-				{
-					xSpeed = 0;
-				}
-				else if (event.key.keysym.sym == SDLK_y)
-				{
-					ySpeed = 0;
+					ySpeed = -ySpeed;
 				}
 			}
 			else if (event.type == SDL_MOUSEMOTION) {
@@ -174,8 +133,8 @@ int main(int argc, char *argv[])
 		SDL_RenderClear(renderer);
 
 		// draw things
-		SDL_RenderCopy(renderer, player, nullptr, &ballRect);
-		SDL_RenderCopy(renderer, alien, nullptr, &mouseRect);
+		SDL_RenderCopy(renderer, blue, nullptr, &ballRect);
+		SDL_RenderCopy(renderer, green, nullptr, &mouseRect);
 
 		// show the newly drawn things
 		SDL_RenderPresent(renderer);
@@ -185,13 +144,14 @@ int main(int argc, char *argv[])
 	}
 
 	// free memory
-	SDL_DestroyTexture(player);
-	player = nullptr;
-	SDL_DestroyTexture(alien);
-	alien = nullptr;
+	SDL_DestroyTexture(blue);
+	blue = nullptr;
+	SDL_DestroyTexture(green);
+	green = nullptr;
 	SDL_DestroyRenderer(renderer);
 	SDL_DestroyWindow(window);
 
 	SDL_Quit();
 	return 0;
 }
+

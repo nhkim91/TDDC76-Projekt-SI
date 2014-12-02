@@ -1,4 +1,5 @@
 
+
 /*
 #include "flying_objects.h"
 #include "player.h"
@@ -21,6 +22,7 @@ int main(int,char**) {
 	bullet bullet_{1, 5, v};
 	meteorite_small meteorite_{3,v};
 	power_up_attack attack_{67, v, 19};
+	/*
 	//vector<int> post;
 	//post = meteorite_.movement();
 	//cout << post.size()<< endl;
@@ -51,11 +53,11 @@ int main(int,char**) {
 	attack_.hit(meteorite_);
 	cout << "I hit a meteorite and nothing happend\n";
 
-	//alien alien_{67, v, 19};
-	//attack_.hit(alien_);
+	alien alien_{67, v, 19};
+	attack_.hit(alien_);
 
-	//attack_.hit(bullet_);
-	//cout << "i'm dead\n";
+	attack_.hit(bullet_);
+	cout << "i'm dead\n";
 
 	power_up_shield shield_{67, v, 19};
 	shield_.hit(player_);
@@ -67,10 +69,11 @@ int main(int,char**) {
 
 	cout << player_.get_life() << endl << bullet_.get_life() << endl;
 	player_.hit(bullet_);
-	//bullet_.hit(player_);
+	bullet_.hit(player_);
 	cout << "här"<<endl;
 	cout << player_.get_life() << endl << bullet_.get_life() << endl;
 
 	return 0;
 }
+
 */
