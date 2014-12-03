@@ -1,12 +1,7 @@
-
-
 #ifndef PLAYER_H_
 #define PLAYER_H_
 
-
 #include "flying_objects.h"
-
-
 
 class player :public flying_objects{
 
@@ -17,7 +12,9 @@ public:
 	std::vector<int> movement_;
 	std::vector<class power_up_attack*> power_up_attack_;
 	std::vector<class power_up_shield*> power_up_shield_;
+
 	SDL_Rect rect_;
+
 
 	// Konstruktor
 	player(int, int, int, int, int);
