@@ -20,13 +20,13 @@ public:
 	SDL_Rect rect_;
 
 	// Konstruktor
-	player(int, int, int, int, int, int, int);
+	player(int, int, int, int, int);
 
 	//Operatorer
 	void operator=(const player&);
 
 	// Destruktor
-	 ~player() = default;
+	 ~player();
 
 	 // Funktioner
 	 int get_life() const override;
