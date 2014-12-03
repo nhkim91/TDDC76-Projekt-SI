@@ -1,6 +1,7 @@
 #ifndef LEVEL_H
 #define LEVEL_H
 
+#include "flying_objects.h"
 
 class level
 {
@@ -10,28 +11,24 @@ public:
 
     level(const level& l);
 
-    virtual void spawn() const = 0;
+    flying_objects* spawn(int);
 
-};
+private:
+    int lvl = 1;
+    std::vector<int> data;
 
-class level_1 : public level
-{
-public:
-    level_1() = default;
-    ~level_1();
+    void get_next_lvl(int);
 
-    void spawn() const override;
+    //alien
+    flying_objects* get_alien_mk1();
+    flying_objects* get_alien_mk2();
+    flying_objects* get_alien_mk3();
 
-};
+    //meteorite
+    flying_objects* get_meteorite_small();
 
-
-class level_2 : public level
-{
-public:
-    level_2() = default;
-    ~level_2();
-
-    void spawn() const override;
+    //power_up
+    flying_objects* get_power_up(int);
 
 };
 

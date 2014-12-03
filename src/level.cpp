@@ -6,60 +6,143 @@
 
 using namespace std;
 
-void level_1::spawn() const //flying_object* level::spawn()
+flying_objects* level::spawn(int score)
 {
-    int i;
-    i = rand() % 1000;
-    vector<int> position(2);
-    position[0] = 800; //Startposition i x-led
-    position[1] = rand() % 600; //Slumpad position i y_led
-    vector<int> speed(2);
-    speed[1] = 0; //Hastighet i y-led
-    speed[0] = 1; //Hastighet i x-led
+    get_next_lvl(score);
 
-    if(i < 100)
+    int i = rand() % 1000;
+
+    if(lvl == 1)
     {
-        alien_mk1 alien_1(1,speed); //new? //return (new Minus(*this))
-        return; //return alien_1*
+        if(i < 100)
+        {
+            return get_alien_mk1();
+        }
+
+        else if(i >= 100 && i < 200)
+        {
+            return get_meteorite_small();
+        }
     }
 
-    else if(i >= 100 && i < 200)
+    else if(lvl == 2)
     {
-        meteorite_small meteorite_1{1,position};
-        return; //return meteorite_1*
-    }
+        if(i < 100)
+        {
+            return get_alien_mk1();
+        }
 
-    return;
+        else if(i >= 100 && i < 200)
+        {
+            return get_alien_mk2();
+        }
+
+        else if(i >= 200 && i < 300)
+        {
+            return get_meteorite_small();
+        }
+
+        else if(i >= 300 && i < 360)
+        {
+            return get_power_up(i);
+        }
+    }
+    return 0;
 }
 
-void level_2::spawn() const //flying_object* level::spawn()
+flying_objects* level::get_alien_mk1()
 {
-    int i;
-    i = rand() % 800;
-    vector<int> position(2);
-    position[0] = 800; //Startposition i bredd
-    position[1] = rand() % 600;
-    vector<int> speed(2);
-    speed[0] = 1; //Hastighet i x-led
-    speed[1] = rand() % 1; //Hastighet i y-led
+    data[0] = 1;
+    data[1] = 800;
+    data[2] = rand() % 500;
+    data[3] = 1; //Hastighet i x-led
+    data[4] = 0;
 
-    if(i < 200)
-    {
-        alien_mk1 alien_1(1,position); //new? //return (new Minus(*this))
-        return; //return alien_1*
-    }
-
-    else if(i >= 200 && i < 250)
-    {
-        meteorite_small meteorite_1{1,position};
-        return; //return meteorite_1*
-    }
-
-    else if(i >= 250 && i < 270)
-    {
-        power_up_attack attack_{1, speed, 20};
-    }
-
-    return;
+    alien_mk1 alien(data[0], data[1], data[2], data[3], data[4]);
+    flying_objects* alien_1 = static_cast<flying_objects*>(&alien);
+    return alien_1;
 }
 
+flying_objects* level::get_alien_mk2()
+{
+    data[0] = 2;
+    data[1] = 800;
+    data[2] = rand() % 500;
+    data[3] = rand() % 2 +1; //Hastighet i x-led
+    data[4] = rand() % 1;
+
+
+    alien_mk2 alien(data[0], data[1], data[2], data[3], data[4]);
+    flying_objects* alien_2 = static_cast<flying_objects*>(&alien);
+    return alien_2;
+}
+
+flying_objects* level::get_alien_mk3()
+{
+    data[0] = 4;
+    data[1] = 800;
+    data[2] = rand() % 500;
+    data[3] = rand() % 4 +2; //Hastighet i x-led
+    data[4] = rand() % 2;
+
+    alien_mk3 alien(data[0], data[1], data[2], data[3], data[4]);
+    flying_objects* alien_3 = static_cast<flying_objects*>(&alien);
+    return alien_3;
+}
+
+flying_objects* level::get_meteorite_small()
+{
+    data[0] = 1;
+    data[1] = 800;
+    data[2] = rand() % 600; //(600 - meteoritens höjd)
+    data[3] = 1; //Hastighet i x-led
+    data[4] = 0;
+
+    meteorite_small meteorite{data[0], data[1], data[2], data[3], data[4]};
+    flying_objects* small = static_cast<flying_objects*>(&meteorite);
+    return small;
+}
+
+flying_objects* level::get_power_up(int i)
+{
+    data[0] = 1;
+    data[1] = 800;
+    data[2] = rand() % 600; //(600 - power_upens höjd)
+    data[3] = 1; //Hastighet i x-led
+    data[4] = 0;
+
+    if(i < 320)
+    {
+        power_up_attack power_up{data[0], data[1], data[2], data[3], data[4]};
+        flying_objects* attack = static_cast<flying_objects*>(&power_up);
+        return attack;
+    }
+    else if(i >= 320 && i < 340)
+    {
+        power_up_life power_up{data[0], data[1], data[2], data[3], data[4]};
+        flying_objects* life = static_cast<flying_objects*>(&power_up);
+        return life;
+    }
+    else
+    {
+        power_up_shield power_up{data[0], data[1], data[2], data[3], data[4]};
+        flying_objects* shield = static_cast<flying_objects*>(&power_up);
+        return shield;
+    }
+}
+
+
+void level::get_next_lvl(int score)
+{
+    if(lvl == 1 && score > 100)
+    {
+        lvl++;
+        return;
+    }
+    else if(lvl == 2 && score > 300)
+    {
+        lvl++;
+        return;
+    }
+    return;
+}
