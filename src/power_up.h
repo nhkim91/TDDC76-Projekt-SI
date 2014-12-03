@@ -37,7 +37,7 @@ public:
 	 void set_movement();
 	 void pick_up_position();
 	 bool check_living(int);
-	 SDL_Rect get_rect() override;
+	 SDL_Rect get_rect() const override;
 };
 ////////////////////////////////////////////////////////////////
 class power_up_attack : public power_up

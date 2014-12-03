@@ -31,7 +31,7 @@ public:
 	bool check_living(int);
 	std::vector<int> movement() const override;
 	bool hit(flying_objects&)  override;
-	SDL_Rect get_rect() override;
+	SDL_Rect get_rect() const override;
 
 };
 

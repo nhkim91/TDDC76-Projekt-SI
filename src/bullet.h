@@ -29,7 +29,7 @@ public:
 	std::vector<int> movement() const override;
 	int get_dmg() const;
 	bool hit(flying_objects&) override;
-	SDL_Rect get_rect() override;
+	SDL_Rect get_rect() const override;
 
 
 	// Konstruktor
