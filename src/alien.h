@@ -21,18 +21,17 @@ public:
 	SDL_Rect  rect_;
 
 	// Konstruktor
-	alien(int life, std::vector<int> movement): life_{life}, movement_{movement}{};
-	alien(int, int, int, int, int, int, int);
+	alien(int, int, int, int, int);
 
 	// Destruktor
-	 ~alien() = default;
+	 ~alien();
 
 	// Funktioner
 	int get_life() const override;
 	bool check_living(int);
 	std::vector<int> movement() const override;
 	bool hit(flying_objects&)  override;
-
+	SDL_Rect get_rect();
 
 };
 
@@ -43,7 +42,27 @@ class alien_mk1 : public alien
 public:
 
 	// Konstruktor
-	alien_mk1(int life, std::vector<int> movement): alien::alien{life,movement}{};
+	alien_mk1(int life, int x_pos, int y_pos, int x_speed, int y_speed): alien::alien{life, x_pos, y_pos, x_speed, y_speed}{};
+
+};
+////////////////////////////////////////////////////////////////
+
+class alien_mk2 : public alien
+{
+public:
+
+	// Konstruktor
+	alien_mk2(int life, int x_pos, int y_pos, int x_speed, int y_speed): alien::alien{life, x_pos, y_pos, x_speed, y_speed}{};
+
+};
+////////////////////////////////////////////////////////////////
+
+class alien_mk3 : public alien
+{
+public:
+
+	// Konstruktor
+	alien_mk3(int life, int x_pos, int y_pos, int x_speed, int y_speed): alien::alien{life, x_pos, y_pos, x_speed, y_speed}{};
 
 };
 ////////////////////////////////////////////////////////////////

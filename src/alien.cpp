@@ -5,13 +5,13 @@ using namespace std;
 
 
 
-alien::alien(int life, int x_pos, int y_pos, int width, int height, int x_speed, int y_speed)
+alien::alien(int life, int x_pos, int y_pos, int x_speed, int y_speed)
 {
 	life_= life;
 	rect_.x = x_pos;
 	rect_.y = y_pos;
-	rect_.w = width;
-	rect_.h = height;
+	rect_.w = 100;
+	rect_.h = 100;
 	movement_.at(0) = x_pos;
 	movement_.at(1) = y_pos;
 	movement_.at(2) = x_speed;
@@ -19,6 +19,10 @@ alien::alien(int life, int x_pos, int y_pos, int width, int height, int x_speed,
 
 }
 
+alien::~alien()
+{
+	movement_.clear();
+}
 
 vector<int> alien::movement() const
 {
@@ -64,18 +68,11 @@ bool alien::hit(flying_objects& other)
 		return check_living(other_obj_3->get_dmg());
 	}
 
-	alien* other_obj_4;
-	other_obj_4 = dynamic_cast<alien*>(ptr_);
-	if (other_obj_4 != nullptr)
-	{
-		return false;
-	}
+	return false;
 
-	power_up* other_obj_5;
-	other_obj_5 = dynamic_cast<power_up*>(ptr_);
-	if (other_obj_5 != nullptr)
-	{
-		return false;
-	}
+}
 
+SDL_Rect alien::get_rect()
+{
+	return rect_;
 }

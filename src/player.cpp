@@ -8,13 +8,13 @@
 #include <vector>
 using namespace std;
 
-player::player(int life, int x_pos, int y_pos, int width, int height, int x_speed, int y_speed)
+player::player(int life, int x_pos, int y_pos, int x_speed, int y_speed)
 {
 	life_= life;
 	rect_.x = x_pos;
 	rect_.y = y_pos;
-	rect_.w = width;
-	rect_.h = height;
+	rect_.w = 100;
+	rect_.h = 100;
 	movement_.at(0) = x_pos;
 	movement_.at(1) = y_pos;
 	movement_.at(2) = x_speed;
@@ -23,7 +23,14 @@ player::player(int life, int x_pos, int y_pos, int width, int height, int x_spee
 }
 
 
-bool alien::check_living(int dmg)
+player::~player()
+{
+	movement_.clear();
+	power_up_attack_.clear();
+	power_up_shield_.clear();
+}
+
+bool player::check_living(int dmg)
 {
 	life_= life_ - dmg;
 	return (life_<=0);
@@ -149,7 +156,7 @@ bullet player::attack()
 {
 	if (power_up_attack_.empty())
 	{
-		return bullet{1, 1, {-1000, 0}};
+		return bullet{1, 1,{10,0}};
 
 	}
 	else
