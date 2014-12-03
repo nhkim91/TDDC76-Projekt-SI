@@ -67,10 +67,6 @@ int meteorite::get_life() const
 	return life_;
 }
 
-SDL_Rect meteorite::get_rect()
-{
-	return rect_;
-}
 
 
 /////////////////////////////////////////////////

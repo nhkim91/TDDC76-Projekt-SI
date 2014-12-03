@@ -72,7 +72,4 @@ bool alien::hit(flying_objects& other)
 
 }
 
-SDL_Rect alien::get_rect()
-{
-	return rect_;
-}
+

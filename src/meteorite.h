@@ -21,7 +21,7 @@ public:
 	// Datamedlemmar
 	int life_;
 	std::vector<int> movement_;
-	SDL_Rect rect_;
+
 
 	// Konstruktor
 	meteorite(int, int, int, int, int);
@@ -34,7 +34,7 @@ public:
 	bool check_living(int);
 	std::vector<int> movement() const override;
 	bool hit(flying_objects&)  override;
-	SDL_Rect get_rect() const override;
+
 };
 ////////////////////////////////////////////////////////////////
 class meteorite_small : public meteorite

@@ -19,7 +19,7 @@ public:
 	std::vector<int> movement_;
 	int live_until_;
 	SDL_Texture* power_up_{nullptr};
-	SDL_Rect rect_;
+
 
 
 	// Konstruktor
@@ -37,7 +37,7 @@ public:
 	 void set_movement();
 	 void pick_up_position();
 	 bool check_living(int);
-	 SDL_Rect get_rect() const override;
+
 };
 ////////////////////////////////////////////////////////////////
 class power_up_attack : public power_up

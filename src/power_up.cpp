@@ -59,10 +59,6 @@ bool power_up::check_living(int dmg)
 	return(life_ <= 0);
 }
 
-SDL_Rect power_up::get_rect()
-{
-	return rect_;
-}
 
 /////////////////////////////////////////////////
 

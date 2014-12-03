@@ -21,7 +21,7 @@ public:
 	int life_;
 	int dmg_;
 	std::vector<int> movement_;
-	SDL_Rect rect_;
+
 
 	//Funktioner
 	int get_life() const override;
@@ -29,7 +29,7 @@ public:
 	std::vector<int> movement() const override;
 	int get_dmg() const;
 	bool hit(flying_objects&) override;
-	SDL_Rect get_rect() const override;
+
 
 
 	// Konstruktor

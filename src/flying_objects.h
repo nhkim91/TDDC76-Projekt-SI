@@ -22,12 +22,20 @@
 ////////////////////////////////////////////////////////////////
 class flying_objects
 {
+protected:
+	SDL_Rect rect_;
+
 public:
+
+
 	virtual bool hit(flying_objects&)  = 0;
 	virtual std::vector<int> movement() const = 0;
 	virtual int get_life() const = 0;
 	virtual ~flying_objects() {}
-	virtual SDL_Rect get_rect() const = 0;
+	SDL_Rect get_rect() const
+	{
+		return rect_;
+	}
 
 };
 

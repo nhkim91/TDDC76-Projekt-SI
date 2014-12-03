@@ -165,7 +165,4 @@ bullet player::attack()
 }
 
 
-SDL_Rect player::get_rect()
-{
-	return rect_;
-}
+
