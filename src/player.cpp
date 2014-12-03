@@ -158,8 +158,3 @@ bullet player::attack()
 		return power_up_attack_.at(0)->attack();
 	}
 }
-
-
-
-
-
