@@ -16,13 +16,14 @@ public:
 
 	// Datamedlemmar
 	int life_;
-	std::vector<int> speed_;
+	std::vector<int> movement_;
 	int live_until_;
 	SDL_Texture* power_up_{nullptr};
+	SDL_Rect rect_;
 
 
 	// Konstruktor
-	power_up(int life, std::vector<int> speed, int live_until): life_{life}, speed_{speed}, live_until_{live_until}{};
+	power_up(int, int, int, int, int);
 
 
 	// Destruktor
@@ -33,8 +34,10 @@ public:
 	 std::vector<int> movement() const override;
 	 int kill_me_when();
 	 int set_life_time();
-	 void set_speed();
+	 void set_movement();
 	 void pick_up_position();
+	 bool check_living(int);
+	 SDL_Rect get_rect();
 };
 ////////////////////////////////////////////////////////////////
 class power_up_attack : public power_up
@@ -44,14 +47,14 @@ public:
 
 
 	// Konstruktor
-	power_up_attack(int life, std::vector<int> speed, int live_until): power_up::power_up{life,speed,live_until}{};
+	power_up_attack(int life, int x_pos, int y_pos, int x_speed, int y_speed): power_up::power_up{life, x_pos,y_pos,x_speed,y_speed}{};
 
 	// Destruktor
 	~power_up_attack()=default;
 
 	// Funktioner
-	class bullet attack();
-	void hit(flying_objects&);
+	class bullet attack(int,int);
+	bool hit(flying_objects&);
 
 
 };
@@ -61,10 +64,10 @@ class power_up_life : public power_up
 public:
 
 	// Konstruktor
-	power_up_life(int life, std::vector<int> speed, int life_until): power_up::power_up{life,speed,life_until}{};
+	power_up_life(int life, int x_pos, int y_pos, int x_speed, int y_speed): power_up::power_up{life,x_pos,y_pos,x_speed,y_speed}{};
 
 	// Funktioner
-	void hit(flying_objects&) override;
+	bool hit(flying_objects&) override;
 
 };
 ////////////////////////////////////////////////////////////////
@@ -73,11 +76,11 @@ class power_up_shield : public power_up
 public:
 
 	// Konstruktor
-	power_up_shield(int life, std::vector<int> speed,int life_until): power_up::power_up{life,speed,life_until}{};
+	power_up_shield(int life, int x_pos, int y_pos,int x_speed, int y_speed): power_up::power_up{life,x_pos,y_pos,x_speed,y_speed}{};
 
 	// funktioner
 
-	void hit(flying_objects&) override;
+	bool hit(flying_objects&) override;
 
 };
 ////////////////////////////////////////////////////////////////

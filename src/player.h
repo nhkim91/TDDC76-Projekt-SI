@@ -9,28 +9,30 @@ public:
 
 	// Datamedlemmar
 	int life_;
-	std::vector<int> speed_;
+	std::vector<int> movement_;
 	std::vector<class power_up_attack*> power_up_attack_;
 	std::vector<class power_up_shield*> power_up_shield_;
-	SDL_Texture* texture_{nullptr};
+
+	SDL_Rect rect_;
+
 
 	// Konstruktor
-	player(int life, std::vector<int> speed): life_{life}, speed_{speed}{};
+	player(int, int, int, int, int);
 
 	//Operatorer
 	void operator=(const player&);
 
 	// Destruktor
-	 ~player() = default;
+	 ~player();
 
 	 // Funktioner
 	 int get_life() const override;
-	 void check_living();
-	 void hit(flying_objects&)  override;
+	 bool check_living(int);
+	 bool hit(flying_objects&)  override;
 	 std::vector<int> movement() const override;
 	 std::vector<power_up_attack*> get_power_up_attack();
 	 std::vector<power_up_shield*> get_power_up_shield();
 	 class bullet attack();
-
+	 SDL_Rect get_rect();
 };
 #endif /* PLAYER_H_ */

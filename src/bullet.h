@@ -20,17 +20,20 @@ public:
 	// Datamedlemmar
 	int life_;
 	int dmg_;
-	std::vector<int> speed_;
+	std::vector<int> movement_;
+	SDL_Rect rect_;
 
+	//Funktioner
 	int get_life() const override;
-	void check_living();
+	bool check_living(int);
 	std::vector<int> movement() const override;
 	int get_dmg() const;
-	void hit(flying_objects&) override;
+	bool hit(flying_objects&) override;
+	SDL_Rect get_rect();
 
 
 	// Konstruktor
-	bullet(int life,int dmg, std::vector<int> speed): life_{life},dmg_{dmg}, speed_{speed}{};
+	bullet(int, int, int, int, int, int);
 
 	// Destruktor
 	 ~bullet()=default;
@@ -40,7 +43,7 @@ class bullet_mk1 : public bullet
 {
 public:
 		// Konstruktor
-	bullet_mk1(int life, int dmg, std::vector<int> speed): bullet::bullet{life,dmg,speed}{};
+	bullet_mk1(int life, int dmg, int x_pos, int y_pos, int x_speed, int y_speed): bullet::bullet{life,dmg,x_pos,y_pos,x_speed,y_speed}{};
 
 
 	 // Funktioner
