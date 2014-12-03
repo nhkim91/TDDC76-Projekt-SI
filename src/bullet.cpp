@@ -89,6 +89,12 @@ bool bullet::hit(flying_objects& other)
 	}
 
 }
+
+SDL_Rect bullet::get_rect()
+{
+	return rect_;
+}
+
 /////////////////////////////////////////////////
 
 

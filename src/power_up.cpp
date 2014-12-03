@@ -58,6 +58,12 @@ bool power_up::check_living(int dmg)
 	life_ = life_ - dmg;
 	return(life_ <= 0);
 }
+
+SDL_Rect power_up::get_rect()
+{
+	return rect_;
+}
+
 /////////////////////////////////////////////////
 
 bullet power_up_attack::attack(int x_pos, int y_pos)

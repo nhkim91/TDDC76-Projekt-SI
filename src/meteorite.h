@@ -34,7 +34,7 @@ public:
 	bool check_living(int);
 	std::vector<int> movement() const override;
 	bool hit(flying_objects&)  override;
-	SDL_Rect get_rect();
+	SDL_Rect get_rect() override;
 };
 ////////////////////////////////////////////////////////////////
 class meteorite_small : public meteorite

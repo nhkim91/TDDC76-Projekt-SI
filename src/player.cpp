@@ -2,8 +2,8 @@
 #include "linkheader.h"
 #include <iostream>
 #include <SDL2/SDL.h>
-//#include <SDL2/SDL_image.h>
-#include <SDL2_image/SDL_image.h> // maggie behöver detta!!
+#include <SDL2/SDL_image.h>
+//#include <SDL2_image/SDL_image.h> // maggie behöver detta!!
 
 #include <SDL2/SDL_main.h>
 #include <vector>

@@ -36,6 +36,6 @@ public:
 	 std::vector<power_up_attack*> get_power_up_attack();
 	 std::vector<power_up_shield*> get_power_up_shield();
 	 class bullet attack();
-	 SDL_Rect get_rect();
+	 SDL_Rect get_rect() override;
 };
 #endif /* PLAYER_H_ */
