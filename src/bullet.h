@@ -23,10 +23,10 @@ public:
 	std::vector<int> speed_;
 
 	int get_life() const override;
-	void check_living();
+	bool check_living(int);
 	std::vector<int> movement() const override;
 	int get_dmg() const;
-	void hit(flying_objects&) override;
+	bool hit(flying_objects&) override;
 
 
 	// Konstruktor

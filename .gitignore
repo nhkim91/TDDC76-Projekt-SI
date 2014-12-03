@@ -50,6 +50,7 @@ local.properties
 *.so
 *.dylib
 *.dll
+<<<<<<< Updated upstream
 
 # Fortran module files
 *.mod
@@ -92,3 +93,8 @@ $RECYCLE.BIN/
 
 # KDE directory preferences
 .directory
+=======
+/Debug/
+.settings/
+/Release/
+>>>>>>> Stashed changes
