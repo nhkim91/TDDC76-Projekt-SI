@@ -10,6 +10,21 @@
 #include <vector>
 using namespace std;
 
+power_up::power_up(int life, int x_pos, int y_pos, int x_speed, int y_speed)
+{
+	life_= life;
+	rect_.x = x_pos;
+	rect_.y = y_pos;
+	rect_.w = 100;
+	rect_.h = 100;
+	movement_.at(0) = x_pos;
+	movement_.at(1) = y_pos;
+	movement_.at(2) = x_speed;
+	movement_.at(3) = y_speed;
+
+}
+
+
 vector<int> power_up::movement() const
 {
 
@@ -45,9 +60,9 @@ bool power_up::check_living(int dmg)
 }
 /////////////////////////////////////////////////
 
-bullet power_up_attack::attack()
+bullet power_up_attack::attack(int x_pos, int y_pos)
 {
-	return bullet{1, 1, {-1000, 0}};
+	return bullet{2, 3, x_pos, y_pos, 15, 0};
 }
 
 bool power_up_attack::hit(flying_objects& other)

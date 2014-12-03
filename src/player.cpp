@@ -1,8 +1,8 @@
 #include "player.h"
 #include "linkheader.h"
 #include <iostream>
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_image.h>
+//#include <SDL2/SDL.h>
+#include <SDL2_image/SDL_image.h>
 
 #include <SDL2/SDL_main.h>
 #include <vector>
@@ -23,7 +23,7 @@ player::player(int life, int x_pos, int y_pos, int width, int height, int x_spee
 }
 
 
-bool alien::check_living(int dmg)
+bool player::check_living(int dmg)
 {
 	life_= life_ - dmg;
 	return (life_<=0);

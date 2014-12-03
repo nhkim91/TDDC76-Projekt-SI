@@ -23,10 +23,9 @@
 class flying_objects
 {
 public:
-	virtual bool  hit(flying_objects&)  = 0;
+	virtual bool hit(flying_objects&)  = 0;
 	virtual std::vector<int> movement() const = 0;
 	virtual int get_life() const = 0;
-
 	virtual ~flying_objects() {}
 
 };

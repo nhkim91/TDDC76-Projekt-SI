@@ -11,7 +11,20 @@
 #include <vector>
 using namespace std;
 
+bullet::bullet(int life, int dmg, int x_pos, int y_pos,int x_speed, int y_speed)
+{
+	life_= life;
+	dmg_ = dmg;
+	rect_.x = x_pos;
+	rect_.y = y_pos;
+	rect_.w = 100;
+	rect_.h = 100;
+	movement_.at(0) = x_pos;
+	movement_.at(1) = y_pos;
+	movement_.at(2) = x_speed;
+	movement_.at(3) = y_speed;
 
+}
 
 bool bullet::check_living(int dmg)
 {
@@ -22,7 +35,7 @@ bool bullet::check_living(int dmg)
 vector<int> bullet::movement() const
 {
 
-	return speed_;
+	return movement_;
 }
 
 int bullet::get_life() const
