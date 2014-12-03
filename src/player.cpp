@@ -161,7 +161,7 @@ bullet player::attack()
 	}
 	else
 	{
-		return power_up_attack_.at(0)->attack();
+		return power_up_attack_.at(0)->attack((movement_.at(0)+100), movement_.at(1));
 	}
 }
 
