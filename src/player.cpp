@@ -2,7 +2,8 @@
 #include "linkheader.h"
 #include <iostream>
 #include <SDL2/SDL.h>
-#include <SDL2/SDL_image.h>
+//#include <SDL2/SDL_image.h>
+#include <SDL2_image/SDL_image.h> // maggie behöver detta!!
 
 #include <SDL2/SDL_main.h>
 #include <vector>
@@ -21,7 +22,6 @@ player::player(int life, int x_pos, int y_pos, int x_speed, int y_speed)
 	movement_.at(3) = y_speed;
 
 }
-
 
 player::~player()
 {
@@ -156,7 +156,7 @@ bullet player::attack()
 {
 	if (power_up_attack_.empty())
 	{
-		return bullet{1, 1,{10,0}};
+		return bullet{1, 1,(movement_.at(0)+100), 0, 10, 0};
 
 	}
 	else
@@ -166,9 +166,7 @@ bullet player::attack()
 }
 
 
-
 SDL_Rect player::get_rect()
 {
 	return rect_;
 }
-
