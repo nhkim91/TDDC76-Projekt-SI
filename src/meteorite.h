@@ -30,9 +30,9 @@ public:
 
 	 // Funktioner
 	int get_life() const override;
-	void check_living();
+	bool check_living(int);
 	std::vector<int> movement() const override;
-	void hit(flying_objects&)  override;
+	bool hit(flying_objects&)  override;
 };
 ////////////////////////////////////////////////////////////////
 class meteorite_small : public meteorite

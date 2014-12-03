@@ -13,17 +13,10 @@ using namespace std;
 
 
 
-void bullet::check_living()
+bool bullet::check_living(int dmg)
 {
-	if(get_life()<=0)
-	{
-		//delete this;
-		return;
-	}
-	else
-	{
-		return;
-	}
+	life_ = life_ - dmg;
+	return(life_ <= 0);
 }
 
 vector<int> bullet::movement() const
@@ -42,7 +35,7 @@ int bullet::get_dmg() const
 	return dmg_;
 }
 
-void bullet::hit(flying_objects& other)
+bool bullet::hit(flying_objects& other)
 {
 	flying_objects *ptr_;
 	ptr_ = &other;
@@ -51,45 +44,35 @@ void bullet::hit(flying_objects& other)
 	other_obj_1 = dynamic_cast<meteorite*>(ptr_);
 	if (other_obj_1 != nullptr)
 	{
-		life_= life_- other_obj_1->get_life();
-		check_living();
-		return;
+		return check_living(other_obj_1->get_life());
 	}
 
 	alien* other_obj_2;
 	other_obj_2 = dynamic_cast<alien*>(ptr_);
 	if (other_obj_2 != nullptr)
 	{
-		life_= life_- other_obj_2->get_life();
-		check_living();
-		return;
+		return check_living(other_obj_2->get_life());
 	}
 
 	player* other_obj_3;
 	other_obj_3 = dynamic_cast<player*>(ptr_);
 	if (other_obj_3 != nullptr)
 	{
-		life_= life_- other_obj_3->get_life();
-		check_living();
-		return;
+		return check_living(other_obj_3->get_life());;
 	}
 
 	bullet* other_obj_4;
 	other_obj_4 = dynamic_cast<bullet*>(ptr_);
 	if (other_obj_4 != nullptr)
 	{
-		life_= life_- other_obj_4->get_dmg();
-		check_living();
-		return;
+		return check_living(other_obj_4->get_life());;
 	}
 
 	power_up* other_obj_5;
 	other_obj_5 = dynamic_cast<power_up*>(ptr_);
 	if (other_obj_5 != nullptr)
 	{
-		--life_;
-		check_living();
-		return;
+		return check_living(other_obj_5->get_life());;
 	}
 
 }
