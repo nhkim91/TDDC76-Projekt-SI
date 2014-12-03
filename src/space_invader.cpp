@@ -9,7 +9,7 @@ using namespace std;
 
 space_invader::space_invader()
 {
-	//////KONSTRUKTOR
+
 }
 
 void space_invader::killer()
