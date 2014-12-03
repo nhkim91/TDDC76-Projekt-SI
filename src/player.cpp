@@ -1,32 +1,37 @@
 #include "player.h"
 #include "linkheader.h"
 #include <iostream>
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_image.h>
 
+#include <SDL2/SDL_main.h>
 #include <vector>
 using namespace std;
 
-void player::operator=(const player& other)
+player::player(int life, int x_pos, int y_pos, int width, int height, int x_speed, int y_speed)
 {
-	life_ = other.life_;
-	speed_ = other.speed_;
+	life_= life;
+	rect_.x = x_pos;
+	rect_.y = y_pos;
+	rect_.w = width;
+	rect_.h = height;
+	movement_.at(0) = x_pos;
+	movement_.at(1) = y_pos;
+	movement_.at(2) = x_speed;
+	movement_.at(3) = y_speed;
+
 }
 
-void player::check_living()
+
+bool alien::check_living(int dmg)
 {
-	if(get_life()<=0)
-	{
-		//delete this;
-		return;
-	}
-	else
-	{
-		return;
-	}
+	life_= life_ - dmg;
+	return (life_<=0);
 }
 
 vector<int> player::movement() const
 {
-	return speed_;
+	return movement_;
 }
 
 int player::get_life() const
@@ -43,7 +48,7 @@ vector<power_up_shield*> player::get_power_up_shield()
 	return power_up_shield_;
 }
 
-void player::hit(flying_objects& other)
+bool player::hit(flying_objects& other)
 
 {
 	flying_objects *ptr_;
@@ -55,13 +60,11 @@ void player::hit(flying_objects& other)
 	{
 		if (power_up_shield_.empty())
 		{
-			--life_;
-			check_living();
-			return;
+			return check_living(-1);
 		}
 		else
 		{
-			return;
+			return false;
 		}
 	}
 
@@ -71,13 +74,11 @@ void player::hit(flying_objects& other)
 	{
 		if (power_up_shield_.empty())
 		{
-			life_= life_-other_obj_2->get_dmg();
-			check_living();
-			return;
+			return check_living(other_obj_2->get_dmg());
 		}
 		else
 		{
-			return;
+			return false;
 		}
 
 	}
@@ -88,13 +89,11 @@ void player::hit(flying_objects& other)
 	{
 		if (power_up_shield_.empty())
 		{
-			--life_;
-			check_living();
-			return;
+			return check_living(-1);
 		}
 		else
 		{
-			return;
+			return false;
 		}
 	}
 
@@ -110,13 +109,13 @@ void player::hit(flying_objects& other)
 			if (power_up_attack_.empty())
 			{
 				power_up_attack_.push_back(other_obj_5);
-				return;
+				return false;
 			}
 
 			else
 			{
 				power_up_attack_.at(0)->set_life_time();
-				return;
+				return false;
 			}
 		}
 
@@ -126,7 +125,7 @@ void player::hit(flying_objects& other)
 		if (other_obj_6 != nullptr)
 		{
 			++life_;
-			return;
+			return false;
 		}
 
 		power_up_shield* other_obj_7;
@@ -134,16 +133,16 @@ void player::hit(flying_objects& other)
 		if (other_obj_7 != nullptr)
 		{
 			power_up_shield_.push_back(other_obj_7);
-			return;
+			return false;
 		}
 		else
 		{
 			power_up_shield_.at(0)->set_life_time();
-			return;
+			return false;
 		}
 	}
 
-	return;
+	return false;
 }
 
 bullet player::attack()
@@ -161,5 +160,8 @@ bullet player::attack()
 
 
 
-
+SDL_Rect player::get_rect()
+{
+	return rect_;
+}
 

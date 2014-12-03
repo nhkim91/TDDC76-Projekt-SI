@@ -17,19 +17,21 @@ public:
 
 	// Datamedlemmar
 	int life_;
-	std::vector<int> speed_;
+	std::vector<int> movement_;
+	SDL_Rect  rect_;
 
 	// Konstruktor
-	alien(int life, std::vector<int> speed): life_{life}, speed_{speed}{};
+	alien(int life, std::vector<int> movement): life_{life}, movement_{movement}{};
+	alien(int, int, int, int, int, int, int);
 
 	// Destruktor
 	 ~alien() = default;
 
 	// Funktioner
 	int get_life() const override;
-	void check_living();
+	bool check_living(int);
 	std::vector<int> movement() const override;
-	void hit(flying_objects&)  override;
+	bool hit(flying_objects&)  override;
 
 
 };
@@ -41,7 +43,7 @@ class alien_mk1 : public alien
 public:
 
 	// Konstruktor
-	alien_mk1(int life, std::vector<int> position): alien::alien{life,position}{};
+	alien_mk1(int life, std::vector<int> movement): alien::alien{life,movement}{};
 
 };
 ////////////////////////////////////////////////////////////////
