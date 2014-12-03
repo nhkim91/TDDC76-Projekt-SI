@@ -9,12 +9,12 @@
 #define FLYING_OBJECTS_H_
 #include <vector>
 #include <SDL2/SDL.h>
-//#include <SDL2/SDL_image.h>
+#include <SDL2/SDL_image.h>
 
-#undef main
+//#undef main
 
 //#include <SDL2/SDL_image.h>
-#include <SDL2_image/SDL_image.h> //<- maggie behöver denna!
+//#include <SDL2_image/SDL_image.h> //<- maggie behöver denna!
 
 
 
