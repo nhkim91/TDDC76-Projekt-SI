@@ -1,8 +1,15 @@
 /*
  * bullet.h
  *
- *  Created on: 25 nov 2014
- *      Author: anton
+ * Denna klass är till för bullet, dvs skott som både alien och player använder sig av.
+ * Funktioner:
+ *  - get_life: hämtar livet på bullet
+ *  - check_living: kollar om bullet lever
+ *  - movement: en veckor som sparar undan positionerningen i x- och y-led samt hastigheten i x- och y-led.
+ *  -get_dmg: retunerar antalet skada som bullet har.
+ *  - hit: konsekvensena som händer när bullet krockar med resterande klasser
+ *
+ *   Innehåller också sub-klasserna bullet_mk1 som är default skottet, bullet_mk2 som fås genom en power up.
  */
 
 
@@ -23,6 +30,8 @@ public:
 	std::vector<int> movement_;
 
 
+
+
 	//Funktioner
 	int get_life() const override;
 	bool check_living(int);
@@ -34,16 +43,28 @@ public:
 
 	// Konstruktor
 	bullet(int, int, int, int, int, int);
+	bullet();
 
 	// Destruktor
-	 ~bullet()=default;
+	 ~bullet();
 };
-
+//////////////////////////////////////////
 class bullet_mk1 : public bullet
 {
 public:
-		// Konstruktor
-	bullet_mk1(int life, int dmg, int x_pos, int y_pos, int x_speed, int y_speed): bullet::bullet{life,dmg,x_pos,y_pos,x_speed,y_speed}{};
+	// Konstruktor
+	bullet_mk1(int life, int dmg, int x_pos, int y_pos, int x_speed, int y_speed, SDL_Renderer*);
+
+	// Funktioner
+};
+
+//////////////////////////////////////////
+class bullet_mk2 : public bullet
+{
+public:
+
+	// Konstruktor
+	bullet_mk2(int life, int dmg, int x_pos, int y_pos, int x_speed, int y_speed, SDL_Renderer*);
 
 
 	 // Funktioner
