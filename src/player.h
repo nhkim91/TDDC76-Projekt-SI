@@ -16,7 +16,7 @@ public:
 
 
 	// Konstruktor
-	player(int, int, int, int, int);
+	player(int, int, int, int, int, SDL_Renderer*);
 
 	//Operatorer
 	void operator=(const player&);
@@ -32,6 +32,7 @@ public:
 	 std::vector<power_up_attack*> get_power_up_attack();
 	 std::vector<power_up_shield*> get_power_up_shield();
 	 class bullet attack();
+
 
 };
 #endif /* PLAYER_H_ */

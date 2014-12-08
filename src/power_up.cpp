@@ -10,25 +10,15 @@
 #include <vector>
 using namespace std;
 
-power_up::power_up(int life, int x_pos, int y_pos, int x_speed, int y_speed)
+power_up::~power_up()
 {
-	life_= life;
-	rect_.x = x_pos;
-	rect_.y = y_pos;
-	rect_.w = 100;
-	rect_.h = 100;
-	movement_.at(0) = x_pos;
-	movement_.at(1) = y_pos;
-	movement_.at(2) = x_speed;
-	movement_.at(3) = y_speed;
-
+	movement_.clear();
 }
-
 
 vector<int> power_up::movement() const
 {
 
-	return this->movement_;
+	return movement_;
 }
 
 int power_up::get_life() const
@@ -61,10 +51,31 @@ bool power_up::check_living(int dmg)
 
 
 /////////////////////////////////////////////////
+power_up_attack::power_up_attack(int life, int x_pos, int y_pos, int x_speed, int y_speed, SDL_Renderer* renderer)
+{
+	SDL_Surface* temp = IMG_Load("power_up_attack.png");
+	texture_ = SDL_CreateTextureFromSurface(renderer, temp);
+
+
+	renderer_ = renderer;
+	life_= life;
+	rect_.x = x_pos;
+	rect_.y = y_pos;
+	rect_.w = temp->w;
+	rect_.h = temp->h;
+	movement_.at(0) = x_pos;
+	movement_.at(1) = y_pos;
+	movement_.at(2) = x_speed;
+	movement_.at(3) = y_speed;
+
+	SDL_FreeSurface(temp);
+
+}
+
 
 bullet power_up_attack::attack(int x_pos, int y_pos)
 {
-	return bullet{2, 3, x_pos, y_pos, 15, 0};
+	return bullet_mk2{2, 3, x_pos, y_pos, 15, 0 renderer_};
 }
 
 bool power_up_attack::hit(flying_objects& other)
@@ -93,6 +104,30 @@ bool power_up_attack::hit(flying_objects& other)
 }
 
 /////////////////////////////////////////////////
+power_up_life::power_up_life(int life, int x_pos, int y_pos, int x_speed, int y_speed, SDL_Renderer* renderer)
+{
+	SDL_Surface* temp = IMG_Load("power_up_life.png");
+	texture_ = SDL_CreateTextureFromSurface(renderer, temp);
+
+
+	renderer_ = renderer;
+	life_= life;
+	rect_.x = x_pos;
+	rect_.y = y_pos;
+	rect_.w = temp->w;
+	rect_.h = temp->h;
+	movement_.at(0) = x_pos;
+	movement_.at(1) = y_pos;
+	movement_.at(2) = x_speed;
+	movement_.at(3) = y_speed;
+
+	SDL_FreeSurface(temp);
+
+}
+
+
+
+
 bool power_up_life::hit(flying_objects& other)
 {
 	flying_objects *ptr_;
@@ -110,6 +145,27 @@ bool power_up_life::hit(flying_objects& other)
 }
 
 /////////////////////////////////////////////////
+power_up_shield::power_up_shield(int life, int x_pos, int y_pos, int x_speed, int y_speed, SDL_Renderer* renderer)
+{
+	SDL_Surface* temp = IMG_Load("power_up_shiled.png");
+	texture_ = SDL_CreateTextureFromSurface(renderer, temp);
+
+	renderer_ = renderer;
+	life_= life;
+	rect_.x = x_pos;
+	rect_.y = y_pos;
+	rect_.w = temp->w;
+	rect_.h = temp->h;
+	movement_.at(0) = x_pos;
+	movement_.at(1) = y_pos;
+	movement_.at(2) = x_speed;
+	movement_.at(3) = y_speed;
+
+	SDL_FreeSurface(temp);
+
+}
+
+
 
 bool power_up_shield::hit(flying_objects& other)
 {

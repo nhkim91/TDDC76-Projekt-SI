@@ -25,9 +25,10 @@ public:
 
 	// Konstruktor
 	meteorite(int, int, int, int, int);
+	meteorite();
 
 	// Destruktor
-	 ~meteorite() = default;
+	 ~meteorite();
 
 	 // Funktioner
 	int get_life() const override;
@@ -42,7 +43,7 @@ class meteorite_small : public meteorite
 public:
 
 	// Konstruktor
-	meteorite_small(int life, int x_pos, int y_pos, int x_speed, int y_speed): meteorite::meteorite{life,x_pos,y_pos,x_speed,y_speed}{};
+	meteorite_small(int life, int x_pos, int y_pos, int x_speed, int y_speed, SDL_Renderer* renderer);
 
 };
 ////////////////////////////////////////////////////////////////
@@ -51,7 +52,7 @@ class meteorite_medium : public meteorite
 public:
 
 	// Konstruktor
-	meteorite_medium(int life, int x_pos, int y_pos, int x_speed, int y_speed): meteorite::meteorite{life,x_pos,y_pos,x_speed,y_speed}{};
+	meteorite_medium(int life, int x_pos, int y_pos, int x_speed, int y_speed, SDL_Renderer* renderer);
 
 };
 ///////////////////////////////////////////////////////////////

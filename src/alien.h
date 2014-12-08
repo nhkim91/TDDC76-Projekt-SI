@@ -22,6 +22,7 @@ public:
 
 	// Konstruktor
 	alien(int, int, int, int, int);
+	alien();
 
 	// Destruktor
 	 ~alien();
@@ -42,7 +43,7 @@ class alien_mk1 : public alien
 public:
 
 	// Konstruktor
-	alien_mk1(int life, int x_pos, int y_pos, int x_speed, int y_speed): alien::alien{life, x_pos, y_pos, x_speed, y_speed}{};
+	alien_mk1(int life, int x_pos, int y_pos, int x_speed, int y_speed, SDL_Renderer* renderer);
 
 };
 ////////////////////////////////////////////////////////////////
@@ -52,7 +53,7 @@ class alien_mk2 : public alien
 public:
 
 	// Konstruktor
-	alien_mk2(int life, int x_pos, int y_pos, int x_speed, int y_speed): alien::alien{life, x_pos, y_pos, x_speed, y_speed}{};
+	alien_mk2(int life, int x_pos, int y_pos, int x_speed, int y_speed, SDL_Renderer* renderer);
 
 };
 ////////////////////////////////////////////////////////////////
@@ -62,7 +63,7 @@ class alien_mk3 : public alien
 public:
 
 	// Konstruktor
-	alien_mk3(int life, int x_pos, int y_pos, int x_speed, int y_speed): alien::alien{life, x_pos, y_pos, x_speed, y_speed}{};
+	alien_mk3(int life, int x_pos, int y_pos, int x_speed, int y_speed, SDL_Renderer* renderer);
 
 	//funktioner
 	class bullet attack();

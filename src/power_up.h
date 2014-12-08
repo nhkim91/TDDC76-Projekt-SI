@@ -17,17 +17,17 @@ public:
 	// Datamedlemmar
 	int life_;
 	std::vector<int> movement_;
-	int live_until_;
-	SDL_Texture* power_up_{nullptr};
+	int live_until_{0};
+
 
 
 
 	// Konstruktor
-	power_up(int, int, int, int, int);
+	//power_up(int, int, int, int, int);
 
 
 	// Destruktor
-	 ~power_up() = default;
+	 ~power_up();
 
 	// Funktioner
 	 int get_life() const override;
@@ -47,10 +47,9 @@ public:
 
 
 	// Konstruktor
-	power_up_attack(int life, int x_pos, int y_pos, int x_speed, int y_speed): power_up::power_up{life, x_pos,y_pos,x_speed,y_speed}{};
+	power_up_attack(int life, int x_pos, int y_pos, int x_speed, int y_speed, SDL_Renderer* renderer);
 
-	// Destruktor
-	~power_up_attack()=default;
+
 
 	// Funktioner
 	class bullet attack(int,int);
@@ -64,7 +63,7 @@ class power_up_life : public power_up
 public:
 
 	// Konstruktor
-	power_up_life(int life, int x_pos, int y_pos, int x_speed, int y_speed): power_up::power_up{life,x_pos,y_pos,x_speed,y_speed}{};
+	power_up_life(int life, int x_pos, int y_pos, int x_speed, int y_speed, SDL_Renderer* renderer);
 
 	// Funktioner
 	bool hit(flying_objects&) override;
@@ -76,7 +75,7 @@ class power_up_shield : public power_up
 public:
 
 	// Konstruktor
-	power_up_shield(int life, int x_pos, int y_pos,int x_speed, int y_speed): power_up::power_up{life,x_pos,y_pos,x_speed,y_speed}{};
+	power_up_shield(int life, int x_pos, int y_pos,int x_speed, int y_speed, SDL_Renderer* renderer);
 
 	// funktioner
 

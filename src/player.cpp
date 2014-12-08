@@ -8,18 +8,23 @@
 #include <vector>
 using namespace std;
 
-player::player(int life, int x_pos, int y_pos, int x_speed, int y_speed)
+player::player(int life, int x_pos, int y_pos, int x_speed, int y_speed, SDL_Renderer* renderer)
 {
+	SDL_Surface* temp = IMG_Load("player.png");
+	texture_ = SDL_CreateTextureFromSurface(renderer, temp);
+
+	renderer_ = renderer;
 	life_= life;
 	rect_.x = x_pos;
 	rect_.y = y_pos;
-	rect_.w = 100;
-	rect_.h = 100;
+	rect_.w = temp->w;
+	rect_.h = temp->h;
 	movement_.at(0) = x_pos;
 	movement_.at(1) = y_pos;
 	movement_.at(2) = x_speed;
 	movement_.at(3) = y_speed;
 
+	SDL_FreeSurface(temp);
 }
 
 player::~player()
@@ -155,7 +160,7 @@ bullet player::attack()
 {
 	if (power_up_attack_.empty())
 	{
-		return bullet{1, 1,(movement_.at(0)+101), movement_.at(1), 10, 0};
+		return bullet_mk1{1, 1,(movement_.at(0)+101), movement_.at(1), 10, 0, renderer_};
 
 	}
 	else
