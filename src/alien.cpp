@@ -59,67 +59,93 @@ bool alien::hit(flying_objects& other)
 
 }
 ////////////////////////////////////////////////////
-alien_mk1::alien_mk1(int life, int x_pos, int y_pos, int x_speed, int y_speed, SDL_Renderer* renderer)
+alien::alien(int life, int x_pos, int y_pos, int x_speed, int y_speed, SDL_Renderer* renderer)
+{
+	/*SDL_Surface* temp = IMG_Load("alien2.png");
+	texture_ = SDL_CreateTextureFromSurface(renderer, temp);
+*/
+	renderer_ = renderer;
+	life_= life;
+	rect_.x = x_pos;
+	rect_.y = y_pos;
+	/*rect_.w = temp->w;
+	rect_.h = temp->h;
+	*/
+	movement_.at(0) = x_pos;
+	movement_.at(1) = y_pos;
+	movement_.at(2) = x_speed;
+	movement_.at(3) = y_speed;
+
+	//SDL_FreeSurface(temp);
+}
+////////////////////////////////////////////////////
+alien_mk1::alien_mk1(int life, int x_pos, int y_pos, int x_speed, int y_speed, SDL_Renderer* renderer):
+				alien(life, x_pos, y_pos, x_speed, y_speed, renderer)
 {
 	SDL_Surface* temp = IMG_Load("alien1.png");
 	texture_ = SDL_CreateTextureFromSurface(renderer, temp);
 
-	renderer_ = renderer;
+	/*renderer_ = renderer;
 	life_= life;
 	rect_.x = x_pos;
 	rect_.y = y_pos;
+	*/
 	rect_.w = temp->w;
 	rect_.h = temp->h;
-	movement_.at(0) = x_pos;
+	/*movement_.at(0) = x_pos;
 	movement_.at(1) = y_pos;
 	movement_.at(2) = x_speed;
 	movement_.at(3) = y_speed;
-
+*/
 	SDL_FreeSurface(temp);
 }
 ////////////////////////////////////////////////////
-alien_mk2::alien_mk2(int life, int x_pos, int y_pos, int x_speed, int y_speed, SDL_Renderer* renderer)
+alien_mk2::alien_mk2(int life, int x_pos, int y_pos, int x_speed, int y_speed, SDL_Renderer* renderer):
+						alien(life, x_pos, y_pos, x_speed, y_speed, renderer)
 {
 	SDL_Surface* temp = IMG_Load("alien2.png");
 	texture_ = SDL_CreateTextureFromSurface(renderer, temp);
 
-	renderer_ = renderer;
+	/*renderer_ = renderer;
 	life_= life;
 	rect_.x = x_pos;
 	rect_.y = y_pos;
+	*/
 	rect_.w = temp->w;
 	rect_.h = temp->h;
-	movement_.at(0) = x_pos;
+	/*movement_.at(0) = x_pos;
 	movement_.at(1) = y_pos;
 	movement_.at(2) = x_speed;
 	movement_.at(3) = y_speed;
-
+*/
 	SDL_FreeSurface(temp);
 }
 ////////////////////////////////////////////////////
-alien_mk3::alien_mk3(int life, int x_pos, int y_pos, int x_speed, int y_speed, SDL_Renderer* renderer)
+alien_mk3::alien_mk3(int life, int x_pos, int y_pos, int x_speed, int y_speed, SDL_Renderer* renderer):
+						alien(life, x_pos, y_pos, x_speed, y_speed, renderer)
 {
 	SDL_Surface* temp = IMG_Load("alien3.png");
 	texture_ = SDL_CreateTextureFromSurface(renderer, temp);
 
-	renderer_ = renderer;
+	/*renderer_ = renderer;
 	life_= life;
 	rect_.x = x_pos;
 	rect_.y = y_pos;
+	*/
 	rect_.w = temp->w;
 	rect_.h = temp->h;
-	movement_.at(0) = x_pos;
+	/*movement_.at(0) = x_pos;
 	movement_.at(1) = y_pos;
 	movement_.at(2) = x_speed;
 	movement_.at(3) = y_speed;
-
+*/
 	SDL_FreeSurface(temp);
 }
 
-
+////////////////////////////////////////////////////
 bullet alien_mk3::attack()
 {
-	return bullet{1, 1,(movement_.at(0)-1), movement_.at(1), -10, 0};
+	return bullet{1, 1,(movement_.at(0)-1), movement_.at(1), -10, 0, renderer_};
 
 }
 

@@ -14,7 +14,6 @@ int main(int argc, char *argv[]) {
 		cerr << "Error initializing SDL" << endl;
 		exit(1);
 	}
-cerr << "hej main\n";
 
 	space_invader SI;
 	SI.run();

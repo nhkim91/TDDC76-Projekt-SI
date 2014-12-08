@@ -13,8 +13,6 @@ public:
 	std::vector<class power_up_attack*> power_up_attack_;
 	std::vector<class power_up_shield*> power_up_shield_;
 
-
-
 	// Konstruktor
 	player(int, int, int, int, int, SDL_Renderer*);
 

@@ -75,7 +75,7 @@ power_up_attack::power_up_attack(int life, int x_pos, int y_pos, int x_speed, in
 
 bullet power_up_attack::attack(int x_pos, int y_pos)
 {
-	return bullet_mk2{2, 3, x_pos, y_pos, 15, 0 renderer_};
+	return bullet_mk2{2, 3, x_pos, y_pos, 15, 0, renderer_};
 }
 
 bool power_up_attack::hit(flying_objects& other)

@@ -42,7 +42,7 @@ public:
 
 
 	// Konstruktor
-	bullet(int, int, int, int, int, int);
+	bullet(int, int, int, int, int, int, SDL_Renderer*);
 	bullet();
 
 	// Destruktor
@@ -53,7 +53,7 @@ class bullet_mk1 : public bullet
 {
 public:
 	// Konstruktor
-	bullet_mk1(int life, int dmg, int x_pos, int y_pos, int x_speed, int y_speed, SDL_Renderer*);
+	bullet_mk1(int, int, int, int, int, int, SDL_Renderer*);
 
 	// Funktioner
 };
@@ -64,7 +64,7 @@ class bullet_mk2 : public bullet
 public:
 
 	// Konstruktor
-	bullet_mk2(int life, int dmg, int x_pos, int y_pos, int x_speed, int y_speed, SDL_Renderer*);
+	bullet_mk2(int, int, int, int, int, int, SDL_Renderer*);
 
 
 	 // Funktioner

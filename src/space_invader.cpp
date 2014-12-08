@@ -115,7 +115,6 @@ void space_invader::run()
 				}
 				else if (event.key.keysym.sym == SDLK_UP) {
 					ySpeed = -10;
-					cerr << "upp";
 				}
 				else if (event.key.keysym.sym == SDLK_DOWN) {
 					ySpeed = 10;

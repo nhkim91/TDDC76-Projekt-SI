@@ -24,7 +24,7 @@ public:
 
 
 	// Konstruktor
-	meteorite(int, int, int, int, int);
+	meteorite(int, int, int, int, int, SDL_Renderer*);
 	meteorite();
 
 	// Destruktor
@@ -43,7 +43,7 @@ class meteorite_small : public meteorite
 public:
 
 	// Konstruktor
-	meteorite_small(int life, int x_pos, int y_pos, int x_speed, int y_speed, SDL_Renderer* renderer);
+	meteorite_small(int, int, int, int, int, SDL_Renderer*);
 
 };
 ////////////////////////////////////////////////////////////////
@@ -52,7 +52,7 @@ class meteorite_medium : public meteorite
 public:
 
 	// Konstruktor
-	meteorite_medium(int life, int x_pos, int y_pos, int x_speed, int y_speed, SDL_Renderer* renderer);
+	meteorite_medium(int, int, int, int, int, SDL_Renderer*);
 
 };
 ///////////////////////////////////////////////////////////////

@@ -6,6 +6,7 @@
 class level
 {
 public:
+	SDL_Renderer* renderer_{NULL};
     level() = default;
     virtual ~level() = default;
 

@@ -58,7 +58,7 @@ flying_objects* level::get_alien_mk1()
     data[3] = 1; //Hastighet i x-led
     data[4] = 0;
 
-    alien_mk1 alien(data[0], data[1], data[2], data[3], data[4]);
+    alien_mk1 alien(data[0], data[1], data[2], data[3], data[4], renderer_);
     flying_objects* alien_1 = static_cast<flying_objects*>(&alien);
     return alien_1;
 }
@@ -72,7 +72,7 @@ flying_objects* level::get_alien_mk2()
     data[4] = rand() % 1;
 
 
-    alien_mk2 alien(data[0], data[1], data[2], data[3], data[4]);
+    alien_mk2 alien(data[0], data[1], data[2], data[3], data[4], renderer_);
     flying_objects* alien_2 = static_cast<flying_objects*>(&alien);
     return alien_2;
 }
@@ -85,7 +85,7 @@ flying_objects* level::get_alien_mk3()
     data[3] = rand() % 4 +2; //Hastighet i x-led
     data[4] = rand() % 2;
 
-    alien_mk3 alien(data[0], data[1], data[2], data[3], data[4]);
+    alien_mk3 alien(data[0], data[1], data[2], data[3], data[4], renderer_);
     flying_objects* alien_3 = static_cast<flying_objects*>(&alien);
     return alien_3;
 }
@@ -98,7 +98,7 @@ flying_objects* level::get_meteorite_small()
     data[3] = 1; //Hastighet i x-led
     data[4] = 0;
 
-    meteorite_small meteorite{data[0], data[1], data[2], data[3], data[4]};
+    meteorite_small meteorite{data[0], data[1], data[2], data[3], data[4], renderer_};
     flying_objects* small = static_cast<flying_objects*>(&meteorite);
     return small;
 }
@@ -113,19 +113,19 @@ flying_objects* level::get_power_up(int i)
 
     if(i < 320)
     {
-        power_up_attack power_up{data[0], data[1], data[2], data[3], data[4]};
+        power_up_attack power_up{data[0], data[1], data[2], data[3], data[4], renderer_};
         flying_objects* attack = static_cast<flying_objects*>(&power_up);
         return attack;
     }
     else if(i >= 320 && i < 340)
     {
-        power_up_life power_up{data[0], data[1], data[2], data[3], data[4]};
+        power_up_life power_up{data[0], data[1], data[2], data[3], data[4], renderer_};
         flying_objects* life = static_cast<flying_objects*>(&power_up);
         return life;
     }
     else
     {
-        power_up_shield power_up{data[0], data[1], data[2], data[3], data[4]};
+        power_up_shield power_up{data[0], data[1], data[2], data[3], data[4], renderer_};
         flying_objects* shield = static_cast<flying_objects*>(&power_up);
         return shield;
     }

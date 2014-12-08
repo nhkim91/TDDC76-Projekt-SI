@@ -60,43 +60,63 @@ int meteorite::get_life() const
 }
 
 
-
 /////////////////////////////////////////////////
-meteorite_small::meteorite_small(int life, int x_pos, int y_pos, int x_speed, int y_speed, SDL_Renderer* renderer)
+meteorite::meteorite(int life, int x_pos, int y_pos, int x_speed, int y_speed, SDL_Renderer* renderer)
+{
+	//SDL_Surface* temp = IMG_Load("meteorite_small.png");
+	//texture_ = SDL_CreateTextureFromSurface(renderer, temp);
+
+	renderer_ = renderer;
+	life_= life;
+	rect_.x = x_pos;
+	rect_.y = y_pos;
+	//rect_.w = temp->w;
+	//rect_.h = temp->h;
+	movement_.at(0) = x_pos;
+	movement_.at(1) = y_pos;
+	movement_.at(2) = x_speed;
+	movement_.at(3) = y_speed;
+
+	//SDL_FreeSurface(temp);
+}
+/////////////////////////////////////////////////
+meteorite_small::meteorite_small(int life, int x_pos, int y_pos, int x_speed, int y_speed, SDL_Renderer* renderer):
+		meteorite(life, x_pos, y_pos, x_speed, y_speed, renderer)
 {
 	SDL_Surface* temp = IMG_Load("meteorite_small.png");
 	texture_ = SDL_CreateTextureFromSurface(renderer, temp);
 
-	renderer_ = renderer;
-	life_= life;
-	rect_.x = x_pos;
-	rect_.y = y_pos;
+	//renderer_ = renderer;
+	//life_= life;
+	//rect_.x = x_pos;
+	//rect_.y = y_pos;
 	rect_.w = temp->w;
 	rect_.h = temp->h;
-	movement_.at(0) = x_pos;
-	movement_.at(1) = y_pos;
-	movement_.at(2) = x_speed;
-	movement_.at(3) = y_speed;
+	//movement_.at(0) = x_pos;
+	//movement_.at(1) = y_pos;
+	//movement_.at(2) = x_speed;
+	//movement_.at(3) = y_speed;
 
 	SDL_FreeSurface(temp);
 }
-/////////////////////////////////////////////////
 
-meteorite_medium::meteorite_medium(int life, int x_pos, int y_pos, int x_speed, int y_speed, SDL_Renderer* renderer)
+
+meteorite_medium::meteorite_medium(int life, int x_pos, int y_pos, int x_speed, int y_speed, SDL_Renderer* renderer):
+		meteorite(life, x_pos, y_pos, x_speed, y_speed, renderer)
 {
 	SDL_Surface* temp = IMG_Load("meteorite_medium.png");
 	texture_ = SDL_CreateTextureFromSurface(renderer, temp);
 
-	renderer_ = renderer;
-	life_= life;
-	rect_.x = x_pos;
-	rect_.y = y_pos;
+	//renderer_ = renderer;
+	//life_= life;
+	//rect_.x = x_pos;
+	//rect_.y = y_pos;
 	rect_.w = temp->w;
 	rect_.h = temp->h;
-	movement_.at(0) = x_pos;
-	movement_.at(1) = y_pos;
-	movement_.at(2) = x_speed;
-	movement_.at(3) = y_speed;
+	//movement_.at(0) = x_pos;
+	//movement_.at(1) = y_pos;
+	//movement_.at(2) = x_speed;
+	//movement_.at(3) = y_speed;
 
 	SDL_FreeSurface(temp);
 }
