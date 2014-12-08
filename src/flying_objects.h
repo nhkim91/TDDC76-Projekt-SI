@@ -24,6 +24,8 @@ class flying_objects
 {
 protected:
 	SDL_Rect rect_;
+	SDL_Texture* texture_;
+	SDL_Renderer* renderer_;
 
 public:
 
@@ -36,7 +38,10 @@ public:
 	{
 		return rect_;
 	}
-
+	SDL_Texture* get_texture() const
+	{
+		return texture_;
+	}
 };
 
 
