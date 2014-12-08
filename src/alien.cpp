@@ -72,4 +72,9 @@ bool alien::hit(flying_objects& other)
 
 }
 
+bullet alien_mk3::attack()
+{
+	return bullet{1, 1,(movement_.at(0)-1), movement_.at(1), -10, 0};
+
+}
 

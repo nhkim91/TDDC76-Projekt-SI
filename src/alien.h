@@ -64,6 +64,8 @@ public:
 	// Konstruktor
 	alien_mk3(int life, int x_pos, int y_pos, int x_speed, int y_speed): alien::alien{life, x_pos, y_pos, x_speed, y_speed}{};
 
+	//funktioner
+	class bullet attack();
 };
 ////////////////////////////////////////////////////////////////
 

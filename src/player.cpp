@@ -155,12 +155,12 @@ bullet player::attack()
 {
 	if (power_up_attack_.empty())
 	{
-		return bullet{1, 1,(movement_.at(0)+100), 0, 10, 0};
+		return bullet{1, 1,(movement_.at(0)+101), movement_.at(1), 10, 0};
 
 	}
 	else
 	{
-		return power_up_attack_.at(0)->attack((movement_.at(0)+100), movement_.at(1));
+		return power_up_attack_.at(0)->attack((movement_.at(0)+101), movement_.at(1));
 	}
 }
 
