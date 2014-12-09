@@ -16,7 +16,8 @@ public:
     void show_highscore();
 
 private:
-    std::map<int, std::string, int> list_of_score;
+    std::map<std::string, int> list_of_score;
+    std::map<std::string, int>::const_iterator position;
 
     void load(); //Laddar in highscore till list_of_score
     std::string enter_name(); //Skriver in namn
