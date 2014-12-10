@@ -74,6 +74,25 @@ public:
 	{
 		return texture_;
 	}
+	void set_x_pos(int new_x_pos)
+	{
+		x_pos_= new_x_pos;
+	}
+
+	void set_y_pos(int new_y_pos)
+	{
+		y_pos_= new_y_pos;
+	}
+
+	void set_x_speed(int new_x_speed)
+	{
+		x_speed_= new_x_speed;
+	}
+
+	void set_y_speed(int new_y_speed)
+	{
+		y_speed_= new_y_speed;
+	}
 };
 
 
