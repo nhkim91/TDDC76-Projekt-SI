@@ -1,7 +1,7 @@
 {\rtf1\ansi\ansicpg1252\cocoartf1265\cocoasubrtf210
 {\fonttbl\f0\fnil\fcharset0 Monaco;}
 {\colortbl;\red255\green255\blue255;}
-\paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\paperw11900\paperh16840\margl1440\margr1440\vieww18640\viewh13420\viewkind0
 \deftab720
 \pard\pardeftab720
 
@@ -63,39 +63,150 @@ SDL_FreeSurface(temp);\
 \
 \
 \
-void render_things(vector<flying_objeckts> render_vector)\
+void render_things(vector<flying_objeckts*> render_vector)\
 \{\
 	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255)\
-	SDL_RenderClear(renderer)\
-	\
-	for(unsigned int i=0 ; i<render_vector.size(); i++)\
+		SDL_RenderClear(renderer)\
+\
+		for(unsigned int i=0 ; i<render_vector.size(); i++)\
 	\{\
-		SDL_RenderCopy(renderer, i.get_texture(), nullptr, i.get_rect());\
+		SDL_RenderCopy(renderer, i->get_texture(), nullptr, i->get_rect());\
 	\}\
-	\
+\
 	SDL_RenderPresent(renderer);\
 \}\
 \
-void uppdate_things (vector<flying_objeckts> update_vector, Uint32 time_diff)\
+void uppdate_things (vector<flying_objeckts*> update_vector, Uint32 time_diff, uint time)\
+\{\
+	for(unsigned int i=0 ; i<update_vector.size(); i++)\
+	\{		\
+\
+		i->movement.at(0) += i->movement().at(2)*time_diff;\
+		i->movement.at(1) += i->movement().at(3)*time_diff;\
+		i->get_rect().x += i->movement().at(2)*time_diff;\
+		i->get_rect().y += i->movement().at(3)*time_diff;\
+\
+		if (i->get_rect().y + i->get_rect().h > /* storleken p\'e5 sk\'f6rmen */ )\
+		\{\
+			if(i->movement()>0)\
+			\{\
+				i->movement.at(1) -= i->movement().at(3)*time_diff;\
+				i->get_rect().y -= i->movement().at(3)*time_diff;\
+			\}\
+\
+		\}\
+\
+		if (i->get_rect().y < 0)\
+		\{\
+			if(i->movement()<0)\
+			\{\
+				i->movement.at(1) -= i->movement().at(3)*time_diff;\
+				i->get_rect().y -= i->movement().at(3)*time_diff;\
+			\}\
+		\}\
+\
+		i *ptr_;\
+		ptr_ = &other;\
+\
+		alien* other_obj_1;\
+		other_obj_1 = dynamic_cast<alien*>(ptr_);\
+		if (other_obj_1 != nullptr)\
+		\{\
+			if (i->get_rect().x < 0) \
+			\{\
+				get_player(update_vector\}.lose_life(1);\
+				/* h\'e4r ska i l\'e4ggas till i f\'f6rst\'f6rar listan */\
+			\}	\
+		\}\
+\
+\
+		power_up_attack* other_obj_2;\
+		other_obj_2 = dynamic_cast<power_up_attack*>(ptr_);\
+		if (other_obj_2 != nullptr)\
+		\{\
+			if (i->get_rect().x < 0) \
+			\{\
+				/* h\'e4r ska i l\'e4ggas till i f\'f6rst\'f6rar listan */\
+			\}	\
+			if(time >= i->kill_me_when() && i->kill_me_when() != 0)\
+			\{\
+				/* h\'e4r ska i l\'e4ggas till i f\'f6rst\'f6rar listan */\
+				get_player(update_vector\}->get_power_up_attack().clear();\
+			\}\
+		\}\
+\
+		power_up_shield* other_obj_3;\
+		other_obj_3 = dynamic_cast<power_up_shield*>(ptr_);\
+		if (other_obj_3 != nullptr)\
+		\{\
+			if (i->get_rect().x < 0) \
+			\{\
+				/* h\'e4r ska i l\'e4ggas till i f\'f6rst\'f6rar listan */\
+			\}	\
+			if(time >= i->kill_me_when() && i->kill_me_when() != 0)\
+			\{\
+				/* h\'e4r ska i l\'e4ggas till i f\'f6rst\'f6rar listan */\
+				get_player(update_vector\}->get_power_up_shield().clear();\
+			\}\
+		\}\
+\
+\
+		if (i->get_rect().x < 0) \
+		\{\
+			/* h\'e4r ska i l\'e4ggas till i f\'f6rst\'f6rar listan */\
+		\}	\
+	\}\
+\}	\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+player get_player(vector<flying_objects> vector)\
 \{\
 	for(unsigned int i=0 ; i<update_vector.size(); i++)\
 	\{\
-		i.movement.at(0) += i.movement().at(2)*time_diff;\
-		i.movement.at(1) += i.movement().at(3)*time_diff;\
-		i.get_rect().x += i.movement().at(2)*time_diff;\
-		i.get_rect().y += i.movement().at(3)*time_diff;\
-		\
-		\
-		if (i.get_rect().x + i.get_rect().w > /* storleken p\'e5 sk\'f6rmen */ || i.get_rect().x < 0) \
+		i *ptr_;\
+		ptr_ = &other;\
+\
+		player* other_obj_1;\
+		other_obj_1 = dynamic_cast<player*>(ptr_);\
+		if (other_obj_1 != nullptr)\
 		\{\
-			// h\'e4r ska det h\'e4nda n\'e5got!\
-		\}\
-		if (i.get_rect().y + i.get_rect().h > /* storleken p\'e5 sk\'f6rmen */ || i.get_rect().y < 0)\
-		\{\
-			// h\'e4r ska det h\'e4nda n\'e5got!\
+			return i;\
 		\}\
 	\}\
 \}\
 \
+\
+\
+\
+\
+\
+i->movement.at(0) += i->movement().at(2)*time_diff;\
+i->movement.at(1) += i->movement().at(3)*time_diff;\
+i->get_rect().x += i->movement().at(2)*time_diff;\
+i->get_rect().y += i->movement().at(3)*time_diff;\
+\
+\
+\
+if (i->get_rect().x + i->get_rect().w > /* storleken p\'e5 sk\'f6rmen */ || i->get_rect().x < 0) \
+\{\
+				// h\'e4r ska det h\'e4nda n\'e5got!\
+\}\
+if (i->get_rect().y + i->get_rect().h > /* storleken p\'e5 sk\'f6rmen */ || i->get_rect().y < 0)\
+\{\
+				// h\'e4r ska det h\'e4nda n\'e5got!\
+\}\
 \
 }
