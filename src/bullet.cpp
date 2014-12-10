@@ -13,25 +13,14 @@ using namespace std;
 
 bullet::~bullet()
 {
-	SDL_DestoryTexture(texture_);
-	SDL_DestoryRenderer(renderer_);
+	SDL_DestroyTexture(texture_);
+	SDL_DestroyRenderer(renderer_);
 }
 
 bool bullet::check_living(int dmg)
 {
 	life_ = life_ - dmg;
 	return(life_ <= 0);
-}
-
-vector<int> bullet::movement() const
-{
-
-	return movement_;
-}
-
-int bullet::get_life() const
-{
-	return life_;
 }
 
 int bullet::get_dmg() const
@@ -94,10 +83,10 @@ bullet::bullet(int life, int dmg, int x_pos, int y_pos,int x_speed, int y_speed,
 	rect_.y = y_pos;
 	//rect_.w = temp->w;
 	//rect_.h = temp->h;
-	movement_.at(0) = x_pos;
-	movement_.at(1) = y_pos;
-	movement_.at(2) = x_speed;
-	movement_.at(3) = y_speed;
+	x_pos_ = x_pos;
+	y_pos_ = y_pos;
+	x_speed_= x_speed;
+	y_speed_= y_speed;
 
 	//SDL_FreeSurface(temp);
 }

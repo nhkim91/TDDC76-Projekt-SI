@@ -19,7 +19,7 @@ public:
 
 
 	// Konstruktor
-	//power_up(int, int, int, int, int);
+	power_up(int, int, int, int, int, SDL_Renderer*);
 
 
 	// Destruktor

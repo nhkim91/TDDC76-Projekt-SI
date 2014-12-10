@@ -12,8 +12,31 @@ using namespace std;
 
 power_up::~power_up()
 {
-	SDL_DestoryTexture(texture_);
-	SDL_DestoryRenderer(renderer_);
+	SDL_DestroyTexture(texture_);
+	SDL_DestroyRenderer(renderer_);
+}
+
+power_up::power_up(int life, int x_pos, int y_pos, int x_speed, int y_speed, SDL_Renderer* renderer)
+{
+	/*SDL_Surface* temp = IMG_Load("alien2.png");
+	texture_ = SDL_CreateTextureFromSurface(renderer, temp);
+*/
+	renderer_ = renderer;
+	life_= life;
+	rect_.x = x_pos;
+	rect_.y = y_pos;
+	/*rect_.w = temp->w;
+	rect_.h = temp->h;
+	 */
+
+	x_pos_ = x_pos;
+	y_pos_ = y_pos;
+	x_speed_ = x_speed;
+	y_speed_ = y_speed;
+
+
+
+	//SDL_FreeSurface(temp);
 }
 
 int power_up::kill_me_when()
@@ -29,10 +52,10 @@ int power_up::set_life_time()
 
 void power_up::pick_up_position()
 {
-	x_pos_{0};
-	y_pos_{0};
-	x_speed_{5000};
-	y_speed_{0};
+	x_pos_= 0;
+	y_pos_ = 0;
+	x_speed_ = 5000;
+	y_speed_ = 0;
 	return;
 }
 
@@ -44,7 +67,8 @@ bool power_up::check_living(int dmg)
 
 
 /////////////////////////////////////////////////
-power_up_attack::power_up_attack(int life, int x_pos, int y_pos, int x_speed, int y_speed, SDL_Renderer* renderer)
+power_up_attack::power_up_attack(int life, int x_pos, int y_pos, int x_speed, int y_speed, SDL_Renderer* renderer):
+								power_up(life, x_pos, y_pos, x_speed, y_speed, renderer)
 {
 	SDL_Surface* temp = IMG_Load("power_up_attack.png");
 	texture_ = SDL_CreateTextureFromSurface(renderer, temp);
@@ -100,7 +124,7 @@ bool power_up_attack::hit(flying_objects& other)
 
 /////////////////////////////////////////////////
 power_up_life::power_up_life(int life, int x_pos, int y_pos, int x_speed, int y_speed, SDL_Renderer* renderer):
-							power_up(life, x_pos, y_pos, x_speed, y_speed, renderer)
+						power_up(life, x_pos, y_pos, x_speed, y_speed, renderer)
 {
 	SDL_Surface* temp = IMG_Load("power_up_life.png");
 	texture_ = SDL_CreateTextureFromSurface(renderer, temp);
@@ -143,7 +167,8 @@ bool power_up_life::hit(flying_objects& other)
 }
 
 /////////////////////////////////////////////////
-power_up_shield::power_up_shield(int life, int x_pos, int y_pos, int x_speed, int y_speed, SDL_Renderer* renderer)
+power_up_shield::power_up_shield(int life, int x_pos, int y_pos, int x_speed, int y_speed, SDL_Renderer* renderer):
+								power_up(life, x_pos, y_pos, x_speed, y_speed, renderer)
 {
 	SDL_Surface* temp = IMG_Load("power_up_shiled.png");
 	texture_ = SDL_CreateTextureFromSurface(renderer, temp);
