@@ -6,8 +6,6 @@
 using namespace std;
 
 
-
-
 void space_invader::killer()
 {
 	vector<int> to_delete;
@@ -119,6 +117,18 @@ void space_invader::run()
 				else if (event.key.keysym.sym == SDLK_DOWN) {
 					ySpeed = 10;
 				}
+				else if(event.key.keysym.sym == SDLK_SPACE) {
+
+					return;
+				}
+				else if(event.key.keysym.sym == SDLK_p) {
+
+					return;
+				}
+				else if(event.key.keysym.sym == SDLK_s) {
+
+					return;
+				}
 			}
 			else if(event.type == SDL_KEYUP){
 				if (event.key.keysym.sym == SDLK_UP)
@@ -128,6 +138,18 @@ void space_invader::run()
 				else if (event.key.keysym.sym == SDLK_DOWN)
 				{
 					ySpeed = 0;
+				}
+				else if(event.key.keysym.sym == SDLK_SPACE) {
+
+					return;
+				}
+				else if(event.key.keysym.sym == SDLK_p) {
+
+					return;
+				}
+				else if(event.key.keysym.sym == SDLK_s) {
+
+					return;
 				}
 			}
 		}
