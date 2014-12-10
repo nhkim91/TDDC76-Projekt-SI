@@ -1,28 +1,32 @@
 #ifndef HIGHSCORE_H
 #define HIGHSCORE_H
 
-#include <map>
 #include <string>
+#include <vector>
 
 class highscore
 {
 public:
-    highscore() = default;
+    highscore();
     ~highscore() = default;
 
     highscore(const highscore&) = default;
 
-    void save();
+    void save_score(int);
     void show_highscore();
 
 private:
-    std::map<std::string, int> list_of_score;
-    std::map<std::string, int>::const_iterator position;
+    struct highscore_element
+    {
+        std::string name;
+        int score;
+    };
 
-    void load(); //Laddar in highscore till list_of_score
-    std::string enter_name(); //Skriver in namn
-    void read(); //Skriver över highscore till fil
-    bool cmp_score(int); //Jämför score med list_of_score
+    std::vector<highscore_element> list_of_score;
+
+    void load(); //Laddar in highscore till list_of_score.
+    std::string enter_name(); //Tar in ett namn från tangentbordet.
+    void write(); //Skriver över highscore till fil.
 };
 
 #endif // HIGHSCORE_H
