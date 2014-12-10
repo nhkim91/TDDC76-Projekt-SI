@@ -13,7 +13,8 @@ using namespace std;
 
 bullet::~bullet()
 {
-	movement_.clear();
+	SDL_DestoryTexture(texture_);
+	SDL_DestoryRenderer(renderer_);
 }
 
 bool bullet::check_living(int dmg)

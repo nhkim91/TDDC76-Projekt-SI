@@ -15,11 +15,7 @@ class power_up :public flying_objects
 public:
 
 	// Datamedlemmar
-	int life_;
-	std::vector<int> movement_;
 	int live_until_{0};
-
-
 
 
 	// Konstruktor
@@ -30,8 +26,6 @@ public:
 	 ~power_up();
 
 	// Funktioner
-	 int get_life() const override;
-	 std::vector<int> movement() const override;
 	 int kill_me_when();
 	 int set_life_time();
 	 void set_movement();

@@ -25,17 +25,11 @@ public:
 
 
 	// Datamedlemmar
-	int life_;
 	int dmg_;
-	std::vector<int> movement_;
-
-
 
 
 	//Funktioner
-	int get_life() const override;
 	bool check_living(int);
-	std::vector<int> movement() const override;
 	int get_dmg() const;
 	bool hit(flying_objects&) override;
 
