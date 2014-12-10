@@ -81,6 +81,19 @@ bool space_invader::collides(const flying_objects& obj_1, const flying_objects& 
 	return false;
 }
 
+void space_invader::render_things(vector<flying_objects*> render_vector)
+{
+	SDL_SetRenderDrawColor(renderer_, 0, 0, 0, 255);
+	SDL_RenderClear(renderer_);
+
+	for(unsigned int i=0 ; i<render_vector.size(); i++)
+	{
+		SDL_RenderCopy(renderer_, render_vector.at(i)->get_texture(), nullptr, &render_vector.at(i)->get_rect());
+	}
+
+	SDL_RenderPresent(renderer_);
+}
+
 void space_invader::run()
 {
 	// make the scaled rendering look smoother
@@ -115,9 +128,19 @@ void space_invader::run()
 	ballRect.h = ballHeight;
 	//int xSpeed{0};
 	int ySpeed{0};
+
+	const Uint32 target_frame_delay = 10;
+	Uint32 start_time = SDL_GetTicks();
+	Uint32 last_frame_time = start_time;
+
 	// main loop
 	bool running{true};
 	while (running) {
+
+		Uint32 frame_delay = SDL_GetTicks() - last_frame_time;
+		float delta_time = frame_delay / 1000.0f;
+		last_frame_time += frame_delay;
+
 		// handle events
 		SDL_Event event;
 		while (SDL_PollEvent(&event)) {
@@ -149,7 +172,7 @@ void space_invader::run()
 				}
 				else if(event.key.keysym.sym == SDLK_s)
 				{
-					flying_objects* p1{new alien_mk1{1, 50, 50, -1, 0, renderer_}};
+					flying_objects* p1{new alien_mk2{1, 50, 50, -1, 0, renderer_}};
 					displaying_objects_.push_back(p1);
 					//return;
 				}
@@ -179,14 +202,16 @@ void space_invader::run()
 		}
 
 		// update things
-		ballRect.y += ySpeed;
+		//	ballRect.y += ySpeed;
 
-		if (ballRect.y + ballHeight > SCREEN_HEIGHT || ballRect.y < 0)
-		{
-			ySpeed = -ySpeed;
-		}
+		//if (ballRect.y + ballHeight > SCREEN_HEIGHT || ballRect.y < 0)
+		//{
+		//	ySpeed = -ySpeed;
+		//}
 
+		render_things(displaying_objects_);
 		// clear screen
+		/*
 		SDL_SetRenderDrawColor(renderer_, 0, 0, 0, 255);
 		SDL_RenderClear(renderer_);
 
@@ -195,10 +220,19 @@ void space_invader::run()
 
 		// show the newly drawn things
 		SDL_RenderPresent(renderer_);
+		 */
 
 		// wait before drawing the next frame
-		SDL_Delay(10);
+		frame_delay = SDL_GetTicks() - last_frame_time;
+		if (target_frame_delay > frame_delay)
+		{
+			Uint32 sleep_time = target_frame_delay - frame_delay;
+			SDL_Delay(sleep_time);
+		}
+
+		//SDL_Delay(10);
 	}
+
 	// free memory
 	SDL_DestroyTexture(player_text);
 	player_text = nullptr;
@@ -208,4 +242,107 @@ void space_invader::run()
 	SDL_DestroyWindow(window_);
 
 	SDL_Quit();
+}
+
+void space_invader::update_things (vector<flying_objects*> update_vector, Uint32 time_diff, Uint32 time)
+{
+	for(unsigned int i=0 ; i<update_vector.size(); i++)
+	{
+		vector<unsigned int> to_delete;
+
+		update_vector.at(i)->get_x_pos() += update_vector.at(i)->get_x_speed()*time_diff;
+		update_vector.at(i)->get_y_pos() += update_vector.at(i)->get_y_speed()*time_diff;
+		update_vector.at(i)->get_rect().x += update_vector.at(i)->get_x_speed()*time_diff;
+		update_vector.at(i)->get_rect().y += update_vector.at(i)->get_y_speed()*time_diff;
+
+		if (update_vector.at(i)->get_rect().y + update_vector.at(i)->get_rect().h > SCREEN_WIDTH )
+		{
+			if(update_vector.at(i)->get_y_speed()>0)
+			{
+				update_vector.at(i)->get_y_pos() -= update_vector.at(i)->get_y_speed()*time_diff;
+				update_vector.at(i)->get_rect().y -= update_vector.at(i)->get_y_speed()*time_diff;
+			}
+
+		}
+
+		if (update_vector.at(i)->get_rect().y < 0)
+		{
+			if(update_vector.at(i)->get_y_speed()<0)
+			{
+				update_vector.at(i)->get_y_pos() -= update_vector.at(i)->get_y_speed()*time_diff;
+				update_vector.at(i)->get_rect().y -= update_vector.at(i)->get_y_speed()*time_diff;
+			}
+		}
+
+		i *ptr_;
+		ptr_ = &other;
+
+		alien* other_obj_1;
+		other_obj_1 = dynamic_cast<alien*>(ptr_);
+		if (other_obj_1 != nullptr)
+		{
+			if (update_vector.at(i)->get_rect().x < 0)
+			{
+				get_player(update_vector).lose_life(1);
+				to_delete.push_back(i);
+			}
+		}
+
+		power_up_attack* other_obj_2;
+		other_obj_2 = dynamic_cast<power_up_attack*>(ptr_);
+		if (other_obj_2 != nullptr)
+		{
+			if (update_vector.at(i)->get_rect().x < 0)
+			{
+				/* här ska i läggas till i förstörar listan */
+				to_delete.push_back(i);
+			}
+			if(time >= update_vector.at(i)->kill_me_when() && update_vector.at(i)->kill_me_when() != 0)
+			{
+				/* här ska i läggas till i förstörar listan */
+				to_delete.push_back(i);
+				get_player(update_vector)->get_power_up_attack().clear();
+			}
+		}
+		power_up_shield* other_obj_3;
+		other_obj_3 = dynamic_cast<power_up_shield*>(ptr_);
+		if (other_obj_3 != nullptr)
+		{
+			if (update_vector.at(i)->get_rect().x < 0)
+			{
+				/* här ska i läggas till i förstörar listan */
+				to_delete.push_back(i);
+			}
+			if(time >= update_vector.at(i)->kill_me_when() && update_vector.at(i)->kill_me_when() != 0)
+			{
+				/* här ska i läggas till i förstörar listan */
+				to_delete.push_back(i);
+				get_player(update_vector)->get_power_up_shield().clear();
+			}
+
+		}
+		if (update_vector.at(i)->get_rect().x < 0)
+		{
+			/* här ska i läggas till i förstörar listan */
+			to_delete.push_back(i);
+		}
+		kill_objects(to_delete);
+	}
+}
+
+player* space_invader::get_player(vector<flying_objects*> vector)
+{
+	for(unsigned int i=0 ; i < vector.size(); i++)
+	{
+		flying_objects *ptr;
+		ptr = &vector.at(i);
+
+		player* other_obj_1;
+		other_obj_1 = dynamic_cast<player*>(ptr);
+		if (other_obj_1 != nullptr)
+		{
+			return ptr;
+		}
+	}
+	return nullptr;
 }

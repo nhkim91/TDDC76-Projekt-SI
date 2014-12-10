@@ -34,6 +34,10 @@ public:
 	virtual std::vector<int> movement() const = 0;
 	virtual int get_life() const = 0;
 	virtual ~flying_objects() {}
+	SDL_Rect& get_rect()
+	{
+		return rect_;
+	}
 	SDL_Rect get_rect() const
 	{
 		return rect_;
