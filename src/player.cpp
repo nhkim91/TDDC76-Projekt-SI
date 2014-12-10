@@ -169,5 +169,8 @@ bullet player::attack()
 	}
 }
 
-
+void player::lose_life(int dmg)
+{
+	life_ = life_ - dmg;
+}
 
