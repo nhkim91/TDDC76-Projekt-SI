@@ -8,15 +8,20 @@ class level
 public:
 	SDL_Renderer* renderer_{NULL};
     level() = default;
+    level(std::vector<flying_objects*> displaying_objects_, int WIDTH, int HEIGHT);
     virtual ~level() = default;
 
-    level(const level& l);
+    level(const level&) = default;
 
-    flying_objects* spawn(int);
+    void spawn(int);
 
 private:
     int lvl = 1;
     std::vector<int> data;
+    std::vector<flying_objects*> disp_objects_;
+    std::vector<flying_objects*>::iterator it = disp_objects_.begin();
+    int width;
+    int height;
 
     void get_next_lvl(int);
 
@@ -27,6 +32,7 @@ private:
 
     //meteorite
     flying_objects* get_meteorite_small();
+    flying_objects* get_meteorite_medium();
 
     //power_up
     flying_objects* get_power_up(int);

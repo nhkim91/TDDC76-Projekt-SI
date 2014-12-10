@@ -3,10 +3,18 @@
 #include "meteorite.h"
 #include "power_up.h"
 #include <vector>
+#include "space_invader.h"
 
 using namespace std;
 
-flying_objects* level::spawn(int score)
+level::level(std::vector<flying_objects*> displaying_objects_, int WIDTH, int HEIGHT)
+{
+    disp_objects_ = displaying_objects_;
+    width = WIDTH;
+    height = HEIGHT;
+}
+
+void level::spawn(int score)
 {
     get_next_lvl(score);
 
@@ -16,12 +24,12 @@ flying_objects* level::spawn(int score)
     {
         if(i < 100)
         {
-            return get_alien_mk1();
+            disp_objects_.insert(it, get_alien_mk1());
         }
 
         else if(i >= 100 && i < 200)
         {
-            return get_meteorite_small();
+            disp_objects_.insert(it, get_meteorite_small());
         }
     }
 
@@ -29,32 +37,62 @@ flying_objects* level::spawn(int score)
     {
         if(i < 100)
         {
-            return get_alien_mk1();
+            disp_objects_.insert(it, get_alien_mk1());
         }
 
         else if(i >= 100 && i < 200)
         {
-            return get_alien_mk2();
+            disp_objects_.insert(it, get_alien_mk2());
         }
 
         else if(i >= 200 && i < 300)
         {
-            return get_meteorite_small();
+            disp_objects_.insert(it, get_meteorite_small());
         }
 
         else if(i >= 300 && i < 360)
         {
-            return get_power_up(i);
+            disp_objects_.insert(it, get_power_up(i));
         }
     }
-    return 0;
+
+    else if(lvl == 3)
+    {
+        if(i < 100)
+        {
+            disp_objects_.insert(it, get_alien_mk1());
+        }
+
+        else if(i >= 100 && i < 200)
+        {
+            disp_objects_.insert(it, get_alien_mk2());
+        }
+
+        else if(i >= 200 && i < 300)
+        {
+            disp_objects_.insert(it, get_alien_mk3());
+        }
+
+        else if(i >= 300 && i < 400)
+        {
+            disp_objects_.insert(it, get_meteorite_medium());
+        }
+
+        else if(i >= 400 && i < 460)
+        {
+            disp_objects_.insert(it, get_power_up(i));
+        }
+
+    }
+
+    return;
 }
 
 flying_objects* level::get_alien_mk1()
 {
     data[0] = 1;
-    data[1] = 800;
-    data[2] = rand() % 500;
+    data[1] = width;
+    data[2] = rand() % height-100;
     data[3] = 1; //Hastighet i x-led
     data[4] = 0;
 
@@ -66,8 +104,8 @@ flying_objects* level::get_alien_mk1()
 flying_objects* level::get_alien_mk2()
 {
     data[0] = 2;
-    data[1] = 800;
-    data[2] = rand() % 500;
+    data[1] = width;
+    data[2] = rand() % height-100;
     data[3] = rand() % 2 +1; //Hastighet i x-led
     data[4] = rand() % 1;
 
@@ -80,8 +118,8 @@ flying_objects* level::get_alien_mk2()
 flying_objects* level::get_alien_mk3()
 {
     data[0] = 4;
-    data[1] = 800;
-    data[2] = rand() % 500;
+    data[1] = width;
+    data[2] = rand() % height-100;
     data[3] = rand() % 4 +2; //Hastighet i x-led
     data[4] = rand() % 2;
 
@@ -93,8 +131,8 @@ flying_objects* level::get_alien_mk3()
 flying_objects* level::get_meteorite_small()
 {
     data[0] = 1;
-    data[1] = 800;
-    data[2] = rand() % 600; //(600 - meteoritens höjd)
+    data[1] = width;
+    data[2] = rand() % height-100; //(600 - meteoritens höjd)
     data[3] = 1; //Hastighet i x-led
     data[4] = 0;
 
@@ -103,11 +141,24 @@ flying_objects* level::get_meteorite_small()
     return small;
 }
 
+flying_objects* level::get_meteorite_medium()
+{
+    data[0] = 6;
+    data[1] = width;
+    data[2] = rand() % height-100; //(600 - meteoritens höjd)
+    data[3] = rand() % 3 +1; //Hastighet i x-led
+    data[4] = 0;
+
+    meteorite_medium meteorite{data[0], data[1], data[2], data[3], data[4], renderer_};
+    flying_objects* medium = static_cast<flying_objects*>(&meteorite);
+    return medium;
+}
+
 flying_objects* level::get_power_up(int i)
 {
     data[0] = 1;
-    data[1] = 800;
-    data[2] = rand() % 600; //(600 - power_upens höjd)
+    data[1] = width;
+    data[2] = rand() % height-100; //(600 - power_upens höjd)
     data[3] = 1; //Hastighet i x-led
     data[4] = 0;
 
