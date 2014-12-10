@@ -19,8 +19,7 @@ class meteorite :public flying_objects
 public:
 
 	// Datamedlemmar
-	int life_;
-	std::vector<int> movement_;
+
 
 
 	// Konstruktor
@@ -31,9 +30,9 @@ public:
 	 ~meteorite();
 
 	 // Funktioner
-	int get_life() const override;
+
 	bool check_living(int);
-	std::vector<int> movement() const override;
+
 	bool hit(flying_objects&)  override;
 
 };

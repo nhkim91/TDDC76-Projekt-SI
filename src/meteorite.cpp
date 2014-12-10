@@ -17,7 +17,8 @@ using namespace std;
 
 meteorite::~meteorite()
 {
-	movement_.clear();
+	SDL_DestroyTexture(texture_);
+	SDL_DestroyRenderer(renderer_);
 }
 
 bool meteorite::check_living(int dmg)
@@ -48,16 +49,9 @@ bool meteorite::hit(flying_objects& other)
 	return true;
 }
 
-vector<int> meteorite::movement() const
-{
 
-	return movement_;
-}
 
-int meteorite::get_life() const
-{
-	return life_;
-}
+
 
 
 /////////////////////////////////////////////////
@@ -72,10 +66,10 @@ meteorite::meteorite(int life, int x_pos, int y_pos, int x_speed, int y_speed, S
 	rect_.y = y_pos;
 	//rect_.w = temp->w;
 	//rect_.h = temp->h;
-	movement_.at(0) = x_pos;
-	movement_.at(1) = y_pos;
-	movement_.at(2) = x_speed;
-	movement_.at(3) = y_speed;
+	x_pos_ = x_pos;
+	y_pos_ = y_pos;
+	x_speed_ = x_speed;
+	y_speed_ = y_speed;
 
 	//SDL_FreeSurface(temp);
 }
@@ -92,10 +86,10 @@ meteorite_small::meteorite_small(int life, int x_pos, int y_pos, int x_speed, in
 	//rect_.y = y_pos;
 	rect_.w = temp->w;
 	rect_.h = temp->h;
-	//movement_.at(0) = x_pos;
-	//movement_.at(1) = y_pos;
-	//movement_.at(2) = x_speed;
-	//movement_.at(3) = y_speed;
+	//x_pos_ = x_pos;
+	//y_pos_ = y_pos;
+	//x_speed_ = x_speed;
+	//y_speed_ = y_speed;
 
 	SDL_FreeSurface(temp);
 }
@@ -113,10 +107,10 @@ meteorite_medium::meteorite_medium(int life, int x_pos, int y_pos, int x_speed, 
 	//rect_.y = y_pos;
 	rect_.w = temp->w;
 	rect_.h = temp->h;
-	//movement_.at(0) = x_pos;
-	//movement_.at(1) = y_pos;
-	//movement_.at(2) = x_speed;
-	//movement_.at(3) = y_speed;
+	//x_pos_ = x_pos;
+	//y_pos_ = y_pos;
+	//x_speed_ = x_speed;
+	//y_speed_ = y_speed;
 
 	SDL_FreeSurface(temp);
 }
