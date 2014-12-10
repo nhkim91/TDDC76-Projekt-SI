@@ -45,6 +45,11 @@ public:
 		return rect_;
 	}
 
+	SDL_Rect get_rect() const
+	{
+		return rect_;
+	}
+
 	int get_life()
 	{
 		return life_;

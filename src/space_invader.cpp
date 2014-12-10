@@ -248,29 +248,31 @@ void space_invader::update_things (vector<flying_objects*> update_vector, Uint32
 {
 	for(unsigned int i=0 ; i<update_vector.size(); i++)
 	{
+		int x_temp;
+		int y_temp;
 		vector<unsigned int> to_delete;
+		flying_objects* temp = update_vector.at(i);
+		temp->set_x_pos(temp->get_x_pos() + temp->get_x_speed()*time_diff);
+		y_temp = temp->get_y_pos() + temp->get_y_speed()*time_diff;
 
-		update_vector.at(i)->get_x_pos() += update_vector.at(i)->get_x_speed()*time_diff;
-		update_vector.at(i)->get_y_pos() += update_vector.at(i)->get_y_speed()*time_diff;
-		update_vector.at(i)->get_rect().x += update_vector.at(i)->get_x_speed()*time_diff;
-		update_vector.at(i)->get_rect().y += update_vector.at(i)->get_y_speed()*time_diff;
+		//temp->get_rect().x + temp->get_x_speed()*time_diff;
+		//temp->get_rect().y + temp->get_y_speed()*time_diff;
 
-		if (update_vector.at(i)->get_rect().y + update_vector.at(i)->get_rect().h > SCREEN_WIDTH )
+		if (temp->get_rect().y + temp->get_rect().h > SCREEN_HEIGHT)
 		{
-			if(update_vector.at(i)->get_y_speed()>0)
+			if(temp->get_y_speed()>0)
 			{
-				update_vector.at(i)->get_y_pos() -= update_vector.at(i)->get_y_speed()*time_diff;
-				update_vector.at(i)->get_rect().y -= update_vector.at(i)->get_y_speed()*time_diff;
+				temp->get_y_pos() -= temp->get_y_speed()*time_diff;
+				temp->get_rect().y -= temp->get_y_speed()*time_diff;
 			}
-
 		}
 
-		if (update_vector.at(i)->get_rect().y < 0)
+		if (temp->get_rect().y < 0)
 		{
-			if(update_vector.at(i)->get_y_speed()<0)
+			if(temp->get_y_speed()<0)
 			{
-				update_vector.at(i)->get_y_pos() -= update_vector.at(i)->get_y_speed()*time_diff;
-				update_vector.at(i)->get_rect().y -= update_vector.at(i)->get_y_speed()*time_diff;
+				temp->get_y_pos() -= temp->get_y_speed()*time_diff;
+				temp->get_rect().y -= temp->get_y_speed()*time_diff;
 			}
 		}
 
@@ -281,7 +283,7 @@ void space_invader::update_things (vector<flying_objects*> update_vector, Uint32
 		other_obj_1 = dynamic_cast<alien*>(ptr_);
 		if (other_obj_1 != nullptr)
 		{
-			if (update_vector.at(i)->get_rect().x < 0)
+			if (temp->get_rect().x < 0)
 			{
 				get_player(update_vector).lose_life(1);
 				to_delete.push_back(i);
@@ -292,12 +294,12 @@ void space_invader::update_things (vector<flying_objects*> update_vector, Uint32
 		other_obj_2 = dynamic_cast<power_up_attack*>(ptr_);
 		if (other_obj_2 != nullptr)
 		{
-			if (update_vector.at(i)->get_rect().x < 0)
+			if (temp->get_rect().x < 0)
 			{
 				/* här ska i läggas till i förstörar listan */
 				to_delete.push_back(i);
 			}
-			if(time >= update_vector.at(i)->kill_me_when() && update_vector.at(i)->kill_me_when() != 0)
+			if(time >= temp->kill_me_when() && temp->kill_me_when() != 0)
 			{
 				/* här ska i läggas till i förstörar listan */
 				to_delete.push_back(i);
@@ -308,12 +310,12 @@ void space_invader::update_things (vector<flying_objects*> update_vector, Uint32
 		other_obj_3 = dynamic_cast<power_up_shield*>(ptr_);
 		if (other_obj_3 != nullptr)
 		{
-			if (update_vector.at(i)->get_rect().x < 0)
+			if (temp->get_rect().x < 0)
 			{
 				/* här ska i läggas till i förstörar listan */
 				to_delete.push_back(i);
 			}
-			if(time >= update_vector.at(i)->kill_me_when() && update_vector.at(i)->kill_me_when() != 0)
+			if(time >= temp->kill_me_when() && temp->kill_me_when() != 0)
 			{
 				/* här ska i läggas till i förstörar listan */
 				to_delete.push_back(i);
@@ -321,7 +323,7 @@ void space_invader::update_things (vector<flying_objects*> update_vector, Uint32
 			}
 
 		}
-		if (update_vector.at(i)->get_rect().x < 0)
+		if (temp->get_rect().x < 0)
 		{
 			/* här ska i läggas till i förstörar listan */
 			to_delete.push_back(i);
