@@ -6,21 +6,14 @@ using namespace std;
 
 
 
+
+
+
+
 alien::~alien()
 {
-	movement_.clear();
-}
-
-vector<int> alien::movement() const
-{
-
-	return movement_;
-}
-
-
-int alien::get_life() const
-{
-	return life_;
+	SDL_DestroyTexture(texture_);
+	SDL_DestroyRenderer(renderer_);
 }
 
 bool alien::check_living(int dmg)
@@ -71,16 +64,13 @@ alien::alien(int life, int x_pos, int y_pos, int x_speed, int y_speed, SDL_Rende
 	/*rect_.w = temp->w;
 	rect_.h = temp->h;
 	 */
-	/*
-	movement_.at(0) = x_pos;
-	movement_.at(1) = y_pos;
-	movement_.at(2) = x_speed;
-	movement_.at(3) = y_speed;
-	*/
-	movement_.push_back(y_speed);
-	movement_.push_back(x_speed);
-	movement_.push_back(y_pos);
-	movement_.push_back(x_pos);
+
+	x_pos_ = x_pos;
+	y_pos_ = y_pos;
+	x_speed_ = x_speed;
+	y_speed_ = y_speed;
+
+
 
 	//SDL_FreeSurface(temp);
 }
@@ -98,10 +88,10 @@ alien_mk1::alien_mk1(int life, int x_pos, int y_pos, int x_speed, int y_speed, S
 	*/
 	rect_.w = temp->w;
 	rect_.h = temp->h;
-	/*movement_.at(0) = x_pos;
-	movement_.at(1) = y_pos;
-	movement_.at(2) = x_speed;
-	movement_.at(3) = y_speed;
+	/*x_pos_ = x_pos;
+	y_pos_ = y_pos;
+	x_speed_ = x_speed;
+	y_speed_ = y_speed;
 */
 	SDL_FreeSurface(temp);
 }
@@ -119,10 +109,10 @@ alien_mk2::alien_mk2(int life, int x_pos, int y_pos, int x_speed, int y_speed, S
 	*/
 	rect_.w = temp->w;
 	rect_.h = temp->h;
-	/*movement_.at(0) = x_pos;
-	movement_.at(1) = y_pos;
-	movement_.at(2) = x_speed;
-	movement_.at(3) = y_speed;
+	/*x_pos_ = x_pos;
+	y_pos_ = y_pos;
+	x_speed_ = x_speed;
+	y_speed_ = y_speed;
 */
 	SDL_FreeSurface(temp);
 }
@@ -140,10 +130,10 @@ alien_mk3::alien_mk3(int life, int x_pos, int y_pos, int x_speed, int y_speed, S
 	*/
 	rect_.w = temp->w;
 	rect_.h = temp->h;
-	/*movement_.at(0) = x_pos;
-	movement_.at(1) = y_pos;
-	movement_.at(2) = x_speed;
-	movement_.at(3) = y_speed;
+	/*x_pos_ = x_pos;
+	y_pos_ = y_pos;
+	x_speed_ = x_speed;
+	y_speed_ = y_speed;
 */
 	SDL_FreeSurface(temp);
 }
@@ -151,7 +141,7 @@ alien_mk3::alien_mk3(int life, int x_pos, int y_pos, int x_speed, int y_speed, S
 ////////////////////////////////////////////////////
 bullet alien_mk3::attack()
 {
-	return bullet{1, 1,(movement_.at(0)-1), movement_.at(1), -10, 0, renderer_};
+	return bullet{1, 1,(x_pos_-101), y_pos_, -10, 0, renderer_};
 
 }
 

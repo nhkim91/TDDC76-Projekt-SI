@@ -19,19 +19,20 @@ player::player(int life, int x_pos, int y_pos, int x_speed, int y_speed, SDL_Ren
 	rect_.y = y_pos;
 	rect_.w = temp->w;
 	rect_.h = temp->h;
-	movement_.at(0) = x_pos;
-	movement_.at(1) = y_pos;
-	movement_.at(2) = x_speed;
-	movement_.at(3) = y_speed;
+	x_pos_ = x_pos;
+	y_pos_ = y_pos;
+	x_speed_ = x_speed;
+	y_speed_ = y_speed;
 
 	SDL_FreeSurface(temp);
 }
 
 player::~player()
 {
-	movement_.clear();
 	power_up_attack_.clear();
 	power_up_shield_.clear();
+	SDL_DestroyTexture(texture_);
+	SDL_DestroyRenderer(renderer_);
 }
 
 bool player::check_living(int dmg)
@@ -40,15 +41,6 @@ bool player::check_living(int dmg)
 	return (life_<=0);
 }
 
-vector<int> player::movement() const
-{
-	return movement_;
-}
-
-int player::get_life() const
-{
-	return life_;
-}
 
 vector<power_up_attack*> player::get_power_up_attack()
 {
@@ -160,12 +152,12 @@ bullet player::attack()
 {
 	if (power_up_attack_.empty())
 	{
-		return bullet_mk1{1, 1,(movement_.at(0)+101), movement_.at(1), 10, 0, renderer_};
+		return bullet_mk1{1, 1,(x_pos_+101), y_pos_, 10, 0, renderer_};
 
 	}
 	else
 	{
-		return power_up_attack_.at(0)->attack((movement_.at(0)+101), movement_.at(1));
+		return power_up_attack_.at(0)->attack((x_pos_+101), y_pos_);
 	}
 }
 
