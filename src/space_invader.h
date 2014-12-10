@@ -21,6 +21,9 @@ public:
     bool my_sort(int i, int j);
     bool collides(const flying_objects&, const flying_objects&);
     void run();
+    void render_things(std::vector<flying_objects*>);
+    void update_things (std::vector<flying_objects*>, Uint32, Uint32);
+    player* get_player(std::vector<flying_objects*> vector);
 };
 
 #endif // SPACE_INVADER_H

@@ -40,6 +40,11 @@ public:
 
 	virtual ~flying_objects() {}
 
+	SDL_Rect& get_rect()
+	{
+		return rect_;
+	}
+
 	int get_life()
 	{
 		return life_;
@@ -63,11 +68,6 @@ public:
 	int get_y_speed() const
 	{
 		return y_speed_;
-	}
-
-	SDL_Rect get_rect() const
-	{
-		return rect_;
 	}
 
 	SDL_Texture* get_texture() const
