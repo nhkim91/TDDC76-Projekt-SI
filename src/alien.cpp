@@ -70,11 +70,17 @@ alien::alien(int life, int x_pos, int y_pos, int x_speed, int y_speed, SDL_Rende
 	rect_.y = y_pos;
 	/*rect_.w = temp->w;
 	rect_.h = temp->h;
-	*/
+	 */
+	/*
 	movement_.at(0) = x_pos;
 	movement_.at(1) = y_pos;
 	movement_.at(2) = x_speed;
 	movement_.at(3) = y_speed;
+	*/
+	movement_.push_back(y_speed);
+	movement_.push_back(x_speed);
+	movement_.push_back(y_pos);
+	movement_.push_back(x_pos);
 
 	//SDL_FreeSurface(temp);
 }

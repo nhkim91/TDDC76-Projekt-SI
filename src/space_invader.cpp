@@ -1,38 +1,56 @@
 #include "space_invader.h"
+//#include "linkheader.h"
+//#include "flying_objects.h"
+#include "player.h"
+#include "alien.h"
 #include <iostream>
 #include <algorithm>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 using namespace std;
 
-
-void space_invader::killer()
+void space_invader::get_objects_to_kill()
 {
-	vector<int> to_delete;
+	vector<unsigned int> to_delete;
 	for(unsigned int i=0 ; i<displaying_objects_.size(); i++)
 	{
 		for(unsigned int j=i+1; j<displaying_objects_.size(); j++)
 		{
-			if (collides(displaying_objects_.at(i),displaying_objects_.at(j)))
-			{
-				if(displaying_objects_.at(i).hit(displaying_objects_.at(j)))
+			try{
+				if (collides(*displaying_objects_.at(i),*displaying_objects_.at(j)))
 				{
-					to_delete.push_back(i);
+					if(displaying_objects_.at(i)->hit(*displaying_objects_.at(j)))
+					{
+						to_delete.push_back(i);
+					}
+					if(displaying_objects_.at(j)->hit(*displaying_objects_.at(i)))
+					{
+						to_delete.push_back(j);
+					}
 				}
-				if(displaying_objects_.at(j).hit(displaying_objects_.at(i)))
-				{
-					to_delete.push_back(j);
-				}
+			} catch (...) {
+				cerr<<"i: "<<i<<" j: "<<j<<endl;
+				throw;
 			}
+
 		}
 	}
+	kill_objects(to_delete);
+}
 
+void space_invader::kill_objects(vector<unsigned int> to_delete)
+{
 	//sorterar to_delete från större till mindre
 	sort(to_delete.begin(), to_delete.end()+1, greater<int>());
 
-	for(unsigned int i: to_delete)
+	for(unsigned int i : to_delete)
 	{
-		displaying_objects_.erase(displaying_objects_.begin() + i);
+		try {
+			displaying_objects_.erase(displaying_objects_.begin() + i);
+		}catch(...) {
+			cerr<<"i:"<<i<<endl;
+			throw;
+		}
 	}
 }
 
@@ -68,24 +86,24 @@ void space_invader::run()
 	// make the scaled rendering look smoother
 	SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "linear");
 	// render at a virtual resolution then stretch to actual resolution
-	SDL_RenderSetLogicalSize(renderer, SCREEN_WIDTH, SCREEN_HEIGHT);
+	SDL_RenderSetLogicalSize(renderer_, SCREEN_WIDTH, SCREEN_HEIGHT);
 	// load figures
 
-	SDL_Texture* player{nullptr};
+	SDL_Texture* player_text{nullptr};
 	SDL_Texture* alien{nullptr};
 	int ballWidth{0};
 	int ballHeight{0};
 	{
 		SDL_Surface* temp = IMG_Load("player.png");
 
-		player = SDL_CreateTextureFromSurface(renderer, temp);
+		player_text = SDL_CreateTextureFromSurface(renderer_, temp);
 		ballWidth = temp->w;
 		ballHeight = temp->h;
 
 		SDL_FreeSurface(temp);
 
 		/*temp = IMG_Load("alien.png");
-		alien = SDL_CreateTextureFromSurface(renderer, temp);
+		alien = SDL_CreateTextureFromSurface(renderer_, temp);
 
 		SDL_FreeSurface(temp);*/
 	}
@@ -107,27 +125,33 @@ void space_invader::run()
 			if (event.type == SDL_QUIT) {
 				running = false;
 			}
-			else if (event.type == SDL_KEYDOWN) {
-				if (event.key.keysym.sym == SDLK_ESCAPE) {
+			else if (event.type == SDL_KEYDOWN)
+			{
+				if (event.key.keysym.sym == SDLK_ESCAPE)
+				{
 					running = false;
 				}
-				else if (event.key.keysym.sym == SDLK_UP) {
+				else if (event.key.keysym.sym == SDLK_UP)
+				{
 					ySpeed = -10;
 				}
-				else if (event.key.keysym.sym == SDLK_DOWN) {
+				else if (event.key.keysym.sym == SDLK_DOWN)
+				{
 					ySpeed = 10;
 				}
-				else if(event.key.keysym.sym == SDLK_SPACE) {
+				else if(event.key.keysym.sym == SDLK_SPACE)
+				{
 
-					return;
 				}
-				else if(event.key.keysym.sym == SDLK_p) {
+				else if(event.key.keysym.sym == SDLK_p)
+				{
 
-					return;
 				}
-				else if(event.key.keysym.sym == SDLK_s) {
-
-					return;
+				else if(event.key.keysym.sym == SDLK_s)
+				{
+					flying_objects* p1{new alien_mk1{1, 50, 50, -1, 0, renderer_}};
+					displaying_objects_.push_back(p1);
+					//return;
 				}
 			}
 			else if(event.type == SDL_KEYUP){
@@ -139,17 +163,17 @@ void space_invader::run()
 				{
 					ySpeed = 0;
 				}
-				else if(event.key.keysym.sym == SDLK_SPACE) {
+				else if(event.key.keysym.sym == SDLK_SPACE)
+				{
 
-					return;
 				}
-				else if(event.key.keysym.sym == SDLK_p) {
+				else if(event.key.keysym.sym == SDLK_p)
+				{
 
-					return;
 				}
-				else if(event.key.keysym.sym == SDLK_s) {
+				else if(event.key.keysym.sym == SDLK_s)
+				{
 
-					return;
 				}
 			}
 		}
@@ -157,30 +181,31 @@ void space_invader::run()
 		// update things
 		ballRect.y += ySpeed;
 
-		if (ballRect.y + ballHeight > SCREEN_HEIGHT || ballRect.y < 0) {
+		if (ballRect.y + ballHeight > SCREEN_HEIGHT || ballRect.y < 0)
+		{
 			ySpeed = -ySpeed;
 		}
 
 		// clear screen
-		SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
-		SDL_RenderClear(renderer);
+		SDL_SetRenderDrawColor(renderer_, 0, 0, 0, 255);
+		SDL_RenderClear(renderer_);
 
 		// draw things
-		SDL_RenderCopy(renderer, player, nullptr, &ballRect);
+		SDL_RenderCopy(renderer_, player_text, nullptr, &ballRect);
 
 		// show the newly drawn things
-		SDL_RenderPresent(renderer);
+		SDL_RenderPresent(renderer_);
 
 		// wait before drawing the next frame
 		SDL_Delay(10);
 	}
 	// free memory
-	SDL_DestroyTexture(player);
-	player = nullptr;
+	SDL_DestroyTexture(player_text);
+	player_text = nullptr;
 	SDL_DestroyTexture(alien);
 	alien = nullptr;
-	SDL_DestroyRenderer(renderer);
-	SDL_DestroyWindow(window);
+	SDL_DestroyRenderer(renderer_);
+	SDL_DestroyWindow(window_);
 
 	SDL_Quit();
 }
