@@ -10,10 +10,10 @@ using namespace std;
 
 
 
-alien::~alien()
+/*alien::~alien()
 {
 	SDL_DestroyTexture(texture_);
-}
+}*/
 
 bool alien::check_living(int dmg)
 {

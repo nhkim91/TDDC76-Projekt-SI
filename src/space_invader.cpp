@@ -37,16 +37,32 @@ void space_invader::get_objects_to_kill() {
 
 void space_invader::kill_objects(vector<unsigned int> to_delete) {
 	//sorterar to_delete från större till mindre
-	sort(to_delete.begin(), to_delete.end() + 1, greater<int>());
+	for (unsigned int i : to_delete)
+	{
+		cerr << i << endl;
+	}
+
+	sort(to_delete.begin(), to_delete.end(), greater<int>());
+
+	if (to_delete.size() > 0)
+		{
+			cerr << "innan med delete\n";
+		}
 
 	for (unsigned int i : to_delete) {
 		try {
+			cerr << i << endl;
 			displaying_objects_.erase(displaying_objects_.begin() + i);
 		} catch (...) {
 			cerr << "i:" << i << endl;
 			throw;
 		}
 	}
+	if (to_delete.size() > 0)
+	{
+		cerr << "klar med delete";
+	}
+
 }
 
 bool space_invader::collides(const flying_objects& obj_1,
@@ -144,7 +160,9 @@ void space_invader::run() {
 					ySpeed = -10;
 				} else if (event.key.keysym.sym == SDLK_DOWN) {
 					ySpeed = 10;
-				} else if (event.key.keysym.sym == SDLK_SPACE) {
+				} else if (event.key.keysym.sym == SDLK_SPACE)
+				{
+					vector<unsigned int> to_kill;
 					displaying_objects_.erase(displaying_objects_.begin());
 
 				} else if (event.key.keysym.sym == SDLK_p)
@@ -154,7 +172,7 @@ void space_invader::run() {
 				}
 				else if (event.key.keysym.sym == SDLK_s)
 				{
-					flying_objects* p1 { new alien_mk2 { 1, 500, 400, -100, 0,
+					flying_objects* p1 { new alien_mk2 { 1, 200, 400, -100, 0,
 							renderer_ } };
 					displaying_objects_.push_back(p1);
 					//return;
@@ -275,7 +293,8 @@ void space_invader::update_things(vector<flying_objects*> update_vector, float t
 				//cerr << "hit";
 				//get_player(update_vector)->lose_life(1);
 				//cerr << "men inte hit";
-				//to_delete.push_back(i);
+				cerr << "i: " << i << endl;
+				to_delete.push_back(i);
 			}
 		}
 
@@ -284,6 +303,10 @@ void space_invader::update_things(vector<flying_objects*> update_vector, float t
 		{
 			to_delete.push_back(i);
 		}
+	}
+	for (unsigned int i : to_delete)
+	{
+		cerr << i << endl;
 	}
 	kill_objects(to_delete);
 }

@@ -12,6 +12,8 @@
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_main.h>
 
+#include <iostream>
+
 //#undef main
 
 //#include <SDL2/SDL_image.h>
@@ -38,7 +40,12 @@ public:
 
 	virtual bool hit(flying_objects&)  = 0;
 
-	virtual ~flying_objects() {}
+	virtual ~flying_objects()
+	{
+		std::cerr << "innan delete texture \n";
+		SDL_DestroyTexture(texture_);
+		std::cerr << "efter delete \n";
+	}
 
 	SDL_Rect& get_rect()
 	{

@@ -24,7 +24,8 @@ public:
 	alien();
 
 	// Destruktor
-	 ~alien();
+	 //~alien();
+	~alien() = default;
 
 	// Funktioner
 	bool check_living(int);
@@ -51,6 +52,7 @@ public:
 
 	// Konstruktor
 	alien_mk2(int, int, int, int, int, SDL_Renderer*);
+	~alien_mk2() = default;
 
 };
 ////////////////////////////////////////////////////////////////
