@@ -14,7 +14,6 @@ using namespace std;
 bullet::~bullet()
 {
 	SDL_DestroyTexture(texture_);
-	SDL_DestroyRenderer(renderer_);
 }
 
 bool bullet::check_living(int dmg)

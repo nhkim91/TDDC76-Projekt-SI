@@ -13,7 +13,6 @@ using namespace std;
 power_up::~power_up()
 {
 	SDL_DestroyTexture(texture_);
-	SDL_DestroyRenderer(renderer_);
 }
 
 power_up::power_up(int life, int x_pos, int y_pos, int x_speed, int y_speed, SDL_Renderer* renderer)

@@ -13,7 +13,6 @@ using namespace std;
 alien::~alien()
 {
 	SDL_DestroyTexture(texture_);
-	SDL_DestroyRenderer(renderer_);
 }
 
 bool alien::check_living(int dmg)

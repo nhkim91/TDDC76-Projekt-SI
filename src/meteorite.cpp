@@ -18,7 +18,6 @@ using namespace std;
 meteorite::~meteorite()
 {
 	SDL_DestroyTexture(texture_);
-	SDL_DestroyRenderer(renderer_);
 }
 
 bool meteorite::check_living(int dmg)

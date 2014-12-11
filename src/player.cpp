@@ -32,7 +32,6 @@ player::~player()
 	power_up_attack_.clear();
 	power_up_shield_.clear();
 	SDL_DestroyTexture(texture_);
-	SDL_DestroyRenderer(renderer_);
 }
 
 bool player::check_living(int dmg)
