@@ -11,6 +11,8 @@ public:
     // Datamedlemmar
     std::vector<class power_up_attack*> power_up_attack_;
     std::vector<class power_up_shield*> power_up_shield_;
+    int cooldown_{500};
+    int last_shoot_time_{0};
 
     // Konstruktor
     player(int, int, int, int, int, SDL_Renderer*);
@@ -28,9 +30,8 @@ public:
 
     std::vector<power_up_attack*> get_power_up_attack();
     std::vector<power_up_shield*> get_power_up_shield();
-    class bullet attack();
+    flying_objects* attack();
     void increase_life(int);
-
 
 };
 #endif /* PLAYER_H_ */
