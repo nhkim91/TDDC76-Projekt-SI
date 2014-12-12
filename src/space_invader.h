@@ -8,6 +8,7 @@ public:
 
     const int SCREEN_WIDTH = 800;
     const int SCREEN_HEIGHT = 600;
+   class player* player_;
 
     // create the window
     SDL_Window* window_ = SDL_CreateWindow("SDL Testet", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_RESIZABLE);
@@ -24,6 +25,7 @@ public:
     void render_things(std::vector<flying_objects*>);
     void update_things(std::vector<flying_objects*>, float);
     class player* get_player(std::vector<flying_objects*> vector);
+    void add_object(flying_objects*);
 };
 
 #endif // SPACE_INVADER_H
