@@ -11,7 +11,7 @@ using namespace std;
 
 void space_invader::get_objects_to_kill() {
 	vector<unsigned int> to_delete;
-	for (unsigned int i = 0; i < displaying_objects_.size(); i++) {
+	for (unsigned int i = 0; i  < displaying_objects_.size(); i++) {
 		for (unsigned int j = i + 1; j < displaying_objects_.size(); j++) {
 			try {
 				if (collides(*displaying_objects_.at(i),
@@ -36,7 +36,8 @@ void space_invader::get_objects_to_kill() {
 }
 
 void space_invader::kill_objects(vector<unsigned int> to_delete) {
-	//sorterar to_delete från större till mindre
+
+	//sorterar to_delete frï¿½n stï¿½rre till mindre
 	for (unsigned int i : to_delete)
 	{
 		cerr << i << endl;
@@ -48,6 +49,7 @@ void space_invader::kill_objects(vector<unsigned int> to_delete) {
 		{
 			cerr << "innan med delete\n";
 		}
+
 
 	for (unsigned int i : to_delete) {
 		try {
