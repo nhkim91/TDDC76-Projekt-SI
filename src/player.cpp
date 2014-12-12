@@ -31,7 +31,6 @@ player::~player()
 {
     power_up_attack_.clear();
     power_up_shield_.clear();
-    SDL_DestroyTexture(texture_);
 }
 
 bool player::check_living(int dmg)
@@ -160,8 +159,8 @@ bullet player::attack()
     }
 }
 
-void player::lose_life(int dmg)
+void player::increase_life(int amount)
 {
-    life_ = life_ - dmg;
+    life_ = life_ + amount;
 }
 

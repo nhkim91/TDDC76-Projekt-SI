@@ -34,12 +34,14 @@ int main(int argc, char *argv[])
     }
 
 
-    SDL_Window* window = SDL_CreateWindow("Highscore", SDL_WINDOWPOS_UNDEFINED,
-                                          SDL_WINDOWPOS_UNDEFINED, 800, 600, SDL_WINDOW_SHOWN);
-    SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED |
-                             SDL_RENDERER_PRESENTVSYNC);
+	SDL_Window* window = SDL_CreateWindow("Highscore", SDL_WINDOWPOS_UNDEFINED,
+											SDL_WINDOWPOS_UNDEFINED, 800, 600, SDL_WINDOW_SHOWN);
+	SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED |
+							SDL_RENDERER_PRESENTVSYNC);
 
 
+
+	/* render rend;
     render rend;
     rend.set_renderer(renderer);
 
@@ -48,10 +50,11 @@ int main(int argc, char *argv[])
     hs.show_highscore();
 
     SDL_Delay(2000);
+	 */
 
 
-    //space_invader SI;
-    //SI.run();
+    space_invader SI;
+    SI.run();
 
     /*  // make the scaled rendering look smoother
         SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "linear");
@@ -158,8 +161,10 @@ int main(int argc, char *argv[])
         SDL_DestroyWindow(window);
 
         SDL_Quit();*/
-    return 0;
-}
+
+
+	return 0;
+
 
 //else if (event.type == SDL_MOUSEMOTION) {
 //  mouseRect.x = event.motion.x - (ballWidth/2);

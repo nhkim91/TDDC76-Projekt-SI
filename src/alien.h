@@ -24,7 +24,6 @@ public:
     alien();
 
     // Destruktor
-    //~alien();
     ~alien() = default;
 
     // Funktioner

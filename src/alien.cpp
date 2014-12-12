@@ -10,10 +10,7 @@ using namespace std;
 
 
 
-/*alien::~alien()
-{
-    SDL_DestroyTexture(texture_);
-}*/
+
 
 bool alien::check_living(int dmg)
 {
@@ -53,25 +50,15 @@ bool alien::hit(flying_objects& other)
 ////////////////////////////////////////////////////
 alien::alien(int life, int x_pos, int y_pos, int x_speed, int y_speed, SDL_Renderer* renderer)
 {
-    /*SDL_Surface* temp = IMG_Load("alien2.png");
-    texture_ = SDL_CreateTextureFromSurface(renderer, temp);
-    */
     renderer_ = renderer;
     life_ = life;
     rect_.x = x_pos;
     rect_.y = y_pos;
-    /*rect_.w = temp->w;
-    rect_.h = temp->h;
-     */
 
     x_pos_ = x_pos;
     y_pos_ = y_pos;
     x_speed_ = x_speed;
     y_speed_ = y_speed;
-
-
-
-    //SDL_FreeSurface(temp);
 }
 ////////////////////////////////////////////////////
 alien_mk1::alien_mk1(int life, int x_pos, int y_pos, int x_speed, int y_speed, SDL_Renderer* renderer):
@@ -80,18 +67,9 @@ alien_mk1::alien_mk1(int life, int x_pos, int y_pos, int x_speed, int y_speed, S
     SDL_Surface* temp = IMG_Load("alien1.png");
     texture_ = SDL_CreateTextureFromSurface(renderer, temp);
 
-    /*renderer_ = renderer;
-    life_= life;
-    rect_.x = x_pos;
-    rect_.y = y_pos;
-    */
     rect_.w = temp->w;
     rect_.h = temp->h;
-    /*x_pos_ = x_pos;
-    y_pos_ = y_pos;
-    x_speed_ = x_speed;
-    y_speed_ = y_speed;
-    */
+
     SDL_FreeSurface(temp);
 }
 ////////////////////////////////////////////////////
@@ -101,18 +79,9 @@ alien_mk2::alien_mk2(int life, int x_pos, int y_pos, int x_speed, int y_speed, S
     SDL_Surface* temp = IMG_Load("alien2.png");
     texture_ = SDL_CreateTextureFromSurface(renderer, temp);
 
-    /*renderer_ = renderer;
-    life_= life;
-    rect_.x = x_pos;
-    rect_.y = y_pos;
-    */
     rect_.w = temp->w;
     rect_.h = temp->h;
-    /*x_pos_ = x_pos;
-    y_pos_ = y_pos;
-    x_speed_ = x_speed;
-    y_speed_ = y_speed;
-    */
+
     SDL_FreeSurface(temp);
 }
 ////////////////////////////////////////////////////
@@ -122,18 +91,10 @@ alien_mk3::alien_mk3(int life, int x_pos, int y_pos, int x_speed, int y_speed, S
     SDL_Surface* temp = IMG_Load("alien3.png");
     texture_ = SDL_CreateTextureFromSurface(renderer, temp);
 
-    /*renderer_ = renderer;
-    life_= life;
-    rect_.x = x_pos;
-    rect_.y = y_pos;
-    */
+
     rect_.w = temp->w;
     rect_.h = temp->h;
-    /*x_pos_ = x_pos;
-    y_pos_ = y_pos;
-    x_speed_ = x_speed;
-    y_speed_ = y_speed;
-    */
+
     SDL_FreeSurface(temp);
 }
 
