@@ -6,9 +6,8 @@
 class level
 {
 public:
-    SDL_Renderer* renderer_ {NULL};
     level() = default;
-    level(std::vector<flying_objects*> displaying_objects_, int WIDTH, int HEIGHT);
+    level(int, int, std::vector<flying_objects*>*, SDL_Renderer* renderer);
     virtual ~level() = default;
 
     level(const level&) = default;
@@ -16,12 +15,12 @@ public:
     void spawn(int);
 
 private:
-    int lvl = 1;
+    int lvl{0};
     std::vector<int> data;
-    std::vector<flying_objects*> disp_objects_;
-    std::vector<flying_objects*>::iterator it = disp_objects_.begin();
+    std::vector<flying_objects*>* disp_objects_pointer;
     int width;
     int height;
+    SDL_Renderer* renderer_;
 
     void get_next_lvl(int);
 

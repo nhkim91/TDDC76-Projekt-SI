@@ -29,7 +29,7 @@ public:
     std::vector<power_up_attack*> get_power_up_attack();
     std::vector<power_up_shield*> get_power_up_shield();
     class bullet attack();
-    void lose_life(int);
+    void increase_life(int);
 
 
 };

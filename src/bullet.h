@@ -40,7 +40,7 @@ public:
     bullet();
 
     // Destruktor
-    ~bullet();
+    ~bullet()=default;
 };
 //////////////////////////////////////////
 class bullet_mk1 : public bullet
