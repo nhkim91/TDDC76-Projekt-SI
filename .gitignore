@@ -98,3 +98,4 @@ $RECYCLE.BIN/
 .settings/
 /Release/
 >>>>>>> Stashed changes
+*.autosave

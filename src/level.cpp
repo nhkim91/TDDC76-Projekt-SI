@@ -202,19 +202,22 @@ void level::get_next_lvl(int score)
     if(lvl == 0)
     {
         lvl++;
-        //Skriva ut "Level 1".
+        renderer->render_text("LEVEL 1", "Arcade.ttf", textColor, 100, 200, 30);
+        SDL_Delay(2000);
         return;
     }
     if(lvl == 1 && score > 100)
     {
         lvl++;
-        //Skriva ut "Level 2".
+        renderer->render_text("LEVEL 2", "Arcade.ttf", textColor, 100, 200, 30);
+        SDL_Delay(2000);
         return;
     }
     else if (lvl == 2 && score > 300)
     {
         lvl++;
-        //Skriva ut "Level 3".
+        renderer->render_text("LEVEL 3", "Arcade.ttf", textColor, 100, 200, 30);
+        SDL_Delay(2000);
         return;
     }
     return;
