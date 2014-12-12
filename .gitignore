@@ -98,3 +98,12 @@ $RECYCLE.BIN/
 .settings/
 /Release/
 >>>>>>> Stashed changes
+*.autosave
+
+.DS_Store
+
+framework/SDL2
+
+mergefel.cpp
+
+src/.DS_Store

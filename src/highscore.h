@@ -19,6 +19,7 @@ public:
     void set_renderer(render*);
 
 
+
 private:
     struct highscore_element
     {
@@ -30,11 +31,14 @@ private:
 
     std::vector<highscore_element> list_of_score;
 
+    bool run;
+
     //Laddar in highscore till list_of_score.
     void load();
-    char* enter_name(); //Tar in ett namn från tangentbordet.
+    //std::string enter_name(); //Tar in ett namn från tangentbordet.
     //Skriver över highscore till fil.
     void write();
+    std::string enter_name(); //Tar in ett namn från tangentbordet.
 
     SDL_Texture *renderText(const std::string &str, const std::string &fontFile,
                             SDL_Color color, int fontSize, SDL_Renderer *renderer);

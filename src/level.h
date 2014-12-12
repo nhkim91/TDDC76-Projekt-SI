@@ -2,6 +2,7 @@
 #define LEVEL_H
 
 #include "flying_objects.h"
+#include "render.h"
 
 class level
 {
@@ -35,6 +36,10 @@ private:
 
     //power_up
     flying_objects* get_power_up(int);
+
+    render* renderer;
+    SDL_Texture *renderText(const std::string &str, const std::string &fontFile,
+                            SDL_Color color, int fontSize, SDL_Renderer *renderer);
 
 };
 
