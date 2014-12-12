@@ -2,9 +2,11 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 //#include <SDL2_image/SDL_image.h>  //<- maggie behöver denna!
+#include <stdio.h>
 #include <SDL2/SDL_main.h>
 #include "space_invader.h"
 #include "highscore.h"
+#include "menu.h"
 
 #include<sstream>
 
@@ -33,39 +35,34 @@ int main(int argc, char *argv[])
         exit(1);
     }
 
-
-/*
     SDL_Window* window = SDL_CreateWindow("Highscore", SDL_WINDOWPOS_UNDEFINED,
                                           SDL_WINDOWPOS_UNDEFINED, 800, 600, SDL_WINDOW_SHOWN);
+
     SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED |
                              SDL_RENDERER_PRESENTVSYNC);
 
-    SDL_Surface* temp = IMG_Load("space.png");
 
-    SDL_Texture* texture_ = SDL_CreateTextureFromSurface(renderer, temp);
 
-    SDL_Rect rect_;
-    rect_.w = temp->w;
-    rect_.h = temp->h;
-
-    SDL_FreeSurface(temp);
-    SDL_RenderPresent(temp);
-    SDL_RenderClear(renderer);
-    SDL_Delay(2000);
-
-/*
     render rend;
     rend.set_renderer(renderer);
 
+    //space_invader SI;
+    //SI.run(); // TODO: Bra om space_invader retunerar score.
+
     highscore hs;
     hs.set_renderer(&rend);
-    hs.save_score(10000);
-    hs.show_highscore();
 
-    SDL_Delay(2000);*/
+    help h;
+    h.set_renderer(&rend);
 
-    space_invader SI;
-    SI.run();
+
+    menu m;
+    m.set_renderer(&rend);
+    m.set_highscore(&hs);
+    m.set_help(&h);
+    //m.set_play(&SI);
+    m.run();
+
 
     /*  // make the scaled rendering look smoother
         SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "linear");

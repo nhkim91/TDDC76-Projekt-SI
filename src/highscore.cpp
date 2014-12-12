@@ -54,6 +54,7 @@ void highscore::save_score(int score)
 string highscore::enter_name() //Namnet ska vara ett ord.
 {
     string name;
+    SDL_Delay(500);
     SDL_Event event;
 
     run = true;
@@ -64,6 +65,7 @@ string highscore::enter_name() //Namnet ska vara ett ord.
     string text = "Skriv in ditt namn utan mellanrum. Avsluta med enter.";
     renderer->render_text(text, "Arcade.ttf", textColor, 30, 50, 30);
     renderer->present();
+
 
     while (run)
     {
@@ -79,23 +81,17 @@ string highscore::enter_name() //Namnet ska vara ett ord.
             }
             else if (key == SDLK_BACKSPACE)
             {
-                // TODO: se till att inte sudda om strängen är tom.
+                string text = "Skriv in ditt namn utan mellanrum. Avsluta med enter.";
+                renderer->render_text(text, "Arcade.ttf", textColor, 30, 50, 30);
                 if (!name.empty())
                 {
-                    string text = "Skriv in ditt namn utan mellanrum. Avsluta med enter.";
-                    renderer->render_text(text, "Arcade.ttf", textColor, 30, 50, 30);
                     name.erase(name.end() - 1);
-                    renderer->render_text(name, "Arcade.ttf", textColor, 30, 50, 60);
-                }
-                else
-                {
-                    string text = "Skriv in ditt namn utan mellanrum. Avsluta med enter.";
-                    renderer->render_text(text, "Arcade.ttf", textColor, 30, 50, 30);
-                    char c = *(SDL_GetKeyName(key));
-                    name += c;
-                    renderer->render_text(name, "Arcade.ttf", textColor, 30, 50, 60);
-                }
 
+                    if (!name.empty())
+                    {
+                        renderer->render_text(name, "Arcade.ttf", textColor, 30, 50, 60);
+                    }
+                }
             }
             else
             {
@@ -205,6 +201,9 @@ void highscore::write()
 void highscore::show_highscore()
 {
     load();
+
+    renderer->render_image("space_background.png",0, 0);
+
     SDL_Color textColor {187, 32, 26, 255};
 
     renderer->render_text("High Score", "Arcade.ttf", textColor, 100, 200, 30);
@@ -220,6 +219,22 @@ void highscore::show_highscore()
 
     }
     renderer->present();
+
+    run = true;
+    SDL_Event event;
+    while(run)
+    {
+        SDL_WaitEvent(&event);
+        if (event.type == SDL_KEYDOWN)
+        {
+            SDL_Keycode key = event.key.keysym.sym;
+            if (key == SDLK_ESCAPE)
+            {
+                run = false;
+                break;
+            }
+        }
+    }
 }
 
 

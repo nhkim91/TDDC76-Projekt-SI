@@ -47,6 +47,27 @@ void render::render_text(const std::string &text, const std::string &fontFile,
     return;
 }
 
+void render::render_image(const string &imageFile, int x_pos, int y_pos, double scale)
+{
+    SDL_Surface* surf = IMG_Load(imageFile.c_str());
+
+    SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, surf);
+    if (texture == nullptr)
+    {
+        cout << "Error, kan inte skapa en textur till bilden." << endl;
+    }
+
+    SDL_Rect image_rect;
+    image_rect.x = x_pos;
+    image_rect.y = y_pos;
+    image_rect.w = (int) (((surf->w) * scale) + 0.5f);
+    image_rect.h = (int) (((surf->h) * scale) + 0.5f);
+
+    SDL_RenderCopy(renderer, texture, NULL, &image_rect);
+
+    SDL_DestroyTexture(texture);
+    SDL_FreeSurface(surf);
+}
 
 void render::present()
 {
@@ -58,3 +79,4 @@ void render::set_renderer(SDL_Renderer* rend)
 {
     renderer = rend;
 }
+
