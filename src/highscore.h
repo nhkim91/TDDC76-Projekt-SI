@@ -17,7 +17,7 @@ public:
     void save_score(int);
     void show_highscore();
     void set_renderer(render*);
-    std::string enter_name(); //Tar in ett namn från tangentbordet.
+
 
 
 private:
@@ -38,6 +38,7 @@ private:
     //std::string enter_name(); //Tar in ett namn från tangentbordet.
     //Skriver över highscore till fil.
     void write();
+    std::string enter_name(); //Tar in ett namn från tangentbordet.
 
     SDL_Texture *renderText(const std::string &str, const std::string &fontFile,
                             SDL_Color color, int fontSize, SDL_Renderer *renderer);

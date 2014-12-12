@@ -199,6 +199,8 @@ flying_objects* level::get_power_up(int i)
 //get_next_level() kollar om level ska bytas och gör i sådana fall det.
 void level::get_next_lvl(int score)
 {
+    SDL_Color textColor {255, 255, 255, 255};
+
     if(lvl == 0)
     {
         lvl++;
