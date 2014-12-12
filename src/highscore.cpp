@@ -13,8 +13,11 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_render.h>
 #include "highscore.h"
+#include "patch.h"
 
 using namespace std;
+
+
 
 void highscore::set_renderer(render* rend)
 {
@@ -110,9 +113,11 @@ void highscore::show_highscore()
 
     for(int i = 0; i < 10; ++i)
     {
-        renderer->render_text((to_string(i+1) + "."),"Arcade.ttf",textColor1, 30, 200, 150 + i*40);
-        renderer->render_text(to_string(list_of_score[i].score),"Arcade.ttf",textColor1, 30, 270, 150 + i*40);
+
+        renderer->render_text((patch::to_string(i+1) + "."),"Arcade.ttf",textColor1, 30, 200, 150 + i*40);
+        renderer->render_text(patch::to_string(list_of_score[i].score),"Arcade.ttf",textColor1, 30, 270, 150 + i*40);
         renderer->render_text(list_of_score[i].name,"Arcade.ttf",textColor1, 30, 450, 150 + i*40);
+
     }
     renderer->present();
 }

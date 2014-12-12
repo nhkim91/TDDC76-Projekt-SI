@@ -6,8 +6,23 @@
 #include "space_invader.h"
 #include "highscore.h"
 
+#include<sstream>
+
 using namespace std;
 
+
+template <typename T>
+std::string to_string(T value)
+{
+	//create an output string stream
+	std::ostringstream os ;
+
+	//throw the value into the string stream
+	os << value ;
+
+	//convert the string stream into a string and return
+	return os.str() ;
+}
 
 int main(int argc, char *argv[]) {
 	// initialize SDL
@@ -16,6 +31,7 @@ int main(int argc, char *argv[]) {
 		exit(1);
 	}
 
+	/*
     SDL_Window* window = SDL_CreateWindow("Highscore", SDL_WINDOWPOS_UNDEFINED,
                                           SDL_WINDOWPOS_UNDEFINED, 800, 600, SDL_WINDOW_SHOWN);
     SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED |
@@ -30,9 +46,10 @@ int main(int argc, char *argv[]) {
     hs.show_highscore();
 
     SDL_Delay(2000);
+    */
 
-    //space_invader SI;
-    //SI.run();
+    space_invader SI;
+    SI.run();
 
 /*	// make the scaled rendering look smoother
 	SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "linear");
