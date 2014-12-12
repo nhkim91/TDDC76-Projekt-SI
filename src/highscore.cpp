@@ -13,6 +13,8 @@
 #include <SDL2/SDL_render.h>
 #include "highscore.h"
 #include "patch.h"
+#include <cctype>
+#include <SDL2/SDL_events.h>
 
 using namespace std;
 
@@ -49,13 +51,52 @@ void highscore::save_score(int score)
 }
 
 //Läser in ett namn från tangentbordet.
-char *highscore::enter_name() //Namnet ska vara ett ord.
+string highscore::enter_name() //Namnet ska vara ett ord.
 {
-    SDL_Event* event;
-    /*while (SDL_PollEvent & event)
-    {
+    string name;
+    SDL_Event event;
 
-    }*/
+    run = true;
+
+    //Rendera tom ruta
+    SDL_Color textColor {255, 255, 255, 255};
+
+    string text = "Skriv in ditt namn utan mellanrum. Avsluta med enter.";
+    renderer->render_text(text, "Arcade.ttf", textColor, 30, 50, 30);
+    renderer->present();
+
+    while(run)
+    {
+        cout << "Inne i run" << endl;
+        while (SDL_PollEvent (&event))
+        {
+            cout << "Ett event har inträffat" << endl;
+            if(event.type == SDL_KEYDOWN)
+            {
+                cout << "Knapptryckning" << endl;
+                if(isalnum(event.key.keysym.sym))
+                {
+                    //rendera
+
+                    name = name + patch::to_string(event.key.keysym.sym);
+                    break;
+                }
+                else if(event.key.keysym.sym == SDLK_BACKSPACE)
+                {
+                    if(!name.empty())
+                    {
+                        name.erase(name.end());
+                    }
+                    //Rendera
+                }
+                else if(event.key.keysym.sym == SDLK_RETURN)
+                {
+                    run = false;
+                }
+            }
+        }
+    }
+    return name;
 }
 
 //Läser in highscore från fil och sparar över till list_of_score.
@@ -92,8 +133,6 @@ void highscore::write()
     ofstream hs;
     hs.open("highscore.txt", ios::out | ios::trunc);
 
-    //list_of_score[0].score = 99999;
-
 
     for (int i = 0; i < 10; i++)
     {
@@ -101,7 +140,6 @@ void highscore::write()
         hs << " ";
         hs << list_of_score[i].score;
         hs << " \n";
-
     }
 
     hs.close();
