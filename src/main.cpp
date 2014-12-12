@@ -50,9 +50,8 @@ int main(int argc, char *argv[])
     hs.show_highscore();
 
     SDL_Delay(2000);
-	 */
 
-
+*/
     space_invader SI;
     SI.run();
 
