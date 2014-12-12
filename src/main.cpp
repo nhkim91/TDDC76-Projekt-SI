@@ -39,7 +39,7 @@ int main(int argc, char *argv[])
     SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED |
                              SDL_RENDERER_PRESENTVSYNC);
 
-
+/*
     render rend;
     rend.set_renderer(renderer);
 
@@ -48,10 +48,10 @@ int main(int argc, char *argv[])
     hs.show_highscore();
 
     SDL_Delay(2000);
+*/
 
-
-    //space_invader SI;
-    //SI.run();
+    space_invader SI;
+    SI.run();
 
     /*  // make the scaled rendering look smoother
         SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "linear");
