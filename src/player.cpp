@@ -161,6 +161,6 @@ bullet player::attack()
 
 void player::increase_life(int amount)
 {
-    life_ = life_ - amount;
+    life_ = life_ + amount;
 }
 

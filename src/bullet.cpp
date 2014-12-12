@@ -69,22 +69,20 @@ bool bullet::hit(flying_objects& other)
 /////////////////////////////////////////////////////
 bullet::bullet(int life, int dmg, int x_pos, int y_pos, int x_speed, int y_speed, SDL_Renderer* renderer)
 {
-    //SDL_Surface* temp = IMG_Load("bullet_mk1.png");
-    //texture_ = SDL_CreateTextureFromSurface(renderer, temp);
+    ;
 
 
     life_ = life;
     dmg_ = dmg;
     rect_.x = x_pos;
     rect_.y = y_pos;
-    //rect_.w = temp->w;
-    //rect_.h = temp->h;
+
     x_pos_ = x_pos;
     y_pos_ = y_pos;
     x_speed_ = x_speed;
     y_speed_ = y_speed;
 
-    //SDL_FreeSurface(temp);
+
 }
 ////////////////////////////////////////////////////////
 
@@ -94,20 +92,10 @@ bullet_mk1::bullet_mk1(int life, int dmg, int x_pos, int y_pos, int x_speed, int
     SDL_Surface* temp = IMG_Load("bullet_mk1.png");
     texture_ = SDL_CreateTextureFromSurface(renderer, temp);
 
-    /*
-    life_= life;
-    dmg_ = dmg;
-    rect_.x = x_pos;
-    rect_.y = y_pos;
-     */
+
     rect_.w = temp->w;
     rect_.h = temp->h;
-    /*
-    movement_.at(0) = x_pos;
-    movement_.at(1) = y_pos;
-    movement_.at(2) = x_speed;
-    movement_.at(3) = y_speed;
-     */
+
     SDL_FreeSurface(temp);
 }
 
@@ -119,20 +107,10 @@ bullet_mk2::bullet_mk2(int life, int dmg, int x_pos, int y_pos, int x_speed, int
     SDL_Surface* temp = IMG_Load("bullet_mk2.png");
     texture_ = SDL_CreateTextureFromSurface(renderer, temp);
 
-    /*
-            life_= life;
-            dmg_ = dmg;
-            rect_.x = x_pos;
-            rect_.y = y_pos;
-     */
+
     rect_.w = temp->w;
     rect_.h = temp->h;
-    /*
-            movement_.at(0) = x_pos;
-            movement_.at(1) = y_pos;
-            movement_.at(2) = x_speed;
-            movement_.at(3) = y_speed;
-     */
+
     SDL_FreeSurface(temp);
 }
 

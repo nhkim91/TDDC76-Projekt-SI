@@ -126,7 +126,6 @@ power_up(life, x_pos, y_pos, x_speed, y_speed, renderer)
 
 
 
-
 bool power_up_life::hit(flying_objects& other)
 {
 	flying_objects *ptr_;
