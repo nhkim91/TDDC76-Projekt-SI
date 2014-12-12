@@ -23,7 +23,7 @@ public:
 
 
     // Destruktor
-    ~power_up();
+    ~power_up()=default;
 
     // Funktioner
     int kill_me_when();

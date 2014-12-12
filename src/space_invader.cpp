@@ -259,6 +259,7 @@ run()
         //}
         update_things(displaying_objects_, delta_time);
         render_things(displaying_objects_);
+
         // clear screen
         /*
          SDL_SetRenderDrawColor(renderer_, 0, 0, 0, 255);
@@ -303,14 +304,15 @@ void space_invader::update_things(vector<flying_objects*> update_vector, float t
         int new_x_speed, new_y_speed;
 
         new_x_speed = temp->get_x_speed() * time_diff;
-        //cerr << temp->get_x_speed() * time_diff << endl;
-        temp->set_x_pos(new_x_speed + temp->get_x_pos());
-        //temp->set_x_pos(temp->get_x_pos() + (temp->get_x_speed() * time_diff));
-        temp->set_y_pos(temp->get_y_pos() + (temp->get_y_speed() * time_diff));
-        temp->get_rect().x = temp->get_x_pos();
+        new_y_speed = temp->get_y_speed() * time_diff;
 
-        //temp->get_rect().x + temp->get_x_speed()*time_diff;
-        //temp->get_rect().y + temp->get_y_speed()*time_diff;
+        temp->set_x_pos(new_x_speed + temp->get_x_pos());
+        temp->set_y_pos(new_y_speed + temp->get_y_pos());
+
+        temp->get_rect().x = temp->get_x_pos();
+        temp->get_rect().y = temp->get_y_pos();
+
+
 
         ///Uppe och nere////
         if (temp->get_y_pos() + temp->get_rect().h > SCREEN_HEIGHT)
@@ -339,10 +341,8 @@ void space_invader::update_things(vector<flying_objects*> update_vector, float t
         {
             if (temp->get_x_pos() + temp->get_rect().w < 0)
             {
+                get_player(update_vector)->increase_life(-1);
                 //cerr << "hit";
-                //get_player(update_vector)->lose_life(1);
-                //cerr << "men inte hit";
-                cerr << "i: " << i << endl;
                 to_delete.push_back(i);
             }
         }

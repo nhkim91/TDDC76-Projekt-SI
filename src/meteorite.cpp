@@ -15,10 +15,6 @@
 using namespace std;
 
 
-meteorite::~meteorite()
-{
-    SDL_DestroyTexture(texture_);
-}
 
 bool meteorite::check_living(int dmg)
 {
@@ -56,21 +52,18 @@ bool meteorite::hit(flying_objects& other)
 /////////////////////////////////////////////////
 meteorite::meteorite(int life, int x_pos, int y_pos, int x_speed, int y_speed, SDL_Renderer* renderer)
 {
-    //SDL_Surface* temp = IMG_Load("meteorite_small.png");
-    //texture_ = SDL_CreateTextureFromSurface(renderer, temp);
 
     renderer_ = renderer;
     life_ = life;
     rect_.x = x_pos;
     rect_.y = y_pos;
-    //rect_.w = temp->w;
-    //rect_.h = temp->h;
+
     x_pos_ = x_pos;
     y_pos_ = y_pos;
     x_speed_ = x_speed;
     y_speed_ = y_speed;
 
-    //SDL_FreeSurface(temp);
+
 }
 /////////////////////////////////////////////////
 meteorite_small::meteorite_small(int life, int x_pos, int y_pos, int x_speed, int y_speed, SDL_Renderer* renderer):
@@ -79,16 +72,9 @@ meteorite_small::meteorite_small(int life, int x_pos, int y_pos, int x_speed, in
     SDL_Surface* temp = IMG_Load("meteorite_small.png");
     texture_ = SDL_CreateTextureFromSurface(renderer, temp);
 
-    //renderer_ = renderer;
-    //life_= life;
-    //rect_.x = x_pos;
-    //rect_.y = y_pos;
+
     rect_.w = temp->w;
     rect_.h = temp->h;
-    //x_pos_ = x_pos;
-    //y_pos_ = y_pos;
-    //x_speed_ = x_speed;
-    //y_speed_ = y_speed;
 
     SDL_FreeSurface(temp);
 }
@@ -100,16 +86,10 @@ meteorite_medium::meteorite_medium(int life, int x_pos, int y_pos, int x_speed, 
     SDL_Surface* temp = IMG_Load("meteorite_medium.png");
     texture_ = SDL_CreateTextureFromSurface(renderer, temp);
 
-    //renderer_ = renderer;
-    //life_= life;
-    //rect_.x = x_pos;
-    //rect_.y = y_pos;
+
     rect_.w = temp->w;
     rect_.h = temp->h;
-    //x_pos_ = x_pos;
-    //y_pos_ = y_pos;
-    //x_speed_ = x_speed;
-    //y_speed_ = y_speed;
+
 
     SDL_FreeSurface(temp);
 }
