@@ -47,7 +47,6 @@ void render::render_text(const std::string &text, const std::string &fontFile,
     return;
 }
 
-//TODO:  void render_surface(); och void render_texture(); linknade ovan.
 
 void render::present()
 {

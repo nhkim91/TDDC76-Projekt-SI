@@ -42,6 +42,7 @@ int main(int argc, char *argv[]) {
     rend.set_renderer(renderer);
 
     highscore hs;
+    hs.save_score(3333);
     hs.set_renderer(&rend);
     hs.show_highscore();
 

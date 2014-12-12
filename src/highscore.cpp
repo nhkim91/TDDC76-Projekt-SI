@@ -39,7 +39,7 @@ void highscore::save_score(int score)
         {
             //Göra spelaren uppmärksam på att den har kommit med på highscore-listan?
             //Vi har samtidigt tillgång till vilken plats (i+1).
-            temp.name = enter_name(); //TO DO: enter_name()
+            temp.name = "Kim";//enter_name(); //TO DO: enter_name()
             temp.score = score;
             list_of_score.insert(it, temp);
             list_of_score.pop_back();
@@ -90,6 +90,9 @@ void highscore::write()
 {
     ofstream hs;
     hs.open("highscore.txt", ios::out | ios::trunc);
+
+    //list_of_score[0].score = 99999;
+
 
     for (int i = 0; i < 10; i++)
     {

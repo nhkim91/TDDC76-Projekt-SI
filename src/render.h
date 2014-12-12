@@ -15,9 +15,6 @@ public:
 
     void render_text(const std::string &text, const std::string &fontFile,
                      SDL_Color color, int fontSize, int x_pos, int y_pos);
-    void render_surface(); //TODO: Fylla i vilka inparameterar som behövs.
-    void render_texture(); // TODO: Fylla i vilka inparameterar som behövs.
-
     void present();
     void set_renderer(SDL_Renderer*);
 
