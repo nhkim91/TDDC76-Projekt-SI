@@ -4,7 +4,6 @@
  *
  */
 
-
 #include <string>
 #include <fstream>
 #include <sstream>
@@ -16,8 +15,6 @@
 #include "patch.h"
 
 using namespace std;
-
-
 
 void highscore::set_renderer(render* rend)
 {
@@ -39,6 +36,7 @@ void highscore::save_score(int score)
         {
             //Göra spelaren uppmärksam på att den har kommit med på highscore-listan?
             //Vi har samtidigt tillgång till vilken plats (i+1).
+            temp.name = enter_name();
             temp.score = score;
             list_of_score.insert(it, temp);
             list_of_score.pop_back();
@@ -53,7 +51,11 @@ void highscore::save_score(int score)
 //Läser in ett namn från tangentbordet.
 char *highscore::enter_name() //Namnet ska vara ett ord.
 {
+    SDL_Event* event;
+    /*while (SDL_PollEvent & event)
+    {
 
+    }*/
 }
 
 //Läser in highscore från fil och sparar över till list_of_score.
@@ -98,7 +100,8 @@ void highscore::write()
         hs << list_of_score[i].name;
         hs << " ";
         hs << list_of_score[i].score;
-        hs << " ";
+        hs << " \n";
+
     }
 
     hs.close();
@@ -109,18 +112,18 @@ void highscore::write()
 void highscore::show_highscore()
 {
     load();
-    SDL_Color textColor{187, 32, 26, 255};
+    SDL_Color textColor {187, 32, 26, 255};
 
-    renderer->render_text("High Score","Arcade.ttf",textColor, 100, 200, 30);
+    renderer->render_text("High Score", "Arcade.ttf", textColor, 100, 200, 30);
 
-    SDL_Color textColor1{255, 255, 255, 255};
+    SDL_Color textColor1 {255, 255, 255, 255};
 
-    for(int i = 0; i < 10; ++i)
+    for (int i = 0; i < 10; ++i)
     {
 
-        renderer->render_text((patch::to_string(i+1) + "."),"Arcade.ttf",textColor1, 30, 200, 150 + i*40);
-        renderer->render_text(patch::to_string(list_of_score[i].score),"Arcade.ttf",textColor1, 30, 270, 150 + i*40);
-        renderer->render_text(list_of_score[i].name,"Arcade.ttf",textColor1, 30, 450, 150 + i*40);
+        renderer->render_text((patch::to_string(i + 1) + "."), "Arcade.ttf", textColor1, 30, 200, 150 + i * 40);
+        renderer->render_text(patch::to_string(list_of_score[i].score), "Arcade.ttf", textColor1, 30, 270, 150 + i * 40);
+        renderer->render_text(list_of_score[i].name, "Arcade.ttf", textColor1, 30, 450, 150 + i * 40);
 
     }
     renderer->present();

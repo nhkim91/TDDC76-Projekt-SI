@@ -12,137 +12,137 @@ using namespace std;
 
 power_up::~power_up()
 {
-	SDL_DestroyTexture(texture_);
+    SDL_DestroyTexture(texture_);
 }
 
 power_up::power_up(int life, int x_pos, int y_pos, int x_speed, int y_speed, SDL_Renderer* renderer)
 {
-	/*SDL_Surface* temp = IMG_Load("alien2.png");
-	texture_ = SDL_CreateTextureFromSurface(renderer, temp);
-*/
-	renderer_ = renderer;
-	life_= life;
-	rect_.x = x_pos;
-	rect_.y = y_pos;
-	/*rect_.w = temp->w;
-	rect_.h = temp->h;
-	 */
+    /*SDL_Surface* temp = IMG_Load("alien2.png");
+    texture_ = SDL_CreateTextureFromSurface(renderer, temp);
+    */
+    renderer_ = renderer;
+    life_ = life;
+    rect_.x = x_pos;
+    rect_.y = y_pos;
+    /*rect_.w = temp->w;
+    rect_.h = temp->h;
+     */
 
-	x_pos_ = x_pos;
-	y_pos_ = y_pos;
-	x_speed_ = x_speed;
-	y_speed_ = y_speed;
+    x_pos_ = x_pos;
+    y_pos_ = y_pos;
+    x_speed_ = x_speed;
+    y_speed_ = y_speed;
 
 
 
-	//SDL_FreeSurface(temp);
+    //SDL_FreeSurface(temp);
 }
 
 int power_up::kill_me_when()
 {
-	return live_until_;
+    return live_until_;
 }
 
 int power_up::set_life_time()
 {
-	live_until_ = SDL_GetTicks() + 10000;
-	return live_until_;
+    live_until_ = SDL_GetTicks() + 10000;
+    return live_until_;
 }
 
 void power_up::pick_up_position()
 {
-	x_pos_= 0;
-	y_pos_ = 0;
-	x_speed_ = 5000;
-	y_speed_ = 0;
-	return;
+    x_pos_ = 0;
+    y_pos_ = 0;
+    x_speed_ = 5000;
+    y_speed_ = 0;
+    return;
 }
 
 bool power_up::check_living(int dmg)
 {
-	life_ = life_ - dmg;
-	return(life_ <= 0);
+    life_ = life_ - dmg;
+    return (life_ <= 0);
 }
 
 
 /////////////////////////////////////////////////
 power_up_attack::power_up_attack(int life, int x_pos, int y_pos, int x_speed, int y_speed, SDL_Renderer* renderer):
-								power_up(life, x_pos, y_pos, x_speed, y_speed, renderer)
+    power_up(life, x_pos, y_pos, x_speed, y_speed, renderer)
 {
-	SDL_Surface* temp = IMG_Load("power_up_attack.png");
-	texture_ = SDL_CreateTextureFromSurface(renderer, temp);
+    SDL_Surface* temp = IMG_Load("power_up_attack.png");
+    texture_ = SDL_CreateTextureFromSurface(renderer, temp);
 
 
-	renderer_ = renderer;
-	life_= life;
-	rect_.x = x_pos;
-	rect_.y = y_pos;
-	/*
-	rect_.w = temp->w;
-	rect_.h = temp->h;
-	*/
-	x_pos_ = x_pos;
-	y_pos_ = y_pos;
-	x_speed_ = x_speed;
-	y_speed_ = y_speed;
+    renderer_ = renderer;
+    life_ = life;
+    rect_.x = x_pos;
+    rect_.y = y_pos;
+    /*
+    rect_.w = temp->w;
+    rect_.h = temp->h;
+    */
+    x_pos_ = x_pos;
+    y_pos_ = y_pos;
+    x_speed_ = x_speed;
+    y_speed_ = y_speed;
 
-	SDL_FreeSurface(temp);
+    SDL_FreeSurface(temp);
 
 }
 
 
 bullet power_up_attack::attack(int x_pos, int y_pos)
 {
-	return bullet_mk2{2, 3, x_pos, y_pos, 15, 0, renderer_};
+    return bullet_mk2 {2, 3, x_pos, y_pos, 15, 0, renderer_};
 }
 
 bool power_up_attack::hit(flying_objects& other)
 {
-	flying_objects *ptr_;
-	ptr_ = &other;
+    flying_objects *ptr_;
+    ptr_ = &other;
 
-	player* other_obj_1;
-	other_obj_1 = dynamic_cast<player*>(ptr_);
-	if (other_obj_1 != nullptr)
-	{
-		pick_up_position();
-		set_life_time();
-		return false;
-	}
+    player* other_obj_1;
+    other_obj_1 = dynamic_cast<player*>(ptr_);
+    if (other_obj_1 != nullptr)
+    {
+        pick_up_position();
+        set_life_time();
+        return false;
+    }
 
-	bullet* other_obj_2;
-	other_obj_2 = dynamic_cast<bullet*>(ptr_);
-	if (other_obj_2 != nullptr)
-	{
-		return true;
-	}
+    bullet* other_obj_2;
+    other_obj_2 = dynamic_cast<bullet*>(ptr_);
+    if (other_obj_2 != nullptr)
+    {
+        return true;
+    }
 
-	return false;
+    return false;
 
 }
 
 /////////////////////////////////////////////////
 power_up_life::power_up_life(int life, int x_pos, int y_pos, int x_speed, int y_speed, SDL_Renderer* renderer):
-						power_up(life, x_pos, y_pos, x_speed, y_speed, renderer)
+    power_up(life, x_pos, y_pos, x_speed, y_speed, renderer)
 {
-	SDL_Surface* temp = IMG_Load("power_up_life.png");
-	texture_ = SDL_CreateTextureFromSurface(renderer, temp);
+    SDL_Surface* temp = IMG_Load("power_up_life.png");
+    texture_ = SDL_CreateTextureFromSurface(renderer, temp);
 
 
-	/* renderer_ = renderer;
-	life_= life;
-	rect_.x = x_pos;
-	rect_.y = y_pos;
-	*/
-	rect_.w = temp->w;
-	rect_.h = temp->h;
-	/*
-	x_pos_ = x_pos;
-	y_pos_ = y_pos;
-	x_speed_ = x_speed;
-	y_speed_ = y_speed;
-	 */
-	SDL_FreeSurface(temp);
+    /* renderer_ = renderer;
+    life_= life;
+    rect_.x = x_pos;
+    rect_.y = y_pos;
+    */
+    rect_.w = temp->w;
+    rect_.h = temp->h;
+    /*
+    x_pos_ = x_pos;
+    y_pos_ = y_pos;
+    x_speed_ = x_speed;
+    y_speed_ = y_speed;
+     */
+    SDL_FreeSurface(temp);
 
 }
 
@@ -151,42 +151,42 @@ power_up_life::power_up_life(int life, int x_pos, int y_pos, int x_speed, int y_
 
 bool power_up_life::hit(flying_objects& other)
 {
-	flying_objects *ptr_;
-	ptr_ = &other;
+    flying_objects *ptr_;
+    ptr_ = &other;
 
-	player* other_obj_3;
-	other_obj_3 = dynamic_cast<player*>(ptr_);
-	if (other_obj_3 != nullptr)
-	{
-		pick_up_position();
-		return false;
-	}
+    player* other_obj_3;
+    other_obj_3 = dynamic_cast<player*>(ptr_);
+    if (other_obj_3 != nullptr)
+    {
+        pick_up_position();
+        return false;
+    }
 
-	return false;
+    return false;
 }
 
 /////////////////////////////////////////////////
 power_up_shield::power_up_shield(int life, int x_pos, int y_pos, int x_speed, int y_speed, SDL_Renderer* renderer):
-								power_up(life, x_pos, y_pos, x_speed, y_speed, renderer)
+    power_up(life, x_pos, y_pos, x_speed, y_speed, renderer)
 {
-	SDL_Surface* temp = IMG_Load("power_up_shiled.png");
-	texture_ = SDL_CreateTextureFromSurface(renderer, temp);
+    SDL_Surface* temp = IMG_Load("power_up_shiled.png");
+    texture_ = SDL_CreateTextureFromSurface(renderer, temp);
 
-	/*
-	renderer_ = renderer;
-	life_= life;
-	rect_.x = x_pos;
-	rect_.y = y_pos;
-	*/
-	rect_.w = temp->w;
-	rect_.h = temp->h;
-	/*
-	x_pos_= x_pos;
-	y_pos_= y_pos;
-	x_speed_= x_speed;
-	y_speed_ = y_speed;
-	*/
-	SDL_FreeSurface(temp);
+    /*
+    renderer_ = renderer;
+    life_= life;
+    rect_.x = x_pos;
+    rect_.y = y_pos;
+    */
+    rect_.w = temp->w;
+    rect_.h = temp->h;
+    /*
+    x_pos_= x_pos;
+    y_pos_= y_pos;
+    x_speed_= x_speed;
+    y_speed_ = y_speed;
+    */
+    SDL_FreeSurface(temp);
 
 }
 
@@ -194,34 +194,34 @@ power_up_shield::power_up_shield(int life, int x_pos, int y_pos, int x_speed, in
 
 bool power_up_shield::hit(flying_objects& other)
 {
-	flying_objects *ptr_;
-	ptr_ = &other;
+    flying_objects *ptr_;
+    ptr_ = &other;
 
-	player* other_obj_5;
-	other_obj_5 = dynamic_cast<player*>(ptr_);
-	if (other_obj_5 != nullptr)
-	{
-		if (other_obj_5->get_power_up_shield().empty())
-		{
-			pick_up_position();
-			set_life_time();
-			return false;
-		}
-		else
-		{
-			other_obj_5->get_power_up_shield().at(0)->set_life_time();
-			return false;
-		}
-	}
+    player* other_obj_5;
+    other_obj_5 = dynamic_cast<player*>(ptr_);
+    if (other_obj_5 != nullptr)
+    {
+        if (other_obj_5->get_power_up_shield().empty())
+        {
+            pick_up_position();
+            set_life_time();
+            return false;
+        }
+        else
+        {
+            other_obj_5->get_power_up_shield().at(0)->set_life_time();
+            return false;
+        }
+    }
 
-	bullet* other_obj_6;
-	other_obj_6 = dynamic_cast<bullet*>(ptr_);
-	if (other_obj_6 != nullptr)
-	{
-		return true;
-	}
+    bullet* other_obj_6;
+    other_obj_6 = dynamic_cast<bullet*>(ptr_);
+    if (other_obj_6 != nullptr)
+    {
+        return true;
+    }
 
-	return false;
+    return false;
 
 }
 

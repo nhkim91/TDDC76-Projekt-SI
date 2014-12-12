@@ -11,25 +11,25 @@
 
 #include "flying_objects.h"
 
-class alien :public flying_objects
+class alien : public flying_objects
 {
 public:
 
-	// Datamedlemmar
+    // Datamedlemmar
 
 
 
-	// Konstruktor
-	alien(int, int, int, int, int, SDL_Renderer*);
-	alien();
+    // Konstruktor
+    alien(int, int, int, int, int, SDL_Renderer*);
+    alien();
 
-	// Destruktor
-	 //~alien();
-	~alien() = default;
+    // Destruktor
+    //~alien();
+    ~alien() = default;
 
-	// Funktioner
-	bool check_living(int);
-	bool hit(flying_objects&)  override;
+    // Funktioner
+    bool check_living(int);
+    bool hit(flying_objects&)  override;
 
 
 };
@@ -40,8 +40,8 @@ class alien_mk1 : public alien
 {
 public:
 
-	// Konstruktor
-	alien_mk1(int, int, int, int, int, SDL_Renderer*);
+    // Konstruktor
+    alien_mk1(int, int, int, int, int, SDL_Renderer*);
 
 };
 ////////////////////////////////////////////////////////////////
@@ -50,9 +50,9 @@ class alien_mk2 : public alien
 {
 public:
 
-	// Konstruktor
-	alien_mk2(int, int, int, int, int, SDL_Renderer*);
-	~alien_mk2() = default;
+    // Konstruktor
+    alien_mk2(int, int, int, int, int, SDL_Renderer*);
+    ~alien_mk2() = default;
 
 };
 ////////////////////////////////////////////////////////////////
@@ -61,11 +61,11 @@ class alien_mk3 : public alien
 {
 public:
 
-	// Konstruktor
-	alien_mk3(int, int, int, int, int, SDL_Renderer*);
+    // Konstruktor
+    alien_mk3(int, int, int, int, int, SDL_Renderer*);
 
-	//funktioner
-	class bullet attack();
+    //funktioner
+    class bullet attack();
 };
 ////////////////////////////////////////////////////////////////
 
