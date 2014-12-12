@@ -35,7 +35,7 @@ player::~player()
 
 bool player::check_living(int dmg)
 {
-    life_ = life_ - dmg;
+    life_ = life_ + dmg;
     return (life_ <= 0);
 }
 
@@ -146,17 +146,23 @@ bool player::hit(flying_objects& other)
     return false;
 }
 
-bullet player::attack()
+flying_objects* player::attack()
 {
-    if (power_up_attack_.empty())
+	flying_objects* attack_ptr;
+	cerr << SDL_GetTicks() << endl;
+	cerr << last_shoot_time_ << endl << cooldown_ << endl;
+    if (power_up_attack_.empty() && last_shoot_time_ <= (SDL_GetTicks()-cooldown_))
     {
-        return bullet_mk1 {1, 1, (x_pos_ + 101), y_pos_, 10, 0, renderer_};
-
+    	attack_ptr = new bullet_mk1 {1, 1, (x_pos_ + rect_.w), y_pos_, 200, 0, renderer_};
+    	last_shoot_time_ = SDL_GetTicks();
+        return attack_ptr;
     }
-    else
+    else if(last_shoot_time_ <= (SDL_GetTicks()-cooldown_))
     {
-        return power_up_attack_.at(0)->attack((x_pos_ + 101), y_pos_);
+    	last_shoot_time_ = SDL_GetTicks();
+        return power_up_attack_.at(0)->attack((x_pos_ + rect_.w), y_pos_);
     }
+    return nullptr;
 }
 
 void player::increase_life(int amount)

@@ -34,24 +34,36 @@ int main(int argc, char *argv[])
     }
 
 
-//	SDL_Window* window = SDL_CreateWindow("Highscore", SDL_WINDOWPOS_UNDEFINED,
-//											SDL_WINDOWPOS_UNDEFINED, 800, 600, SDL_WINDOW_SHOWN);
-//	SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED |
-//							SDL_RENDERER_PRESENTVSYNC);
+/*
+    SDL_Window* window = SDL_CreateWindow("Highscore", SDL_WINDOWPOS_UNDEFINED,
+                                          SDL_WINDOWPOS_UNDEFINED, 800, 600, SDL_WINDOW_SHOWN);
+    SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED |
+                             SDL_RENDERER_PRESENTVSYNC);
 
+    SDL_Surface* temp = IMG_Load("space.png");
 
+    SDL_Texture* texture_ = SDL_CreateTextureFromSurface(renderer, temp);
 
-	/* render rend;
+    SDL_Rect rect_;
+    rect_.w = temp->w;
+    rect_.h = temp->h;
+
+    SDL_FreeSurface(temp);
+    SDL_RenderPresent(temp);
+    SDL_RenderClear(renderer);
+    SDL_Delay(2000);
+
+/*
     render rend;
     rend.set_renderer(renderer);
 
     highscore hs;
     hs.set_renderer(&rend);
+    hs.save_score(10000);
     hs.show_highscore();
 
-    SDL_Delay(2000);
+    SDL_Delay(2000);*/
 
-*/
     space_invader SI;
     SI.run();
 
@@ -161,8 +173,7 @@ int main(int argc, char *argv[])
 
         SDL_Quit();*/
 
-
-	return 0;
+    return 0;
 }
 
 //else if (event.type == SDL_MOUSEMOTION) {

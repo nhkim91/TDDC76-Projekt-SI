@@ -46,7 +46,7 @@ public:
 
 
     // Funktioner
-    class bullet attack(int, int);
+    flying_objects* attack(int, int);
     bool hit(flying_objects&);
 
 

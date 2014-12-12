@@ -14,7 +14,7 @@ using namespace std;
 
 bool alien::check_living(int dmg)
 {
-    life_ = life_ - dmg;
+    life_ = life_ + dmg;
     return (life_ <= 0);
 }
 
@@ -41,7 +41,7 @@ bool alien::hit(flying_objects& other)
     other_obj_3 = dynamic_cast<bullet*>(ptr_);
     if (other_obj_3 != nullptr)
     {
-        return check_living(other_obj_3->get_dmg());
+        return check_living(-other_obj_3->get_dmg());
     }
 
     return false;
