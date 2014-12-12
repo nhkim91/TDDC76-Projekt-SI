@@ -102,7 +102,8 @@ void space_invader::render_things(vector<flying_objects*> render_vector) {
 	SDL_RenderPresent(renderer_);
 }
 
-void space_invader::run() {
+void space_invader::
+run() {
 	// make the scaled rendering look smoother
 	SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "linear");
 	// render at a virtual resolution then stretch to actual resolution

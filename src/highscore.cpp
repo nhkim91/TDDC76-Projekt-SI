@@ -13,8 +13,11 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_render.h>
 #include "highscore.h"
+#include "patch.h"
 
 using namespace std;
+
+
 
 void highscore::set_renderer(render* rend)
 {
@@ -36,7 +39,6 @@ void highscore::save_score(int score)
         {
             //Göra spelaren uppmärksam på att den har kommit med på highscore-listan?
             //Vi har samtidigt tillgång till vilken plats (i+1).
-            temp.name = "hej"; //enter_name(); //TO DO: enter_name()
             temp.score = score;
             list_of_score.insert(it, temp);
             list_of_score.pop_back();
@@ -88,6 +90,9 @@ void highscore::write()
     ofstream hs;
     hs.open("highscore.txt", ios::out | ios::trunc);
 
+    //list_of_score[0].score = 99999;
+
+
     for (int i = 0; i < 10; i++)
     {
         hs << list_of_score[i].name;
@@ -112,9 +117,11 @@ void highscore::show_highscore()
 
     for(int i = 0; i < 10; ++i)
     {
-        renderer->render_text((to_string(i+1) + "."),"Arcade.ttf",textColor1, 30, 200, 150 + i*40);
-        renderer->render_text(to_string(list_of_score[i].score),"Arcade.ttf",textColor1, 30, 270, 150 + i*40);
+
+        renderer->render_text((patch::to_string(i+1) + "."),"Arcade.ttf",textColor1, 30, 200, 150 + i*40);
+        renderer->render_text(patch::to_string(list_of_score[i].score),"Arcade.ttf",textColor1, 30, 270, 150 + i*40);
         renderer->render_text(list_of_score[i].name,"Arcade.ttf",textColor1, 30, 450, 150 + i*40);
+
     }
     renderer->present();
 }
