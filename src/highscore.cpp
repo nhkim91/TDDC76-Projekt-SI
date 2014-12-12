@@ -1,9 +1,26 @@
-#include "highscore.h"
+/*
+ * Har hand om alla user inputs
+ * Kan implementeras
+ *
+ */
+
+
 #include <string>
 #include <fstream>
 #include <sstream>
+#include <iostream>
+#include <SDL2/SDL_ttf.h>
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_render.h>
+#include "highscore.h"
 
 using namespace std;
+
+void highscore::set_renderer(render* rend)
+{
+    renderer = rend;
+}
+
 
 //Jämför score med den redan existerande highscore-listan. Om spelaren placerar sig på listan anropas enter_name()
 //och poängen sparas över till highscore-listan.
@@ -12,18 +29,18 @@ void highscore::save_score(int score)
     load();
     highscore_element temp;
     vector<highscore_element>::iterator it;
-    int i{0};
+    int i {0};
     for (it = list_of_score.begin(); it != list_of_score.end(); it++)
     {
-        if(score > list_of_score[i].score)
+        if (score > list_of_score[i].score)
         {
             //Göra spelaren uppmärksam på att den har kommit med på highscore-listan?
             //Vi har samtidigt tillgång till vilken plats (i+1).
             temp.name = enter_name(); //TO DO: enter_name()
             temp.score = score;
-            list_of_score.insert(it,temp);
+            list_of_score.insert(it, temp);
             list_of_score.pop_back();
-            write(); //TO DO: read() - spara över highscore till fil
+            write();
             return;
         }
         i++;
@@ -32,7 +49,7 @@ void highscore::save_score(int score)
 }
 
 //Läser in ett namn från tangentbordet.
-string highscore::enter_name() //Namnet ska vara ett ord.
+char *highscore::enter_name() //Namnet ska vara ett ord.
 {
 
 }
@@ -41,44 +58,67 @@ string highscore::enter_name() //Namnet ska vara ett ord.
 void highscore::load()
 {
     list_of_score.resize(10);
-    ifstream highscore;
-    highscore.open ("highscore.txt");
+    ifstream hs;
+    hs.open("highscore.txt");
     highscore_element temp;
 
-    if(highscore.is_open())
+    if (hs.is_open())
     {
-        for(int i = 0; i < 10; i++)
+
+        for (int i = 0; i < 10; i++)
         {
-            highscore >> temp.name;
-            highscore >> temp.score;
+            hs >> temp.name;
+            hs >> temp.score;
             list_of_score[i] = temp;
         }
     }
     else
     {
-        return; //TO DO: Fixa felhantering.
+        cout << "Tom High Score" << endl;
+        return;
     }
-    highscore.close();
+
+    hs.close();
     return;
 }
 
 //Sparar över highscore till fil.
 void highscore::write()
 {
-    ofstream highscore;
-    highscore.open("highscore.txt", ios::out | ios::trunc);
+    ofstream hs;
+    hs.open("highscore.txt", ios::out | ios::trunc);
 
-    for(int i = 0; i < 10; i++)
+    for (int i = 0; i < 10; i++)
     {
-        highscore << list_of_score[i].name;
-        highscore << list_of_score[i].score;
+        hs << list_of_score[i].name;
+        hs << list_of_score[i].score;
     }
 
-    highscore.close();
+    hs.close();
     return;
+}
+
+
+void highscore::show_highscore()
+{
+    load();
+    SDL_Color textColor{187, 32, 26, 255};
+
+    renderer->render_text("High Score","Arcade.ttf",textColor, 100, 200, 30);
+
+    SDL_Color textColor1{255, 255, 255, 255};
+
+    for(int i = 0; i < 10; ++i)
+    {
+        renderer->render_text((to_string(i+1) + "."),"Arcade.ttf",textColor1, 30, 200, 150 + i*40);
+        renderer->render_text(to_string(list_of_score[i].score),"Arcade.ttf",textColor1, 30, 270, 150 + i*40);
+        renderer->render_text(list_of_score[i].name,"Arcade.ttf",textColor1, 30, 450, 150 + i*40);
+    }
+    renderer->present();
 }
 
 
 
 
-//TO DO: show_highscore() som ska anropa load() bl.a.
+
+

@@ -4,6 +4,7 @@
 //#include <SDL2_image/SDL_image.h>  //<- maggie behöver denna!
 #include <SDL2/SDL_main.h>
 #include "space_invader.h"
+#include "highscore.h"
 
 using namespace std;
 
@@ -15,8 +16,23 @@ int main(int argc, char *argv[]) {
 		exit(1);
 	}
 
-	space_invader SI;
-	SI.run();
+    SDL_Window* window = SDL_CreateWindow("Highscore", SDL_WINDOWPOS_UNDEFINED,
+                                          SDL_WINDOWPOS_UNDEFINED, 800, 600, SDL_WINDOW_SHOWN);
+    SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED |
+                             SDL_RENDERER_PRESENTVSYNC);
+
+
+    render rend;
+    rend.set_renderer(renderer);
+
+    highscore hs;
+    hs.set_renderer(&rend);
+    hs.show_highscore();
+
+    SDL_Delay(2000);
+
+    //space_invader SI;
+    //SI.run();
 
 /*	// make the scaled rendering look smoother
 	SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "linear");
