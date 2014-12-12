@@ -11,10 +11,7 @@
 #include <vector>
 using namespace std;
 
-bullet::~bullet()
-{
-    SDL_DestroyTexture(texture_);
-}
+
 
 bool bullet::check_living(int dmg)
 {
