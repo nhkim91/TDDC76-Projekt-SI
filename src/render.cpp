@@ -10,7 +10,7 @@ render::render()
 }
 
 void render::render_text(const std::string &text, const std::string &fontFile,
-                 SDL_Color color, int fontSize, int x_pos, int y_pos)
+                         SDL_Color color, int fontSize, int x_pos, int y_pos)
 {
     TTF_Font* font = TTF_OpenFont(fontFile.c_str(), fontSize); // öppnar filen med fonten
     if (font == nullptr)
@@ -47,7 +47,6 @@ void render::render_text(const std::string &text, const std::string &fontFile,
     return;
 }
 
-//TODO:  void render_surface(); och void render_texture(); linknade ovan.
 
 void render::present()
 {

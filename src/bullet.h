@@ -18,38 +18,38 @@
 
 #include "flying_objects.h"
 
-class bullet :public flying_objects
+class bullet : public flying_objects
 {
 
 public:
 
 
-	// Datamedlemmar
-	int dmg_;
+    // Datamedlemmar
+    int dmg_;
 
 
-	//Funktioner
-	bool check_living(int);
-	int get_dmg() const;
-	bool hit(flying_objects&) override;
+    //Funktioner
+    bool check_living(int);
+    int get_dmg() const;
+    bool hit(flying_objects&) override;
 
 
 
-	// Konstruktor
-	bullet(int, int, int, int, int, int, SDL_Renderer*);
-	bullet();
+    // Konstruktor
+    bullet(int, int, int, int, int, int, SDL_Renderer*);
+    bullet();
 
-	// Destruktor
-	 ~bullet();
+    // Destruktor
+    ~bullet();
 };
 //////////////////////////////////////////
 class bullet_mk1 : public bullet
 {
 public:
-	// Konstruktor
-	bullet_mk1(int, int, int, int, int, int, SDL_Renderer*);
+    // Konstruktor
+    bullet_mk1(int, int, int, int, int, int, SDL_Renderer*);
 
-	// Funktioner
+    // Funktioner
 };
 
 //////////////////////////////////////////
@@ -57,10 +57,10 @@ class bullet_mk2 : public bullet
 {
 public:
 
-	// Konstruktor
-	bullet_mk2(int, int, int, int, int, int, SDL_Renderer*);
+    // Konstruktor
+    bullet_mk2(int, int, int, int, int, int, SDL_Renderer*);
 
 
-	 // Funktioner
+    // Funktioner
 };
 #endif /* BULLET_H_ */

@@ -9,7 +9,7 @@
 class highscore
 {
 public:
-    highscore()=default;
+    highscore() = default;
     ~highscore() = default;
 
     highscore(const highscore&) = default;
@@ -17,7 +17,6 @@ public:
     void save_score(int);
     void show_highscore();
     void set_renderer(render*);
-
 
 
 private:
@@ -34,10 +33,11 @@ private:
     //Laddar in highscore till list_of_score.
     void load();
     char* enter_name(); //Tar in ett namn från tangentbordet.
-    void write(); //Skriver över highscore till fil.
+    //Skriver över highscore till fil.
+    void write();
 
     SDL_Texture *renderText(const std::string &str, const std::string &fontFile,
-        SDL_Color color, int fontSize, SDL_Renderer *renderer);
+                            SDL_Color color, int fontSize, SDL_Renderer *renderer);
 };
 
 #endif // HIGHSCORE_H
