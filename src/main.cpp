@@ -164,7 +164,7 @@ int main(int argc, char *argv[])
 
 
 	return 0;
-
+}
 
 //else if (event.type == SDL_MOUSEMOTION) {
 //  mouseRect.x = event.motion.x - (ballWidth/2);
