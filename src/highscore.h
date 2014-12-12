@@ -19,8 +19,6 @@ public:
     void set_renderer(render*);
 
 
-
-
 private:
     struct highscore_element
     {

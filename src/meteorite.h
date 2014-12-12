@@ -13,27 +13,27 @@
 
 
 
-class meteorite :public flying_objects
+class meteorite : public flying_objects
 {
 
 public:
 
-	// Datamedlemmar
+    // Datamedlemmar
 
 
 
-	// Konstruktor
-	meteorite(int, int, int, int, int, SDL_Renderer*);
-	meteorite();
+    // Konstruktor
+    meteorite(int, int, int, int, int, SDL_Renderer*);
+    meteorite();
 
-	// Destruktor
-	 ~meteorite();
+    // Destruktor
+    ~meteorite();
 
-	 // Funktioner
+    // Funktioner
 
-	bool check_living(int);
+    bool check_living(int);
 
-	bool hit(flying_objects&)  override;
+    bool hit(flying_objects&)  override;
 
 };
 ////////////////////////////////////////////////////////////////
@@ -41,8 +41,8 @@ class meteorite_small : public meteorite
 {
 public:
 
-	// Konstruktor
-	meteorite_small(int, int, int, int, int, SDL_Renderer*);
+    // Konstruktor
+    meteorite_small(int, int, int, int, int, SDL_Renderer*);
 
 };
 ////////////////////////////////////////////////////////////////
@@ -50,8 +50,8 @@ class meteorite_medium : public meteorite
 {
 public:
 
-	// Konstruktor
-	meteorite_medium(int, int, int, int, int, SDL_Renderer*);
+    // Konstruktor
+    meteorite_medium(int, int, int, int, int, SDL_Renderer*);
 
 };
 ///////////////////////////////////////////////////////////////

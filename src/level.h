@@ -6,7 +6,7 @@
 class level
 {
 public:
-	SDL_Renderer* renderer_{NULL};
+    SDL_Renderer* renderer_ {NULL};
     level() = default;
     level(std::vector<flying_objects*> displaying_objects_, int WIDTH, int HEIGHT);
     virtual ~level() = default;
