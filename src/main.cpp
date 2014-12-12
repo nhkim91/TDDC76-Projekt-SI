@@ -33,6 +33,7 @@ int main(int argc, char *argv[])
         exit(1);
     }
 
+
 /*
 	SDL_Window* window = SDL_CreateWindow("Highscore", SDL_WINDOWPOS_UNDEFINED,
 											SDL_WINDOWPOS_UNDEFINED, 800, 600, SDL_WINDOW_SHOWN);
