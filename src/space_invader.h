@@ -8,8 +8,10 @@ public:
 
     const int SCREEN_WIDTH = 800;
     const int SCREEN_HEIGHT = 600;
-   class player* player_;
-
+    class player* player_;
+    ////////////
+    bool trouble = false;
+///////////
     // create the window
     SDL_Window* window_ = SDL_CreateWindow("SDL Testet", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_RESIZABLE);
     SDL_Renderer* renderer_ = SDL_CreateRenderer(window_, -1, 0);
@@ -24,7 +26,6 @@ public:
     void run();
     void render_things(std::vector<flying_objects*>);
     void update_things(std::vector<flying_objects*>, float);
-    class player* get_player(std::vector<flying_objects*> vector);
     void add_object(flying_objects*);
 };
 

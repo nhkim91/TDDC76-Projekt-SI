@@ -15,8 +15,8 @@ class power_up : public flying_objects
 public:
 
     // Datamedlemmar
-    int live_until_ {0};
-
+    int time_to_live_ {10000};
+    int created_ {0};
 
     // Konstruktor
     power_up(int, int, int, int, int, SDL_Renderer*);
@@ -26,12 +26,12 @@ public:
     ~power_up()=default;
 
     // Funktioner
-    int kill_me_when();
-    int set_life_time();
+    int get_created_time();
+    void set_created_time();
     void set_movement();
-    void pick_up_position();
-    bool check_living(int);
 
+    bool check_living(int);
+    bool hit(flying_objects&) override;
 };
 ////////////////////////////////////////////////////////////////
 class power_up_attack : public power_up
@@ -43,11 +43,8 @@ public:
     // Konstruktor
     power_up_attack(int life, int x_pos, int y_pos, int x_speed, int y_speed, SDL_Renderer* renderer);
 
-
-
     // Funktioner
     flying_objects* attack(int, int);
-    bool hit(flying_objects&);
 
 
 };
@@ -60,7 +57,7 @@ public:
     power_up_life(int life, int x_pos, int y_pos, int x_speed, int y_speed, SDL_Renderer* renderer);
 
     // Funktioner
-    bool hit(flying_objects&) override;
+
 
 };
 ////////////////////////////////////////////////////////////////
@@ -73,7 +70,7 @@ public:
 
     // funktioner
 
-    bool hit(flying_objects&) override;
+
 
 };
 ////////////////////////////////////////////////////////////////

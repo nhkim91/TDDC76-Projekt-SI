@@ -43,7 +43,6 @@ bullet::bullet(int life, int dmg, int x_pos, int y_pos, int x_speed, int y_speed
 	rect_.y = y_pos;
 
 	x_pos_ = x_pos;
-	y_pos_ = y_pos;
 	x_speed_ = x_speed;
 	y_speed_ = y_speed;
 
@@ -60,6 +59,7 @@ bullet_mk1::bullet_mk1(int life, int dmg, int x_pos, int y_pos, int x_speed, int
 
 	rect_.w = temp->w;
 	rect_.h = temp->h;
+	y_pos_ = y_pos - rect_.h/2;
 
 	SDL_FreeSurface(temp);
 }
@@ -75,6 +75,7 @@ bullet_mk2::bullet_mk2(int life, int dmg, int x_pos, int y_pos, int x_speed, int
 
 	rect_.w = temp->w;
 	rect_.h = temp->h;
+	y_pos_ = y_pos - rect_.h/2;
 
 	SDL_FreeSurface(temp);
 }

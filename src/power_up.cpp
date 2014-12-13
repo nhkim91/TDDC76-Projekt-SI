@@ -14,40 +14,27 @@ using namespace std;
 
 power_up::power_up(int life, int x_pos, int y_pos, int x_speed, int y_speed, SDL_Renderer* renderer)
 {
-
 	renderer_ = renderer;
 	life_ = life;
 	rect_.x = x_pos;
 	rect_.y = y_pos;
-
+	created_ = SDL_GetTicks();
 
 	x_pos_ = x_pos;
 	y_pos_ = y_pos;
 	x_speed_ = x_speed;
 	y_speed_ = y_speed;
-
-
-
-
 }
 
-int power_up::kill_me_when()
+int power_up::get_created_time()
 {
-	return live_until_;
+	return created_ ;
 }
 
-int power_up::set_life_time()
-{
-	live_until_ = SDL_GetTicks() + 10000;
-	return live_until_;
-}
 
-void power_up::pick_up_position()
+void power_up::set_created_time()
 {
-	x_pos_ = 10;
-	y_pos_ = 10;
-	x_speed_ = 0;
-	y_speed_ = 0;
+	created_ = SDL_GetTicks();
 	return;
 }
 
@@ -57,6 +44,27 @@ bool power_up::check_living(int dmg)
 	return (life_ <= 0);
 }
 
+bool power_up::hit(flying_objects& other)
+{
+	flying_objects *ptr_;
+	ptr_ = &other;
+
+	player* other_obj_1;
+	other_obj_1 = dynamic_cast<player*>(ptr_);
+	if (other_obj_1 != nullptr)
+	{
+		return true;
+	}
+	bullet* other_obj_2;
+	other_obj_2 = dynamic_cast<bullet*>(ptr_);
+	if (other_obj_2 != nullptr)
+	{
+		return true;
+	}
+
+	return false;
+
+}
 
 /////////////////////////////////////////////////
 power_up_attack::power_up_attack(int life, int x_pos, int y_pos, int x_speed, int y_speed, SDL_Renderer* renderer):
@@ -72,44 +80,11 @@ power_up_attack::power_up_attack(int life, int x_pos, int y_pos, int x_speed, in
 
 }
 
-
 flying_objects* power_up_attack::attack(int x_pos, int y_pos)
 {
 	flying_objects* attack_ptr;
-	attack_ptr = new bullet_mk2 {2, 3, x_pos, y_pos, 100, 0, renderer_};
+	attack_ptr = new bullet_mk2 {2, 3, x_pos, y_pos, 300, 0, renderer_};
 	return attack_ptr;
-}
-
-bool power_up_attack::hit(flying_objects& other)
-{
-	flying_objects *ptr_;
-	ptr_ = &other;
-
-	player* other_obj_1;
-	other_obj_1 = dynamic_cast<player*>(ptr_);
-	if (other_obj_1 != nullptr)
-	{
-		if (other_obj_1->get_power_up_attack().empty())
-		{
-			pick_up_position();
-			set_life_time();
-			return false;
-		}
-		else
-		{
-			other_obj_1->get_power_up_attack().at(0)->set_life_time();
-			return false;
-		}
-	}
-	bullet* other_obj_2;
-	other_obj_2 = dynamic_cast<bullet*>(ptr_);
-	if (other_obj_2 != nullptr)
-	{
-		return true;
-	}
-
-	return false;
-
 }
 
 /////////////////////////////////////////////////
@@ -123,32 +98,6 @@ power_up(life, x_pos, y_pos, x_speed, y_speed, renderer)
 	rect_.h = temp->h;
 
 	SDL_FreeSurface(temp);
-
-}
-
-
-
-bool power_up_life::hit(flying_objects& other)
-{
-	flying_objects *ptr_;
-	ptr_ = &other;
-
-	player* other_obj_1;
-	other_obj_1 = dynamic_cast<player*>(ptr_);
-	if (other_obj_1 != nullptr)
-	{
-		other_obj_1->increase_life(1);
-		return false;
-	}
-
-	bullet* other_obj_2;
-	other_obj_2 = dynamic_cast<bullet*>(ptr_);
-	if (other_obj_2 != nullptr)
-	{
-		return true;
-	}
-
-	return false;
 
 }
 
@@ -167,39 +116,6 @@ power_up_shield::power_up_shield(int life, int x_pos, int y_pos, int x_speed, in
 }
 
 
-
-bool power_up_shield::hit(flying_objects& other)
-{
-	flying_objects *ptr_;
-	ptr_ = &other;
-
-	player* other_obj_1;
-	other_obj_1 = dynamic_cast<player*>(ptr_);
-	if (other_obj_1 != nullptr)
-	{
-		if (other_obj_1->get_power_up_shield().empty())
-		{
-			pick_up_position();
-			set_life_time();
-			return false;
-		}
-		else
-		{
-			other_obj_1->get_power_up_shield().at(0)->set_life_time();
-			return false;
-		}
-	}
-
-	bullet* other_obj_2;
-	other_obj_2 = dynamic_cast<bullet*>(ptr_);
-	if (other_obj_2 != nullptr)
-	{
-		return true;
-	}
-
-	return false;
-
-}
 
 /////////////////////////////////////////////////
 
