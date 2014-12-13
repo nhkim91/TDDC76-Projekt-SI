@@ -3,15 +3,6 @@
 #include <vector>
 using namespace std;
 
-
-
-
-
-
-
-
-
-
 bool alien::check_living(int dmg)
 {
     life_ = life_ + dmg;

@@ -96,23 +96,48 @@ bool space_invader::collides(const flying_objects& obj_1,
 	SDL_Rect b;
 	a = obj_1.get_rect();
 	b = obj_2.get_rect();
+	bool collide_x = false;
+	bool collide_y = false;
 
-	if (
+	if (a.w <= b.w)
+	{
+		collide_x = check_x_collides(a,b);
+	}
+	else
+	{
+		collide_x = check_x_collides(b,a);
+	}
+
+	if(collide_x)
+	{
+		if(a.h <= b.h)
+		{
+			collide_y = check_y_collides(a,b);
+		}
+		else
+		{
+			collide_y = check_y_collides(b,a);
+		}
+	}
+	return (collide_y);
+}
+
+bool space_invader::check_x_collides(SDL_Rect a, SDL_Rect b)
+{
+	return (
 			// is a.x inside b's x-range?
 			(a.x > b.x && a.x < b.x + b.w) ||
 			// is a.x's other corner inside b's x-range?
-			(a.x + a.w > b.x && a.x + a.w < b.x + b.w))
-	{
-		if (
-				// is a.y inside b's y-range?
-				(a.y > b.y && a.y < b.y + b.h) ||
-				// is a.y's other corner inside b's y-range?
-				(a.y + a.h > b.y && a.y + a.h < b.y + b.h))
-		{
-			return true;
-		}
-	}
-	return false;
+			(a.x + a.w > b.x && a.x + a.w < b.x + b.w));
+}
+
+bool space_invader::check_y_collides(SDL_Rect a, SDL_Rect b)
+{
+	return (
+			// is a.y inside b's y-range?
+			(a.y > b.y && a.y < b.y + b.h) ||
+			// is a.y's other corner inside b's y-range?
+			(a.y + a.h > b.y && a.y + a.h < b.y + b.h));
 }
 
 void space_invader::render_things(vector<flying_objects*> render_vector)

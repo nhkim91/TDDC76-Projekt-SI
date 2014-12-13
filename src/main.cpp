@@ -35,7 +35,7 @@ int main(int argc, char *argv[])
         exit(1);
     }
 
-    SDL_Window* window = SDL_CreateWindow("Highscore", SDL_WINDOWPOS_UNDEFINED,
+  /*  SDL_Window* window = SDL_CreateWindow("Highscore", SDL_WINDOWPOS_UNDEFINED,
                                           SDL_WINDOWPOS_UNDEFINED, 800, 600, SDL_WINDOW_SHOWN);
 
     SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED |
@@ -45,10 +45,10 @@ int main(int argc, char *argv[])
 
     render rend;
     rend.set_renderer(renderer);
-
-    //space_invader SI;
-    //SI.run(); // TODO: Bra om space_invader retunerar score.
-
+*/
+    space_invader SI;
+    SI.run(); // TODO: Bra om space_invader retunerar score.
+/*
     highscore hs;
     hs.set_renderer(&rend);
 
