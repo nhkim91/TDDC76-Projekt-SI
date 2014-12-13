@@ -12,7 +12,6 @@ bool alien::check_living(int dmg)
 bool alien::hit(flying_objects& other)
 
 {
-	cerr << "hit!";
     flying_objects *ptr_;
     ptr_ = &other;
     int dmg_taken{1};
@@ -78,7 +77,6 @@ alien_mk2::alien_mk2(int life, int x_pos, int y_pos, int x_speed, int y_speed, S
 
     rect_.w = temp->w;
     rect_.h = temp->h;
-    cerr << " aliens höjd " << rect_.h << endl;
     SDL_FreeSurface(temp);
 }
 ////////////////////////////////////////////////////
