@@ -230,79 +230,79 @@ void space_invader::run()
 
 
 		while (SDL_PollEvent(&event))
-			{
+		{
 
-				if (event.type == SDL_QUIT)
+			if (event.type == SDL_QUIT)
+			{
+				running = false;
+			}
+			else if (event.type == SDL_KEYDOWN)
+			{
+				if (event.key.keysym.sym == SDLK_ESCAPE)
 				{
 					running = false;
 				}
-				else if (event.type == SDL_KEYDOWN)
+				else if (event.key.keysym.sym == SDLK_UP)
 				{
-					if (event.key.keysym.sym == SDLK_ESCAPE)
-					{
-						running = false;
-					}
-					else if (event.key.keysym.sym == SDLK_UP)
-					{
 
-					}
-					else if (event.key.keysym.sym == SDLK_DOWN)
-					{
-
-					}
-					else if (event.key.keysym.sym == SDLK_SPACE)
-					{
-						//vector<unsigned int> to_kill;
-						//displaying_objects_.erase(displaying_objects_.begin());
-
-					}
-					else if (event.key.keysym.sym == SDLK_p)
-					{
-						flying_objects* p2 {new alien_mk2{1, 350, 350, 100, 0, renderer_}};
-						displaying_objects_.push_back(p2);
-					}
-					else if (event.key.keysym.sym == SDLK_s)
-					{
-						flying_objects* p1 { new alien_mk2 { 1, 500, 400, -100, 0,
-							renderer_}};
-						displaying_objects_.push_back(p1);
-						//return;
-					}
-					else if (event.key.keysym.sym == SDLK_u)
-					{
-						flying_objects* p3 {new player{10, 0, 300, 0, 0, renderer_}};
-						displaying_objects_.push_back(p3);
-					}
-					else if (event.key.keysym.sym == SDLK_l)
-					{
-						cerr << player_->get_life() << " " <<
-								displaying_objects_.size() << endl;
-					}
 				}
-				else if (event.type == SDL_KEYUP)
+				else if (event.key.keysym.sym == SDLK_DOWN)
 				{
-					if (event.key.keysym.sym == SDLK_UP)
-					{
 
-					}
-					else if (event.key.keysym.sym == SDLK_DOWN)
-					{
+				}
+				else if (event.key.keysym.sym == SDLK_SPACE)
+				{
+					//vector<unsigned int> to_kill;
+					//displaying_objects_.erase(displaying_objects_.begin());
 
-					}
-					else if (event.key.keysym.sym == SDLK_SPACE)
-					{
-
-					}
-					else if (event.key.keysym.sym == SDLK_p)
-					{
-
-					}
-					else if (event.key.keysym.sym == SDLK_s)
-					{
-
-					}
+				}
+				else if (event.key.keysym.sym == SDLK_p)
+				{
+					flying_objects* p6 {new power_up_attack {1, 500, 400, -100, 0, renderer_}};
+					displaying_objects_.push_back(p6);
+				}
+				else if (event.key.keysym.sym == SDLK_s)
+				{
+					flying_objects* p1 { new alien_mk2 { 1, 500, 400, -100, 0,
+						renderer_}};
+					displaying_objects_.push_back(p1);
+					//return;
+				}
+				else if (event.key.keysym.sym == SDLK_u)
+				{
+					flying_objects* p3 {new player{10, 0, 300, 0, 0, renderer_}};
+					displaying_objects_.push_back(p3);
+				}
+				else if (event.key.keysym.sym == SDLK_l)
+				{
+					cerr << player_->get_life() << " " <<
+							displaying_objects_.size() << endl;
 				}
 			}
+			else if (event.type == SDL_KEYUP)
+			{
+				if (event.key.keysym.sym == SDLK_UP)
+				{
+
+				}
+				else if (event.key.keysym.sym == SDLK_DOWN)
+				{
+
+				}
+				else if (event.key.keysym.sym == SDLK_SPACE)
+				{
+
+				}
+				else if (event.key.keysym.sym == SDLK_p)
+				{
+
+				}
+				else if (event.key.keysym.sym == SDLK_s)
+				{
+
+				}
+			}
+		}
 
 		get_objects_to_kill();
 		update_things(displaying_objects_, delta_time);

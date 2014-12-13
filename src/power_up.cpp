@@ -68,16 +68,15 @@ bool power_up::hit(flying_objects& other)
 
 /////////////////////////////////////////////////
 power_up_attack::power_up_attack(int life, int x_pos, int y_pos, int x_speed, int y_speed, SDL_Renderer* renderer):
-    		power_up(life, x_pos, y_pos, x_speed, y_speed, renderer)
+    				power_up(life, x_pos, y_pos, x_speed, y_speed, renderer)
 {
 	SDL_Surface* temp = IMG_Load("power_up_attack.png");
 	texture_ = SDL_CreateTextureFromSurface(renderer, temp);
 
-	rect_.x = x_pos;
-	rect_.y = y_pos;
+	rect_.w = temp->w;
+	rect_.h = temp->h;
 
 	SDL_FreeSurface(temp);
-
 }
 
 flying_objects* power_up_attack::attack(int x_pos, int y_pos)
@@ -89,7 +88,7 @@ flying_objects* power_up_attack::attack(int x_pos, int y_pos)
 
 /////////////////////////////////////////////////
 power_up_life::power_up_life(int life, int x_pos, int y_pos, int x_speed, int y_speed, SDL_Renderer* renderer):
-power_up(life, x_pos, y_pos, x_speed, y_speed, renderer)
+		power_up(life, x_pos, y_pos, x_speed, y_speed, renderer)
 {
 	SDL_Surface* temp = IMG_Load("power_up_life.png");
 	texture_ = SDL_CreateTextureFromSurface(renderer, temp);
@@ -103,7 +102,7 @@ power_up(life, x_pos, y_pos, x_speed, y_speed, renderer)
 
 /////////////////////////////////////////////////
 power_up_shield::power_up_shield(int life, int x_pos, int y_pos, int x_speed, int y_speed, SDL_Renderer* renderer):
-    		power_up(life, x_pos, y_pos, x_speed, y_speed, renderer)
+    				power_up(life, x_pos, y_pos, x_speed, y_speed, renderer)
 {
 	SDL_Surface* temp = IMG_Load("power_up_shield.png");
 	texture_ = SDL_CreateTextureFromSurface(renderer, temp);
