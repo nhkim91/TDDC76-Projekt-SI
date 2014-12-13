@@ -64,6 +64,7 @@ void menu::run()
             {
                 if (selected_item == 0)
                 {
+                    si->run();
                     //int score = si->run();
                     //hs->save_score(score);
                 }

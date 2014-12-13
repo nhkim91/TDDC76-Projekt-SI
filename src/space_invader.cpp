@@ -9,6 +9,11 @@
 #include <SDL2/SDL_image.h>
 using namespace std;
 
+space_invader::space_invader(SDL_Renderer* renderer)
+{
+    renderer_ = renderer;
+}
+
 void space_invader::get_objects_to_kill()
 {
 	vector<unsigned int> to_delete;
@@ -198,13 +203,14 @@ void space_invader::run()
 
 		if(keystate[SDL_SCANCODE_RETURN])
 		{
-
+            /*
 			flying_objects* p3 {new player{10, 0, 300, 0, 0, renderer_}};
 			displaying_objects_.push_back(p3);
 
 			player* player_ptr;
 			player_ptr=dynamic_cast<player*>(p3);
 			player_ = player_ptr;
+            */
 		}
 
 		if(keystate[SDL_SCANCODE_ESCAPE])
@@ -322,7 +328,7 @@ void space_invader::run()
 	// free memory
 
 	SDL_DestroyRenderer(renderer_);
-	SDL_DestroyWindow(window_);
+    //SDL_DestroyWindow(window_);
 
 	SDL_Quit();
 }
