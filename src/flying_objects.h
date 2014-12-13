@@ -86,7 +86,6 @@ public:
     {
         return texture_;
     }
-
     void set_x_pos(int new_x_pos)
     {
         x_pos_ = new_x_pos;

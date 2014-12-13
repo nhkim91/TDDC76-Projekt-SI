@@ -204,19 +204,18 @@ void highscore::show_highscore()
 
     renderer->render_image("space_background.png",0, 0);
 
-    SDL_Color redColor {187, 32, 26, 255};
+    SDL_Color textColor {187, 32, 26, 255};
 
-    renderer->render_text("High Score", "Arcade.ttf", redColor, 100, 150, 30);
+    renderer->render_text("High Score", "Arcade.ttf", textColor, 100, 200, 30);
 
-    SDL_Color whiteColor {255, 255, 255, 255};
+    SDL_Color textColor1 {255, 255, 255, 255};
 
     for (int i = 0; i < 10; ++i)
     {
 
-        renderer->render_text((patch::to_string(i + 1) + "."), "Arcade.ttf", whiteColor, 30, 200, 130 + i * 30);
-        renderer->render_text(patch::to_string(list_of_score[i].score), "Arcade.ttf", whiteColor, 30, 270, 130 + i * 30);
-        renderer->render_text(list_of_score[i].name, "Arcade.ttf", whiteColor, 30, 450, 130 + i * 30);
-        renderer->render_text("Back to Menu", "Arcade.ttf", redColor, 40, 280, 550);
+        renderer->render_text((patch::to_string(i + 1) + "."), "Arcade.ttf", textColor1, 30, 200, 150 + i * 40);
+        renderer->render_text(patch::to_string(list_of_score[i].score), "Arcade.ttf", textColor1, 30, 270, 150 + i * 40);
+        renderer->render_text(list_of_score[i].name, "Arcade.ttf", textColor1, 30, 450, 150 + i * 40);
 
     }
     renderer->present();
@@ -229,7 +228,7 @@ void highscore::show_highscore()
         if (event.type == SDL_KEYDOWN)
         {
             SDL_Keycode key = event.key.keysym.sym;
-            if (key == SDLK_ESCAPE || key == SDLK_RETURN)
+            if (key == SDLK_ESCAPE)
             {
                 run = false;
                 break;

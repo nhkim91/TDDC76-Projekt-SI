@@ -21,7 +21,6 @@ bool meteorite::check_living(int dmg)
     life_ = life_ - dmg;
     return (life_ <= 0);
 }
-
 bool meteorite::hit(flying_objects& other)
 {
     flying_objects *ptr_;
@@ -45,6 +44,12 @@ bool meteorite::hit(flying_objects& other)
     return true;
 }
 
+
+
+
+
+
+/////////////////////////////////////////////////
 meteorite::meteorite(int life, int x_pos, int y_pos, int x_speed, int y_speed, SDL_Renderer* renderer)
 {
 
@@ -73,7 +78,8 @@ meteorite_small::meteorite_small(int life, int x_pos, int y_pos, int x_speed, in
 
     SDL_FreeSurface(temp);
 }
-/////////////////////////////////////////////////
+
+
 meteorite_medium::meteorite_medium(int life, int x_pos, int y_pos, int x_speed, int y_speed, SDL_Renderer* renderer):
     meteorite(life, x_pos, y_pos, x_speed, y_speed, renderer)
 {
