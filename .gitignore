@@ -1,5 +1,13 @@
 /Debug/
 
+### Qt ###
+*.pro
+*.pro.user
+*.user*
+*.pri
+*.deploy
+*build*
+
 ### Eclipse ###
 *.pydevproject
 .metadata
