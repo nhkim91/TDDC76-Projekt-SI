@@ -1,13 +1,12 @@
 #include <iostream>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
-//#include <SDL2_image/SDL_image.h>  //<- maggie behöver denna!
 #include <stdio.h>
 #include <SDL2/SDL_main.h>
 #include "space_invader.h"
 #include "highscore.h"
 #include "menu.h"
-
+#include <SDL2/SDL_mixer.h>
 #include<sstream>
 
 using namespace std;
@@ -16,38 +15,47 @@ using namespace std;
 template <typename T>
 std::string to_string(T value)
 {
-    //create an output string stream
-    std::ostringstream os ;
+	//create an output string stream
+	std::ostringstream os ;
 
-    //throw the value into the string stream
-    os << value ;
+	//throw the value into the string stream
+	os << value ;
 
-    //convert the string stream into a string and return
-    return os.str() ;
+	//convert the string stream into a string and return
+	return os.str() ;
 }
 
 int main(int argc, char *argv[])
 {
-    // initialize SDL
-    if (SDL_Init(SDL_INIT_VIDEO) != 0)
-    {
-        cerr << "Error initializing SDL" << endl;
-        exit(1);
-    }
+	// initialize SDL
+	if (SDL_Init(SDL_INIT_VIDEO) != 0)
+	{
+		cerr << "Error initializing SDL" << endl;
+		exit(1);
+	}
 
+
+	/*
     SDL_Window* window = SDL_CreateWindow("Highscore", SDL_WINDOWPOS_UNDEFINED,
                                           SDL_WINDOWPOS_UNDEFINED, 800, 600, SDL_WINDOW_SHOWN);
 
     SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED |
-                             SDL_RENDERER_PRESENTVSYNC);
+                             SDL_RENDERER_PRESENTVSYNC);*/
 
 
 
-    render rend;
-    rend.set_renderer(renderer);
+	render rend;
+	//rend.set_renderer(renderer);
 
-    //space_invader SI;
+
+	space_invader SI;
+	SI.run(); // TODO: Bra om space_invader retunerar score.
+
+	/*
+
+    space_invader SI(renderer);
     //SI.run(); // TODO: Bra om space_invader retunerar score.
+
 
     highscore hs;
     hs.set_renderer(&rend);
@@ -60,11 +68,11 @@ int main(int argc, char *argv[])
     m.set_renderer(&rend);
     m.set_highscore(&hs);
     m.set_help(&h);
-    //m.set_play(&SI);
+    m.set_play(&SI);
     m.run();
+	 */
 
-
-    /*  // make the scaled rendering look smoother
+	/*  // make the scaled rendering look smoother
         SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "linear");
         // render at a virtual resolution then stretch to actual resolution
         SDL_RenderSetLogicalSize(renderer, SCREEN_WIDTH, SCREEN_HEIGHT);
@@ -170,7 +178,7 @@ int main(int argc, char *argv[])
 
         SDL_Quit();*/
 
-    return 0;
+	return 0;
 }
 
 //else if (event.type == SDL_MOUSEMOTION) {
