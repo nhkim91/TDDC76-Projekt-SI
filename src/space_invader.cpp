@@ -7,7 +7,9 @@
 #include <algorithm>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
+#include <SDL2/SDL_mixer.h>
 using namespace std;
+
 
 void space_invader::get_objects_to_kill()
 {
@@ -151,6 +153,11 @@ void space_invader::run()
 	player* player_ptr;
 	player_ptr=dynamic_cast<player*>(pp3);
 	player_ = player_ptr;
+
+
+
+
+
 	// main loop
 	bool running { true };
 	while (running)
@@ -171,7 +178,7 @@ void space_invader::run()
 		if(keystate[SDL_SCANCODE_RETURN])
 		{
 
-			flying_objects* p3 {new player{10, 0, 300, 0, 0, renderer_}};
+			flying_objects* p3 {new player{10, 0, 300, 0, 0, renderer_, sound_}};
 			displaying_objects_.push_back(p3);
 
 			player* player_ptr;
@@ -249,7 +256,7 @@ void space_invader::run()
 					}
 					else if (event.key.keysym.sym == SDLK_u)
 					{
-						flying_objects* p3 {new player{10, 0, 300, 0, 0, renderer_}};
+						flying_objects* p3 {new player{10, 0, 300, 0, 0, renderer_, sound_}};
 						displaying_objects_.push_back(p3);
 					}
 					else if (event.key.keysym.sym == SDLK_l)

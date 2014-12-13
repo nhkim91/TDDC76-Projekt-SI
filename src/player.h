@@ -2,6 +2,7 @@
 #define PLAYER_H_
 
 #include "flying_objects.h"
+#include "sound.h"
 
 class player : public flying_objects
 {
@@ -13,6 +14,7 @@ public:
     std::vector<class power_up_shield*> power_up_shield_;
     int cooldown_{500};
     int last_shoot_time_{0};
+
 
     // Konstruktor
     player(int, int, int, int, int, SDL_Renderer*);
