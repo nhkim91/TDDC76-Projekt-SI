@@ -16,11 +16,13 @@ void space_invader::get_objects_to_kill()
 	{
 		for (unsigned int j = i + 1; j < displaying_objects_.size(); j++)
 		{
+
 			try
 			{
 				if (collides(*displaying_objects_.at(i),
 						*displaying_objects_.at(j)))
 				{
+
 					if (displaying_objects_.at(j)->hit(
 							*displaying_objects_.at(i)))
 					{
@@ -89,6 +91,7 @@ void space_invader::kill_objects(vector<unsigned int> to_delete)
 
 }
 
+
 bool space_invader::collides(const flying_objects& obj_1,
 		const flying_objects& obj_2)
 {
@@ -96,6 +99,7 @@ bool space_invader::collides(const flying_objects& obj_1,
 	SDL_Rect b;
 	a = obj_1.get_rect();
 	b = obj_2.get_rect();
+
 	bool collide_x = false;
 	bool collide_y = false;
 
@@ -163,7 +167,6 @@ void space_invader::run()
 	// load figures
 
 
-
 	const Uint32 target_frame_delay = 10;
 	Uint32 start_time = SDL_GetTicks();
 	Uint32 last_frame_time = start_time;
@@ -206,12 +209,12 @@ void space_invader::run()
 
 		if(keystate[SDL_SCANCODE_ESCAPE])
 		{
-			running = false;
+			//running = false;
 		}
 
 		if(keystate[SDL_SCANCODE_SPACE])
 		{
-			add_object(get_player(displaying_objects_)->attack());
+			add_object(player_->attack());
 
 		}
 
@@ -224,11 +227,6 @@ void space_invader::run()
 		{
 			player_->set_y_speed(100);
 		}
-
-
-
-
-
 
 
 		while (SDL_PollEvent(&event))
@@ -266,9 +264,7 @@ void space_invader::run()
 					else if (event.key.keysym.sym == SDLK_s)
 					{
 						flying_objects* p1 { new alien_mk2 { 1, 500, 400, -100, 0,
-							renderer_
-						}
-						};
+							renderer_}};
 						displaying_objects_.push_back(p1);
 						//return;
 					}
@@ -279,7 +275,7 @@ void space_invader::run()
 					}
 					else if (event.key.keysym.sym == SDLK_l)
 					{
-						cerr << get_player(displaying_objects_)->get_life() << " " <<
+						cerr << player_->get_life() << " " <<
 								displaying_objects_.size() << endl;
 					}
 				}
@@ -312,8 +308,6 @@ void space_invader::run()
 		update_things(displaying_objects_, delta_time);
 		render_things(displaying_objects_);
 
-
-
 		// wait before drawing the next frame
 		frame_delay = SDL_GetTicks() - last_frame_time;
 		if (target_frame_delay > frame_delay)
@@ -332,6 +326,8 @@ void space_invader::run()
 
 	SDL_Quit();
 }
+
+
 
 void space_invader::update_things(vector<flying_objects*> update_vector, float time_diff)
 {
@@ -380,7 +376,7 @@ void space_invader::update_things(vector<flying_objects*> update_vector, float t
 		{
 			if (temp->get_x_pos() + temp->get_rect().w < 0)
 			{
-				get_player(update_vector)->increase_life(-1);
+				player_->increase_life(-1);
 				//cerr << "hit";
 				to_delete.push_back(i);
 			}
@@ -399,19 +395,7 @@ void space_invader::update_things(vector<flying_objects*> update_vector, float t
 	kill_objects(to_delete);
 }
 
-player* space_invader::get_player(vector<flying_objects*> vector)
-{
-	for (unsigned int i = 0; i < vector.size(); i++)
-	{
-		player* player_ptr;
-		player_ptr = dynamic_cast<player*>(vector.at(i));
-		if (player_ptr != nullptr)
-		{
-			return player_ptr;
-		}
-	}
-	return nullptr;
-}
+
 
 void space_invader::add_object(flying_objects* ptr)
 {

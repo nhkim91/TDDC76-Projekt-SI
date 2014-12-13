@@ -26,7 +26,6 @@ public:
     void run();
     void render_things(std::vector<flying_objects*>);
     void update_things(std::vector<flying_objects*>, float);
-    class player* get_player(std::vector<flying_objects*> vector);
     void add_object(flying_objects*);
 
 };
