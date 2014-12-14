@@ -16,17 +16,17 @@ space_invader::space_invader(SDL_Renderer* renderer)
 
 void space_invader::power_up_timer_check()
 {
-	for(unsigned int i = 0; i < player_->get_power_up_attack().size(); i++)
+	if(player_->get_power_up_attack() != nullptr)
 	{
-		if(player_->get_power_up_attack().at(i)->times_up())
+		if(player_->get_power_up_attack()->times_up())
 		{
 			player_->clear_power_up_attack();
 		}
 	}
 
-	for(unsigned int i = 0; i < player_->get_power_up_shield().size(); i++)
+	if(player_->get_power_up_shield() != nullptr)
 	{
-		if(player_->get_power_up_shield().at(i)->times_up())
+		if(player_->get_power_up_shield()->times_up())
 		{
 			player_->clear_power_up_shield();
 		}
@@ -152,16 +152,16 @@ void space_invader::render_things(vector<flying_objects*> render_vector)
 				&render_vector.at(i)->get_rect());
 	}
 
-	for (unsigned int i = 0; i < player_->get_power_up_attack().size(); i++)
+	if(player_->get_power_up_attack() != nullptr)
 	{
-		SDL_RenderCopy(renderer_, player_->get_power_up_attack().at(i)->get_texture(), nullptr,
-				&player_->get_power_up_attack().at(i)->get_rect());
+		SDL_RenderCopy(renderer_, player_->get_power_up_attack()->get_texture(), nullptr,
+				&player_->get_power_up_attack()->get_rect());
 	}
 
-	for (unsigned int i = 0; i < player_->get_power_up_shield().size(); i++)
+	if (player_->get_power_up_shield() != nullptr)
 	{
-		SDL_RenderCopy(renderer_, player_->get_power_up_shield().at(i)->get_texture(), nullptr,
-				&player_->get_power_up_shield().at(i)->get_rect());
+		SDL_RenderCopy(renderer_, player_->get_power_up_shield()->get_texture(), nullptr,
+				&player_->get_power_up_shield()->get_rect());
 	}
 
 	SDL_RenderPresent(renderer_);

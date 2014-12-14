@@ -9,10 +9,10 @@ class player : public flying_objects
 public:
 
     // Datamedlemmar
-    std::vector<class power_up_attack*> power_up_attack_;
-    std::vector<class power_up_shield*> power_up_shield_;
-    int cooldown_{500};
-    int last_shoot_time_{0};
+    class power_up_attack* power_up_attack_{nullptr};
+    class power_up_shield* power_up_shield_{nullptr};
+    unsigned int cooldown_{500};
+    unsigned int last_shoot_time_{0};
 
     // Konstruktor
     player(int, int, int, int, int, SDL_Renderer*);
@@ -29,8 +29,8 @@ public:
     bool hit(flying_objects&)  override;
     void clear_power_up_attack();
     void clear_power_up_shield();
-    std::vector<power_up_attack*> get_power_up_attack();
-    std::vector<power_up_shield*> get_power_up_shield();
+    power_up_attack* get_power_up_attack();
+    power_up_shield* get_power_up_shield();
     flying_objects* attack();
     void increase_life(int);
 

@@ -28,19 +28,23 @@ player::player(int life, int x_pos, int y_pos, int x_speed, int y_speed, SDL_Ren
 
 player::~player()
 {
-	power_up_attack_.clear();
-	power_up_shield_.clear();
+	delete power_up_attack_;
+	power_up_attack_ = nullptr;
+	delete power_up_shield_;
+	power_up_shield_ = nullptr;
 }
 
 void player::clear_power_up_attack()
 {
-	power_up_attack_.clear();
+	delete power_up_attack_;
+	power_up_attack_ = nullptr;
 	return;
 }
 
 void player::clear_power_up_shield()
 {
-	power_up_shield_.clear();
+	delete power_up_shield_;
+	power_up_shield_ = nullptr;
 	return;
 }
 
@@ -50,12 +54,12 @@ bool player::check_living(int dmg)
 	return (life_ <= 0);
 }
 
-vector<power_up_attack*> player::get_power_up_attack()
+power_up_attack* player::get_power_up_attack()
 {
 	return power_up_attack_;
 }
 
-vector<power_up_shield*> player::get_power_up_shield()
+power_up_shield* player::get_power_up_shield()
 {
 	return power_up_shield_;
 }
@@ -70,7 +74,7 @@ bool player::hit(flying_objects& other)
 	other_obj_1 = dynamic_cast<meteorite*>(ptr_);
 	if (other_obj_1 != nullptr)
 	{
-		if (power_up_shield_.empty())
+		if (power_up_shield_ == nullptr)
 		{
 			return check_living(1);
 		}
@@ -84,7 +88,7 @@ bool player::hit(flying_objects& other)
 	other_obj_2 = dynamic_cast<bullet*>(ptr_);
 	if (other_obj_2 != nullptr)
 	{
-		if (power_up_shield_.empty())
+		if (power_up_shield_ == nullptr)
 		{
 			return check_living(other_obj_2->get_dmg());
 		}
@@ -99,7 +103,7 @@ bool player::hit(flying_objects& other)
 	other_obj_3 = dynamic_cast<alien*>(ptr_);
 	if (other_obj_3 != nullptr)
 	{
-		if (power_up_shield_.empty())
+		if (power_up_shield_ == nullptr)
 		{
 			return check_living(1);
 		}
@@ -118,16 +122,16 @@ bool player::hit(flying_objects& other)
 		other_obj_5 = dynamic_cast<power_up_attack*>(ptr_);
 		if (other_obj_5 != nullptr)
 		{
-			if (power_up_attack_.empty())
+			if (power_up_attack_ == nullptr)
 			{
 				power_up_attack* attack_ptr {new power_up_attack{10, 10, 10, 0, 0, renderer_}};
-				power_up_attack_.push_back(attack_ptr);
+				power_up_attack_ = attack_ptr;
 				return false;
 			}
 
 			else
 			{
-				power_up_attack_.at(0)->set_created_time();
+				power_up_attack_->set_created_time();
 				return false;
 			}
 		}
@@ -145,16 +149,16 @@ bool player::hit(flying_objects& other)
 		other_obj_7 = dynamic_cast<power_up_shield*>(ptr_);
 		if (other_obj_7 != nullptr)
 		{
-			if (power_up_shield_.empty())
+			if (power_up_shield_ == nullptr)
 			{
 				power_up_shield* shield_ptr {new power_up_shield{10, 60, 10, 0, 0, renderer_}};
-				power_up_shield_.push_back(shield_ptr);
+				power_up_shield_ = shield_ptr;
 				return false;
 			}
 
 			else
 			{
-				power_up_attack_.at(0)->set_created_time();
+				power_up_attack_ ->set_created_time();
 				return false;
 			}
 		}
@@ -166,7 +170,7 @@ bool player::hit(flying_objects& other)
 flying_objects* player::attack()
 {
 	flying_objects* attack_ptr;
-	if (power_up_attack_.empty() && last_shoot_time_ <= (SDL_GetTicks()-cooldown_))
+	if (power_up_attack_ == nullptr && last_shoot_time_ <= (SDL_GetTicks()-cooldown_))
 	{
 		attack_ptr = new bullet_mk1 {1, 1, (x_pos_ + rect_.w), y_pos_ + rect_.h/2, 200, 0, renderer_};
 		last_shoot_time_ = SDL_GetTicks();
@@ -175,7 +179,7 @@ flying_objects* player::attack()
 	else if(last_shoot_time_ <= (SDL_GetTicks()-cooldown_))
 	{
 		last_shoot_time_ = SDL_GetTicks();
-		return power_up_attack_.at(0)->attack((x_pos_ + rect_.w), y_pos_ + rect_.h/2);
+		return power_up_attack_->attack((x_pos_ + rect_.w), y_pos_ + rect_.h/2);
 	}
 	return nullptr;
 }

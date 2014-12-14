@@ -42,9 +42,7 @@ public:
 
     virtual ~flying_objects()
     {
-        std::cerr << "innan delete texture \n";
         SDL_DestroyTexture(texture_);
-        std::cerr << "efter delete \n";
     }
 
     SDL_Rect& get_rect()

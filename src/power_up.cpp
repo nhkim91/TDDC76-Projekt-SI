@@ -4,13 +4,10 @@
  *  Created on: 25 nov 2014
  *      Author: anton
  */
-
 #include "power_up.h"
 #include "linkheader.h"
 #include <vector>
 using namespace std;
-
-
 
 power_up::power_up(int life, int x_pos, int y_pos, int x_speed, int y_speed, SDL_Renderer* renderer)
 {
@@ -30,7 +27,6 @@ int power_up::get_created_time()
 {
 	return created_ ;
 }
-
 
 void power_up::set_created_time()
 {
@@ -69,7 +65,6 @@ bool power_up::hit(flying_objects& other)
 	}
 
 	return false;
-
 }
 
 /////////////////////////////////////////////////
@@ -103,7 +98,6 @@ power_up_life::power_up_life(int life, int x_pos, int y_pos, int x_speed, int y_
 	rect_.h = temp->h;
 
 	SDL_FreeSurface(temp);
-
 }
 
 /////////////////////////////////////////////////
@@ -117,12 +111,6 @@ power_up_shield::power_up_shield(int life, int x_pos, int y_pos, int x_speed, in
 	rect_.h = temp->h;
 
 	SDL_FreeSurface(temp);
-
 }
 
-
-
 /////////////////////////////////////////////////
-
-
-
