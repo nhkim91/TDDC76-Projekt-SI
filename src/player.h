@@ -28,8 +28,7 @@ public:
 
     bool check_living(int);
     bool hit(flying_objects&)  override;
-    void clear_power_up_attack();
-    void clear_power_up_shield();
+
     std::vector<power_up_attack*> get_power_up_attack();
     std::vector<power_up_shield*> get_power_up_shield();
     flying_objects* attack();

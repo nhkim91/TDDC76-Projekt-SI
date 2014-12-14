@@ -24,7 +24,7 @@ public:
     void render_things(std::vector<flying_objects*>);
     void update_things(std::vector<flying_objects*>, float);
     void add_object(flying_objects*);
-    void power_up_timer_check();
+
 
 private:
     SDL_Renderer* renderer_;

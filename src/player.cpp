@@ -22,6 +22,7 @@ player::player(int life, int x_pos, int y_pos, int x_speed, int y_speed, SDL_Ren
 	y_pos_ = y_pos;
 	x_speed_ = x_speed;
 	y_speed_ = y_speed;
+	cerr << " players höjd " << rect_.h << endl;
 	SDL_FreeSurface(temp);
 }
 
@@ -29,18 +30,6 @@ player::~player()
 {
 	power_up_attack_.clear();
 	power_up_shield_.clear();
-}
-
-void player::clear_power_up_attack()
-{
-	power_up_attack_.clear();
-	return;
-}
-
-void player::clear_power_up_shield()
-{
-	power_up_shield_.clear();
-	return;
 }
 
 bool player::check_living(int dmg)
@@ -144,7 +133,7 @@ bool player::hit(flying_objects& other)
 		other_obj_7 = dynamic_cast<power_up_shield*>(ptr_);
 		if (other_obj_7 != nullptr)
 		{
-			if (power_up_shield_.empty())
+			if (power_up_attack_.empty())
 			{
 				power_up_shield* shield_ptr {new power_up_shield{10, 60, 10, 0, 0, renderer_}};
 				power_up_shield_.push_back(shield_ptr);
@@ -165,6 +154,8 @@ bool player::hit(flying_objects& other)
 flying_objects* player::attack()
 {
 	flying_objects* attack_ptr;
+	cerr << SDL_GetTicks() << endl;
+	cerr << last_shoot_time_ << endl << cooldown_ << endl;
 	if (power_up_attack_.empty() && last_shoot_time_ <= (SDL_GetTicks()-cooldown_))
 	{
 		attack_ptr = new bullet_mk1 {1, 1, (x_pos_ + rect_.w), y_pos_ + rect_.h/2, 200, 0, renderer_};

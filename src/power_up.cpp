@@ -38,12 +38,6 @@ void power_up::set_created_time()
 	return;
 }
 
-bool power_up::times_up()
-{
-	Uint32 time = SDL_GetTicks();
-	return (created_ + time_to_live_ < time);
-}
-
 bool power_up::check_living(int dmg)
 {
 	life_ = life_ - dmg;
