@@ -14,37 +14,39 @@ class power_up : public flying_objects
 
 public:
 
-    // Datamedlemmar
-    int time_to_live_ {10000};
-    int created_ {0};
+	// Datamedlemmar
+	Uint32 time_to_live_ {10000};
+	Uint32 created_ {0};
 
-    // Konstruktor
-    power_up(int, int, int, int, int, SDL_Renderer*);
+	// Konstruktor
+	power_up(int, int, int, int, int, SDL_Renderer*);
 
 
-    // Destruktor
-    ~power_up()=default;
+	// Destruktor
+	~power_up()=default;
 
-    // Funktioner
-    int get_created_time();
-    void set_created_time();
-    void set_movement();
-
-    bool check_living(int);
-    bool hit(flying_objects&) override;
+	// Funktioner
+	int get_created_time();
+	void set_created_time();
+	void set_movement();
+	bool times_up();
+	bool check_living(int);
+	bool hit(flying_objects&) override;
 };
 ////////////////////////////////////////////////////////////////
 class power_up_attack : public power_up
 {
 public:
-    // Datamedlemmar
+	// Datamedlemmar
 
 
-    // Konstruktor
-    power_up_attack(int life, int x_pos, int y_pos, int x_speed, int y_speed, SDL_Renderer* renderer);
+	// Konstruktor
+	power_up_attack(int life, int x_pos, int y_pos, int x_speed, int y_speed, SDL_Renderer* renderer);
 
-    // Funktioner
-    flying_objects* attack(int, int);
+	// destruktor
+	~power_up_attack()=default;
+	// Funktioner
+	flying_objects* attack(int, int);
 
 
 };
@@ -53,10 +55,10 @@ class power_up_life : public power_up
 {
 public:
 
-    // Konstruktor
-    power_up_life(int life, int x_pos, int y_pos, int x_speed, int y_speed, SDL_Renderer* renderer);
+	// Konstruktor
+	power_up_life(int life, int x_pos, int y_pos, int x_speed, int y_speed, SDL_Renderer* renderer);
 
-    // Funktioner
+	// Funktioner
 
 
 };
@@ -65,10 +67,10 @@ class power_up_shield : public power_up
 {
 public:
 
-    // Konstruktor
-    power_up_shield(int life, int x_pos, int y_pos, int x_speed, int y_speed, SDL_Renderer* renderer);
+	// Konstruktor
+	power_up_shield(int life, int x_pos, int y_pos, int x_speed, int y_speed, SDL_Renderer* renderer);
 
-    // funktioner
+	// funktioner
 
 
 
