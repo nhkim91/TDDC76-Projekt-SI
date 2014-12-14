@@ -16,6 +16,11 @@ level::level(int WIDTH, int HEIGHT, std::vector<flying_objects*>* displaying_obj
     renderer_ = renderer;
 }
 
+void level::set_renderer(render* rend)
+{
+    rend_ = rend;
+}
+
 //Funktionen spawn tar in score och slumpar fram nya objekt, vilka läggs till i en vektor i space_invader-klassen.
 void level::spawn(int score)
 {
@@ -204,21 +209,24 @@ void level::get_next_lvl(int score)
     if(lvl == 0)
     {
         lvl++;
-        renderer->render_text("LEVEL 1", "Arcade.ttf", textColor, 100, 200, 30);
+        rend_->render_text("LEVEL 1", "Arcade.ttf", textColor, 100, 230, 230);
+        rend_->present();
         SDL_Delay(2000);
         return;
     }
     if(lvl == 1 && score > 100)
     {
         lvl++;
-        renderer->render_text("LEVEL 2", "Arcade.ttf", textColor, 100, 200, 30);
+        rend_->render_text("LEVEL 2", "Arcade.ttf", textColor, 100, 230, 230);
+        rend_->present();
         SDL_Delay(2000);
         return;
     }
     else if (lvl == 2 && score > 300)
     {
         lvl++;
-        renderer->render_text("LEVEL 3", "Arcade.ttf", textColor, 100, 200, 30);
+        rend_->render_text("LEVEL 3", "Arcade.ttf", textColor, 100, 230, 230);
+        rend_->present();
         SDL_Delay(2000);
         return;
     }

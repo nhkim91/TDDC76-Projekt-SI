@@ -25,7 +25,7 @@ std::string to_string(T value)
     return os.str() ;
 }
 
-int main(int argc, char *argv[])
+int main(int, char**)
 {
     // initialize SDL
     if (SDL_Init(SDL_INIT_VIDEO) != 0)
@@ -45,7 +45,7 @@ int main(int argc, char *argv[])
     render rend;
     rend.set_renderer(renderer);
 
-    space_invader SI(renderer);
+    space_invader SI(renderer, &rend);
     //SI.run(); // TODO: Bra om space_invader retunerar score.
 
     highscore hs;
