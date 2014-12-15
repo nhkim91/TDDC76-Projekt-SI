@@ -14,7 +14,7 @@ power_up::power_up(int life, int x_pos, int y_pos, int x_speed, int y_speed, SDL
 	rect_.x = x_pos;
 	rect_.y = y_pos;
 	created_ = SDL_GetTicks();
-	score_given_ = 0;
+	init_score_ = 0;
 	x_pos_ = x_pos;
 	y_pos_ = y_pos;
 	x_speed_ = x_speed;
@@ -41,7 +41,13 @@ bool power_up::times_up()
 bool power_up::check_living(int dmg)
 {
 	life_ = life_ - dmg;
-	return (life_ <= 0);
+
+	if (life_ <= 0)
+	{
+		score_given_ = init_score_;
+		return true;
+	}
+	return false;
 }
 
 bool power_up::hit(flying_objects& other)
@@ -67,7 +73,7 @@ bool power_up::hit(flying_objects& other)
 
 /////////////////////////////////////////////////
 power_up_attack::power_up_attack(int life, int x_pos, int y_pos, int x_speed, int y_speed, SDL_Renderer* renderer):
-    										power_up(life, x_pos, y_pos, x_speed, y_speed, renderer)
+    												power_up(life, x_pos, y_pos, x_speed, y_speed, renderer)
 {
 	SDL_Surface* temp = IMG_Load("power_up_attack.png");
 	texture_ = SDL_CreateTextureFromSurface(renderer, temp);
@@ -87,7 +93,7 @@ flying_objects* power_up_attack::attack(int x_pos, int y_pos)
 
 /////////////////////////////////////////////////
 power_up_life::power_up_life(int life, int x_pos, int y_pos, int x_speed, int y_speed, SDL_Renderer* renderer):
-								power_up(life, x_pos, y_pos, x_speed, y_speed, renderer)
+										power_up(life, x_pos, y_pos, x_speed, y_speed, renderer)
 {
 	SDL_Surface* temp = IMG_Load("power_up_life.png");
 	texture_ = SDL_CreateTextureFromSurface(renderer, temp);
@@ -100,7 +106,7 @@ power_up_life::power_up_life(int life, int x_pos, int y_pos, int x_speed, int y_
 
 /////////////////////////////////////////////////
 power_up_shield::power_up_shield(int life, int x_pos, int y_pos, int x_speed, int y_speed, SDL_Renderer* renderer):
-    										power_up(life, x_pos, y_pos, x_speed, y_speed, renderer)
+    												power_up(life, x_pos, y_pos, x_speed, y_speed, renderer)
 {
 	SDL_Surface* temp = IMG_Load("power_up_shield.png");
 	texture_ = SDL_CreateTextureFromSurface(renderer, temp);

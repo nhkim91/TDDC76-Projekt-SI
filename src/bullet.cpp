@@ -12,7 +12,13 @@ using namespace std;
 bool bullet::check_living(int dmg)
 {
 	life_ = life_ - dmg;
-	return (life_ <= 0);
+
+	if (life_ <= 0)
+	{
+		score_given_ = init_score_;
+		return true;
+	}
+	return false;
 }
 
 int bullet::get_dmg() const
@@ -41,12 +47,12 @@ bullet::bullet(int life, int dmg, int x_pos, int y_pos, int x_speed, int y_speed
 ////////////////////////////////////////////////////////
 
 bullet_mk1::bullet_mk1(int life, int dmg, int x_pos, int y_pos, int x_speed, int y_speed, SDL_Renderer* renderer):
-    		bullet(life, dmg, x_pos, y_pos, x_speed, y_speed, renderer)
+    				bullet(life, dmg, x_pos, y_pos, x_speed, y_speed, renderer)
 {
 	SDL_Surface* temp = IMG_Load("bullet_mk1.png");
 	texture_ = SDL_CreateTextureFromSurface(renderer, temp);
 
-	score_given_=0;
+	init_score_=0;
 	rect_.w = temp->w;
 	rect_.h = temp->h;
 	y_pos_ = y_pos - rect_.h/2;
@@ -57,12 +63,12 @@ bullet_mk1::bullet_mk1(int life, int dmg, int x_pos, int y_pos, int x_speed, int
 /////////////////////////////////////////////////
 
 bullet_mk2::bullet_mk2(int life, int dmg, int x_pos, int y_pos, int x_speed, int y_speed, SDL_Renderer* renderer):
-    		bullet(life, dmg, x_pos, y_pos, x_speed, y_speed, renderer)
+    				bullet(life, dmg, x_pos, y_pos, x_speed, y_speed, renderer)
 {
 	SDL_Surface* temp = IMG_Load("bullet_mk2.png");
 	texture_ = SDL_CreateTextureFromSurface(renderer, temp);
 
-	score_given_=0;
+	init_score_=0;
 	rect_.w = temp->w;
 	rect_.h = temp->h;
 	y_pos_ = y_pos - rect_.h/2;

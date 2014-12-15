@@ -31,7 +31,6 @@ public:
 private:
     SDL_Renderer* renderer_;
     render* render_;
-    int score{0};
 
 };
 

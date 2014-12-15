@@ -33,7 +33,8 @@ protected:
     int y_pos_;
     int x_speed_;
     int y_speed_;
-    int score_given_;
+    int score_given_{0};
+    int init_score_{0};
 
 
 public:

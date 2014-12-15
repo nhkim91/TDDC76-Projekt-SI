@@ -13,7 +13,7 @@ player::player(int life, int x_pos, int y_pos, int x_speed, int y_speed, SDL_Ren
 	SDL_Surface* temp = IMG_Load("player.png");
 	texture_ = SDL_CreateTextureFromSurface(renderer, temp);
 
-	score_given_ = 0;
+	init_score_ = 0;
 	renderer_ = renderer;
 	life_ = life;
 	rect_.x = x_pos;

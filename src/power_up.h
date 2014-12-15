@@ -60,7 +60,6 @@ public:
 
 	// Funktioner
 
-
 };
 ////////////////////////////////////////////////////////////////
 class power_up_shield : public power_up
@@ -71,9 +70,6 @@ public:
 	power_up_shield(int life, int x_pos, int y_pos, int x_speed, int y_speed, SDL_Renderer* renderer);
 
 	// funktioner
-
-
-
 };
 ////////////////////////////////////////////////////////////////
 

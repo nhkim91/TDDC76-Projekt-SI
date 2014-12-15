@@ -1,8 +1,6 @@
 #include "space_invader.h"
 #include "linkheader.h"
 #include "flying_objects.h"
-//#include "player.h"
-//#include "alien.h"
 #include <iostream>
 #include <algorithm>
 #include <SDL2/SDL.h>
@@ -84,10 +82,8 @@ void space_invader::kill_objects(vector<unsigned int> to_delete)
 	{
 		try
 		{
-			//score_ += displaying_objects_.at(displaying_objects_.begin() + i)->get_score();
 			score_ += displaying_objects_.at(i)->get_score();
 			displaying_objects_.erase(displaying_objects_.begin() + i);
-			cerr << score_ << " <-points " << endl;
 		}
 		catch (...)
 		{
