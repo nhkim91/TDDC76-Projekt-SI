@@ -17,12 +17,15 @@ public:
     void set_renderer(render* rend);
 
 private:
-    int lvl{0};
+    int lvl{1};
     std::vector<int> data;
     std::vector<flying_objects*>* disp_objects_pointer;
     int width;
     int height;
     SDL_Renderer* renderer_;
+    //Uint32 latest_lvl_change_;
+    //Uint32 display_time_{2000};
+
 
     void get_next_lvl(int);
 

@@ -5,7 +5,9 @@
  *      Author: anton
  */
 #include "linkheader.h"
+#include "flying_objects.h"
 using namespace std;
+
 
 power_up::power_up(int life, int x_pos, int y_pos, int x_speed, int y_speed, SDL_Renderer* renderer)
 {
@@ -20,6 +22,7 @@ power_up::power_up(int life, int x_pos, int y_pos, int x_speed, int y_speed, SDL
 	x_speed_ = x_speed;
 	y_speed_ = y_speed;
 }
+
 
 int power_up::get_created_time()
 {
@@ -73,7 +76,7 @@ bool power_up::hit(flying_objects& other)
 
 /////////////////////////////////////////////////
 power_up_attack::power_up_attack(int life, int x_pos, int y_pos, int x_speed, int y_speed, SDL_Renderer* renderer):
-    												power_up(life, x_pos, y_pos, x_speed, y_speed, renderer)
+    														power_up(life, x_pos, y_pos, x_speed, y_speed, renderer)
 {
 	SDL_Surface* temp = IMG_Load("power_up_attack.png");
 	texture_ = SDL_CreateTextureFromSurface(renderer, temp);
@@ -91,9 +94,11 @@ flying_objects* power_up_attack::attack(int x_pos, int y_pos)
 	return attack_ptr;
 }
 
+
+
 /////////////////////////////////////////////////
 power_up_life::power_up_life(int life, int x_pos, int y_pos, int x_speed, int y_speed, SDL_Renderer* renderer):
-										power_up(life, x_pos, y_pos, x_speed, y_speed, renderer)
+												power_up(life, x_pos, y_pos, x_speed, y_speed, renderer)
 {
 	SDL_Surface* temp = IMG_Load("power_up_life.png");
 	texture_ = SDL_CreateTextureFromSurface(renderer, temp);
@@ -106,7 +111,7 @@ power_up_life::power_up_life(int life, int x_pos, int y_pos, int x_speed, int y_
 
 /////////////////////////////////////////////////
 power_up_shield::power_up_shield(int life, int x_pos, int y_pos, int x_speed, int y_speed, SDL_Renderer* renderer):
-    												power_up(life, x_pos, y_pos, x_speed, y_speed, renderer)
+    														power_up(life, x_pos, y_pos, x_speed, y_speed, renderer)
 {
 	SDL_Surface* temp = IMG_Load("power_up_shield.png");
 	texture_ = SDL_CreateTextureFromSurface(renderer, temp);

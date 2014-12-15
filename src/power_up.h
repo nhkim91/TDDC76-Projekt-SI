@@ -32,6 +32,7 @@ public:
 	bool times_up();
 	bool check_living(int);
 	bool hit(flying_objects&) override;
+
 };
 ////////////////////////////////////////////////////////////////
 class power_up_attack : public power_up

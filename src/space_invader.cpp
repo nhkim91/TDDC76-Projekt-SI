@@ -11,6 +11,8 @@ using namespace std;
 
 space_invader::space_invader(SDL_Renderer* renderer, render* rend)
 {
+	//level_ = new level{SCREEN_WIDTH, SCREEN_HEIGHT, &displaying_objects_, renderer};
+	//level_->set_renderer(rend);
 	renderer_ = renderer;
 	render_ = rend;
 	flying_objects* pp3 {new player{3, 0, 300, 0, 0, renderer_}};
@@ -154,21 +156,10 @@ void space_invader::render_things(vector<flying_objects*> render_vector)
 
 	for (unsigned int i = 0; i < render_vector.size(); i++)
 	{
-		SDL_RenderCopy(renderer_, render_vector.at(i)->get_texture(), nullptr,
-				&render_vector.at(i)->get_rect());
+		render_->render_flying_object(render_vector.at(i));
 	}
 
-	if(player_->get_power_up_attack() != nullptr)
-	{
-		SDL_RenderCopy(renderer_, player_->get_power_up_attack()->get_texture(), nullptr,
-				&player_->get_power_up_attack()->get_rect());
-	}
-
-	if (player_->get_power_up_shield() != nullptr)
-	{
-		SDL_RenderCopy(renderer_, player_->get_power_up_shield()->get_texture(), nullptr,
-				&player_->get_power_up_shield()->get_rect());
-	}
+	render_->render_power_up(player_->get_power_up_attack(), player_->get_power_up_shield());
 
 	for (unsigned int i = 0; i < player_->get_life(); i++)
 	{
@@ -207,6 +198,7 @@ void space_invader::run()
 	level_.set_renderer(render_);
 
 	//För att slumpningen av monster ska få olika utfall.
+
 	srand(time(0));
 
 	// main loop
@@ -347,7 +339,7 @@ void space_invader::run()
 			Uint32 sleep_time = target_frame_delay - frame_delay;
 			SDL_Delay(sleep_time);
 		}
-
+		level_.spawn(score_);
 		//SDL_Delay(10);
 	}
 
@@ -429,6 +421,7 @@ void space_invader::add_object(flying_objects* ptr)
 	}
 	return;
 }
+
 int space_invader::get_score()
 {
 	return score_;
