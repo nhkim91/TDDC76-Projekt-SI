@@ -109,7 +109,8 @@ alien_mk3::alien_mk3(int life, int x_pos, int y_pos, int x_speed, int y_speed, S
 ////////////////////////////////////////////////////
 flying_objects* alien_mk3::attack()
 {
+	int offset{50};
 	flying_objects* attack_ptr;
-	attack_ptr = new bullet {1, 1, (x_pos_ - 101), y_pos_, (x_speed_-100), 0, renderer_};
+	attack_ptr = new bullet_mk1 {1, 1, (x_pos_ - offset), y_pos_ + rect_.h/2, (x_speed_-200), 0, renderer_};
 	return attack_ptr;
 }

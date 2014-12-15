@@ -38,6 +38,7 @@ void space_invader::power_up_timer_check()
 	{
 		if(player_->get_power_up_shield()->times_up())
 		{
+			player_->set_special(false);
 			player_->clear_power_up_shield();
 		}
 	}
@@ -345,7 +346,7 @@ void space_invader::run()
 			SDL_Delay(sleep_time);
 		}
 		level_->spawn(score_);
-		//make_alien_attack();
+		make_alien_attack();
 		//SDL_Delay(10);
 	}
 
@@ -443,10 +444,10 @@ void space_invader::make_alien_attack()
 		other_obj= dynamic_cast<alien_mk3*>(displaying_objects_.at(i));
 		if(other_obj != nullptr)
 		{
-			shoot_if = rand() % 1000;
+			shoot_if = rand() % 200;
 			if(shoot_if==1)
 			{
-				displaying_objects_.push_back(other_obj->attack());
+				add_object(other_obj->attack());
 
 			}
 		}
