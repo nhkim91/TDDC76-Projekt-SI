@@ -1,6 +1,4 @@
-#include "alien.h"
 #include "linkheader.h"
-#include <vector>
 using namespace std;
 
 bool alien::check_living(int dmg, bool give_points)
@@ -48,7 +46,6 @@ bool alien::hit(flying_objects& other)
 	}
 
 	return false;
-
 }
 ////////////////////////////////////////////////////
 
@@ -110,5 +107,4 @@ alien_mk3::alien_mk3(int life, int x_pos, int y_pos, int x_speed, int y_speed, S
 bullet alien_mk3::attack()
 {
 	return bullet {1, 1, (x_pos_ - 101), y_pos_, -10, 0, renderer_};
-
 }
