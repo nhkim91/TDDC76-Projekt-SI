@@ -33,6 +33,7 @@ protected:
     int y_pos_;
     int x_speed_;
     int y_speed_;
+    int score_given_;
 
 
 public:
@@ -103,6 +104,11 @@ public:
     void set_y_speed(int new_y_speed)
     {
         y_speed_ = new_y_speed;
+    }
+
+    int get_score()
+    {
+    	return score_given_;
     }
 };
 

@@ -45,7 +45,7 @@ bool meteorite::hit(flying_objects& other)
     return true;
 }
 
-meteorite::meteorite(int life, int x_pos, int y_pos, int x_speed, int y_speed, SDL_Renderer* renderer)
+meteorite::meteorite(int life, int x_pos, int y_pos, int x_speed, int y_speed , SDL_Renderer* renderer)
 {
 
     renderer_ = renderer;
@@ -67,7 +67,7 @@ meteorite_small::meteorite_small(int life, int x_pos, int y_pos, int x_speed, in
     SDL_Surface* temp = IMG_Load("meteorite_small.png");
     texture_ = SDL_CreateTextureFromSurface(renderer, temp);
 
-
+    score_given_ = 50;
     rect_.w = temp->w;
     rect_.h = temp->h;
 
@@ -80,7 +80,7 @@ meteorite_medium::meteorite_medium(int life, int x_pos, int y_pos, int x_speed, 
     SDL_Surface* temp = IMG_Load("meteorite_medium.png");
     texture_ = SDL_CreateTextureFromSurface(renderer, temp);
 
-
+    score_given_ = 100;
     rect_.w = temp->w;
     rect_.h = temp->h;
 
