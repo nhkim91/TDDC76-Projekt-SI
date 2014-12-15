@@ -22,7 +22,6 @@ bool meteorite::check_living(int dmg)
 
 	if (life_ <= 0)
 	{
-		score_given_ = init_score_;
 		return true;
 	}
 	return false;

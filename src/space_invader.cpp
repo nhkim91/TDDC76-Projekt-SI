@@ -12,8 +12,8 @@ using namespace std;
 
 space_invader::space_invader(SDL_Renderer* renderer, render* rend)
 {
-	//level_ = new level{SCREEN_WIDTH, SCREEN_HEIGHT, &displaying_objects_, renderer};
-	//level_->set_renderer(rend);
+	level_ = new level{SCREEN_WIDTH, SCREEN_HEIGHT, &displaying_objects_, renderer};
+	level_->set_renderer(rend);
 	renderer_ = renderer;
 	render_ = rend;
 	flying_objects* pp3 {new player{3, 0, 300, 0, 0, renderer_}};
@@ -76,11 +76,13 @@ void space_invader::get_objects_to_kill()
 void space_invader::kill_objects(vector<unsigned int> to_delete)
 {
 
-	//sorterar to_delete fr�n st�rre till mindre
-
-	sort(to_delete.begin(), to_delete.end(), greater<int>());
-
-
+	if(to_delete.size() != 0)
+	{
+		cerr << "före->" << to_delete.size() << endl;
+		sort(to_delete.begin(), to_delete.end(), greater<int>());
+		to_delete.erase( unique(to_delete.begin(), to_delete.end()), to_delete.end());
+		cerr << "efter->" << to_delete.size() << endl;
+	}
 	for (unsigned int i : to_delete)
 	{
 		try
@@ -153,7 +155,6 @@ void space_invader::render_things(vector<flying_objects*> render_vector)
 	SDL_Color whiteColor {255, 255, 255, 255};
 	int offset {50};
 	SDL_SetRenderDrawColor(renderer_, 0, 0, 0, 255);
-	SDL_RenderClear(renderer_);
 
 	for (unsigned int i = 0; i < render_vector.size(); i++)
 	{
@@ -170,6 +171,7 @@ void space_invader::render_things(vector<flying_objects*> render_vector)
 	render_->render_text("Score: " + patch::to_string(score_), "Arcade.ttf",whiteColor, 40, 500, 10);
 
 	SDL_RenderPresent(renderer_);
+	SDL_RenderClear(renderer_);
 
 }
 
@@ -195,8 +197,8 @@ void space_invader::run()
 	//player_ptr=dynamic_cast<player*>(pp3);
 	//player_ = player_ptr;
 
-	level level_{SCREEN_WIDTH, SCREEN_HEIGHT, &displaying_objects_, renderer_};
-	level_.set_renderer(render_);
+	//level level_{SCREEN_WIDTH, SCREEN_HEIGHT, &displaying_objects_, renderer_};
+	//level_.set_renderer(render_);
 
 	//För att slumpningen av monster ska få olika utfall.
 
@@ -235,12 +237,12 @@ void space_invader::run()
 
 		if(keystate[SDL_SCANCODE_UP])
 		{
-			player_->set_y_speed(-100);
+			player_->set_y_speed(-200);
 		}
 
 		if(keystate[SDL_SCANCODE_DOWN])
 		{
-			player_->set_y_speed(100);
+			player_->set_y_speed(200);
 		}
 
 
@@ -341,7 +343,7 @@ void space_invader::run()
 			Uint32 sleep_time = target_frame_delay - frame_delay;
 			SDL_Delay(sleep_time);
 		}
-		level_.spawn(score_);
+		level_->spawn(score_);
 		//SDL_Delay(10);
 	}
 

@@ -23,8 +23,8 @@ private:
     int width;
     int height;
     SDL_Renderer* renderer_;
-    //Uint32 latest_lvl_change_;
-    //Uint32 display_time_{2000};
+    Uint32 latest_lvl_change_;
+    Uint32 display_time_{2000};
 
 
     void get_next_lvl(int);
