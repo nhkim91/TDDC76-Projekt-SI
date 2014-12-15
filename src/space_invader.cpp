@@ -9,6 +9,7 @@
 #include <SDL2/SDL_image.h>
 #include "level.h"
 #include "time.h"
+#include "patch.h"
 using namespace std;
 
 space_invader::space_invader(SDL_Renderer* renderer, render* rend)
@@ -179,7 +180,7 @@ void space_invader::render_things(vector<flying_objects*> render_vector)
 		render_->render_image("power_up_life.png", (200+i*offset), 10, 1.0f);
 	}
 
-	render_->render_text("Score: " + to_string(score_), "Arcade.ttf",whiteColor, 40, 500, 10);
+	render_->render_text("Score: " + patch::to_string(score_), "Arcade.ttf",whiteColor, 40, 500, 10);
 
 	SDL_RenderPresent(renderer_);
 

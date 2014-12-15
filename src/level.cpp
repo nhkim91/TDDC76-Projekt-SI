@@ -40,7 +40,7 @@ void level::spawn(int score)
             return;
         }
 
-        else if (i >= 100 && i < 1000) //200)
+        else if (i >= 100 && i < 200)
         {
         	cerr << "small met\n";
             disp_objects_pointer->push_back(get_meteorite_small());
