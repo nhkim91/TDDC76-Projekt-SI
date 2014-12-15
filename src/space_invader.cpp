@@ -295,8 +295,9 @@ void space_invader::run()
 				}
 				else if (event.key.keysym.sym == SDLK_l)
 				{
-					flying_objects* p6 {new power_up_attack {1, 200, 400, -100, 0, renderer_}};
-					displaying_objects_.push_back(p6);
+					cerr << displaying_objects_.size() << endl;
+					//flying_objects* p6 {new power_up_attack {1, 200, 400, -100, 0, renderer_}};
+					//displaying_objects_.push_back(p6);
 
 				}
 			}
@@ -401,7 +402,7 @@ void space_invader::update_things(vector<flying_objects*> update_vector, float t
 		}
 
 		else if (temp->get_x_pos() + temp->get_rect().w < 0 ||
-				temp->get_x_pos() + temp->get_rect().w > SCREEN_WIDTH)
+				temp->get_x_pos() > SCREEN_WIDTH + temp->get_rect().w)
 		{
 			to_delete.push_back(i);
 		}

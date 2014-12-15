@@ -117,7 +117,7 @@ flying_objects* level::get_alien_mk1()
     data[0] = 1;
     data[1] = width;
     data[2] = rand() % (height-100);
-    data[3] = 1; //Hastighet i x-led
+    data[3] = -100; //Hastighet i x-led
     data[4] = 0;
 
     flying_objects* alien_1 {new alien_mk1{data[0], data[1], data[2], data[3], data[4], renderer_}};
@@ -159,7 +159,7 @@ flying_objects* level::get_meteorite_small()
     data[0] = 1;
     data[1] = width;
     data[2] = rand() % (height-100); //(600 - meteoritens höjd)
-    data[3] = 1; //Hastighet i x-led
+    data[3] = -100; //Hastighet i x-led
     data[4] = 0;
 
     flying_objects* small{new meteorite_small{data[0], data[1], data[2], data[3], data[4], renderer_}};
