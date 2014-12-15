@@ -11,7 +11,7 @@ public:
     // Datamedlemmar
     class power_up_attack* power_up_attack_{nullptr};
     class power_up_shield* power_up_shield_{nullptr};
-    unsigned int cooldown_{500};
+    unsigned int cooldown_{100};
     unsigned int last_shoot_time_{0};
 
     // Konstruktor

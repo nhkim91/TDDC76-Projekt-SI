@@ -29,6 +29,7 @@ public:
 	void add_object(flying_objects*);
 	void power_up_timer_check();
 	int get_score();
+	void make_alien_attack();
 private:
 	SDL_Renderer* renderer_;
 	render* render_;

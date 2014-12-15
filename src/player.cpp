@@ -176,7 +176,7 @@ flying_objects* player::attack()
 	flying_objects* attack_ptr;
 	if (power_up_attack_ == nullptr && last_shoot_time_ <= (SDL_GetTicks()-cooldown_))
 	{
-		attack_ptr = new bullet_mk1 {1, 1, (x_pos_ + rect_.w), y_pos_ + rect_.h/2, 200, 0, renderer_};
+		attack_ptr = new bullet_mk1 {1, 1, (x_pos_ + rect_.w), y_pos_ + rect_.h/2, 400, 0, renderer_};
 		last_shoot_time_ = SDL_GetTicks();
 		return attack_ptr;
 	}
