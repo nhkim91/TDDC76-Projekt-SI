@@ -11,8 +11,6 @@
  *
  *   Innehåller också sub-klasserna bullet_mk1 som är default skottet, bullet_mk2 som fås genom en power up.
  */
-
-
 #ifndef BULLET_H_
 #define BULLET_H_
 
@@ -22,18 +20,13 @@ class bullet : public flying_objects
 {
 
 public:
-
-
     // Datamedlemmar
     int dmg_;
-
 
     //Funktioner
     bool check_living(int);
     int get_dmg() const;
     bool hit(flying_objects&) override;
-
-
 
     // Konstruktor
     bullet(int, int, int, int, int, int, SDL_Renderer*);

@@ -18,7 +18,6 @@ public:
     // Datamedlemmar
 
 
-
     // Konstruktor
     alien(int, int, int, int, int, SDL_Renderer*);
     alien();
@@ -29,8 +28,6 @@ public:
     // Funktioner
     bool check_living(int);
     bool hit(flying_objects&)  override;
-
-
 };
 
 
