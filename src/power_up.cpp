@@ -4,9 +4,7 @@
  *  Created on: 25 nov 2014
  *      Author: anton
  */
-#include "power_up.h"
 #include "linkheader.h"
-#include <vector>
 using namespace std;
 
 power_up::power_up(int life, int x_pos, int y_pos, int x_speed, int y_speed, SDL_Renderer* renderer)
