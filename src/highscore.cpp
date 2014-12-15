@@ -36,6 +36,14 @@ void highscore::save_score(int score)
     {
         if (score > list_of_score[i].score)
         {
+            SDL_Color redColor {187, 32, 26, 255};
+
+            string text = "Congratulations!";
+            string text2 = "You entered top 10.";
+            renderer->render_text(text, "Arcade.ttf", redColor, 60, 190, 200);
+            renderer->render_text(text2, "Arcade.ttf", redColor, 60, 140, 250);
+            renderer->present();
+            SDL_Delay(1500);
             //Göra spelaren uppmärksam på att den har kommit med på highscore-listan?
             //Vi har samtidigt tillgång till vilken plats (i+1).
             temp.name = enter_name();
@@ -51,7 +59,7 @@ void highscore::save_score(int score)
 }
 
 //Läser in ett namn från tangentbordet.
-string highscore::enter_name() //Namnet ska vara ett ord.
+string highscore::enter_name() //Namnet ska vara ett ord (får inte vara tom sträng).
 {
     string name;
     SDL_Delay(500);
@@ -62,8 +70,8 @@ string highscore::enter_name() //Namnet ska vara ett ord.
     //Rendera tom ruta
     SDL_Color textColor {255, 255, 255, 255};
 
-    string text = "Skriv in ditt namn utan mellanrum. Avsluta med enter.";
-    renderer->render_text(text, "Arcade.ttf", textColor, 30, 50, 30);
+    string text = "Write your name without space. Finish with enter.";
+    renderer->render_text(text, "Arcade.ttf", textColor, 30, 50, 150);
     renderer->present();
 
 
@@ -75,78 +83,43 @@ string highscore::enter_name() //Namnet ska vara ett ord.
             SDL_Keycode key = event.key.keysym.sym;
             if (key == SDLK_RETURN || key == SDLK_RETURN2)
             {
-                run = false;
-                break;
-                // TODO: tryck enter, behöver spara namn
+                if(!name.empty())
+                {
+                    run = false;
+                    break;
+                }
+                else
+                {
+                    renderer->render_text(text, "Arcade.ttf", textColor, 30, 50, 150);
+                }
             }
             else if (key == SDLK_BACKSPACE)
             {
-                string text = "Skriv in ditt namn utan mellanrum. Avsluta med enter.";
-                renderer->render_text(text, "Arcade.ttf", textColor, 30, 50, 30);
+                string text = "Write your name without space. Finish with enter.";
+                renderer->render_text(text, "Arcade.ttf", textColor, 30, 50, 150);
                 if (!name.empty())
                 {
                     name.erase(name.end() - 1);
 
                     if (!name.empty())
                     {
-                        renderer->render_text(name, "Arcade.ttf", textColor, 30, 50, 60);
+                        renderer->render_text(name, "Arcade.ttf", textColor, 30, 50, 180);
                     }
                 }
             }
             else
             {
                 //TODO: kolla att ni får bara får in A-Z om ni vill.
-                string text = "Skriv in ditt namn utan mellanrum. Avsluta med enter.";
-                renderer->render_text(text, "Arcade.ttf", textColor, 30, 50, 30);
+                string text = "Write your name without space. Finish with enter.";
+                renderer->render_text(text, "Arcade.ttf", textColor, 30, 50, 150);
                 char c = *(SDL_GetKeyName(key));
                 name += c;
-                renderer->render_text(name, "Arcade.ttf", textColor, 30, 50, 60);
+                renderer->render_text(name, "Arcade.ttf", textColor, 30, 50, 180);
             }
             renderer->present();
         }
     }
 
-    /*
-    SDL_StartTextInput();
-    while(run)
-    {
-        cout << "Inne i run" << endl;
-        while (SDL_PollEvent (&event))
-        {
-            cout << "Ett event har inträffat" << endl;
-            if(event.type == SDL_KEYDOWN)
-            {
-                cout << "Knapptryckning" << endl;
-                if(isalnum(event.key.keysym.sym))
-                {
-
-                    //rendera
-                    renderer->render_text(name, "seguisb.ttf", textColor, 30, 50, 30);
-                    renderer->present();
-
-                    name = name + patch::to_string(event.key.keysym.sym);
-
-                    break;
-                }
-                else if(event.key.keysym.sym == SDLK_BACKSPACE)
-                {
-                    if(!name.empty())
-                    {
-                        name.erase(name.end());
-                    }
-                    //Rendera
-                    renderer->render_text(name, "seguisb.ttf", textColor, 30, 50, 30);
-                    renderer->present();
-                }
-                else if(event.key.keysym.sym == SDLK_RETURN)
-                {
-                    run = false;
-                }
-            }
-        }
-    }
-    SDL_StopTextInput();
-    //*/
     return name;
 }
 
