@@ -13,5 +13,6 @@
 #include "bullet.h"
 #include "meteorite.h"
 #include "power_up.h"
+#include <vector>
 
 #endif /* LINKHEADER_H_ */

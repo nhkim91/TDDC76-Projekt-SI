@@ -1,6 +1,4 @@
-#include "alien.h"
 #include "linkheader.h"
-#include <vector>
 using namespace std;
 
 bool alien::check_living(int dmg, bool give_points)
@@ -48,7 +46,6 @@ bool alien::hit(flying_objects& other)
 	}
 
 	return false;
-
 }
 ////////////////////////////////////////////////////
 
