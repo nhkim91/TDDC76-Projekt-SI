@@ -1,5 +1,28 @@
-#include "menu.h"
+/*
+ * TDDC76 PROJEKT: Space Invader
+ *
+ * IDENTIFIERING
+ *
+ * Filnamn:     menu.cpp
+ * Enhetsnamn:  menu
+ * Typ:         Definitioner hörande till klassen menu
+ * Skriven av:  Kim Nguyen Hoang 910112-0260 Y3.c kimng797
+ *              Kerstin Soderqvist 911006-0309 Y3.c kerso255
+ * Datum:       2014-12-xx
+ *
+ * BESKRIVNING
+ *
+ * Filen innehåller deklarationer för klassen menu.
+ * Denna klass har hand om menyn, vilken är det första som visas när vi kör programmet.
+ * I menyn kan man välja att spela spelet, visa highscore, se hjälpinstruktioner eller avsluta spelet.
+ * Med andra ord är det den som knyter ihop de andra klasserna och anropandet av deras funktioner.
+ */
 
+/*
+ * REFERERADE BIBLIOTEK OCH MODULER
+ */
+
+#include "menu.h"
 #include <iostream>
 
 void menu::set_renderer(render* rend)
@@ -99,7 +122,6 @@ void menu::render_menu()
     renderer->render_image("space_background.png",0, 0);
     renderer->render_text("Space Invader", "Arcade.ttf", whiteColor, 100, 80, 30);
 
-    //*
     if(selected_item == 0)
     {
         renderer->render_text("Play", "Arcade.ttf", redColor, 50, 350, 260);
@@ -128,7 +150,10 @@ void menu::render_menu()
         renderer->render_text("Help", "Arcade.ttf", whiteColor, 50, 350, 360);
         renderer->render_text("Quit", "Arcade.ttf", redColor, 50, 350, 410);
     }
-    //*/
 
     renderer->present();
 }
+
+/*
+ * SLUT PÅ FILEN menu.cpp
+ */

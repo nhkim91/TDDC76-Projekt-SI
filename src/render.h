@@ -1,5 +1,30 @@
+/*
+ * TDDC76 PROJEKT: Space Invader
+ *
+ * IDENTIFIERING
+ *
+ * Filnamn:         render.h
+ * Enhetsnamn:      render
+ * Typ:             Klassdeklaration
+ * Programmerare:   Kim Nguyen Hoang 910112-0260 Y3.c kimng797
+ *                  //Kerstin Soderqvist 911006-0309 Y3.c kerso255
+ * Datum:           2014-12-xx
+ *
+ * BESKRIVNING
+ *
+ * Filen innehåller deklarationer för klassen render. Klassen render har koll på
+ * det mesta som ska renderas (visas i fönster), förutom objekten på spelplanen.
+ * Klassen har bl.a. funktionerna render_text() och render_image() som renderar
+ * text respektive bilder.
+ */
+
 #ifndef RENDER_H
 #define RENDER_H
+
+/*
+ * REFERERADE BIBLIOTEK OCH MODULER
+ */
+
 #include <SDL2/SDL_ttf.h>
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL.h>
@@ -28,5 +53,9 @@ private:
 	SDL_Surface* surf;
 
 };
+
+/*
+ * SLUT PÅ FILEN render.h
+ */
 
 #endif // RENDER_H
