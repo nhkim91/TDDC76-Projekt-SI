@@ -6,6 +6,8 @@
 #include "space_invader.h"
 #include <iostream>
 
+#include <iostream>
+
 using namespace std;
 
 level::level(int WIDTH, int HEIGHT, std::vector<flying_objects*>* displaying_objects_pointer, SDL_Renderer* renderer)
@@ -33,12 +35,14 @@ void level::spawn(int score)
     {
         if (i < 100)
         {
+        	cerr << "alien1 \n";
             disp_objects_pointer->push_back(get_alien_mk1());
             return;
         }
 
-        else if (i >= 100 && i < 200)
+        else if (i >= 100 && i < 1000) //200)
         {
+        	cerr << "small met\n";
             disp_objects_pointer->push_back(get_meteorite_small());
             return;
         }
@@ -116,8 +120,9 @@ flying_objects* level::get_alien_mk1()
     data[3] = 1; //Hastighet i x-led
     data[4] = 0;
 
-    alien_mk1 alien(data[0], data[1], data[2], data[3], data[4], renderer_);
-    flying_objects* alien_1 = static_cast<flying_objects*>(&alien);
+    flying_objects* alien_1 {new alien_mk1{data[0], data[1], data[2], data[3], data[4], renderer_}};
+    //alien_mk1 alien(data[0], data[1], data[2], data[3], data[4], renderer_);
+    //flying_objects* alien_1 = static_cast<flying_objects*>(&alien);
     return alien_1;
 }
 
@@ -129,8 +134,9 @@ flying_objects* level::get_alien_mk2()
     data[3] = rand() % 2 +1; //Hastighet i x-led
     data[4] = rand() % 1;
 
-    alien_mk2 alien(data[0], data[1], data[2], data[3], data[4], renderer_);
-    flying_objects* alien_2 = static_cast<flying_objects*>(&alien);
+    flying_objects* alien_2 {new alien_mk2{data[0], data[1], data[2], data[3], data[4], renderer_}};
+    //alien_mk2 alien(data[0], data[1], data[2], data[3], data[4], renderer_);
+    //flying_objects* alien_2 = static_cast<flying_objects*>(&alien);
     return alien_2;
 }
 
@@ -142,8 +148,9 @@ flying_objects* level::get_alien_mk3()
     data[3] = rand() % 4 +2; //Hastighet i x-led
     data[4] = rand() % 2;
 
-    alien_mk3 alien(data[0], data[1], data[2], data[3], data[4], renderer_);
-    flying_objects* alien_3 = static_cast<flying_objects*>(&alien);
+    flying_objects* alien_3 {new alien_mk3{data[0], data[1], data[2], data[3], data[4], renderer_}};
+    //alien_mk3 alien(data[0], data[1], data[2], data[3], data[4], renderer_);
+    //flying_objects* alien_3 = static_cast<flying_objects*>(&alien);
     return alien_3;
 }
 
@@ -155,8 +162,9 @@ flying_objects* level::get_meteorite_small()
     data[3] = 1; //Hastighet i x-led
     data[4] = 0;
 
-    meteorite_small meteorite{data[0], data[1], data[2], data[3], data[4], renderer_};
-    flying_objects* small = static_cast<flying_objects*>(&meteorite);
+    flying_objects* small{new meteorite_small{data[0], data[1], data[2], data[3], data[4], renderer_}};
+    //meteorite_small meteorite{data[0], data[1], data[2], data[3], data[4], renderer_};
+    //flying_objects* small = static_cast<flying_objects*>(&meteorite);
     return small;
 }
 
@@ -168,8 +176,10 @@ flying_objects* level::get_meteorite_medium()
     data[3] = rand() % 3 +1; //Hastighet i x-led
     data[4] = 0;
 
-    meteorite_medium meteorite{data[0], data[1], data[2], data[3], data[4], renderer_};
-    flying_objects* medium = static_cast<flying_objects*>(&meteorite);
+
+    flying_objects* medium{new meteorite_medium{data[0], data[1], data[2], data[3], data[4], renderer_}};
+    //meteorite_medium meteorite{data[0], data[1], data[2], data[3], data[4], renderer_};
+    //flying_objects* medium = static_cast<flying_objects*>(&meteorite);
     return medium;
 }
 
