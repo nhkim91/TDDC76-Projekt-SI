@@ -14,6 +14,4 @@
 #include "meteorite.h"
 #include "power_up.h"
 
-
-
 #endif /* LINKHEADER_H_ */
