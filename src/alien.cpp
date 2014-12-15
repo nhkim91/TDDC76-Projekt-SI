@@ -62,6 +62,7 @@ alien_mk1::alien_mk1(int life, int x_pos, int y_pos, int x_speed, int y_speed, S
     SDL_Surface* temp = IMG_Load("alien1.png");
     texture_ = SDL_CreateTextureFromSurface(renderer, temp);
 
+    score_given_=100;
     rect_.w = temp->w;
     rect_.h = temp->h;
 
@@ -75,6 +76,7 @@ alien_mk2::alien_mk2(int life, int x_pos, int y_pos, int x_speed, int y_speed, S
     SDL_Surface* temp = IMG_Load("alien2.png");
     texture_ = SDL_CreateTextureFromSurface(renderer, temp);
 
+    score_given_=200;
     rect_.w = temp->w;
     rect_.h = temp->h;
     SDL_FreeSurface(temp);
@@ -87,7 +89,7 @@ alien_mk3::alien_mk3(int life, int x_pos, int y_pos, int x_speed, int y_speed, S
     SDL_Surface* temp = IMG_Load("alien3.png");
     texture_ = SDL_CreateTextureFromSurface(renderer, temp);
 
-
+    score_given_=300;
     rect_.w = temp->w;
     rect_.h = temp->h;
 
@@ -100,4 +102,3 @@ bullet alien_mk3::attack()
     return bullet {1, 1, (x_pos_ - 101), y_pos_, -10, 0, renderer_};
 
 }
-
