@@ -26,7 +26,7 @@ public:
     ~alien() = default;
 
     // Funktioner
-    bool check_living(int);
+    bool check_living(int, bool);
     bool hit(flying_objects&)  override;
 };
 

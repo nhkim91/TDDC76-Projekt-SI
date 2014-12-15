@@ -3,13 +3,17 @@
 #include <vector>
 using namespace std;
 
-bool alien::check_living(int dmg)
+bool alien::check_living(int dmg, bool give_points)
 {
 	life_ = life_ - dmg;
 
-	if (life_ <= 0)
+	if (life_ <= 0 && give_points)
 	{
 		score_given_ = init_score_;
+		return true;
+	}
+	if(life_ <= 0)
+	{
 		return true;
 	}
 	return false;
@@ -26,7 +30,7 @@ bool alien::hit(flying_objects& other)
 	other_obj_1 = dynamic_cast<meteorite*>(ptr_);
 	if (other_obj_1 != nullptr)
 	{
-		return check_living(dmg_taken);
+		return check_living(dmg_taken,false);
 	}
 
 	player* other_obj_2;
@@ -40,7 +44,7 @@ bool alien::hit(flying_objects& other)
 	other_obj_3 = dynamic_cast<bullet*>(ptr_);
 	if (other_obj_3 != nullptr)
 	{
-		return check_living(other_obj_3->get_dmg());
+		return check_living(other_obj_3->get_dmg(),true);
 	}
 
 	return false;
