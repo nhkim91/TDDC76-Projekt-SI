@@ -11,7 +11,7 @@ public:
     const int SCREEN_HEIGHT = 600;
     class player* player_;
 
-    space_invader() = default;
+    space_invader() = delete;
     space_invader(SDL_Renderer*, render*);
     std::vector<flying_objects*> displaying_objects_;
 

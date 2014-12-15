@@ -15,6 +15,12 @@ space_invader::space_invader(SDL_Renderer* renderer, render* rend)
 {
     renderer_ = renderer;
     render_ = rend;
+    flying_objects* pp3 {new player{10, 0, 300, 0, 0, renderer_}};
+    displaying_objects_.push_back(pp3);
+
+    player* player_ptr;
+    player_ptr=dynamic_cast<player*>(pp3);
+    player_ = player_ptr;
 }
 
 void space_invader::power_up_timer_check()
@@ -185,12 +191,12 @@ void space_invader::run()
 
 	const Uint8* keystate;
 	keystate = SDL_GetKeyboardState(NULL);
-	flying_objects* pp3 {new player{10, 0, 300, 0, 0, renderer_}};
-	displaying_objects_.push_back(pp3);
+	//flying_objects* pp3 {new player{10, 0, 300, 0, 0, renderer_}};
+	//displaying_objects_.push_back(pp3);
 
-	player* player_ptr;
-	player_ptr=dynamic_cast<player*>(pp3);
-	player_ = player_ptr;
+	//player* player_ptr;
+	//player_ptr=dynamic_cast<player*>(pp3);
+	//player_ = player_ptr;
 
     level level_{SCREEN_WIDTH, SCREEN_HEIGHT, &displaying_objects_, renderer_};
     level_.set_renderer(render_);
