@@ -7,7 +7,7 @@
 class level
 {
 public:
-    level() = default;
+    level() = delete;
     level(int, int, std::vector<flying_objects*>*, SDL_Renderer*);
     virtual ~level() = default;
 

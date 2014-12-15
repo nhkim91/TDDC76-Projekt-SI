@@ -7,6 +7,7 @@
 #include <SDL2/SDL_image.h>
 #include "level.h"
 #include "time.h"
+#include "patch.h"
 using namespace std;
 
 space_invader::space_invader(SDL_Renderer* renderer, render* rend)
@@ -166,7 +167,7 @@ void space_invader::render_things(vector<flying_objects*> render_vector)
 		render_->render_image("power_up_life.png", (200+i*offset), 10, 1.0f);
 	}
 
-	render_->render_text("Score: " + to_string(score_), "Arcade.ttf",whiteColor, 40, 500, 10);
+	render_->render_text("Score: " + patch::to_string(score_), "Arcade.ttf",whiteColor, 40, 500, 10);
 
 	SDL_RenderPresent(renderer_);
 
@@ -292,8 +293,9 @@ void space_invader::run()
 				}
 				else if (event.key.keysym.sym == SDLK_l)
 				{
-					flying_objects* p6 {new power_up_attack {1, 200, 400, -100, 0, renderer_}};
-					displaying_objects_.push_back(p6);
+					cerr << displaying_objects_.size() << endl;
+					//flying_objects* p6 {new power_up_attack {1, 200, 400, -100, 0, renderer_}};
+					//displaying_objects_.push_back(p6);
 
 				}
 
@@ -404,7 +406,7 @@ void space_invader::update_things(vector<flying_objects*> update_vector, float t
 		}
 
 		else if (temp->get_x_pos() + temp->get_rect().w < 0 ||
-				temp->get_x_pos() + temp->get_rect().w > SCREEN_WIDTH)
+				temp->get_x_pos() > SCREEN_WIDTH + temp->get_rect().w)
 		{
 			to_delete.push_back(i);
 		}

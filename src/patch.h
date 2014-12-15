@@ -7,6 +7,7 @@
 
 #ifndef PATCH_H_
 #define PATCH_H_
+#include <sstream>
 
 namespace patch
 {
