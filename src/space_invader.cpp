@@ -13,14 +13,14 @@ using namespace std;
 
 space_invader::space_invader(SDL_Renderer* renderer, render* rend)
 {
-    renderer_ = renderer;
-    render_ = rend;
-    flying_objects* pp3 {new player{10, 0, 300, 0, 0, renderer_}};
-    displaying_objects_.push_back(pp3);
+	renderer_ = renderer;
+	render_ = rend;
+	flying_objects* pp3 {new player{3, 0, 300, 0, 0, renderer_}};
+	displaying_objects_.push_back(pp3);
 
-    player* player_ptr;
-    player_ptr=dynamic_cast<player*>(pp3);
-    player_ = player_ptr;
+	player* player_ptr;
+	player_ptr=dynamic_cast<player*>(pp3);
+	player_ = player_ptr;
 }
 
 void space_invader::power_up_timer_check()
@@ -66,8 +66,6 @@ void space_invader::get_objects_to_kill()
 					to_delete.push_back(i);
 				}
 			}
-
-
 		}
 	}
 
@@ -86,7 +84,10 @@ void space_invader::kill_objects(vector<unsigned int> to_delete)
 	{
 		try
 		{
+			//score_ += displaying_objects_.at(displaying_objects_.begin() + i)->get_score();
+			score_ += displaying_objects_.at(i)->get_score();
 			displaying_objects_.erase(displaying_objects_.begin() + i);
+			cerr << score_ << " <-points " << endl;
 		}
 		catch (...)
 		{
@@ -94,8 +95,6 @@ void space_invader::kill_objects(vector<unsigned int> to_delete)
 			throw;
 		}
 	}
-
-
 }
 
 bool space_invader::collides(const flying_objects& obj_1,
@@ -152,6 +151,8 @@ bool space_invader::check_y_collides(SDL_Rect a, SDL_Rect b)
 
 void space_invader::render_things(vector<flying_objects*> render_vector)
 {
+	SDL_Color whiteColor {255, 255, 255, 255};
+	int offset {50};
 	SDL_SetRenderDrawColor(renderer_, 0, 0, 0, 255);
 	SDL_RenderClear(renderer_);
 
@@ -173,7 +174,15 @@ void space_invader::render_things(vector<flying_objects*> render_vector)
 				&player_->get_power_up_shield()->get_rect());
 	}
 
+	for (unsigned int i = 0; i < player_->get_life(); i++)
+	{
+		render_->render_image("power_up_life.png", (200+i*offset), 10, 1.0f);
+	}
+
+	render_->render_text("Score: " + to_string(score_), "Arcade.ttf",whiteColor, 40, 500, 10);
+
 	SDL_RenderPresent(renderer_);
+
 }
 
 void space_invader::run()
@@ -198,11 +207,11 @@ void space_invader::run()
 	//player_ptr=dynamic_cast<player*>(pp3);
 	//player_ = player_ptr;
 
-    level level_{SCREEN_WIDTH, SCREEN_HEIGHT, &displaying_objects_, renderer_};
-    level_.set_renderer(render_);
+	level level_{SCREEN_WIDTH, SCREEN_HEIGHT, &displaying_objects_, renderer_};
+	level_.set_renderer(render_);
 
-    //För att slumpningen av monster ska få olika utfall.
-    srand(time(0));
+	//För att slumpningen av monster ska få olika utfall.
+	srand(time(0));
 
 	// main loop
 	bool running { true };
@@ -280,12 +289,12 @@ void space_invader::run()
 				}
 				else if (event.key.keysym.sym == SDLK_s)
 				{
-                    level_.spawn(score);
-                    /*
+					//level_.spawn(score);
+
 					flying_objects* p1 { new alien_mk2 { 1, 500, 400, -100, 0,
 						renderer_}};
 					displaying_objects_.push_back(p1);
-*/
+
 					//return;
 				}
 				else if (event.key.keysym.sym == SDLK_u)
@@ -299,6 +308,12 @@ void space_invader::run()
 					//flying_objects* p6 {new power_up_attack {1, 200, 400, -100, 0, renderer_}};
 					//displaying_objects_.push_back(p6);
 
+				}
+
+				else if (event.key.keysym.sym == SDLK_o)
+				{
+					flying_objects* p7 {new power_up_life {1, 200, 400, -100, 0, renderer_}};
+					displaying_objects_.push_back(p7);
 				}
 			}
 			else if (event.type == SDL_KEYUP)
@@ -419,5 +434,8 @@ void space_invader::add_object(flying_objects* ptr)
 	}
 	return;
 }
-
+int space_invader::get_score()
+{
+	return score_;
+}
 
