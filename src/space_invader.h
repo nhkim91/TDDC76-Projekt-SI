@@ -10,6 +10,7 @@ public:
     const int SCREEN_WIDTH = 800;
     const int SCREEN_HEIGHT = 600;
     class player* player_;
+    int score_{0};
 
     space_invader() = delete;
     space_invader(SDL_Renderer*, render*);
@@ -26,7 +27,7 @@ public:
     void update_things(std::vector<flying_objects*>, float);
     void add_object(flying_objects*);
     void power_up_timer_check();
-
+    int get_score();
 private:
     SDL_Renderer* renderer_;
     render* render_;

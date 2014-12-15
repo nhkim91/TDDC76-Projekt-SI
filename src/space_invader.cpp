@@ -86,7 +86,10 @@ void space_invader::kill_objects(vector<unsigned int> to_delete)
 	{
 		try
 		{
+			//score_ += displaying_objects_.at(displaying_objects_.begin() + i)->get_score();
+			score_ += displaying_objects_.at(i)->get_score();
 			displaying_objects_.erase(displaying_objects_.begin() + i);
+			cerr << score_ << " <-points " << endl;
 		}
 		catch (...)
 		{
@@ -280,12 +283,12 @@ void space_invader::run()
 				}
 				else if (event.key.keysym.sym == SDLK_s)
 				{
-                    level_.spawn(score);
-                    /*
+                    //level_.spawn(score);
+
 					flying_objects* p1 { new alien_mk2 { 1, 500, 400, -100, 0,
 						renderer_}};
 					displaying_objects_.push_back(p1);
-*/
+
 					//return;
 				}
 				else if (event.key.keysym.sym == SDLK_u)
@@ -418,5 +421,8 @@ void space_invader::add_object(flying_objects* ptr)
 	}
 	return;
 }
-
+int space_invader::get_score()
+{
+	return score_;
+}
 
