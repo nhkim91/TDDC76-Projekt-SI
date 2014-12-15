@@ -1,5 +1,30 @@
+/*
+ * TDDC76 PROJEKT: Space Invader
+ *
+ * IDENTIFIERING
+ *
+ * Filnamn:         level.h
+ * Enhetsnamn:      level
+ * Typ:             Klassdeklaration
+ * Programmerare:   Kim Nguyen Hoang 910112-0260 Y3.c kimng797
+ *                  Kerstin Soderqvist 911006-0309 Y3.c kerso255
+ * Datum:           2014-12-xx
+ *
+ * BESKRIVNING
+ *
+ * Filen innehåller deklarationer för klassen level.
+ * Den har som uppgift att hålla reda på vilken nivå spelet befinner sig på,
+ * och vid behov höja nivån. Den har även funktionen spawn() som slumpmässigt
+ * skapar nya objekt (aliens, meteoriter, power-ups), utifrån nivån,
+ * vilka senare ska visas på spelplanen.
+ */
+
 #ifndef LEVEL_H
 #define LEVEL_H
+
+/*
+ * REFERERADE BIBLIOTEK OCH MODULER
+ */
 
 #include "flying_objects.h"
 #include "render.h"
@@ -47,5 +72,8 @@ private:
 
 };
 
+/*
+ * SLUT PÅ FILEN level.h
+ */
 
 #endif // LEVEL_H

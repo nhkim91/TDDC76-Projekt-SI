@@ -1,9 +1,33 @@
+/*
+ * TDDC76 PROJEKT: Space Invader
+ *
+ * IDENTIFIERING
+ *
+ * Filnamn:     render.cpp
+ * Enhetsnamn:  render
+ * Typ:         Definitioner hörande till klassen render
+ * Skriven av:  Kim Nguyen Hoang 910112-0260 Y3.c kimng797
+ *              //Kerstin Soderqvist 911006-0309 Y3.c kerso255
+ * Datum:       2014-12-xx
+ *
+ * BESKRIVNING
+ *
+ * Filen innehåller deklarationer för klassen render. Klassen render har koll på
+ * det mesta som ska renderas (visas i fönster), förutom objekten på spelplanen.
+ * Klassen har bl.a. funktionerna render_text() och render_image() som renderar
+ * text respektive bilder.
+ */
+
+/*
+ * REFERERADE BIBLIOTEK OCH MODULER
+ */
+
 #include <iostream>
 #include "render.h"
 #include "flying_objects.h"
 #include "power_up.h"
-using namespace std;
 
+using namespace std;
 
 render::render()
 {
@@ -111,3 +135,6 @@ void render::set_renderer(SDL_Renderer* rend)
 	renderer = rend;
 }
 
+/*
+ * SLUT PÅ FILEN render.cpp
+ */

@@ -16,16 +16,22 @@ using namespace std;
 
 
 
-bool meteorite::check_living(int dmg)
+bool meteorite::check_living(int dmg, bool give_points )
 {
 	life_ = life_ - dmg;
 
-	if (life_ <= 0)
+	if (life_ <= 0 && give_points)
+	{
+		score_given_ = init_score_;
+		return true;
+	}
+	if(life_ <= 0)
 	{
 		return true;
 	}
 	return false;
 }
+
 
 bool meteorite::hit(flying_objects& other)
 {
@@ -36,7 +42,7 @@ bool meteorite::hit(flying_objects& other)
 	other_obj_4 = dynamic_cast<bullet*>(ptr_);
 	if (other_obj_4 != nullptr)
 	{
-		return check_living(other_obj_4->get_dmg());
+		return check_living(other_obj_4->get_dmg(), true);
 	}
 
 	power_up* other_obj_5;
@@ -66,7 +72,7 @@ meteorite::meteorite(int life, int x_pos, int y_pos, int x_speed, int y_speed , 
 }
 /////////////////////////////////////////////////
 meteorite_small::meteorite_small(int life, int x_pos, int y_pos, int x_speed, int y_speed, SDL_Renderer* renderer):
-    		meteorite(life, x_pos, y_pos, x_speed, y_speed, renderer)
+    				meteorite(life, x_pos, y_pos, x_speed, y_speed, renderer)
 {
 	SDL_Surface* temp = IMG_Load("meteorite_small.png");
 	texture_ = SDL_CreateTextureFromSurface(renderer, temp);
@@ -79,7 +85,7 @@ meteorite_small::meteorite_small(int life, int x_pos, int y_pos, int x_speed, in
 }
 /////////////////////////////////////////////////
 meteorite_medium::meteorite_medium(int life, int x_pos, int y_pos, int x_speed, int y_speed, SDL_Renderer* renderer):
-    		meteorite(life, x_pos, y_pos, x_speed, y_speed, renderer)
+    				meteorite(life, x_pos, y_pos, x_speed, y_speed, renderer)
 {
 	SDL_Surface* temp = IMG_Load("meteorite_medium.png");
 	texture_ = SDL_CreateTextureFromSurface(renderer, temp);
