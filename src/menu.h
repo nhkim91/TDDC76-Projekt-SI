@@ -1,5 +1,30 @@
+/*
+ * TDDC76 PROJEKT: Space Invader
+ *
+ * IDENTIFIERING
+ *
+ * Filnamn:         menu.h
+ * Enhetsnamn:      menu
+ * Typ:             Klassdeklaration
+ * Programmerare:   Kim Nguyen Hoang 910112-0260 Y3.c kimng797
+ *                  Kerstin Soderqvist 911006-0309 Y3.c kerso255
+ * Datum:           2014-12-xx
+ *
+ * BESKRIVNING
+ *
+ * Filen innehåller deklarationer för klassen menu.
+ * Denna klass har hand om menyn, vilken är det första som visas när vi kör programmet.
+ * I menyn kan man välja att spela spelet, visa highscore, se hjälpinstruktioner eller avsluta spelet.
+ * Med andra ord är det den som knyter ihop de andra klasserna och anropandet av deras funktioner.
+ */
+
 #ifndef MENU_H
 #define MENU_H
+
+/*
+ * REFERERADE BIBLIOTEK OCH MODULER
+ */
+
 #include <SDL2/SDL_ttf.h>
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL.h>
@@ -34,5 +59,9 @@ private:
 
     void render_menu();
 };
+
+/*
+ * SLUT PÅ FILEN menu.h
+ */
 
 #endif // MENU_H

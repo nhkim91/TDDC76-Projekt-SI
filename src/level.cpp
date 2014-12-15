@@ -1,11 +1,34 @@
+/*
+ * TDDC76 PROJEKT: Space Invader
+ *
+ * IDENTIFIERING
+ *
+ * Filnamn:     level.cpp
+ * Enhetsnamn:  level
+ * Typ:         Definitioner hörande till klassen level
+ * Skriven av:  Kim Nguyen Hoang 910112-0260 Y3.c kimng797
+ *              Kerstin Soderqvist 911006-0309 Y3.c kerso255
+ * Datum:       2014-12-xx
+ *
+ * BESKRIVNING
+ *
+ * Filen innehåller deklarationer för klassen level.
+ * Den har som uppgift att hålla reda på vilken nivå spelet befinner sig på,
+ * och vid behov höja nivån. Den har även funktionen spawn() som slumpmässigt
+ * skapar nya objekt (aliens, meteoriter, power-ups), utifrån nivån,
+ * vilka senare ska visas på spelplanen.
+ */
+
+/*
+ * REFERERADE BIBLIOTEK OCH MODULER
+ */
+
 #include "level.h"
 #include "alien.h"
 #include "meteorite.h"
 #include "power_up.h"
 #include <vector>
 #include "space_invader.h"
-#include <iostream>
-
 #include <iostream>
 
 using namespace std;
@@ -264,4 +287,6 @@ void level::get_next_lvl(int score)
 	return;
 }
 
-
+/*
+ * SLUT PÅ FILEN level.cpp
+ */

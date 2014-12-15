@@ -1,7 +1,25 @@
 /*
- * Har hand om alla user inputs
- * Kan implementeras
+ * TDDC76 PROJEKT: Space Invader
  *
+ * IDENTIFIERING
+ *
+ * Filnamn:     highscore.cpp
+ * Enhetsnamn:  highscore
+ * Typ:         Definitioner hörande till klassen highscore
+ * Skriven av:  Kim Nguyen Hoang 910112-0260 Y3.c kimng797
+ *              Kerstin Soderqvist 911006-0309 Y3.c kerso255
+ * Datum:       2014-12-xx
+ *
+ * BESKRIVNING
+ *
+ * Filen innehåller definitioner för klassen highscore.
+ * Den har som uppgift att ha hand om highscore sedan tidigare spelade spel genom att
+ * ladda in och visa highscore på skärmen, samt att då poängen, vid avslutat spel,
+ * kvalificerar sig för highscore-listan, spara över detta till listan.
+ */
+
+/*
+ * REFERERADE BIBLIOTEK OCH MODULER
  */
 
 #include <string>
@@ -211,8 +229,6 @@ void highscore::show_highscore()
     }
 }
 
-
-
-
-
-
+/*
+ * SLUT PÅ FILEN highscore.cpp
+ */
