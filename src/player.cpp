@@ -142,7 +142,10 @@ bool player::hit(flying_objects& other)
 		other_obj_6 = dynamic_cast<power_up_life*>(ptr_);
 		if (other_obj_6 != nullptr)
 		{
-			life_++;
+			if(life_<5)
+			{
+				life_++;
+			}
 			return false;
 		}
 
