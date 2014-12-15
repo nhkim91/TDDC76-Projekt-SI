@@ -7,11 +7,14 @@
 #include <algorithm>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
+#include "level.h"
+#include "time.h"
 using namespace std;
 
-space_invader::space_invader(SDL_Renderer* renderer)
+space_invader::space_invader(SDL_Renderer* renderer, render* rend)
 {
-	renderer_ = renderer;
+    renderer_ = renderer;
+    render_ = rend;
 }
 
 void space_invader::power_up_timer_check()
@@ -188,6 +191,13 @@ void space_invader::run()
 	player* player_ptr;
 	player_ptr=dynamic_cast<player*>(pp3);
 	player_ = player_ptr;
+
+    level level_{SCREEN_WIDTH, SCREEN_HEIGHT, &displaying_objects_, renderer_};
+    level_.set_renderer(render_);
+
+    //För att slumpningen av monster ska få olika utfall.
+    srand(time(0));
+
 	// main loop
 	bool running { true };
 	while (running)
@@ -264,9 +274,12 @@ void space_invader::run()
 				}
 				else if (event.key.keysym.sym == SDLK_s)
 				{
+                    level_.spawn(score);
+                    /*
 					flying_objects* p1 { new alien_mk2 { 1, 500, 400, -100, 0,
 						renderer_}};
 					displaying_objects_.push_back(p1);
+*/
 					//return;
 				}
 				else if (event.key.keysym.sym == SDLK_u)

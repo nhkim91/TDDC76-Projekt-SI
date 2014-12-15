@@ -8,12 +8,13 @@ class level
 {
 public:
     level() = default;
-    level(int, int, std::vector<flying_objects*>*, SDL_Renderer* renderer);
+    level(int, int, std::vector<flying_objects*>*, SDL_Renderer*);
     virtual ~level() = default;
 
     level(const level&) = default;
 
     void spawn(int);
+    void set_renderer(render* rend);
 
 private:
     int lvl{0};
@@ -37,7 +38,7 @@ private:
     //power_up
     flying_objects* get_power_up(int);
 
-    render* renderer;
+    render* rend_;
     SDL_Texture *renderText(const std::string &str, const std::string &fontFile,
                             SDL_Color color, int fontSize, SDL_Renderer *renderer);
 

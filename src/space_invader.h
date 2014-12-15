@@ -2,6 +2,7 @@
 #define SPACE_INVADER_H
 #include <vector>
 #include "flying_objects.h"
+#include "render.h"
 class space_invader
 {
 public:
@@ -11,7 +12,7 @@ public:
     class player* player_;
 
     space_invader() = default;
-    space_invader(SDL_Renderer*);
+    space_invader(SDL_Renderer*, render*);
     std::vector<flying_objects*> displaying_objects_;
 
     void get_objects_to_kill();
@@ -28,6 +29,8 @@ public:
 
 private:
     SDL_Renderer* renderer_;
+    render* render_;
+    int score{0};
 
 };
 
