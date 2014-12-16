@@ -1,10 +1,22 @@
 /*
- * meteorite.cpp
+ * TDDC76 PROJEKT: Space Invader
  *
- *  Created on: 25 nov 2014
- *      Author: anton
+ * IDENTIFIERING
+ *
+ * Filnamn:     meteorite.cpp
+ * Enhetsnamn:  meteorite
+ * Typ:         Definitioner hörande till klassen flying_objects
+ * Skriven av:  Anton Gifvars, antgi546, 890917-1657
+ * 				Margareta Vi, marvi154,  920809-0309
+ * 				Madeleine Ardic, madar730, 930922-4245
+ * Datum:       2014-12-xx
+ *
+ * BESKRIVNING:
+ *
+ * Filen innehÃ¥ller deklarationer för klassen meteorite.
+ *
+ * REFERERADE BIBLIOTEK OCH MODULER:
  */
-#include "meteorite.h"
 #include "linkheader.h"
 #include <iostream>
 #include <SDL2/SDL.h>
@@ -13,8 +25,6 @@
 #include <SDL2/SDL_main.h>
 #include <vector>
 using namespace std;
-
-
 
 bool meteorite::check_living(int dmg, bool give_points)
 {
@@ -51,13 +61,11 @@ bool meteorite::hit(flying_objects& other)
     {
         return false;
     }
-
     return true;
 }
 
 meteorite::meteorite(int life, int x_pos, int y_pos, int x_speed, int y_speed , SDL_Renderer* renderer)
 {
-
     renderer_ = renderer;
     life_ = life;
     rect_.x = x_pos;
@@ -67,8 +75,6 @@ meteorite::meteorite(int life, int x_pos, int y_pos, int x_speed, int y_speed , 
     y_pos_ = y_pos;
     x_speed_ = x_speed;
     y_speed_ = y_speed;
-
-
 }
 /////////////////////////////////////////////////
 meteorite_small::meteorite_small(int life, int x_pos, int y_pos, int x_speed, int y_speed, SDL_Renderer* renderer):
@@ -93,7 +99,6 @@ meteorite_medium::meteorite_medium(int life, int x_pos, int y_pos, int x_speed, 
     init_score_ = 100;
     rect_.w = temp->w;
     rect_.h = temp->h;
-
 
     SDL_FreeSurface(temp);
 }
