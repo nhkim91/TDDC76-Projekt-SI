@@ -186,7 +186,7 @@ flying_objects* level::get_meteorite_small()
 
     data[0] = 1;
     data[1] = width;
-    data[2] = rand() % (height - 100); //(600 - meteoritens höjd)
+    data[2] = rand() % (height - 150); //(600 - meteoritens höjd)
     data[3] = -100; //Hastighet i x-led
     data[4] = 0;
 
@@ -202,7 +202,7 @@ flying_objects* level::get_meteorite_medium()
 {
     data[0] = 6;
     data[1] = width;
-    data[2] = rand() % (height - 100); //(600 - meteoritens höjd)
+    data[2] = rand() % (height - 150); //(600 - meteoritens höjd)
     data[3] = -(rand() % 100 + 100); //Hastighet i x-led
     data[4] = 0;
 
