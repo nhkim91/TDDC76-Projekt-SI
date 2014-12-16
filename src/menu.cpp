@@ -97,7 +97,7 @@ void menu::run()
             	{
             		if (si == nullptr)
             		{
-            			si = new space_invader {renderer->get_renderer(), renderer, snd};
+            			si = new space_invader {renderer->get_renderer(), renderer, snd, 800, 600};
             		}
             		if (si->run())
             		{

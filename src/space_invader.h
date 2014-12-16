@@ -9,13 +9,14 @@ class space_invader
 {
 public:
 
-    const int SCREEN_WIDTH = 800;
-    const int SCREEN_HEIGHT = 600;
+    int SCREEN_WIDTH;
+    int SCREEN_HEIGHT;
     class player* player_;
 
 
     space_invader() = delete;
-    space_invader(SDL_Renderer*, render*, sound*);
+    ~space_invader();
+    space_invader(SDL_Renderer*, render*, sound*, int, int);
     std::vector<flying_objects*> displaying_objects_;
 
     void get_objects_to_kill();
