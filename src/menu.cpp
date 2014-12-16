@@ -47,8 +47,8 @@ void menu::set_help(help* help_)
 
 void menu::run()
 {
-	space_invader* SI {new space_invader{renderer->get_renderer(), renderer}};
-	set_play(SI);
+	//si = new space_invader{renderer->get_renderer(), renderer};
+	//set_play(SI);
 
     bool loop {true};
     SDL_Event event;
@@ -88,9 +88,19 @@ void menu::run()
             }
             else if (key == SDLK_RETURN || key == SDLK_RETURN2)
             {
-                if (selected_item == 0)
-                {
-                    si->run();
+            	if (selected_item == 0)
+            	{
+            		if (si == nullptr)
+            		{
+            			si = new space_invader{renderer->get_renderer(), renderer};
+            		}
+            		if(si->run())
+            		{
+            			hs->save_score(si->get_score());
+            			delete si;
+            			si = nullptr;
+            		}
+
                     //int score = si->run();
                     //hs->save_score(score);
                 }

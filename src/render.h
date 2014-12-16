@@ -46,6 +46,7 @@ public:
 	void render_power_up(class power_up_attack*, class power_up_shield*);
 	void present();
 	void set_renderer(SDL_Renderer*);
+
 	SDL_Renderer* get_renderer();
 
 private:
