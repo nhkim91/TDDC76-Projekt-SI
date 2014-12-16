@@ -4,6 +4,7 @@
 #include "flying_objects.h"
 #include "render.h"
 #include "level.h"
+#include "sound.h"
 class space_invader
 {
 public:
@@ -14,7 +15,7 @@ public:
 
 
 	space_invader() = delete;
-	space_invader(SDL_Renderer*, render*);
+	space_invader(SDL_Renderer*, render*, sound*);
 	std::vector<flying_objects*> displaying_objects_;
 
 	void get_objects_to_kill();
@@ -35,6 +36,7 @@ private:
 	render* render_;
 	level* level_;
 	int score_{0};
+	sound* sound_;
 
 };
 
