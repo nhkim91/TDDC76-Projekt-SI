@@ -1,24 +1,47 @@
 /*
- * bullet.h
+ * IDA Programvaruproduktion AB (u.p.a.)
  *
- * Denna klass √§r till f√∂r bullet, dvs skott som b√•de alien och player anv√§nder sig av.
+ * IDENTIFIERING
+ *
+ * Filnamn:    bullet.h
+ * Enhetsnamn: Bullet
+ * Typ:        -----
+ * Revision:   2.1
+ * Skriven av: Anton, Margareta, Madeleine
+ *
+ *
+ * BESKRIVNING
+ *
+ * Denna klass ‰r till fˆr bullet, dvs skott som b√•de alien och player anv‰nder sig av.
  * Funktioner:
- *  - get_life: h√§mtar livet p√• bullet
+ *  - get_life: h‰mtar livet pÂ bullet
  *  - check_living: kollar om bullet lever
- *  - movement: en veckor som sparar undan positionerningen i x- och y-led samt hastigheten i x- och y-led.
- *  -get_dmg: retunerar antalet skada som bullet har.
+ *  - movement: en vektor som sparar undan positionerningen i x- och y-led samt hastigheten i x- och y-led.
+ *  - get_dmg: retunerar antalet skada som bullet har.
  *  - hit: konsekvensena som h√§nder n√§r bullet krockar med resterande klasser
  *
- *   Inneh√•ller ocks√• sub-klasserna bullet_mk1 som √§r default skottet, bullet_mk2 som f√•s genom en power up.
+ *   InnehÂller ocks√• sub-klasserna bullet_mk1 som √§r default skottet, bullet_mk2 som f√•s genom en power up.
+ *
+ * REVISIONSBERƒTTELSE
+ *
+ * Revision     Datum   Fˆr‰ndringar
+ *
+ * 1            940319  Ursprungsversion
+ * 1.1          940407  ...
+ * ...
+ * 2.0          940821  ...
  */
+
 #ifndef BULLET_H_
 #define BULLET_H_
 
+/*
+ * REFERERADE BIBLIOTEK OCH MODULER
+ */
 #include "flying_objects.h"
 
 class bullet : public flying_objects
 {
-
 public:
     // Datamedlemmar
     int dmg_;
@@ -33,7 +56,7 @@ public:
     bullet();
 
     // Destruktor
-    ~bullet()=default;
+    ~bullet() = default;
 };
 //////////////////////////////////////////
 class bullet_mk1 : public bullet
@@ -49,7 +72,6 @@ public:
 class bullet_mk2 : public bullet
 {
 public:
-
     // Konstruktor
     bullet_mk2(int, int, int, int, int, int, SDL_Renderer*);
 

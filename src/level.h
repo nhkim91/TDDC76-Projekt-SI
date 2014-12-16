@@ -34,7 +34,7 @@ class level
 public:
     level() = delete;
     level(int, int, std::vector<flying_objects*>*, SDL_Renderer*);
-    virtual ~level() = default;
+    ~level() = default;
 
     level(const level&) = default;
 
@@ -42,14 +42,14 @@ public:
     void set_renderer(render* rend);
 
 private:
-    int lvl{1};
+    int lvl {1};
     std::vector<int> data;
     std::vector<flying_objects*>* disp_objects_pointer;
     int width;
     int height;
     SDL_Renderer* renderer_;
     Uint32 latest_lvl_change_;
-    Uint32 display_time_{2000};
+    Uint32 display_time_ {2000};
 
 
     void get_next_lvl(int);
@@ -67,6 +67,7 @@ private:
     flying_objects* get_power_up(int);
 
     render* rend_;
+
     SDL_Texture *renderText(const std::string &str, const std::string &fontFile,
                             SDL_Color color, int fontSize, SDL_Renderer *renderer);
 
