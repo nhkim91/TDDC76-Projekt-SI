@@ -1,16 +1,17 @@
 /*
- * IDA Programvaruproduktion AB (u.p.a.)
+ * TDDC76 PROJEKT: Space Invader
  *
  * IDENTIFIERING
  *
  * Filnamn:    bullet.h
  * Enhetsnamn: Bullet
- * Typ:        -----
- * Revision:   2.1
- * Skriven av: Anton, Margareta, Madeleine
+ * Typ:         Klassdeklaration
+ * Skriven av:  Anton Gifvars, antgi546, 890917-1657
+ * 				Margareta Vi, marvi154,  920809-0309
+ * 				Madeleine Ardic, madar730, 930922-4245
+ * Datum:       2014-12-xx
  *
- *
- * BESKRIVNING
+ * BESKRIVNING:
  *
  * Denna klass är till för bullet, dvs skott som bÃ¥de alien och player använder sig av.
  * Funktioner:
@@ -22,14 +23,6 @@
  *
  *   Innehåller ocksÃ¥ sub-klasserna bullet_mk1 som Ã¤r default skottet, bullet_mk2 som fÃ¥s genom en power up.
  *
- * REVISIONSBERÄTTELSE
- *
- * Revision     Datum   Förändringar
- *
- * 1            940319  Ursprungsversion
- * 1.1          940407  ...
- * ...
- * 2.0          940821  ...
  */
 
 #ifndef BULLET_H_

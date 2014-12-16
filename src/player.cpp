@@ -49,7 +49,7 @@ void player::clear_power_up_attack()
     flying_objects* ptr;
     ptr = dynamic_cast<flying_objects*>(power_up_attack_);
     delete ptr;
-    //delete power_up_attack_;
+    sound_->play_power_down_bullet();
     power_up_attack_ = nullptr;
     return;
 }
@@ -58,12 +58,8 @@ void player::clear_power_up_shield()
 {
     flying_objects* ptr;
     ptr = dynamic_cast<flying_objects*>(power_up_shield_);
-    if (ptr == nullptr)
-    {
-        cerr << "nullptr\n";
-    }
     delete ptr;
-    //delete power_up_shield_;
+    sound_->play_shield_down();
     power_up_shield_ = nullptr;
     return;
 }
@@ -146,12 +142,14 @@ bool player::hit(flying_objects& other)
             {
                 power_up_attack* attack_ptr {new power_up_attack{10, 10, 10, 0, 0, renderer_}};
                 power_up_attack_ = attack_ptr;
+                sound_->play_power_up_bullet();
                 return false;
             }
 
             else
             {
                 power_up_attack_->set_created_time();
+                sound_->play_power_up_bullet();
                 return false;
             }
         }
@@ -164,6 +162,7 @@ bool player::hit(flying_objects& other)
             if (life_ < 5)
             {
                 life_++;
+                sound_->play_power_up_life();
             }
             return false;
         }
@@ -176,6 +175,7 @@ bool player::hit(flying_objects& other)
             {
                 power_up_shield* shield_ptr {new power_up_shield{10, 60, 10, 0, 0, renderer_}};
                 power_up_shield_ = shield_ptr;
+                sound_->play_shield_up();
                 special_ = true;
                 return false;
             }
@@ -183,6 +183,7 @@ bool player::hit(flying_objects& other)
             else
             {
                 power_up_shield_ ->set_created_time();
+                sound_->play_shield_up();
                 return false;
             }
         }
@@ -217,6 +218,5 @@ void player::increase_life(int amount)
 
 void player::set_special(bool statement)
 {
-    //cerr << "apa!" << endl;
     special_ = statement;
 }
