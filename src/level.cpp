@@ -60,14 +60,12 @@ void level::spawn(int score)
     {
         if (i < 5)
         {
-            //cerr << "alien1 \n";
             disp_objects_pointer->push_back(get_alien_mk1());
             return;
         }
 
         else if (i >= 5 && i < 10)
         {
-            //cerr << "small met\n";
             disp_objects_pointer->push_back(get_meteorite_small());
             return;
         }
@@ -94,7 +92,7 @@ void level::spawn(int score)
             return;
         }
 
-        else if (i >= 15 && i < 20)
+        else if (i >= 40 && i < 45)
         {
             disp_objects_pointer->push_back(get_power_up(i));
             return;
@@ -127,7 +125,7 @@ void level::spawn(int score)
             return;
         }
 
-        else if (i >= 40 && i < 46)
+        else if (i >= 45 && i < 55)
         {
             disp_objects_pointer->push_back(get_power_up(i));
             return;
@@ -224,29 +222,29 @@ flying_objects* level::get_power_up(int i)
     data[3] = -200; //Hastighet i x-led
     data[4] = 0;
 
-    if (i < 320)
+    if (i < 45)
     {
 
-        flying_objects* power_up_ptr {new power_up_attack{data[0], data[1], data[2], data[3], data[4], renderer_}};
+        flying_objects* power_up_a {new power_up_attack{data[0], data[1], data[2], data[3], data[4], renderer_}};
         //power_up_attack power_up{data[0], data[1], data[2], data[3], data[4], renderer_};
         //flying_objects* attack = static_cast<flying_objects*>(&power_up);
-        return power_up_ptr;
+        return power_up_a;
     }
-    else if (i >= 320 && i < 340)
+    if (i >= 45 && i < 50)
     {
 
-        flying_objects* power_up_ptr {new power_up_life{data[0], data[1], data[2], data[3], data[4], renderer_}};
+        flying_objects* power_up_l {new power_up_life{data[0], data[1], data[2], data[3], data[4], renderer_}};
         //power_up_life power_up{data[0], data[1], data[2], data[3], data[4], renderer_};
         //flying_objects* life = static_cast<flying_objects*>(&power_up);
-        return power_up_ptr;
+        return power_up_l;
     }
     else
     {
 
-        flying_objects* power_up_ptr {new power_up_shield{data[0], data[1], data[2], data[3], data[4], renderer_}};
+        flying_objects* power_up_s{new power_up_shield{data[0], data[1], data[2], data[3], data[4], renderer_}};
         //power_up_shield power_up{data[0], data[1], data[2], data[3], data[4], renderer_};
         //flying_objects* shield = static_cast<flying_objects*>(&power_up);
-        return power_up_ptr;
+        return power_up_s;
     }
 }
 
