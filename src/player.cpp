@@ -27,6 +27,7 @@ player::player(int life, int x_pos, int y_pos, int x_speed, int y_speed, SDL_Ren
 
 	SDL_FreeSurface(temp);
 
+
 	SDL_Surface* temp2 = IMG_Load("playerShip2_blue.png");
 	texture_special_ = SDL_CreateTextureFromSurface(renderer, temp2);
 
