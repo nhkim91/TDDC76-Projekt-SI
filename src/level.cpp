@@ -58,13 +58,13 @@ void level::spawn(int score)
 
     if (lvl == 1)
     {
-        if (i < 5)
+        if (i < 3)
         {
             disp_objects_pointer->push_back(get_alien_mk1());
             return;
         }
 
-        else if (i >= 5 && i < 10)
+        else if (i >= 3 && i < 6)
         {
             disp_objects_pointer->push_back(get_meteorite_small());
             return;
@@ -74,25 +74,25 @@ void level::spawn(int score)
 
     else if (lvl == 2)
     {
-        if (i < 5)
+        if (i < 4)
         {
             disp_objects_pointer->push_back(get_alien_mk1());
             return;
         }
 
-        else if (i >= 5 && i < 10)
+        else if (i >= 4 && i < 8)
         {
             disp_objects_pointer->push_back(get_alien_mk2());
             return;
         }
 
-        else if (i >= 10 && i < 15)
+        else if (i >= 8 && i < 12)
         {
             disp_objects_pointer->push_back(get_meteorite_small());
             return;
         }
 
-        else if (i >= 40 && i < 45)
+        else if (i >= 45 && i < 48)
         {
             disp_objects_pointer->push_back(get_power_up(i));
             return;
@@ -101,38 +101,36 @@ void level::spawn(int score)
 
     else if (lvl == 3)
     {
-        if (i < 10)
+        if (i < 5)
         {
             disp_objects_pointer->push_back(get_alien_mk1());
             return;
         }
 
-        else if (i >= 10 && i < 20)
+        else if (i >=5 && i < 10)
         {
             disp_objects_pointer->push_back(get_alien_mk2());
             return;
         }
 
-        else if (i >= 20 && i < 30)
+        else if (i >= 10 && i < 15)
         {
             disp_objects_pointer->push_back(get_alien_mk3());
             return;
         }
 
-        else if (i >= 30 && i < 40)
+        else if (i >=15 && i < 20)
         {
             disp_objects_pointer->push_back(get_meteorite_medium());
             return;
         }
 
-        else if (i >= 45 && i < 55)
+        else if (i >= 45 && i < 54)
         {
             disp_objects_pointer->push_back(get_power_up(i));
             return;
         }
-
     }
-
     return;
 }
 
@@ -222,7 +220,7 @@ flying_objects* level::get_power_up(int i)
     data[3] = -200; //Hastighet i x-led
     data[4] = 0;
 
-    if (i < 45)
+    if (i < 48)
     {
 
         flying_objects* power_up_a {new power_up_attack{data[0], data[1], data[2], data[3], data[4], renderer_}};
@@ -230,7 +228,7 @@ flying_objects* level::get_power_up(int i)
         //flying_objects* attack = static_cast<flying_objects*>(&power_up);
         return power_up_a;
     }
-    if (i >= 45 && i < 50)
+    if (i >= 48 && i < 51)
     {
 
         flying_objects* power_up_l {new power_up_life{data[0], data[1], data[2], data[3], data[4], renderer_}};
