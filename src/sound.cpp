@@ -1,8 +1,20 @@
 /*
- * sound.cpp
+ * TDDC76 PROJEKT: Space Invader
  *
- *  Created on: 14 dec 2014
- *      Author: samanthavi
+ * IDENTIFIERING
+ *
+ * Filnamn:     sound.cpp
+ * Enhetsnamn:  sound
+ * Typ:
+ * Skriven av:  Margareta Vi, marvi154,  920809-0309
+ * 				Madeleine Ardic, madar730, 930922-4245
+ * Datum:       2014-12-xx
+ *
+ * BESKRIVNING:
+ *
+ * Filen innehåller deklarationer för klassen sound.
+ *
+ * REFERERADE BIBLIOTEK OCH MODULER:
  */
 
 #include "sound.h"
@@ -84,7 +96,6 @@ sound::sound()
 	{
 		fprintf(stderr, "unable to load menu sound %s\n", Mix_GetError());
 	}
-
 }
 
 void sound::play_attack()

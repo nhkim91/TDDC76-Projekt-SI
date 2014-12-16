@@ -13,6 +13,13 @@
  *
  * BESKRIVNING
  *
+ * Funktioner:
+ * - check_living:
+ * - hit:
+ *
+ * Underklasser:
+ * - meteorite_small:
+ * - meteorite_medium:
  */
 
 #ifndef METEORITE_H_
@@ -27,8 +34,6 @@ class meteorite : public flying_objects
 {
 
 public:
-    // Datamedlemmar
-
     // Konstruktor
     meteorite(int, int, int, int, int, SDL_Renderer*);
     meteorite();

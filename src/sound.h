@@ -1,11 +1,25 @@
 /*
- * sound.h
- *  Created on: 14 dec 2014
+ * TDDC76 PROJEKT: Space Invader
+ *
+ * IDENTIFIERING
+ *
+ * Filnamn:     sound.h
+ * Enhetsnamn:  sound
+ * Typ:         Klassdeklaration
+ * Skriven av:  Margareta Vi, marvi154,  920809-0309
+ * 				Madeleine Ardic, madar730, 930922-4245
+ * Datum:       2014-12-xx
+ *
+ * BESKRIVNING
+ *
+ * Funktioner:
  */
-
 #ifndef SRC_SOUND_H_
 #define SRC_SOUND_H_
 
+/*
+ * REFERERADE BIBLIOTEK OCH MODULER
+ */
 #include <SDL2/SDL_mixer.h>
 #include <string>
 
@@ -42,7 +56,5 @@ private:
     Mix_Music *background_sound = NULL;
     Mix_Music *menu_sound = NULL;
 };
-
-
 
 #endif /* SRC_SOUND_H_ */

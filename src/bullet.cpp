@@ -13,7 +13,7 @@
  *
  * BESKRIVNING:
  *
- * Filen innehÃ¥ller deklarationer för klassen
+ * Filen innehåller deklarationer för klassen bullet.
  *
  * REFERERADE BIBLIOTEK OCH MODULER:
  */
@@ -44,7 +44,6 @@ bool bullet::hit(flying_objects& other)
 	flying_objects *ptr_;
 	ptr_ = &other;
 	int dmg_taken {1};
-
 	int other_x_speed = other.get_x_speed();
 
 	bullet* other_obj_1;
@@ -71,7 +70,7 @@ bool bullet::hit(flying_objects& other)
 
 	return check_living(dmg_taken);
 }
-/////////////////////////////////////////////////////
+
 bullet::bullet(int life, int dmg, int x_pos, int y_pos, int x_speed, int y_speed, SDL_Renderer* renderer)
 {
 	life_ = life;
@@ -83,7 +82,6 @@ bullet::bullet(int life, int dmg, int x_pos, int y_pos, int x_speed, int y_speed
 	x_speed_ = x_speed;
 	y_speed_ = y_speed;
 }
-////////////////////////////////////////////////////////
 
 bullet_mk1::bullet_mk1(int life, int dmg, int x_pos, int y_pos, int x_speed, int y_speed, SDL_Renderer* renderer):
     		bullet(life, dmg, x_pos, y_pos, x_speed, y_speed, renderer)
@@ -99,8 +97,6 @@ bullet_mk1::bullet_mk1(int life, int dmg, int x_pos, int y_pos, int x_speed, int
 	SDL_FreeSurface(temp);
 }
 
-/////////////////////////////////////////////////
-
 bullet_mk2::bullet_mk2(int life, int dmg, int x_pos, int y_pos, int x_speed, int y_speed, SDL_Renderer* renderer):
     		bullet(life, dmg, x_pos, y_pos, x_speed, y_speed, renderer)
 {
@@ -115,4 +111,3 @@ bullet_mk2::bullet_mk2(int life, int dmg, int x_pos, int y_pos, int x_speed, int
 	SDL_FreeSurface(temp);
 }
 
-///////////////////////////////////////////////////

@@ -1,13 +1,25 @@
 /*
- * power_up.cpp
+ * TDDC76 PROJEKT: Space Invader
  *
- *  Created on: 25 nov 2014
- *      Author: anton
+ * IDENTIFIERING
+ *
+ * Filnamn:     power_up.cpp
+ * Enhetsnamn:  power_up
+ * Typ:         Definitioner hörande till klassen flying_objects
+ * Skriven av:  Anton Gifvars, antgi546, 890917-1657
+ * 				Margareta Vi, marvi154,  920809-0309
+ * 				Madeleine Ardic, madar730, 930922-4245
+ * Datum:       2014-12-xx
+ *
+ * BESKRIVNING:
+ *
+ * Filen innhåller deklarationer för klassen power_up.
+ *
+ * REFERERADE BIBLIOTEK OCH MODULER:
  */
 #include "linkheader.h"
 #include "flying_objects.h"
 using namespace std;
-
 
 power_up::power_up(int life, int x_pos, int y_pos, int x_speed, int y_speed, SDL_Renderer* renderer)
 {
@@ -22,7 +34,6 @@ power_up::power_up(int life, int x_pos, int y_pos, int x_speed, int y_speed, SDL
     x_speed_ = x_speed;
     y_speed_ = y_speed;
 }
-
 
 int power_up::get_created_time()
 {
@@ -70,15 +81,37 @@ bool power_up::hit(flying_objects& other)
     {
         return true;
     }
-
     return false;
 }
 
-/////////////////////////////////////////////////
 power_up_attack::power_up_attack(int life, int x_pos, int y_pos, int x_speed, int y_speed, SDL_Renderer* renderer):
     power_up(life, x_pos, y_pos, x_speed, y_speed, renderer)
 {
     SDL_Surface* temp = IMG_Load("power_up_attack.png");
+    texture_ = SDL_CreateTextureFromSurface(renderer, temp);
+
+    rect_.w = temp->w;
+    rect_.h = temp->h;
+
+    SDL_FreeSurface(temp);
+}
+
+power_up_life::power_up_life(int life, int x_pos, int y_pos, int x_speed, int y_speed, SDL_Renderer* renderer):
+    power_up(life, x_pos, y_pos, x_speed, y_speed, renderer)
+{
+    SDL_Surface* temp = IMG_Load("power_up_life.png");
+    texture_ = SDL_CreateTextureFromSurface(renderer, temp);
+
+    rect_.w = temp->w;
+    rect_.h = temp->h;
+
+    SDL_FreeSurface(temp);
+}
+
+power_up_shield::power_up_shield(int life, int x_pos, int y_pos, int x_speed, int y_speed, SDL_Renderer* renderer):
+    power_up(life, x_pos, y_pos, x_speed, y_speed, renderer)
+{
+    SDL_Surface* temp = IMG_Load("power_up_shield.png");
     texture_ = SDL_CreateTextureFromSurface(renderer, temp);
 
     rect_.w = temp->w;
@@ -93,33 +126,3 @@ flying_objects* power_up_attack::attack(int x_pos, int y_pos)
     attack_ptr = new bullet_mk2 {2, 3, x_pos, y_pos, 300, 0, renderer_};
     return attack_ptr;
 }
-
-
-
-/////////////////////////////////////////////////
-power_up_life::power_up_life(int life, int x_pos, int y_pos, int x_speed, int y_speed, SDL_Renderer* renderer):
-    power_up(life, x_pos, y_pos, x_speed, y_speed, renderer)
-{
-    SDL_Surface* temp = IMG_Load("power_up_life.png");
-    texture_ = SDL_CreateTextureFromSurface(renderer, temp);
-
-    rect_.w = temp->w;
-    rect_.h = temp->h;
-
-    SDL_FreeSurface(temp);
-}
-
-/////////////////////////////////////////////////
-power_up_shield::power_up_shield(int life, int x_pos, int y_pos, int x_speed, int y_speed, SDL_Renderer* renderer):
-    power_up(life, x_pos, y_pos, x_speed, y_speed, renderer)
-{
-    SDL_Surface* temp = IMG_Load("power_up_shield.png");
-    texture_ = SDL_CreateTextureFromSurface(renderer, temp);
-
-    rect_.w = temp->w;
-    rect_.h = temp->h;
-
-    SDL_FreeSurface(temp);
-}
-
-/////////////////////////////////////////////////
