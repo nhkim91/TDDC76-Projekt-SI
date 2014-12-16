@@ -11,8 +11,11 @@
 #include "sound.h"
 using namespace std;
 
-space_invader::space_invader(SDL_Renderer* renderer, render* rend, sound* sound)
+space_invader::space_invader(SDL_Renderer* renderer, render* rend, sound* sound,
+		int screen_width, int screen_height)
 {
+	SCREEN_WIDTH = screen_width;
+	SCREEN_HEIGHT = screen_height;
 	level_ = new level {SCREEN_WIDTH, SCREEN_HEIGHT, &displaying_objects_, renderer};
 	level_->set_renderer(rend);
 	renderer_ = renderer;
@@ -24,6 +27,13 @@ space_invader::space_invader(SDL_Renderer* renderer, render* rend, sound* sound)
 	player* player_ptr;
 	player_ptr = dynamic_cast<player*>(pp3);
 	player_ = player_ptr;
+}
+
+space_invader::~space_invader()
+{
+	delete player_;
+	delete level_;
+	displaying_objects_.clear();
 }
 
 void space_invader::power_up_timer_check()

@@ -89,6 +89,8 @@ void menu::run()
 			{
 				--selected_item;
 
+
+
 				if (selected_item < 0)
 				{
 					selected_item = 3;
@@ -104,7 +106,7 @@ void menu::run()
 				{
 					if (si == nullptr)
 					{
-						si = new space_invader {renderer->get_renderer(), renderer, snd};
+						si = new space_invader {renderer->get_renderer(), renderer, snd, screen_width, screen_height};
 					}
 					if (si->run())
 					{
@@ -112,6 +114,7 @@ void menu::run()
 						delete si;
 						si = nullptr;
 					}
+
 
 					//int score = si->run();
 					//hs->save_score(score);
