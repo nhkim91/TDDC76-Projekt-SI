@@ -69,6 +69,7 @@ void highscore::save_score(int score)
             list_of_score.insert(it, temp);
             list_of_score.pop_back();
             write();
+            show_highscore();
             return;
         }
         i++;
