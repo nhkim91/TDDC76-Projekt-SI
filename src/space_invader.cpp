@@ -11,8 +11,11 @@
 #include "sound.h"
 using namespace std;
 
-space_invader::space_invader(SDL_Renderer* renderer, render* rend, sound* sound)
+space_invader::space_invader(SDL_Renderer* renderer, render* rend, sound* sound,
+		int screen_width, int screen_height)
 {
+	SCREEN_WIDTH = screen_width;
+	SCREEN_HEIGHT = screen_height;
 	level_ = new level {SCREEN_WIDTH, SCREEN_HEIGHT, &displaying_objects_, renderer};
 	level_->set_renderer(rend);
 	renderer_ = renderer;
@@ -24,6 +27,13 @@ space_invader::space_invader(SDL_Renderer* renderer, render* rend, sound* sound)
 	player* player_ptr;
 	player_ptr = dynamic_cast<player*>(pp3);
 	player_ = player_ptr;
+}
+
+space_invader::~space_invader()
+{
+	delete player_;
+	delete level_;
+	displaying_objects_.clear();
 }
 
 void space_invader::power_up_timer_check()
@@ -392,8 +402,20 @@ void space_invader::update_things(vector<flying_objects*> update_vector, float t
 		flying_objects* temp = update_vector.at(i);
 		int new_x_speed, new_y_speed;
 
+		alien_mk3* ptr;
+		ptr = dynamic_cast<alien_mk3*>(temp);
+		if (ptr != nullptr)
+		{
+			new_y_speed = ptr->get_y_speed() * time_diff;
+		}
+		else
+		{
+			new_y_speed = temp->get_y_speed() * time_diff;
+		}
+
+
 		new_x_speed = temp->get_x_speed() * time_diff;
-		new_y_speed = temp->get_y_speed() * time_diff;
+		//new_y_speed = temp->get_y_speed() * time_diff;
 
 		temp->set_x_pos(new_x_speed + temp->get_x_pos());
 		temp->set_y_pos(new_y_speed + temp->get_y_pos());
@@ -406,7 +428,7 @@ void space_invader::update_things(vector<flying_objects*> update_vector, float t
 		///Uppe och nere////
 		if (temp->get_y_pos() + temp->get_rect().h > SCREEN_HEIGHT)
 		{
-			temp->set_y_pos(temp->get_y_pos() - temp->get_y_speed() * time_diff);
+			temp->set_y_pos(temp->get_y_pos() - new_y_speed);
 		}
 		else
 		{
@@ -415,7 +437,7 @@ void space_invader::update_things(vector<flying_objects*> update_vector, float t
 
 		if (temp->get_y_pos() < 0)
 		{
-			temp->set_y_pos(temp->get_y_pos() - temp->get_y_speed() * time_diff);
+			temp->set_y_pos(temp->get_y_pos() - new_y_speed);
 		}
 		else
 		{
