@@ -6,6 +6,8 @@
 #include "space_invader.h"
 #include "highscore.h"
 #include "menu.h"
+#include "sound.h"
+#include <SDL2/SDL_mixer.h>
 
 #include<sstream>
 
@@ -28,11 +30,17 @@ std::string to_string(T value)
 int main(int, char**)
 {
     // initialize SDL
-    if (SDL_Init(SDL_INIT_VIDEO) != 0)
+    if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO) != 0)
     {
         cerr << "Error initializing SDL" << endl;
         exit(1);
     }
+    if ( Mix_OpenAudio( 44100, MIX_DEFAULT_FORMAT, 2 , 2048) < 0)
+    {
+    	printf("SDL_mixer could not initialize! SDL_mixer Error: %s\n", Mix_GetError());
+    }
+    Mix_AllocateChannels(16);
+
 
     SDL_Window* window = SDL_CreateWindow("Highscore", SDL_WINDOWPOS_UNDEFINED,
                                           SDL_WINDOWPOS_UNDEFINED, 800, 600, SDL_WINDOW_SHOWN);
@@ -41,11 +49,11 @@ int main(int, char**)
                              SDL_RENDERER_PRESENTVSYNC);
 
 
-
+    sound all_sounds = sound();
     render rend;
     rend.set_renderer(renderer);
 
-    space_invader SI(renderer, &rend);
+    space_invader SI(renderer, &rend, &all_sounds);
     //SI.run(); // TODO: Bra om space_invader retunerar score.
 
     highscore hs;
