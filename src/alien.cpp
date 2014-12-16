@@ -1,4 +1,5 @@
 #include "linkheader.h"
+//#include "flying_objects.h"
 using namespace std;
 
 bool alien::check_living(int dmg, bool give_points)
@@ -23,6 +24,8 @@ bool alien::hit(flying_objects& other)
     flying_objects *ptr_;
     ptr_ = &other;
     int dmg_taken {1};
+    int other_x_speed;
+	other_x_speed = other.get_x_speed();
 
     meteorite* other_obj_1;
     other_obj_1 = dynamic_cast<meteorite*>(ptr_);
@@ -42,7 +45,11 @@ bool alien::hit(flying_objects& other)
     other_obj_3 = dynamic_cast<bullet*>(ptr_);
     if (other_obj_3 != nullptr)
     {
-        return check_living(other_obj_3->get_dmg(), true);
+    	if(x_speed_ * other_x_speed < 0)
+    	{
+    		return check_living(other_obj_3->get_dmg(), true);
+    	}
+
     }
 
     return false;

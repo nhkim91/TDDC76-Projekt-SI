@@ -13,6 +13,13 @@ using namespace std;
 sound::~sound()
 {
 	Mix_FreeChunk(attack_sound);
+	Mix_FreeChunk(attack_up_sound);
+	Mix_FreeMusic(background_sound);
+	Mix_FreeMusic(menu_sound);
+	attack_sound = NULL;
+	attack_up_sound = NULL;
+	background_sound = NULL;
+	menu_sound = NULL;
 }
 
 sound::sound()
@@ -23,12 +30,20 @@ sound::sound()
 		fprintf(stderr, "unable to load attack sound %s\n", Mix_GetError());
 	}
 
-	attack_up_sound = Mix_LoadWAV("Laser_blast.waw");
+	attack_up_sound = Mix_LoadWAV("Laser_blast.ogg");
 	if (attack_sound == NULL)
 	{
 		fprintf(stderr, "unable to load attack_up sound %s\n", Mix_GetError());
 	}
 
+
+	/*kill_sound = Mix_LoadWAV("");
+	if (kill_sound == NULL)
+	{
+		fprintf(stderr, "unable to load kill sound %s\n", Mix_GetError());
+	}
+
+	*/
 	background_sound = Mix_LoadMUS("background.ogg");
 	if (background_sound == NULL)
 	{
@@ -50,6 +65,14 @@ void sound::play_attack()
 	}
 }
 
+void sound::play_attack_up()
+{
+	if ((Mix_PlayChannel(-1, attack_up_sound, 0)) == -1)
+	{
+		fprintf(stderr, "unable to play attack sound: %s\n", Mix_GetError());
+	}
+}
+
 void sound::play_background()
 {
 	if (Mix_PlayingMusic() == 0)
@@ -58,26 +81,32 @@ void sound::play_background()
 	}
 }
 
-void sound::play_menu()
+void sound::sound_paused()
 {
-	if (Mix_PlayingMusic() == 0)
+	if( Mix_PlayingMusic() == 0 )
 	{
-		Mix_PlayMusic(menu_sound, -1);
+		//Play the music
+		Mix_PlayMusic( background_sound, -1 );
+	}
+	//If music is being played
+	else
+	{
+		//If the music is paused
+		if( Mix_PausedMusic() == 1 )
+		{
+			//Resume the music
+			Mix_ResumeMusic();
+		}
+		//If the music is playing
+		else
+		{
+			//Pause the music
+			Mix_PauseMusic();
+		}
 	}
 }
 
-void sound_paused()
+void sound::stop_music()
 {
-	//If the music is paused
-	if( Mix_PausedMusic() == 1 )
-	{
-		//Resume the music
-		Mix_ResumeMusic();
-	}
-	//If the music is playing
-	else
-	{
-		//Pause the music
-		Mix_PauseMusic();
-	}
+	Mix_HaltMusic();
 }

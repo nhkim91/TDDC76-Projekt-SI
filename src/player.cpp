@@ -204,7 +204,7 @@ flying_objects* player::attack()
     else if (last_shoot_time_ <= (SDL_GetTicks() - cooldown_))
     {
         last_shoot_time_ = SDL_GetTicks();
-        sound_->play_attack();
+        sound_->play_attack_up();
         return power_up_attack_->attack((x_pos_ + rect_.w), y_pos_ + rect_.h / 2);
     }
     return nullptr;

@@ -19,13 +19,16 @@ public:
     // funktioner
     void set_sound(sound*);
     void play_attack();
+    void play_attack_up();
     void play_background();
-    void play_menu();
+    //void play_kill();
     void sound_paused();
+    void stop_music();
 
 private:
     Mix_Chunk *attack_sound = NULL;
     Mix_Chunk *attack_up_sound = NULL;
+    //Mix_Chunk *kill_sound = NULL;
     Mix_Music *background_sound = NULL;
     Mix_Music *menu_sound = NULL;
 
