@@ -101,7 +101,7 @@ string highscore::enter_name() //Namnet ska vara ett ord (får inte vara tom str
             SDL_Keycode key = event.key.keysym.sym;
             if (key == SDLK_RETURN || key == SDLK_RETURN2)
             {
-                if(!name.empty())
+                if (!name.empty())
                 {
                     run = false;
                     break;
@@ -193,7 +193,7 @@ void highscore::show_highscore()
 {
     load();
 
-    renderer->render_image("space_background.png",0, 0);
+    renderer->render_image("space_background.png", 0, 0);
 
     SDL_Color redColor {187, 32, 26, 255};
 
@@ -214,7 +214,7 @@ void highscore::show_highscore()
 
     run = true;
     SDL_Event event;
-    while(run)
+    while (run)
     {
         SDL_WaitEvent(&event);
         if (event.type == SDL_KEYDOWN)
