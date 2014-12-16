@@ -1,4 +1,3 @@
-#include "player.h"
 #include "linkheader.h"
 #include "sound.h"
 #include <iostream>
