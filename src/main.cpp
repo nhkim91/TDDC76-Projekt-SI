@@ -35,9 +35,9 @@ int main(int, char**)
         cerr << "Error initializing SDL" << endl;
         exit(1);
     }
-    if ( Mix_OpenAudio( 44100, MIX_DEFAULT_FORMAT, 2 , 2048) < 0)
+    if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2 , 2048) < 0)
     {
-    	printf("SDL_mixer could not initialize! SDL_mixer Error: %s\n", Mix_GetError());
+        printf("SDL_mixer could not initialize! SDL_mixer Error: %s\n", Mix_GetError());
     }
     Mix_AllocateChannels(16);
 
@@ -79,13 +79,13 @@ int main(int, char**)
 
 
 
-        // free memory
+    // free memory
 
 
-        SDL_DestroyRenderer(renderer);
-        SDL_DestroyWindow(window);
+    SDL_DestroyRenderer(renderer);
+    SDL_DestroyWindow(window);
 
-        SDL_Quit();
+    SDL_Quit();
 
     return 0;
 }

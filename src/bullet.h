@@ -33,7 +33,7 @@ public:
     bullet();
 
     // Destruktor
-    ~bullet()=default;
+    ~bullet() = default;
 };
 //////////////////////////////////////////
 class bullet_mk1 : public bullet

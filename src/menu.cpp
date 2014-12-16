@@ -48,12 +48,12 @@ void menu::set_help(help* help_)
 
 void menu::set_sound(sound* sound_)
 {
-	snd = sound_;
+    snd = sound_;
 }
 void menu::run()
 {
-	//si = new space_invader{renderer->get_renderer(), renderer};
-	//set_play(SI);
+    //si = new space_invader{renderer->get_renderer(), renderer};
+    //set_play(SI);
 
     bool loop {true};
     SDL_Event event;
@@ -93,18 +93,18 @@ void menu::run()
             }
             else if (key == SDLK_RETURN || key == SDLK_RETURN2)
             {
-            	if (selected_item == 0)
-            	{
-            		if (si == nullptr)
-            		{
-            			si = new space_invader{renderer->get_renderer(), renderer, snd};
-            		}
-            		if(si->run())
-            		{
-            			hs->save_score(si->get_score());
-            			delete si;
-            			si = nullptr;
-            		}
+                if (selected_item == 0)
+                {
+                    if (si == nullptr)
+                    {
+                        si = new space_invader {renderer->get_renderer(), renderer, snd};
+                    }
+                    if (si->run())
+                    {
+                        hs->save_score(si->get_score());
+                        delete si;
+                        si = nullptr;
+                    }
 
                     //int score = si->run();
                     //hs->save_score(score);
@@ -113,11 +113,11 @@ void menu::run()
                 {
                     hs->show_highscore();
                 }
-                else if(selected_item == 2)
+                else if (selected_item == 2)
                 {
                     h->show_help();
                 }
-                else if(selected_item == 3)
+                else if (selected_item == 3)
                 {
                     loop = false;
                 }
@@ -137,31 +137,31 @@ void menu::render_menu()
     SDL_Color whiteColor {255, 255, 255, 255};
     SDL_Color redColor {187, 32, 26, 255};
 
-    renderer->render_image("space_background.png",0, 0);
+    renderer->render_image("space_background.png", 0, 0);
     renderer->render_text("Space Invader", "Arcade.ttf", whiteColor, 100, 80, 30);
 
-    if(selected_item == 0)
+    if (selected_item == 0)
     {
         renderer->render_text("Play", "Arcade.ttf", redColor, 50, 350, 260);
         renderer->render_text("High Score", "Arcade.ttf", whiteColor, 50, 280, 310);
         renderer->render_text("Help", "Arcade.ttf", whiteColor, 50, 350, 360);
         renderer->render_text("Quit", "Arcade.ttf", whiteColor, 50, 350, 410);
     }
-    else if(selected_item == 1)
+    else if (selected_item == 1)
     {
         renderer->render_text("Play", "Arcade.ttf", whiteColor, 50, 350, 260);
         renderer->render_text("High Score", "Arcade.ttf", redColor, 50, 280, 310);
         renderer->render_text("Help", "Arcade.ttf", whiteColor, 50, 350, 360);
         renderer->render_text("Quit", "Arcade.ttf", whiteColor, 50, 350, 410);
     }
-    else if(selected_item == 2)
+    else if (selected_item == 2)
     {
         renderer->render_text("Play", "Arcade.ttf", whiteColor, 50, 350, 260);
         renderer->render_text("High Score", "Arcade.ttf", whiteColor, 50, 280, 310);
         renderer->render_text("Help", "Arcade.ttf", redColor, 50, 350, 360);
         renderer->render_text("Quit", "Arcade.ttf", whiteColor, 50, 350, 410);
     }
-    else if(selected_item == 3)
+    else if (selected_item == 3)
     {
         renderer->render_text("Play", "Arcade.ttf", whiteColor, 50, 350, 260);
         renderer->render_text("High Score", "Arcade.ttf", whiteColor, 50, 280, 310);
