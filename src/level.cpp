@@ -175,7 +175,7 @@ flying_objects* level::get_alien_mk3()
 	data[1] = width;
 	data[2] = rand() % (height-100);
 	data[3] = -(rand() % 150 +100); //Hastighet i x-led
-	data[4] = rand() % 50;
+	data[4] = rand() % (150 + 100);
 
 
 	flying_objects* alien_3 {new alien_mk3{data[0], data[1], data[2], data[3], data[4], renderer_}};
