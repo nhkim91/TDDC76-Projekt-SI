@@ -1,8 +1,21 @@
 /*
- * bullet.cpp
+ * TDDC76 PROJEKT: Space Invader
  *
- *  Created on: 25 nov 2014
- *      Author: anton
+ * IDENTIFIERING
+ *
+ * Filnamn:     bullet.cpp
+ * Enhetsnamn:  bullet
+ * Typ:         Definitioner hörande till klassen flying_objects
+ * Skriven av:  Anton Gifvars, antgi546, 890917-1657
+ * 				Margareta Vi, marvi154,  920809-0309
+ * 				Madeleine Ardic, madar730, 930922-4245
+ * Datum:       2014-12-xx
+ *
+ * BESKRIVNING:
+ *
+ * Filen innehåller deklarationer för klassen bullet.
+ *
+ * REFERERADE BIBLIOTEK OCH MODULER:
  */
 #include "bullet.h"
 #include "linkheader.h"
@@ -31,7 +44,6 @@ bool bullet::hit(flying_objects& other)
 	flying_objects *ptr_;
 	ptr_ = &other;
 	int dmg_taken {1};
-
 	int other_x_speed = other.get_x_speed();
 
 	bullet* other_obj_1;
@@ -58,7 +70,7 @@ bool bullet::hit(flying_objects& other)
 
 	return check_living(dmg_taken);
 }
-/////////////////////////////////////////////////////
+
 bullet::bullet(int life, int dmg, int x_pos, int y_pos, int x_speed, int y_speed, SDL_Renderer* renderer)
 {
 	life_ = life;
@@ -70,7 +82,6 @@ bullet::bullet(int life, int dmg, int x_pos, int y_pos, int x_speed, int y_speed
 	x_speed_ = x_speed;
 	y_speed_ = y_speed;
 }
-////////////////////////////////////////////////////////
 
 bullet_mk1::bullet_mk1(int life, int dmg, int x_pos, int y_pos, int x_speed, int y_speed, SDL_Renderer* renderer):
     		bullet(life, dmg, x_pos, y_pos, x_speed, y_speed, renderer)
@@ -86,8 +97,6 @@ bullet_mk1::bullet_mk1(int life, int dmg, int x_pos, int y_pos, int x_speed, int
 	SDL_FreeSurface(temp);
 }
 
-/////////////////////////////////////////////////
-
 bullet_mk2::bullet_mk2(int life, int dmg, int x_pos, int y_pos, int x_speed, int y_speed, SDL_Renderer* renderer):
     		bullet(life, dmg, x_pos, y_pos, x_speed, y_speed, renderer)
 {
@@ -102,4 +111,3 @@ bullet_mk2::bullet_mk2(int life, int dmg, int x_pos, int y_pos, int x_speed, int
 	SDL_FreeSurface(temp);
 }
 
-///////////////////////////////////////////////////
