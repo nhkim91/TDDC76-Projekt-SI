@@ -1,8 +1,21 @@
 /*
- * bullet.cpp
+ * TDDC76 PROJEKT: Space Invader
  *
- *  Created on: 25 nov 2014
- *      Author: anton
+ * IDENTIFIERING
+ *
+ * Filnamn:     bullet.cpp
+ * Enhetsnamn:  bullet
+ * Typ:         Definitioner hörande till klassen flying_objects
+ * Skriven av:  Anton Gifvars, antgi546, 890917-1657
+ * 				Margareta Vi, marvi154,  920809-0309
+ * 				Madeleine Ardic, madar730, 930922-4245
+ * Datum:       2014-12-xx
+ *
+ * BESKRIVNING:
+ *
+ * Filen innehÃ¥ller deklarationer för klassen
+ *
+ * REFERERADE BIBLIOTEK OCH MODULER:
  */
 #include "bullet.h"
 #include "linkheader.h"

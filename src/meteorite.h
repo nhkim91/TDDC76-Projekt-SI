@@ -1,26 +1,18 @@
 /*
- * IDA Programvaruproduktion AB (u.p.a.)
+ * TDDC76 PROJEKT: Space Invader
  *
  * IDENTIFIERING
  *
- * Filnamn:    meteorite.h
- * Enhetsnamn: meteorite
- * Typ:        ---------------
- * Revision:
- * Skriven av: Anton, Margareta, Madeleine
- *
+ * Filnamn:     meteorite.h
+ * Enhetsnamn:  meteorite
+ * Typ:         Klassdeklaration
+ * Skriven av:  Anton Gifvars, antgi546, 890917-1657
+ * 				Margareta Vi, marvi154,  920809-0309
+ * 				Madeleine Ardic, madar730, 930922-4245
+ * Datum:       2014-12-xx
  *
  * BESKRIVNING
  *
- *
- * REVISIONSBERÄTTELSE
- *
- * Revision     Datum   Förändringar
- *
- * 1            940319  Ursprungsversion
- * 1.1          940407  ...
- * ...
- * 2.0          940821  ...
  */
 
 #ifndef METEORITE_H_
@@ -67,4 +59,3 @@ public:
 };
 ///////////////////////////////////////////////////////////////
 #endif /* METEORITE_H_ */
-
