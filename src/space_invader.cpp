@@ -460,3 +460,9 @@ void space_invader::make_alien_attack()
 		}
 	}
 }
+
+
+
+
+
+
