@@ -11,14 +11,14 @@ public:
     // Datamedlemmar
     class power_up_attack* power_up_attack_{nullptr};
     class power_up_shield* power_up_shield_{nullptr};
-    unsigned int cooldown_{500};
+    unsigned int cooldown_{100};
     unsigned int last_shoot_time_{0};
 
     // Konstruktor
     player(int, int, int, int, int, SDL_Renderer*);
 
     //Operatorer
-    void operator=(const player&);
+    //void operator=(const player&);
 
     // Destruktor
     ~player();
@@ -33,6 +33,7 @@ public:
     power_up_shield* get_power_up_shield();
     flying_objects* attack();
     void increase_life(int);
+    void set_special(bool);
 
 };
 #endif /* PLAYER_H_ */

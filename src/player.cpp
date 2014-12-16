@@ -24,7 +24,14 @@ player::player(int life, int x_pos, int y_pos, int x_speed, int y_speed, SDL_Ren
 	y_pos_ = y_pos;
 	x_speed_ = x_speed;
 	y_speed_ = y_speed;
+
 	SDL_FreeSurface(temp);
+
+	SDL_Surface* temp2 = IMG_Load("player_shield.png");
+	texture_special_ = SDL_CreateTextureFromSurface(renderer, temp2);
+
+	SDL_FreeSurface(temp2);
+
 }
 
 player::~player()
@@ -157,6 +164,7 @@ bool player::hit(flying_objects& other)
 			{
 				power_up_shield* shield_ptr {new power_up_shield{10, 60, 10, 0, 0, renderer_}};
 				power_up_shield_ = shield_ptr;
+				special_ = true;
 				return false;
 			}
 
@@ -176,7 +184,7 @@ flying_objects* player::attack()
 	flying_objects* attack_ptr;
 	if (power_up_attack_ == nullptr && last_shoot_time_ <= (SDL_GetTicks()-cooldown_))
 	{
-		attack_ptr = new bullet_mk1 {1, 1, (x_pos_ + rect_.w), y_pos_ + rect_.h/2, 200, 0, renderer_};
+		attack_ptr = new bullet_mk1 {1, 1, (x_pos_ + rect_.w), y_pos_ + rect_.h/2, 400, 0, renderer_};
 		last_shoot_time_ = SDL_GetTicks();
 		return attack_ptr;
 	}
@@ -193,3 +201,8 @@ void player::increase_life(int amount)
 	life_ = life_ + amount;
 }
 
+void player::set_special(bool statement)
+{
+	cerr << "apa!" << endl;
+	special_ = statement;
+}

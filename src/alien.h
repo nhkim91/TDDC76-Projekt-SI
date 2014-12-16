@@ -61,7 +61,7 @@ public:
     alien_mk3(int, int, int, int, int, SDL_Renderer*);
 
     //funktioner
-    class bullet attack();
+    class flying_objects* attack();
 };
 ////////////////////////////////////////////////////////////////
 

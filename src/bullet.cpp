@@ -28,9 +28,24 @@ int bullet::get_dmg() const
 
 bool bullet::hit(flying_objects& other)
 {
+	flying_objects *ptr_;
+	ptr_ = &other;
 	int dmg_taken {1};
-	return check_living(dmg_taken);
 
+	int other_x_speed = ptr_->get_x_speed();
+
+	bullet* other_obj_;
+	other_obj_= dynamic_cast<bullet*>(ptr_);
+	if (other_obj_ != nullptr)
+	{
+		if(other_x_speed * x_speed_ <0 )
+		{
+			return true;
+		}
+		return false;
+	}
+
+	return check_living(dmg_taken);
 }
 /////////////////////////////////////////////////////
 bullet::bullet(int life, int dmg, int x_pos, int y_pos, int x_speed, int y_speed, SDL_Renderer* renderer)
@@ -47,7 +62,7 @@ bullet::bullet(int life, int dmg, int x_pos, int y_pos, int x_speed, int y_speed
 ////////////////////////////////////////////////////////
 
 bullet_mk1::bullet_mk1(int life, int dmg, int x_pos, int y_pos, int x_speed, int y_speed, SDL_Renderer* renderer):
-    				bullet(life, dmg, x_pos, y_pos, x_speed, y_speed, renderer)
+    						bullet(life, dmg, x_pos, y_pos, x_speed, y_speed, renderer)
 {
 	SDL_Surface* temp = IMG_Load("bullet_mk1.png");
 	texture_ = SDL_CreateTextureFromSurface(renderer, temp);
@@ -63,7 +78,7 @@ bullet_mk1::bullet_mk1(int life, int dmg, int x_pos, int y_pos, int x_speed, int
 /////////////////////////////////////////////////
 
 bullet_mk2::bullet_mk2(int life, int dmg, int x_pos, int y_pos, int x_speed, int y_speed, SDL_Renderer* renderer):
-    				bullet(life, dmg, x_pos, y_pos, x_speed, y_speed, renderer)
+    						bullet(life, dmg, x_pos, y_pos, x_speed, y_speed, renderer)
 {
 	SDL_Surface* temp = IMG_Load("bullet_mk2.png");
 	texture_ = SDL_CreateTextureFromSurface(renderer, temp);

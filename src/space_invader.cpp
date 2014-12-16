@@ -38,6 +38,7 @@ void space_invader::power_up_timer_check()
 	{
 		if(player_->get_power_up_shield()->times_up())
 		{
+			player_->set_special(false);
 			player_->clear_power_up_shield();
 		}
 	}
@@ -154,6 +155,7 @@ void space_invader::render_things(vector<flying_objects*> render_vector)
 {
 	SDL_Color whiteColor {255, 255, 255, 255};
 	int offset {50};
+	//render_->render_image("space_background.png",0, 0);
 	SDL_SetRenderDrawColor(renderer_, 0, 0, 0, 255);
 
 	for (unsigned int i = 0; i < render_vector.size(); i++)
@@ -344,6 +346,7 @@ void space_invader::run()
 			SDL_Delay(sleep_time);
 		}
 		level_->spawn(score_);
+		make_alien_attack();
 		//SDL_Delay(10);
 	}
 
@@ -431,3 +434,22 @@ int space_invader::get_score()
 	return score_;
 }
 
+void space_invader::make_alien_attack()
+{
+	int shoot_if;
+
+	for(unsigned int i=0; i < displaying_objects_.size(); i++)
+	{
+		alien_mk3* other_obj;
+		other_obj= dynamic_cast<alien_mk3*>(displaying_objects_.at(i));
+		if(other_obj != nullptr)
+		{
+			shoot_if = rand() % 200;
+			if(shoot_if==1)
+			{
+				add_object(other_obj->attack());
+
+			}
+		}
+	}
+}

@@ -1,3 +1,25 @@
+/*
+ * TDDC76 PROJEKT: Space Invader
+ *
+ * IDENTIFIERING
+ *
+ * Filnamn:     help.cpp
+ * Enhetsnamn:  help
+ * Typ:         Definitioner hörande till klassen help
+ * Skriven av:  Kim Nguyen Hoang 910112-0260 Y3.c kimng797
+ *              Kerstin Soderqvist 911006-0309 Y3.c kerso255
+ * Datum:       2014-12-xx
+ *
+ * BESKRIVNING
+ *
+ * Denna implementeringsfil innehåller definitioner för klassen help, som har som uppgift
+ * att innehålla och framföra information om hur man spelar spelet.
+ */
+
+/*
+ * REFERERADE BIBLIOTEK OCH MODULER
+ */
+
 #include "help.h"
 #include <string>
 
@@ -46,3 +68,7 @@ void help::show_help()
         }
     }
 }
+
+/*
+ * SLUT PÅ FILEN help.cpp
+ */
