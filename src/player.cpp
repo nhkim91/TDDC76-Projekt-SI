@@ -51,7 +51,10 @@ void player::clear_power_up_attack()
 
 void player::clear_power_up_shield()
 {
-	delete power_up_shield_;
+	flying_objects* ptr;
+	ptr = dynamic_cast<flying_objects*>(power_up_shield_);
+	delete ptr;
+	//delete power_up_shield_;
 	power_up_shield_ = nullptr;
 	return;
 }
