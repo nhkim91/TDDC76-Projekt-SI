@@ -29,7 +29,6 @@ private:
     Mix_Music *background_sound = NULL;
     Mix_Music *menu_sound = NULL;
 
-
 };
 
 

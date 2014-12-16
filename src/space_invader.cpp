@@ -255,7 +255,6 @@ bool space_invader::run()
             player_->set_y_speed(200);
         }
 
-
         while (SDL_PollEvent(&event))
         {
 
