@@ -27,7 +27,7 @@ player::player(int life, int x_pos, int y_pos, int x_speed, int y_speed, SDL_Ren
 
 	SDL_FreeSurface(temp);
 
-	SDL_Surface* temp2 = IMG_Load("player_shield.png");
+	SDL_Surface* temp2 = IMG_Load("player_with_shield.png");
 	texture_special_ = SDL_CreateTextureFromSurface(renderer, temp2);
 
 	SDL_FreeSurface(temp2);
