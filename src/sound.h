@@ -12,21 +12,23 @@
 class sound
 {
 public:
-	//Konstruktorer/destruktorer
-	sound();
-	~sound();
+    //Konstruktorer/destruktorer
+    sound();
+    ~sound();
 
-	// funktioner
-	void set_sound(sound*);
-	void play_attack();
-	void play_background();
-	void play_menu();
-	void sound_paused();
+    // funktioner
+    void set_sound(sound*);
+    void play_attack();
+    void play_background();
+    void play_menu();
+    void sound_paused();
 
 private:
-	Mix_Chunk *attack_sound = NULL;
-	Mix_Music *background_sound = NULL;
-	Mix_Music *menu_sound = NULL;
+    Mix_Chunk *attack_sound = NULL;
+    Mix_Chunk *attack_up_sound = NULL;
+    Mix_Music *background_sound = NULL;
+    Mix_Music *menu_sound = NULL;
+
 
 };
 
