@@ -20,8 +20,8 @@ public:
     void set_sound(sound*);
     void play_attack();
     void play_background();
-    void play_menu();
     void sound_paused();
+    void stop_music();
 
 private:
     Mix_Chunk *attack_sound = NULL;

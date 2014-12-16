@@ -13,6 +13,13 @@ using namespace std;
 sound::~sound()
 {
 	Mix_FreeChunk(attack_sound);
+	Mix_FreeChunk(attack_up_sound);
+	Mix_FreeMusic(background_sound);
+	Mix_FreeMusic(menu_sound);
+	attack_sound = NULL;
+	attack_up_sound = NULL;
+	background_sound = NULL;
+	menu_sound = NULL;
 }
 
 sound::sound()
@@ -58,27 +65,32 @@ void sound::play_background()
 	}
 }
 
-void sound::play_menu()
+void sound::sound_paused()
 {
-	if (Mix_PlayingMusic() == 0)
+	if( Mix_PlayingMusic() == 0 )
 	{
-		Mix_PlayMusic(menu_sound, -1);
+		//Play the music
+		Mix_PlayMusic( background_sound, -1 );
+	}
+	//If music is being played
+	else
+	{
+		//If the music is paused
+		if( Mix_PausedMusic() == 1 )
+		{
+			//Resume the music
+			Mix_ResumeMusic();
+		}
+		//If the music is playing
+		else
+		{
+			//Pause the music
+			Mix_PauseMusic();
+		}
 	}
 }
 
-void sound_paused()
+void sound::stop_music()
 {
-	//If the music is paused
-	if( Mix_PausedMusic() == 1 )
-	{
-		//Resume the music
-		Mix_ResumeMusic();
-	}
-	//If the music is playing
-	else
-	{
-		//Pause the music
-		Mix_PauseMusic();
-	}
-
+	Mix_HaltMusic();
 }
