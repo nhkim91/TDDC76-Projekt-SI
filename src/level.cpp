@@ -60,14 +60,14 @@ void level::spawn(int score)
 	{
 		if (i < 5)
 		{
-			cerr << "alien1 \n";
+			//cerr << "alien1 \n";
 			disp_objects_pointer->push_back(get_alien_mk1());
 			return;
 		}
 
 		else if (i >= 5 && i < 10)
 		{
-			cerr << "small met\n";
+			//cerr << "small met\n";
 			disp_objects_pointer->push_back(get_meteorite_small());
 			return;
 		}

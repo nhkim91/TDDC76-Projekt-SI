@@ -79,10 +79,10 @@ void space_invader::kill_objects(vector<unsigned int> to_delete)
 
 	if(to_delete.size() != 0)
 	{
-		cerr << "före->" << to_delete.size() << endl;
+		//cerr << "före->" << to_delete.size() << endl;
 		sort(to_delete.begin(), to_delete.end(), greater<int>());
 		to_delete.erase( unique(to_delete.begin(), to_delete.end()), to_delete.end());
-		cerr << "efter->" << to_delete.size() << endl;
+		//cerr << "efter->" << to_delete.size() << endl;
 	}
 	for (unsigned int i : to_delete)
 	{
