@@ -177,7 +177,7 @@ void space_invader::render_things(vector<flying_objects*> render_vector)
 
 }
 
-void space_invader::run()
+bool space_invader::run()
 {
 	// make the scaled rendering look smoother
 	SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "linear");
@@ -207,9 +207,15 @@ void space_invader::run()
 	srand(time(0));
 
 	// main loop
+	bool dead{false};
 	bool running { true };
 	while (running)
 	{
+		if(player_->get_life() <= 0)
+		{
+			dead = true;
+			return dead;
+		}
 
 		Uint32 frame_delay = SDL_GetTicks() - last_frame_time;
 		float delta_time = frame_delay / 1000.0f;
@@ -350,6 +356,7 @@ void space_invader::run()
 		//SDL_Delay(10);
 	}
 
+	return dead;
 	// free memory
 
 	//SDL_DestroyRenderer(renderer_);

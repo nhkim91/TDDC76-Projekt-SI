@@ -135,6 +135,11 @@ void render::set_renderer(SDL_Renderer* rend)
 	renderer = rend;
 }
 
+SDL_Renderer* render::get_renderer()
+{
+	return renderer;
+}
+
 /*
  * SLUT PÅ FILEN render.cpp
  */

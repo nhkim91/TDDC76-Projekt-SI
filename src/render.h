@@ -47,6 +47,8 @@ public:
 	void present();
 	void set_renderer(SDL_Renderer*);
 
+	SDL_Renderer* get_renderer();
+
 private:
 	SDL_Renderer* renderer;
 	SDL_Texture* texture;

@@ -53,7 +53,7 @@ private:
     int selected_item {0};
 
     render* renderer;
-    space_invader* si;
+    space_invader* si{nullptr};
     highscore* hs;
     help* h;
 
