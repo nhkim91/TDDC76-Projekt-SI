@@ -148,35 +148,35 @@ void menu::render_menu()
 	SDL_Color redColor {187, 32, 26, 255};
 
 	renderer->render_image("space_background.png", 0, 0);
-	renderer->render_text("Space Invader", "Arcade.ttf", whiteColor, 100, 80, 30);
+	renderer->render_text("Space Invader", "Arcade.ttf", whiteColor, 100, screen_width/2, screen_height/7);
 
 	if (selected_item == 0)
 	{
-		renderer->render_text("Play", "Arcade.ttf", redColor, 50, 350, 260);
-		renderer->render_text("High Score", "Arcade.ttf", whiteColor, 50, 280, 310);
-		renderer->render_text("Help", "Arcade.ttf", whiteColor, 50, 350, 360);
-		renderer->render_text("Quit", "Arcade.ttf", whiteColor, 50, 350, 410);
+		renderer->render_text("Play", "Arcade.ttf", redColor, 50, screen_width/2, screen_height*0.475);
+		renderer->render_text("High Score", "Arcade.ttf", whiteColor, 50, screen_width/2, screen_height*0.558);
+		renderer->render_text("Help", "Arcade.ttf", whiteColor, 50, screen_width/2, screen_height*0.642);
+		renderer->render_text("Quit", "Arcade.ttf", whiteColor, 50, screen_width/2, screen_height*0.725);
 	}
 	else if (selected_item == 1)
 	{
-		renderer->render_text("Play", "Arcade.ttf", whiteColor, 50, 350, 260);
-		renderer->render_text("High Score", "Arcade.ttf", redColor, 50, 280, 310);
-		renderer->render_text("Help", "Arcade.ttf", whiteColor, 50, 350, 360);
-		renderer->render_text("Quit", "Arcade.ttf", whiteColor, 50, 350, 410);
+		renderer->render_text("Play", "Arcade.ttf", whiteColor, 50, screen_width/2, screen_height*0.475);
+		renderer->render_text("High Score", "Arcade.ttf", redColor, 50, screen_width/2, screen_height*0.558);
+		renderer->render_text("Help", "Arcade.ttf", whiteColor, 50, screen_width/2, screen_height*0.642);
+		renderer->render_text("Quit", "Arcade.ttf", whiteColor, 50, screen_width/2, screen_height*0.725);
 	}
 	else if (selected_item == 2)
 	{
-		renderer->render_text("Play", "Arcade.ttf", whiteColor, 50, 350, 260);
-		renderer->render_text("High Score", "Arcade.ttf", whiteColor, 50, 280, 310);
-		renderer->render_text("Help", "Arcade.ttf", redColor, 50, 350, 360);
-		renderer->render_text("Quit", "Arcade.ttf", whiteColor, 50, 350, 410);
+		renderer->render_text("Play", "Arcade.ttf", whiteColor, 50, screen_width/2, screen_height*0.475);
+		renderer->render_text("High Score", "Arcade.ttf", whiteColor, 50, screen_width/2, screen_height*0.558);
+		renderer->render_text("Help", "Arcade.ttf", redColor, 50, screen_width/2, screen_height*0.642);
+		renderer->render_text("Quit", "Arcade.ttf", whiteColor, 50, screen_width/2, screen_height*0.725);
 	}
 	else if (selected_item == 3)
 	{
-		renderer->render_text("Play", "Arcade.ttf", whiteColor, 50, 350, 260);
-		renderer->render_text("High Score", "Arcade.ttf", whiteColor, 50, 280, 310);
-		renderer->render_text("Help", "Arcade.ttf", whiteColor, 50, 350, 360);
-		renderer->render_text("Quit", "Arcade.ttf", redColor, 50, 350, 410);
+		renderer->render_text("Play", "Arcade.ttf", whiteColor, 50, screen_width/2, screen_height*0.475);
+		renderer->render_text("High Score", "Arcade.ttf", whiteColor, 50, screen_width/2, screen_height*0.558);
+		renderer->render_text("Help", "Arcade.ttf", whiteColor, 50, screen_width/2, screen_height*0.642);
+		renderer->render_text("Quit", "Arcade.ttf", redColor, 50, screen_width/2, screen_height*0.725);
 	}
 
 	renderer->present();

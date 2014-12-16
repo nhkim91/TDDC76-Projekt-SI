@@ -22,6 +22,7 @@
 
 #include "help.h"
 #include <string>
+#include <iostream>
 
 void help::set_renderer(render* rend)
 {
@@ -40,14 +41,17 @@ void help::show_help()
     std::string msg2 = "Try not to be hit by the meteorites";
     std::string msg3 = "or when the aliens shoot you. And don't";
     std::string msg4 = "let the aliens over-run your planet.";
+    int width = renderer->get_width();
+    int height = renderer->get_height();
+    std::cerr << renderer->get_height() << "<- size"<< std::endl;
 
-    renderer->render_text("Help", "Arcade.ttf", whiteColor, 100, 300, 30);
-    renderer->render_text(msg, "Arcade.ttf", whiteColor, 30, 80, 200);
-    renderer->render_text(msg1, "Arcade.ttf", whiteColor, 30, 80, 250);
-    renderer->render_text(msg2, "Arcade.ttf", whiteColor, 30, 80, 300);
-    renderer->render_text(msg3, "Arcade.ttf", whiteColor, 30, 80, 350);
-    renderer->render_text(msg4, "Arcade.ttf", whiteColor, 30, 80, 400);
-    renderer->render_text("Back to Menu", "Arcade.ttf", redColor, 40, 280, 550);
+    renderer->render_text("Help", "Arcade.ttf", whiteColor, 100, width/2, 30);
+    renderer->render_text(msg, "Arcade.ttf", whiteColor, 30, width/2, 200);
+    renderer->render_text(msg1, "Arcade.ttf", whiteColor, 30, width/2, 250);
+    renderer->render_text(msg2, "Arcade.ttf", whiteColor, 30, width/2, 300);
+    renderer->render_text(msg3, "Arcade.ttf", whiteColor, 30, width/2, 350);
+    renderer->render_text(msg4, "Arcade.ttf", whiteColor, 30, width/2, 400);
+    renderer->render_text("Back to Menu", "Arcade.ttf", redColor, 40, width/2, 550);
 
     renderer->present();
 

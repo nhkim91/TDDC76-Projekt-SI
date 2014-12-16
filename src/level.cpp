@@ -255,7 +255,7 @@ void level::get_next_lvl(int score)
 
     if (lvl == 1 && latest_lvl_change_ + display_time_ > current_time)
     {
-        rend_->render_text("LEVEL 1", "Arcade.ttf", textColor, 100, 230, 230);
+        rend_->render_text("LEVEL 1", "Arcade.ttf", textColor, 100, width/2, height/2);
 
         return;
     }
@@ -268,7 +268,7 @@ void level::get_next_lvl(int score)
     }
     if (lvl == 2 && latest_lvl_change_ + display_time_ > current_time)
     {
-        rend_->render_text("LEVEL 2", "Arcade.ttf", textColor, 100, 230, 230);
+        rend_->render_text("LEVEL 2", "Arcade.ttf", textColor, 100, width/2, height/2);
         return;
     }
     if (lvl == 2 && score > 300)
@@ -279,7 +279,7 @@ void level::get_next_lvl(int score)
     }
     else if (lvl == 3 && latest_lvl_change_ + display_time_ > current_time)
     {
-        rend_->render_text("LEVEL 3", "Arcade.ttf", textColor, 100, 230, 230);
+        rend_->render_text("LEVEL 3", "Arcade.ttf", textColor, 100, width/2, height/2);
     }
     return;
 }

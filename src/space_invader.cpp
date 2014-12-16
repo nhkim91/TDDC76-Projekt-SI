@@ -179,7 +179,7 @@ void space_invader::render_things(vector<flying_objects*> render_vector)
 
 	for (unsigned int i = 0; i < player_->get_life(); i++)
 	{
-		render_->render_image("power_up_life.png", (200 + i * offset), 10, 1.0f);
+		render_->render_image("power_up_life.png", (200 + i * offset), 10);
 	}
 
 	render_->render_text("Score: " + patch::to_string(score_), "Arcade.ttf", whiteColor, 40, 500, 10);
