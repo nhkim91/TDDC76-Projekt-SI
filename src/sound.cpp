@@ -22,16 +22,23 @@ sound::sound()
     {
         fprintf(stderr, "unable to load attack sound %s\n", Mix_GetError());
     }
+
+    attack_up_sound = Mix_LoadWAV("Laser_blast.waw");
+       if (attack_sound == NULL)
+       {
+           fprintf(stderr, "unable to load attack_up sound %s\n", Mix_GetError());
+       }
+
     background_sound = Mix_LoadMUS("background.ogg");
     if (background_sound == NULL)
     {
         fprintf(stderr, "unable to load background sound  %s\n", Mix_GetError());
     }
-    menu_sound = Mix_LoadMUS("");
-    if (menu_sound == NULL)
-    {
-        fprintf(stderr, "unable to load menu sound %s\n", Mix_GetError());
-    }
+    //menu_sound = Mix_LoadMUS("menu_sound.ogg");
+    //if (menu_sound == NULL)
+    //{
+      //  fprintf(stderr, "unable to load menu sound %s\n", Mix_GetError());
+    //}
 }
 
 void sound::play_attack()

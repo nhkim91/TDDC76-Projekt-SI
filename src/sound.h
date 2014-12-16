@@ -25,8 +25,10 @@ public:
 
 private:
     Mix_Chunk *attack_sound = NULL;
+    Mix_Chunk *attack_up_sound = NULL;
     Mix_Music *background_sound = NULL;
     Mix_Music *menu_sound = NULL;
+
 
 };
 
