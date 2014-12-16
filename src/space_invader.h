@@ -24,7 +24,7 @@ public:
 	bool collides(const flying_objects&, const flying_objects&);
 	bool check_x_collides(SDL_Rect, SDL_Rect);
 	bool check_y_collides(SDL_Rect, SDL_Rect);
-	void run();
+	bool run();
 	void render_things(std::vector<flying_objects*>);
 	void update_things(std::vector<flying_objects*>, float);
 	void add_object(flying_objects*);

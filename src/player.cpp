@@ -29,7 +29,8 @@ player::player(int life, int x_pos, int y_pos, int x_speed, int y_speed, SDL_Ren
 
 	SDL_FreeSurface(temp);
 
-	SDL_Surface* temp2 = IMG_Load("player_shield.png");
+
+	SDL_Surface* temp2 = IMG_Load("playerShip2_blue.png");
 	texture_special_ = SDL_CreateTextureFromSurface(renderer, temp2);
 
 	SDL_FreeSurface(temp2);
@@ -46,14 +47,24 @@ player::~player()
 
 void player::clear_power_up_attack()
 {
-	delete power_up_attack_;
+	flying_objects* ptr;
+	ptr = dynamic_cast<flying_objects*>(power_up_attack_);
+	delete ptr;
+	//delete power_up_attack_;
 	power_up_attack_ = nullptr;
 	return;
 }
 
 void player::clear_power_up_shield()
 {
-	delete power_up_shield_;
+	flying_objects* ptr;
+	ptr = dynamic_cast<flying_objects*>(power_up_shield_);
+	if (ptr == nullptr)
+		{
+			cerr << "nullptr\n";
+		}
+	delete ptr;
+	//delete power_up_shield_;
 	power_up_shield_ = nullptr;
 	return;
 }
@@ -172,7 +183,7 @@ bool player::hit(flying_objects& other)
 
 			else
 			{
-				power_up_attack_ ->set_created_time();
+				power_up_shield_ ->set_created_time();
 				return false;
 			}
 		}
@@ -207,6 +218,6 @@ void player::increase_life(int amount)
 
 void player::set_special(bool statement)
 {
-	cerr << "apa!" << endl;
+	//cerr << "apa!" << endl;
 	special_ = statement;
 }

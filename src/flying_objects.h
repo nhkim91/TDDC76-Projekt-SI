@@ -88,11 +88,13 @@ public:
 	SDL_Texture* get_texture() const
 	{
 		if(special_)
-		{	std::cerr << "apa2!" << std::endl;
+		{
+			//std::cerr << "apa2!" << std::endl;
 			return texture_special_;
 		}
 		else
-		{	std::cerr << "apa3!" << std::endl;
+		{
+			//std::cerr << "apa3!" << std::endl;
 			return texture_;
 		}
 	}

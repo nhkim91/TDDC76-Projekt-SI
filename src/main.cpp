@@ -54,6 +54,9 @@ int main(int, char**)
     rend.set_renderer(renderer);
 
     space_invader SI(renderer, &rend, &all_sounds);
+
+    //space_invader SI(renderer, &rend);
+
     //SI.run(); // TODO: Bra om space_invader retunerar score.
 
     highscore hs;
@@ -67,7 +70,7 @@ int main(int, char**)
     m.set_renderer(&rend);
     m.set_highscore(&hs);
     m.set_help(&h);
-    m.set_play(&SI);
+    //m.set_play(&SI);
     m.run();
 
 
