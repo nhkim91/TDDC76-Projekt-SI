@@ -47,6 +47,9 @@ void menu::set_help(help* help_)
 
 void menu::run()
 {
+	space_invader* SI {new space_invader{renderer->get_renderer(), renderer}};
+	set_play(SI);
+
     bool loop {true};
     SDL_Event event;
 
