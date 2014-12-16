@@ -17,7 +17,7 @@ public:
     {
         nullptr
     };
-    unsigned int cooldown_ {100};
+    unsigned int cooldown_ {200};
     unsigned int last_shoot_time_ {0};
     class sound* sound_
     {
