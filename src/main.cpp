@@ -53,7 +53,7 @@ int main(int, char**)
 	render rend;
 	rend.set_renderer(renderer);
 
-	all_sounds.play_menu();
+	//all_sounds.play_menu();
 	space_invader SI(renderer, &rend, &all_sounds);
 
 	//space_invader SI(renderer, &rend);

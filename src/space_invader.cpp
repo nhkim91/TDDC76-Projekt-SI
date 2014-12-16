@@ -8,6 +8,7 @@
 #include "level.h"
 #include "time.h"
 #include "patch.h"
+#include "sound.h"
 using namespace std;
 
 space_invader::space_invader(SDL_Renderer* renderer, render* rend, sound* sound)
@@ -253,6 +254,11 @@ bool space_invader::run()
         if (keystate[SDL_SCANCODE_DOWN])
         {
             player_->set_y_speed(200);
+        }
+
+        if (keystate[SDL_SCANCODE_M])
+        {
+        	sound_->sound_paused();
         }
 
         while (SDL_PollEvent(&event))

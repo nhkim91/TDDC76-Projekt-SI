@@ -80,4 +80,5 @@ void sound_paused()
 		//Pause the music
 		Mix_PauseMusic();
 	}
+
 }
