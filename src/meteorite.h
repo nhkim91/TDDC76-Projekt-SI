@@ -42,7 +42,7 @@ public:
     meteorite();
 
     // Destruktor
-    ~meteorite()=default;
+    ~meteorite() = default;
 
     // Funktioner
 

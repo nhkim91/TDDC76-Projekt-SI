@@ -36,23 +36,23 @@
 class render
 {
 public:
-	render();
-	~render() = default;
+    render();
+    ~render() = default;
 
-	void render_text(const std::string &text, const std::string &fontFile,
-			SDL_Color color, int fontSize, int x_pos, int y_pos);
-	void render_image(const std::string &imageFile, int x_pos, int y_pos, double scale = 1.0f);
-	void render_flying_object(class flying_objects*);
-	void render_power_up(class power_up_attack*, class power_up_shield*);
-	void present();
-	void set_renderer(SDL_Renderer*);
+    void render_text(const std::string &text, const std::string &fontFile,
+                     SDL_Color color, int fontSize, int x_pos, int y_pos);
+    void render_image(const std::string &imageFile, int x_pos, int y_pos, double scale = 1.0f);
+    void render_flying_object(class flying_objects*);
+    void render_power_up(class power_up_attack*, class power_up_shield*);
+    void present();
+    void set_renderer(SDL_Renderer*);
 
-	SDL_Renderer* get_renderer();
+    SDL_Renderer* get_renderer();
 
 private:
-	SDL_Renderer* renderer;
-	SDL_Texture* texture;
-	SDL_Surface* surf;
+    SDL_Renderer* renderer;
+    SDL_Texture* texture;
+    SDL_Surface* surf;
 
 };
 

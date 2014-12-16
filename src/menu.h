@@ -39,8 +39,8 @@
 class menu
 {
 public:
-    menu()=default;
-    ~menu()=default;
+    menu() = default;
+    ~menu() = default;
 
     void set_renderer(render*);
     void set_play(space_invader*);
@@ -53,7 +53,7 @@ private:
     int selected_item {0};
 
     render* renderer;
-    space_invader* si{nullptr};
+    space_invader* si {nullptr};
     highscore* hs;
     help* h;
     sound* snd;

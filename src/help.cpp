@@ -30,7 +30,7 @@ void help::set_renderer(render* rend)
 
 void help::show_help()
 {
-    renderer->render_image("Space.png",0, 0);
+    renderer->render_image("Space.png", 0, 0);
 
     SDL_Color whiteColor {255, 255, 255, 255};
     SDL_Color redColor {187, 32, 26, 255};
@@ -54,7 +54,7 @@ void help::show_help()
     bool run = true;
     SDL_Event event;
 
-    while(run)
+    while (run)
     {
         SDL_WaitEvent(&event);
         if (event.type == SDL_KEYDOWN)
