@@ -13,9 +13,10 @@ public:
     class power_up_shield* power_up_shield_{nullptr};
     unsigned int cooldown_{100};
     unsigned int last_shoot_time_{0};
+    class sound* sound_{NULL};
 
     // Konstruktor
-    player(int, int, int, int, int, SDL_Renderer*);
+    player(int, int, int, int, int, SDL_Renderer*, sound*);
 
     //Operatorer
     //void operator=(const player&);

@@ -10,13 +10,14 @@
 #include "patch.h"
 using namespace std;
 
-space_invader::space_invader(SDL_Renderer* renderer, render* rend)
+space_invader::space_invader(SDL_Renderer* renderer, render* rend, sound* sound)
 {
 	level_ = new level{SCREEN_WIDTH, SCREEN_HEIGHT, &displaying_objects_, renderer};
 	level_->set_renderer(rend);
 	renderer_ = renderer;
 	render_ = rend;
-	flying_objects* pp3 {new player{3, 0, 300, 0, 0, renderer_}};
+	sound_ = sound;
+	flying_objects* pp3 {new player{3, 0, 300, 0, 0, renderer_, sound_}};
 	displaying_objects_.push_back(pp3);
 
 	player* player_ptr;
@@ -209,6 +210,7 @@ bool space_invader::run()
 	// main loop
 	bool dead{false};
 	bool running { true };
+	sound_->play_background();
 	while (running)
 	{
 		if(player_->get_life() <= 0)

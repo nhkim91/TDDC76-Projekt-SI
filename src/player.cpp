@@ -1,5 +1,6 @@
 #include "player.h"
 #include "linkheader.h"
+#include "sound.h"
 #include <iostream>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
@@ -8,11 +9,12 @@
 #include <vector>
 using namespace std;
 
-player::player(int life, int x_pos, int y_pos, int x_speed, int y_speed, SDL_Renderer* renderer)
+player::player(int life, int x_pos, int y_pos, int x_speed, int y_speed, SDL_Renderer* renderer, sound* sound)
 {
 	SDL_Surface* temp = IMG_Load("player.png");
 	texture_ = SDL_CreateTextureFromSurface(renderer, temp);
 
+	sound_ = sound;
 	init_score_ = 0;
 	renderer_ = renderer;
 	life_ = life;
@@ -197,11 +199,13 @@ flying_objects* player::attack()
 	{
 		attack_ptr = new bullet_mk1 {1, 1, (x_pos_ + rect_.w), y_pos_ + rect_.h/2, 400, 0, renderer_};
 		last_shoot_time_ = SDL_GetTicks();
+		sound_->play_attack();
 		return attack_ptr;
 	}
 	else if(last_shoot_time_ <= (SDL_GetTicks()-cooldown_))
 	{
 		last_shoot_time_ = SDL_GetTicks();
+		sound_->play_attack();
 		return power_up_attack_->attack((x_pos_ + rect_.w), y_pos_ + rect_.h/2);
 	}
 	return nullptr;
