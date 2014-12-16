@@ -24,6 +24,7 @@
 
 #include "menu.h"
 #include <iostream>
+#include "sound.h"
 
 void menu::set_renderer(render* rend)
 {
@@ -45,6 +46,10 @@ void menu::set_help(help* help_)
     h = help_;
 }
 
+void menu::set_sound(sound* sound_)
+{
+	snd = sound_;
+}
 void menu::run()
 {
 	//si = new space_invader{renderer->get_renderer(), renderer};
@@ -92,7 +97,7 @@ void menu::run()
             	{
             		if (si == nullptr)
             		{
-            			si = new space_invader{renderer->get_renderer(), renderer};
+            			si = new space_invader{renderer->get_renderer(), renderer, snd};
             		}
             		if(si->run())
             		{

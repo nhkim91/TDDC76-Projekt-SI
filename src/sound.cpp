@@ -20,19 +20,25 @@ sound::sound()
 	attack_sound = Mix_LoadWAV("sfx_laser1.ogg");
 	if(attack_sound == NULL)
 	{
-		fprintf(stderr, "unable to load attack fle  %s\n", Mix_GetError());
+		fprintf(stderr, "unable to load attack sound %s\n", Mix_GetError());
 	}
 	background_sound = Mix_LoadMUS("background.ogg");
 	if(background_sound == NULL)
 	{
-		fprintf(stderr, "unable to load background file  %s\n", Mix_GetError());
+		fprintf(stderr, "unable to load background sound  %s\n", Mix_GetError());
+	}
+	menu_sound = Mix_LoadMUS("");
+	if(menu_sound == NULL)
+	{
+		fprintf(stderr, "unable to load menu sound %s\n", Mix_GetError());
 	}
 }
+
 void sound::play_attack()
 {
 	if((Mix_PlayChannel(-1,attack_sound,0)) == -1)
 	{
-		fprintf(stderr,"unable to play ogg file: %s\n", Mix_GetError());
+		fprintf(stderr,"unable to play attack sound: %s\n", Mix_GetError());
 	}
 }
 

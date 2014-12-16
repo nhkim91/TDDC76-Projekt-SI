@@ -66,10 +66,14 @@ int main(int, char**)
     h.set_renderer(&rend);
 
 
+
+
+
     menu m;
     m.set_renderer(&rend);
     m.set_highscore(&hs);
     m.set_help(&h);
+    m.set_sound(&all_sounds);
     //m.set_play(&SI);
     m.run();
 

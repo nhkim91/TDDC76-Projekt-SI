@@ -17,6 +17,7 @@ public:
 	~sound();
 
 	// funktioner
+	void set_sound(sound*);
 	void play_attack();
 	void play_background();
 	void play_menu();
