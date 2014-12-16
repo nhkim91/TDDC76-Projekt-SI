@@ -12,11 +12,11 @@ public:
     const int SCREEN_WIDTH = 800;
     const int SCREEN_HEIGHT = 600;
     class player* player_;
-
+    std::vector<flying_objects*> displaying_objects_;
 
     space_invader() = delete;
     space_invader(SDL_Renderer*, render*, sound*);
-    std::vector<flying_objects*> displaying_objects_;
+
 
     void get_objects_to_kill();
     void kill_objects(std::vector<unsigned int>);

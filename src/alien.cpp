@@ -118,3 +118,9 @@ flying_objects* alien_mk3::attack()
     attack_ptr = new bullet_mk1 {1, 1, (x_pos_ - offset), y_pos_ + rect_.h / 2, (x_speed_ - 200), 0, renderer_};
     return attack_ptr;
 }
+
+int alien_mk3::get_y_speed() const
+{
+	double time = SDL_GetTicks()/1000;
+	return (y_speed_* sin(time));
+}

@@ -29,6 +29,10 @@ std::string to_string(T value)
 
 int main(int, char**)
 {
+	int SCREEN_WIDTH{800};
+	int SCREEN_HEIGHT{600};
+
+
 	// initialize SDL
 	if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO) != 0)
 	{
@@ -43,7 +47,7 @@ int main(int, char**)
 
 
 	SDL_Window* window = SDL_CreateWindow("Highscore", SDL_WINDOWPOS_UNDEFINED,
-			SDL_WINDOWPOS_UNDEFINED, 800, 600, SDL_WINDOW_SHOWN);
+			SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
 
 	SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED |
 			SDL_RENDERER_PRESENTVSYNC);
@@ -53,11 +57,6 @@ int main(int, char**)
 	render rend;
 	rend.set_renderer(renderer);
 	all_sounds.play_background();
-	space_invader SI(renderer, &rend, &all_sounds);
-
-	//space_invader SI(renderer, &rend);
-
-	//SI.run(); // TODO: Bra om space_invader retunerar score.
 
 	highscore hs;
 	hs.set_renderer(&rend);
@@ -74,7 +73,7 @@ int main(int, char**)
 	m.set_highscore(&hs);
 	m.set_help(&h);
 	m.set_sound(&all_sounds);
-	//m.set_play(&SI);
+	m.set_screen_size(SCREEN_WIDTH, SCREEN_HEIGHT);
 	m.run();
 
 
@@ -84,7 +83,7 @@ int main(int, char**)
 
 	SDL_DestroyRenderer(renderer);
 	SDL_DestroyWindow(window);
-
+	//förstör all sound
 	SDL_Quit();
 
 	return 0;

@@ -392,8 +392,20 @@ void space_invader::update_things(vector<flying_objects*> update_vector, float t
 		flying_objects* temp = update_vector.at(i);
 		int new_x_speed, new_y_speed;
 
+		alien_mk3* ptr;
+		ptr = dynamic_cast<alien_mk3*>(temp);
+		if (ptr != nullptr)
+		{
+			new_y_speed = ptr->get_y_speed() * time_diff;
+		}
+		else
+		{
+			new_y_speed = temp->get_y_speed() * time_diff;
+		}
+
+
 		new_x_speed = temp->get_x_speed() * time_diff;
-		new_y_speed = temp->get_y_speed() * time_diff;
+		//new_y_speed = temp->get_y_speed() * time_diff;
 
 		temp->set_x_pos(new_x_speed + temp->get_x_pos());
 		temp->set_y_pos(new_y_speed + temp->get_y_pos());
@@ -406,7 +418,7 @@ void space_invader::update_things(vector<flying_objects*> update_vector, float t
 		///Uppe och nere////
 		if (temp->get_y_pos() + temp->get_rect().h > SCREEN_HEIGHT)
 		{
-			temp->set_y_pos(temp->get_y_pos() - temp->get_y_speed() * time_diff);
+			temp->set_y_pos(temp->get_y_pos() - new_y_speed);
 		}
 		else
 		{
@@ -415,7 +427,7 @@ void space_invader::update_things(vector<flying_objects*> update_vector, float t
 
 		if (temp->get_y_pos() < 0)
 		{
-			temp->set_y_pos(temp->get_y_pos() - temp->get_y_speed() * time_diff);
+			temp->set_y_pos(temp->get_y_pos() - new_y_speed);
 		}
 		else
 		{

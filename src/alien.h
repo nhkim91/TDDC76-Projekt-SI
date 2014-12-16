@@ -62,6 +62,7 @@ public:
 
     //funktioner
     class flying_objects* attack();
+    int get_y_speed() const;
 };
 ////////////////////////////////////////////////////////////////
 

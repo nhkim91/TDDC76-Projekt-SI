@@ -48,9 +48,14 @@ public:
     void set_help(help*);
     void set_sound(sound*);
     void run();
+    void set_screen_size(int, int);
+
 
 private:
     int selected_item {0};
+    int screen_width;
+    int screen_height;
+
 
     render* renderer;
     space_invader* si {nullptr};
