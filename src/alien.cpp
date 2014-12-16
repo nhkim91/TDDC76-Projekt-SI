@@ -111,3 +111,9 @@ flying_objects* alien_mk3::attack()
 	attack_ptr = new bullet_mk1 {1, 1, (x_pos_ - offset), y_pos_ + rect_.h/2, (x_speed_-200), 0, renderer_};
 	return attack_ptr;
 }
+
+int alien_mk3::get_y_speed() const
+{
+	//funktion för sinus
+	return y_speed_;
+}
