@@ -33,7 +33,7 @@ render::render(int width, int height)
 {
 	TTF_Init();
 	screen_width = width;
-	screen_height= height;
+	screen_height = height;
 }
 int render::get_width()
 {
@@ -63,12 +63,12 @@ void render::render_power_up(power_up_attack* attack_ptr, power_up_shield* shiel
 
 	if (new_attack_ptr != nullptr)
 	{
-		SDL_RenderCopy(renderer, new_attack_ptr->get_texture(), nullptr, &new_attack_ptr->get_rect());
+		render_image("power_up_attack.png", screen_width/60, screen_height/60);
 	}
 
 	if (new_shield_ptr != nullptr)
 	{
-		SDL_RenderCopy(renderer, new_shield_ptr->get_texture(), nullptr, &new_shield_ptr->get_rect());
+		render_image("power_up_shield.png", 4*screen_width/60, screen_height/60);
 	}
 }
 
@@ -100,9 +100,9 @@ void render::render_text(const std::string &text, const std::string &fontFile,
 
 	SDL_Rect text_rect;
 	text_rect.w = surf->w;
-	cerr << "width "<< text_rect.w<< endl;
+
 	text_rect.h = surf->h;
-	cerr << "height"<< text_rect.h <<endl;
+
 	text_rect.x = x_pos-text_rect.w/2;
 	text_rect.y = y_pos-text_rect.h/2;
 
@@ -128,7 +128,7 @@ void render::render_background(const string &imageFile, int x_pos, int y_pos)
 	double width_ratio = (double)(surf->w)/screen_width;
 	double height_ratio = (double)(surf->h)/screen_height;
 	double scale;
-	cerr << "WIDTH: " << width_ratio << " Height: " << height_ratio << endl;
+
 	if(width_ratio <= height_ratio)
 	{
 		scale = 1/width_ratio;
@@ -137,7 +137,7 @@ void render::render_background(const string &imageFile, int x_pos, int y_pos)
 	{
 		scale = 1/height_ratio;
 	}
-cerr << scale << " SCALE\n";
+
 
 	SDL_Rect image_rect;
 	image_rect.x = x_pos;
@@ -152,7 +152,7 @@ cerr << scale << " SCALE\n";
 }
 
 
-void render::render_image_2(const string &imageFile, int x_pos, int y_pos)
+void render::render_image(const string &imageFile, int x_pos, int y_pos)
 {
 	SDL_Surface* surf = IMG_Load(imageFile.c_str());
 
@@ -162,25 +162,13 @@ void render::render_image_2(const string &imageFile, int x_pos, int y_pos)
 		cout << "Error, kan inte skapa en textur till bilden." << endl;
 	}
 
-	double width_ratio = (double)(surf->w)/screen_width;
-	double height_ratio = (double)(surf->h)/screen_height;
-	double scale;
-	cerr << "WIDTH: " << width_ratio << " Height: " << height_ratio << endl;
-	if(width_ratio <= height_ratio)
-	{
-		scale = 1/width_ratio;
-	}
-	else
-	{
-		scale = 1/height_ratio;
-	}
-cerr << scale << " SCALE\n";
+
 
 	SDL_Rect image_rect;
 	image_rect.x = x_pos;
 	image_rect.y = y_pos;
-	image_rect.w = (int)(((surf->w) * scale));
-	image_rect.h = (int)(((surf->h) * scale));
+	image_rect.w = (int)(((surf->w) ));
+	image_rect.h = (int)(((surf->h) ));
 
 	SDL_RenderCopy(renderer, texture, NULL, &image_rect);
 
@@ -192,7 +180,7 @@ cerr << scale << " SCALE\n";
 void render::present()
 {
 	SDL_RenderPresent(renderer);
-	SDL_RenderClear(renderer);
+	//SDL_RenderClear(renderer);
 }
 
 void render::set_renderer(SDL_Renderer* rend)

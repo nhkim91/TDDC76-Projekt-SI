@@ -29,8 +29,8 @@ std::string to_string(T value)
 
 int main(int, char**)
 {
-	int SCREEN_WIDTH{1200};
-	int SCREEN_HEIGHT{800};
+	int SCREEN_WIDTH{800};
+	int SCREEN_HEIGHT{600};
 
 
 	// initialize SDL

@@ -28,21 +28,21 @@ space_invader::space_invader(SDL_Renderer* renderer, render* rend, sound* sound,
 	player_ptr = dynamic_cast<player*>(pp3);
 	player_ = player_ptr;
 
-    //Ladda in och skapa en textur för spelbakgrunden.
-    string imageFile{"dark_space.png"};
-    SDL_Surface* background_surf = IMG_Load(imageFile.c_str());
-    background_texture = SDL_CreateTextureFromSurface(renderer_, background_surf);
-    if (background_texture == nullptr)
-    {
-        cout << "Error, kan inte skapa en textur till bilden." << endl;
-    }
+	//Ladda in och skapa en textur för spelbakgrunden.
+	string imageFile{"dark_space.png"};
+	SDL_Surface* background_surf = IMG_Load(imageFile.c_str());
+	background_texture = SDL_CreateTextureFromSurface(renderer_, background_surf);
+	if (background_texture == nullptr)
+	{
+		cout << "Error, kan inte skapa en textur till bilden." << endl;
+	}
 
-    background_rect.x = 0;
-    background_rect.y = 0;
-    background_rect.w = background_surf->w;
-    background_rect.h = background_surf->h;
+	background_rect.x = 0;
+	background_rect.y = 0;
+	background_rect.w = background_surf->w;
+	background_rect.h = background_surf->h;
 
-    SDL_FreeSurface(background_surf);
+	SDL_FreeSurface(background_surf);
 }
 
 space_invader::~space_invader()
@@ -50,7 +50,7 @@ space_invader::~space_invader()
 	delete player_;
 	delete level_;
 	displaying_objects_.clear();
-    SDL_DestroyTexture(background_texture);
+	SDL_DestroyTexture(background_texture);
 }
 
 void space_invader::power_up_timer_check()
@@ -182,11 +182,11 @@ bool space_invader::check_y_collides(SDL_Rect a, SDL_Rect b)
 
 void space_invader::render_things(vector<flying_objects*> render_vector)
 {
+
 	SDL_Color whiteColor {255, 255, 255, 255};
-	int offset {50};
-    SDL_RenderCopy(renderer_, background_texture, NULL, &background_rect);
-    //render_->render_image("space_background.png",0,0);
-    //SDL_SetRenderDrawColor(renderer_, 0, 0, 0, 255);
+	int offset {SCREEN_WIDTH/16};
+	//SDL_RenderCopy(renderer_, background_texture, NULL, &background_rect);
+	//SDL_SetRenderDrawColor(renderer_, 0, 0, 0, 255);
 
 	for (unsigned int i = 0; i < render_vector.size(); i++)
 	{
@@ -197,10 +197,10 @@ void space_invader::render_things(vector<flying_objects*> render_vector)
 
 	for (unsigned int i = 0; i < player_->get_life(); i++)
 	{
-		render_->render_image("power_up_life.png", (200 + i * offset), 10);
+		render_->render_image("power_up_life.png", (SCREEN_WIDTH/4 + i * offset), SCREEN_HEIGHT/60);
 	}
 
-	render_->render_text("Score: " + patch::to_string(score_), "Arcade.ttf", whiteColor, 40, 500, 10);
+	render_->render_text("Score: " + patch::to_string(score_), "Arcade.ttf", whiteColor, SCREEN_HEIGHT/15, 5*SCREEN_WIDTH/8, SCREEN_HEIGHT/20);
 
 	SDL_RenderPresent(renderer_);
 	SDL_RenderClear(renderer_);
@@ -387,6 +387,8 @@ bool space_invader::run()
 
 		get_objects_to_kill();
 		update_things(displaying_objects_, delta_time);
+		render_->render_background("game_background.png",0,0);
+		level_->spawn(score_);
 		render_things(displaying_objects_);
 		power_up_timer_check();
 		// wait before drawing the next frame
@@ -396,7 +398,7 @@ bool space_invader::run()
 			Uint32 sleep_time = target_frame_delay - frame_delay;
 			SDL_Delay(sleep_time);
 		}
-		level_->spawn(score_);
+
 		make_alien_attack();
 		//SDL_Delay(10);
 	}

@@ -42,6 +42,7 @@ public:
     void render_text(const std::string &text, const std::string &fontFile,
                      SDL_Color color, int fontSize, int x_pos, int y_pos);
     void render_image(const std::string &imageFile, int x_pos, int y_pos);
+    void render_background(const std::string &imageFile, int x_pos, int y_pos);
     void render_flying_object(class flying_objects*);
     void render_power_up(class power_up_attack*, class power_up_shield*);
     void present();

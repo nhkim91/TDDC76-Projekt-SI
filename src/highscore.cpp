@@ -58,7 +58,7 @@ void highscore::save_score(int score)
 
             run = true;
 
-            renderer->render_image("Astronaut.png",0,0,1.0f);
+            renderer->render_background("Astronaut.png",0,0);
             SDL_Color whiteColor {255, 255, 255, 255};
             string text = "Congratulations!";
             string text2 = "You entered top 10.";
@@ -102,7 +102,7 @@ string highscore::enter_name()
 
     SDL_Color textColor {255, 255, 255, 255};
 
-    renderer->render_image("Astronaut.png",0,0,1.0f);
+    renderer->render_background("Astronaut.png",0,0);
     string text = "Write your name. Then hit enter.";
     renderer->render_text(text, "Arcade.ttf", textColor, 40, 50, 20);
     renderer->present();
@@ -122,13 +122,13 @@ string highscore::enter_name()
                 }
                 else
                 {
-                    renderer->render_image("Astronaut.png",0,0,1.0f);
+                    renderer->render_background("Astronaut.png",0,0);
                     renderer->render_text(text, "Arcade.ttf", textColor, 40, 50, 20);
                 }
             }
             else if (key == SDLK_BACKSPACE)
             {
-                renderer->render_image("Astronaut.png",0,0,1.0f);
+                renderer->render_background("Astronaut.png",0,0);
                 renderer->render_text(text, "Arcade.ttf", textColor, 40, 50, 20);
                 if (!name.empty())
                 {
@@ -142,7 +142,7 @@ string highscore::enter_name()
             }
             else
             {
-                renderer->render_image("Astronaut.png",0,0,1.0f);
+                renderer->render_background("Astronaut.png",0,0);
                 renderer->render_text(text, "Arcade.ttf", textColor, 40, 50, 20);
                 char c = *(SDL_GetKeyName(key));
                 name += c;
@@ -205,23 +205,32 @@ void highscore::write()
 
 void highscore::show_highscore()
 {
+	int screen_width = renderer->get_width();
+	int screen_height = renderer->get_height();
     load();
 
-    renderer->render_image("Colorful_space.png", 0, 0, 0.45f);
+    renderer->render_background("Colorful_space.png", 0, 0);
 
     SDL_Color redColor {187, 32, 26, 255};
 
-    renderer->render_text("High Score", "Arcade.ttf", redColor, 100, 150, 30);
+    renderer->render_text("High Score", "Arcade.ttf", redColor, screen_height/6, screen_width/2, screen_height/12);
 
     SDL_Color whiteColor {255, 255, 255, 255};
 
     for (int i = 0; i < 10; ++i)
     {
 
-        renderer->render_text((patch::to_string(i + 1) + "."), "Arcade.ttf", whiteColor, 30, 200, 130 + i * 30);
-        renderer->render_text(patch::to_string(list_of_score[i].score), "Arcade.ttf", whiteColor, 30, 270, 130 + i * 30);
-        renderer->render_text(list_of_score[i].name, "Arcade.ttf", whiteColor, 30, 450, 130 + i * 30);
-        renderer->render_text("Back to Menu", "Arcade.ttf", redColor, 40, 280, 550);
+        renderer->render_text((patch::to_string(i + 1) + "."), "Arcade.ttf", whiteColor,
+        		screen_height/30, screen_width/4, screen_height/6 + i * screen_height/15);
+
+        renderer->render_text(patch::to_string(list_of_score[i].score), "Arcade.ttf", whiteColor,
+        		screen_height/30, screen_height/2.2, screen_height/6 + i * screen_height/15);
+
+        renderer->render_text(list_of_score[i].name, "Arcade.ttf", whiteColor,
+        		screen_height/30, screen_height/1.33, screen_height/6 + i * screen_height/15);
+
+        renderer->render_text("Back to Menu", "Arcade.ttf", redColor,
+        		screen_height/15, screen_width/2, screen_height/1.1);
 
     }
     renderer->present();
