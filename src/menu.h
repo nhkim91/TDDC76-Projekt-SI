@@ -8,7 +8,7 @@
  * Typ:             Klassdeklaration
  * Programmerare:   Kim Nguyen Hoang 910112-0260 Y3.c kimng797
  *                  Kerstin Soderqvist 911006-0309 Y3.c kerso255
- * Datum:           2014-12-xx
+ * Datum:           2014-12-17
  *
  * BESKRIVNING
  *
@@ -16,6 +16,17 @@
  * Denna klass har hand om menyn, vilken är det första som visas när vi kör programmet.
  * I menyn kan man välja att spela spelet, visa highscore, se hjälpinstruktioner eller avsluta spelet.
  * Med andra ord är det den som knyter ihop de andra klasserna och anropandet av deras funktioner.
+ *
+ * Funktioner:
+ * - set_renderer: Sätter pekare till renderare.
+ * - set_play: Sätter pekare till space_invader.
+ * - set_highscore: Sätter pekare till highscore.
+ * - set_help: Sätter pekare till help.
+ * - set_sound: Sätter pekare till sound.
+ * - run: Körfunktion.
+ * - set_screen_size: Sätter bredden och höjden på spelplanen.
+ * - render_menu: Renderar meny.
+ *
  */
 
 #ifndef MENU_H
@@ -29,8 +40,6 @@
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_render.h>
-#include <string>
-#include <vector>
 #include "render.h"
 #include "space_invader.h"
 #include "highscore.h"

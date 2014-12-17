@@ -5,17 +5,27 @@
  *
  * Filnamn:     player.cpp
  * Enhetsnamn:  player
- * Typ:         Definitioner h�rande till klassen flying_objects
+ * Typ:         Klassdeklaration
  * Skriven av:  Anton Gifvars, antgi546, 890917-1657
- * 				Margareta Vi, marvi154,  920809-0309
+ * 				Margareta Vi, 	marvi154,  920809-0309
  * 				Madeleine Ardic, madar730, 930922-4245
  * Datum:       2014-12-xx
  *
  * BESKRIVNING:
  *
- * Filen innehåller deklarationer för klassen player.
+ * Funktioner:
+ * - check_living: 			Kollar om players life = 0.
+ * - hit:					Kollar vad player har krockat med.
+ * - clear_power_up_attack: Rensar vecktorn som innehåller power_up_attack
+ * - clear_power_up_shield:	Rensar vecktorn som innehåller power_up_shield
+ * - get_power_up_attack:	Hämtar datamedlemen power_up_attack_
+ * - get_power_up_shield:	Hämtar datamedlemen power_up_shield_
+ * - increase_life:			Ökar players life
+ * - set_special:			används för att få en bättre textur( vid power_up)
+ * - power_up_attack* get_power_up_attack: ger up pekaren power_up_attack
+ * - power_up_shield* get_power_up_shield: ger up pekaren power_up_shield
+ * - flying_objects* attack: Playerns attack funktion, skapar antingen default bullet eller använder sig att power_up bullet.
  *
- * REFERERADE BIBLIOTEK OCH MODULER:
  */
 #include "linkheader.h"
 #include <iostream>
