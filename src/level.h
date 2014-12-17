@@ -8,7 +8,7 @@
  * Typ:             Klassdeklaration
  * Programmerare:   Kim Nguyen Hoang 910112-0260 Y3.c kimng797
  *                  Kerstin Soderqvist 911006-0309 Y3.c kerso255
- * Datum:           2014-12-xx
+ * Datum:           2014-12-17
  *
  * BESKRIVNING
  *
@@ -17,6 +17,18 @@
  * och vid behov höja nivån. Den har även funktionen spawn() som slumpmässigt
  * skapar nya objekt (aliens, meteoriter, power-ups), utifrån nivån,
  * vilka senare ska visas på spelplanen.
+ *
+ * Funktioner:
+ * - spawn: Slumpar fram objekt.
+ * - set_renderer: Sätter pekare till renderare.
+ * - get_next_lvl: Ändrar nivå.
+ * - get_alien_mk1: Returnerar alien_mk1.
+ * - get_alien_mk2: Returnerar alien_mk2.
+ * - get_alien_mk3: Returnerar alien_mk3.
+ * - get_meteorite_small: Returnerar meteorite_small.
+ * - get_meteorite_medium: Returnerar meteorite_medium.
+ * - get_power_up: Returnerar power_up.
+ *
  */
 
 #ifndef LEVEL_H
@@ -51,7 +63,6 @@ private:
     Uint32 latest_lvl_change_;
     Uint32 display_time_ {2000};
 
-
     void get_next_lvl(int);
 
     //alien
@@ -68,7 +79,7 @@ private:
 
     render* rend_;
 
-    SDL_Texture *renderText(const std::string &str, const std::string &fontFile,
+    SDL_Texture* renderText(const std::string &str, const std::string &fontFile,
                             SDL_Color color, int fontSize, SDL_Renderer *renderer);
 
 };

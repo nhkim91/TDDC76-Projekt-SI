@@ -8,7 +8,7 @@
  * Typ:         Definitioner hörande till klassen level
  * Skriven av:  Kim Nguyen Hoang 910112-0260 Y3.c kimng797
  *              Kerstin Soderqvist 911006-0309 Y3.c kerso255
- * Datum:       2014-12-xx
+ * Datum:       2014-12-17
  *
  * BESKRIVNING
  *
@@ -27,9 +27,7 @@
 #include "alien.h"
 #include "meteorite.h"
 #include "power_up.h"
-#include <vector>
 #include "space_invader.h"
-#include <iostream>
 
 using namespace std;
 
@@ -47,14 +45,12 @@ void level::set_renderer(render* rend)
     rend_ = rend;
 }
 
-//Funktionen spawn tar in score och slumpar fram nya objekt, vilka läggs till i en vektor i space_invader-klassen.
 void level::spawn(int score)
 {
     data.resize(5);
     get_next_lvl(score);
 
     int i = rand() % 1000;
-
 
     if (lvl == 1)
     {
@@ -70,7 +66,6 @@ void level::spawn(int score)
             return;
         }
     }
-
 
     else if (lvl == 2)
     {
@@ -136,18 +131,14 @@ void level::spawn(int score)
 
 flying_objects* level::get_alien_mk1()
 {
-
     data[0] = 1;
     data[1] = width;
     data[2] = rand() % (height - 100);
-    data[3] = -100; //Hastighet i x-led
+    data[3] = -100;
     data[4] = 0;
 
     flying_objects* alien_1 {new alien_mk1{data[0], data[1], data[2], data[3], data[4], renderer_}};
-    //alien_mk1 alien(data[0], data[1], data[2], data[3], data[4], renderer_);
-    //flying_objects* alien_1 = static_cast<flying_objects*>(&alien);
     return alien_1;
-
 }
 
 flying_objects* level::get_alien_mk2()
@@ -155,13 +146,10 @@ flying_objects* level::get_alien_mk2()
     data[0] = 2;
     data[1] = width;
     data[2] = rand() % (height - 100);
-    data[3] = -(rand() % 100 + 100); //Hastighet i x-led
+    data[3] = -(rand() % 100 + 100);
     data[4] = rand() % 1;
 
-
     flying_objects* alien_2 {new alien_mk2{data[0], data[1], data[2], data[3], data[4], renderer_}};
-    //alien_mk2 alien(data[0], data[1], data[2], data[3], data[4], renderer_);
-    //flying_objects* alien_2 = static_cast<flying_objects*>(&alien);
     return alien_2;
 }
 
@@ -170,32 +158,22 @@ flying_objects* level::get_alien_mk3()
     data[0] = 4;
     data[1] = width;
     data[2] = rand() % (height - 100);
-    data[3] = -(rand() % 150 + 100); //Hastighet i x-led
+    data[3] = -(rand() % 150 + 100);
     data[4] = 200;
-    		//rand() % (150 + 100);
-
 
     flying_objects* alien_3 {new alien_mk3{data[0], data[1], data[2], data[3], data[4], renderer_}};
-    //alien_mk3 alien(data[0], data[1], data[2], data[3], data[4], renderer_);
-    //flying_objects* alien_3 = static_cast<flying_objects*>(&alien);
     return alien_3;
-
 }
 
 flying_objects* level::get_meteorite_small()
 {
-
     data[0] = 1;
     data[1] = width;
-    data[2] = rand() % (height - 150); //(600 - meteoritens höjd)
-    data[3] = -100; //Hastighet i x-led
+    data[2] = rand() % (height - 100)+100;
+    data[3] = -100;
     data[4] = 0;
 
-
-
     flying_objects* small {new meteorite_small{data[0], data[1], data[2], data[3], data[4], renderer_}};
-    //meteorite_small meteorite{data[0], data[1], data[2], data[3], data[4], renderer_};
-    //flying_objects* small = static_cast<flying_objects*>(&meteorite);
     return small;
 }
 
@@ -203,13 +181,11 @@ flying_objects* level::get_meteorite_medium()
 {
     data[0] = 6;
     data[1] = width;
-    data[2] = rand() % (height - 150); //(600 - meteoritens höjd)
-    data[3] = -(rand() % 100 + 100); //Hastighet i x-led
+    data[2] = rand() % (height - 150);
+    data[3] = -(rand() % 100 + 100);
     data[4] = 0;
 
     flying_objects* medium {new meteorite_medium{data[0], data[1], data[2], data[3], data[4], renderer_}};
-    //meteorite_medium meteorite{data[0], data[1], data[2], data[3], data[4], renderer_};
-    //flying_objects* medium = static_cast<flying_objects*>(&meteorite);
     return medium;
 }
 
@@ -217,37 +193,27 @@ flying_objects* level::get_power_up(int i)
 {
     data[0] = 1;
     data[1] = width;
-    data[2] = rand() % (height - 100); //(600 - power_upens höjd)
-    data[3] = -200; //Hastighet i x-led
+    data[2] = rand() % (height - 100);
+    data[3] = -200;
     data[4] = 0;
 
     if (i < 48)
     {
-
         flying_objects* power_up_a {new power_up_attack{data[0], data[1], data[2], data[3], data[4], renderer_}};
-        //power_up_attack power_up{data[0], data[1], data[2], data[3], data[4], renderer_};
-        //flying_objects* attack = static_cast<flying_objects*>(&power_up);
         return power_up_a;
     }
     if (i >= 48 && i < 51)
     {
-
         flying_objects* power_up_l {new power_up_life{data[0], data[1], data[2], data[3], data[4], renderer_}};
-        //power_up_life power_up{data[0], data[1], data[2], data[3], data[4], renderer_};
-        //flying_objects* life = static_cast<flying_objects*>(&power_up);
         return power_up_l;
     }
     else
     {
-
         flying_objects* power_up_s{new power_up_shield{data[0], data[1], data[2], data[3], data[4], renderer_}};
-        //power_up_shield power_up{data[0], data[1], data[2], data[3], data[4], renderer_};
-        //flying_objects* shield = static_cast<flying_objects*>(&power_up);
         return power_up_s;
     }
 }
 
-//get_next_level() kollar om level ska bytas och gör i sådana fall det.
 void level::get_next_lvl(int score)
 {
     Uint32 current_time = SDL_GetTicks();
