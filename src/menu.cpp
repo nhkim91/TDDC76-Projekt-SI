@@ -8,7 +8,7 @@
  * Typ:         Definitioner hörande till klassen menu
  * Skriven av:  Kim Nguyen Hoang 910112-0260 Y3.c kimng797
  *              Kerstin Soderqvist 911006-0309 Y3.c kerso255
- * Datum:       2014-12-xx
+ * Datum:       2014-12-17
  *
  * BESKRIVNING
  *
@@ -23,7 +23,6 @@
  */
 
 #include "menu.h"
-#include <iostream>
 #include "sound.h"
 
 void menu::set_renderer(render* rend)
@@ -59,9 +58,6 @@ void menu::set_screen_size(int width, int height)
 
 void menu::run()
 {
-	//si = new space_invader{renderer->get_renderer(), renderer};
-	//set_play(SI);
-
 	bool loop {true};
 	SDL_Event event;
 
@@ -89,8 +85,6 @@ void menu::run()
 			{
 				--selected_item;
 
-
-
 				if (selected_item < 0)
 				{
 					selected_item = 3;
@@ -114,10 +108,6 @@ void menu::run()
 						delete si;
 						si = nullptr;
 					}
-
-
-					//int score = si->run();
-					//hs->save_score(score);
 				}
 				else if (selected_item == 1)
 				{
@@ -130,10 +120,6 @@ void menu::run()
 				else if (selected_item == 3)
 				{
 					loop = false;
-				}
-				else
-				{
-					//TODO: ERROR
 				}
 			}
 			render_menu();

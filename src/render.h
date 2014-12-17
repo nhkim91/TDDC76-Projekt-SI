@@ -7,8 +7,8 @@
  * Enhetsnamn:      render
  * Typ:             Klassdeklaration
  * Programmerare:   Kim Nguyen Hoang 910112-0260 Y3.c kimng797
- *                  //Kerstin Soderqvist 911006-0309 Y3.c kerso255
- * Datum:           2014-12-xx
+ *                  Kerstin Soderqvist 911006-0309 Y3.c kerso255
+ * Datum:           2014-12-17
  *
  * BESKRIVNING
  *
@@ -16,6 +16,16 @@
  * det mesta som ska renderas (visas i fönster), förutom objekten på spelplanen.
  * Klassen har bl.a. funktionerna render_text() och render_image() som renderar
  * text respektive bilder.
+ *
+ * Funktioner:
+ * - render_text: Renderar text.
+ * - render_image: Renderar bild.
+ * - render_flying_object: Renderar flying_object.
+ * - render_power_up: Renderar power_up.
+ * - present: Visar bilden på skärmen.
+ * - set_renderer: Sätter pekare till renderare.
+ * - get_renderer: Returnerar renderaren.
+ *
  */
 
 #ifndef RENDER_H

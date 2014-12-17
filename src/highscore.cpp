@@ -8,7 +8,7 @@
  * Typ:         Definitioner hörande till klassen highscore
  * Skriven av:  Kim Nguyen Hoang 910112-0260 Y3.c kimng797
  *              Kerstin Soderqvist 911006-0309 Y3.c kerso255
- * Datum:       2014-12-xx
+ * Datum:       2014-12-17
  *
  * BESKRIVNING
  *
@@ -22,17 +22,17 @@
  * REFERERADE BIBLIOTEK OCH MODULER
  */
 
-#include <string>
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_ttf.h>
+#include <SDL2/SDL_render.h>
+#include <SDL2/SDL_events.h>
+
 #include <fstream>
 #include <sstream>
 #include <iostream>
-#include <SDL2/SDL_ttf.h>
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_render.h>
+
 #include "highscore.h"
 #include "patch.h"
-#include <cctype>
-#include <SDL2/SDL_events.h>
 
 using namespace std;
 
@@ -41,9 +41,6 @@ void highscore::set_renderer(render* rend)
     renderer = rend;
 }
 
-
-//Jämför score med den redan existerande highscore-listan. Om spelaren placerar sig på listan anropas enter_name()
-//och poängen sparas över till highscore-listan.
 void highscore::save_score(int score)
 {
     load();
@@ -57,12 +54,8 @@ void highscore::save_score(int score)
     {
         if (score > list_of_score[i].score)
         {
-            //SDL_Event event;
-
             run = true;
 
-            //renderer->render_image("Astronaut.png",0,0,1.0f);
-            //SDL_Color whiteColor {255, 255, 255, 255};
             string text = "Congratulations!";
             string text2 = "You entered top 10.";
             renderer->render_text(text, "Arcade.ttf", whiteColor, 50, 200, 20);
@@ -100,7 +93,6 @@ void highscore::save_score(int score)
     SDL_Delay(1500);
 }
 
-//Läser in ett namn från tangentbordet.
 string highscore::enter_name()
 {
     string name;
@@ -163,7 +155,6 @@ string highscore::enter_name()
     return name;
 }
 
-//Läser in highscore från fil och sparar över till list_of_score.
 void highscore::load()
 {
     list_of_score.resize(10);
@@ -191,12 +182,10 @@ void highscore::load()
     return;
 }
 
-//Sparar över highscore till fil.
 void highscore::write()
 {
     ofstream hs;
     hs.open("highscore.txt", ios::out | ios::trunc);
-
 
     for (int i = 0; i < 10; i++)
     {
@@ -209,7 +198,6 @@ void highscore::write()
     hs.close();
     return;
 }
-
 
 void highscore::show_highscore()
 {
@@ -225,12 +213,10 @@ void highscore::show_highscore()
 
     for (int i = 0; i < 10; ++i)
     {
-
         renderer->render_text((patch::to_string(i + 1) + "."), "Arcade.ttf", whiteColor, 30, 200, 130 + i * 30);
         renderer->render_text(patch::to_string(list_of_score[i].score), "Arcade.ttf", whiteColor, 30, 270, 130 + i * 30);
         renderer->render_text(list_of_score[i].name, "Arcade.ttf", whiteColor, 30, 450, 130 + i * 30);
         renderer->render_text("Back to Menu", "Arcade.ttf", redColor, 40, 280, 550);
-
     }
     renderer->present();
 
