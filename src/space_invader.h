@@ -40,6 +40,10 @@ private:
     int score_ {0};
     sound* sound_;
 
+    SDL_Texture* background_texture;
+    SDL_Rect background_rect;
+
+
 };
 
 #endif // SPACE_INVADER_H

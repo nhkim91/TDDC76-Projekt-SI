@@ -1,5 +1,6 @@
 #include "linkheader.h"
 //#include "flying_objects.h"
+#include <cmath>
 using namespace std;
 
 bool alien::check_living(int dmg, bool give_points)
