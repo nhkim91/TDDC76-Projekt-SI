@@ -168,7 +168,7 @@ flying_objects* level::get_meteorite_small()
 {
     data[0] = 1;
     data[1] = width;
-    data[2] = rand() % (height - 100)+100;
+    data[2] = rand() % (height - 200) +100;
     data[3] = -100;
     data[4] = 0;
     flying_objects* small {new meteorite_small{data[0], data[1], data[2], data[3], data[4], renderer_}};
@@ -179,7 +179,7 @@ flying_objects* level::get_meteorite_medium()
 {
     data[0] = 6;
     data[1] = width;
-    data[2] = rand() % (height - 150);
+    data[2] = rand() % (height - 200) +100;
     data[3] = -(rand() % 100 + 100);
     data[4] = 0;
     flying_objects* medium {new meteorite_medium{data[0], data[1], data[2], data[3], data[4], renderer_}};
@@ -221,7 +221,7 @@ void level::get_next_lvl(int score)
 		return;
 	}
 
-	if (lvl == 1 && score > 100)
+    if (lvl == 1 && score > 500)
 	{
 		lvl++;
 		latest_lvl_change_ = SDL_GetTicks();
@@ -232,7 +232,7 @@ void level::get_next_lvl(int score)
 		rend_->render_text("LEVEL 2", "Arcade.ttf", textColor, height/6, width/2, height/2);
 		return;
 	}
-	if (lvl == 2 && score > 300)
+    if (lvl == 2 && score > 2000)
 	{
 		lvl++;
 		latest_lvl_change_ = SDL_GetTicks();
