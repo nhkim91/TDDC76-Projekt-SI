@@ -221,7 +221,7 @@ void level::get_next_lvl(int score)
 		return;
 	}
 
-	if (lvl == 1 && score > 100)
+    if (lvl == 1 && score > 500)
 	{
 		lvl++;
 		latest_lvl_change_ = SDL_GetTicks();
@@ -232,7 +232,7 @@ void level::get_next_lvl(int score)
 		rend_->render_text("LEVEL 2", "Arcade.ttf", textColor, height/6, width/2, height/2);
 		return;
 	}
-	if (lvl == 2 && score > 300)
+    if (lvl == 2 && score > 2000)
 	{
 		lvl++;
 		latest_lvl_change_ = SDL_GetTicks();
