@@ -3,18 +3,29 @@
  *
  * IDENTIFIERING
  *
- * Filnamn:     sound.cpp
+ * Filnamn:     sound.h
  * Enhetsnamn:  sound
- * Typ:
+ * Typ:         Klassdeklaration
  * Skriven av:  Margareta Vi, marvi154,  920809-0309
  * 				Madeleine Ardic, madar730, 930922-4245
  * Datum:       2014-12-xx
  *
  * BESKRIVNING
+ * 	Innehåller defintioner för klassen sound.
  *
- * Filen innehåller deklarationer för klassen sound.
+ * Funktioner:
+ * - set_sound: när ett spel startas så sätter denna funktion backgrundsljudet.
+ * alla funktioner nedan spelar upp ett specifikt ljud:
  *
- * REFERERADE BIBLIOTEK OCH MODULER:
+ * - play_attack(): 			Default attack ljud
+ * - play_attack_up(): 			Ljud som spelar när man plockar upp en power_up_attack
+ * - play_shield_down(): 		Shield_down ljud
+ * - play_power_up_bullet: 		Effekt ljudet som spelas när man skjudet skott av typen power_up_bullet
+ * - play_power_down_bullet: 	Slut på power_up bullet ljud
+ * - play_power_up_life(): 		Ljud som spelas när ett power_up life tas up.
+ * - play_background(): 		Spelar upp bakgrundsmusiken.
+ *
+ * - sound_paused(): pausar bakgrundsmusiken.
  */
 
 #include "sound.h"
@@ -59,45 +70,34 @@ sound::sound()
 	shield_up_sound = Mix_LoadWAV("sfx_shieldUp.ogg");
 	if (shield_up_sound == NULL)
 	{
-		fprintf(stderr, "unable to load attack sound %s\n", Mix_GetError());
+		fprintf(stderr, "unable to load shield up sound %s\n", Mix_GetError());
 	}
 	shield_down_sound = Mix_LoadWAV("sfx_shieldDown.ogg");
 	if (shield_down_sound == NULL)
 	{
-		fprintf(stderr, "unable to load attack sound %s\n", Mix_GetError());
+		fprintf(stderr, "unable to load shield down sound %s\n", Mix_GetError());
 	}
 
 	power_up_bullet_sound = Mix_LoadWAV("zapThreeToneUp.ogg");
 	if (power_up_bullet_sound == NULL)
 	{
-		fprintf(stderr, "unable to load attack sound %s\n", Mix_GetError());
+		fprintf(stderr, "unable to load bullet_up sound %s\n", Mix_GetError());
 	}
 	power_down_bullet_sound = Mix_LoadWAV("zapThreeToneDown.ogg");
 	if (power_up_bullet_sound == NULL)
 	{
-		fprintf(stderr, "unable to load attack sound %s\n", Mix_GetError());
+		fprintf(stderr, "unable to load bullet_down sound %s\n", Mix_GetError());
 	}
 	power_up_life_sound = Mix_LoadWAV("highUp.ogg");
 	if (power_up_life_sound == NULL)
 	{
-		fprintf(stderr, "unable to load attack sound %s\n", Mix_GetError());
-	}
-	/*kill_sound = Mix_LoadWAV("");
-	if (kill_sound == NULL)
-	{
-		fprintf(stderr, "unable to load kill sound %s\n", Mix_GetError());
+		fprintf(stderr, "unable to load life up sound %s\n", Mix_GetError());
 	}
 
-	 */
 	background_sound = Mix_LoadMUS("background.ogg");
 	if (background_sound == NULL)
 	{
 		fprintf(stderr, "unable to load background sound  %s\n", Mix_GetError());
-	}
-	menu_sound = Mix_LoadMUS("menu_sound.ogg");
-	if (menu_sound == NULL)
-	{
-		fprintf(stderr, "unable to load menu sound %s\n", Mix_GetError());
 	}
 }
 

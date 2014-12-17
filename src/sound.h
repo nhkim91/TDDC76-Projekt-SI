@@ -3,35 +3,27 @@
  *
  * IDENTIFIERING
  *
- * Filnamn:     sound.h
+ * Filnamn:     sound.cpp
  * Enhetsnamn:  sound
- * Typ:         Klassdeklaration
+ * Typ:
  * Skriven av:  Margareta Vi, marvi154,  920809-0309
  * 				Madeleine Ardic, madar730, 930922-4245
  * Datum:       2014-12-xx
  *
  * BESKRIVNING
  *
- * Funktioner:
- * - set_sound: när ett spel startas så sätter denna funktion backgrundsljudet.
- * alla funktioner nedan spelar upp ett specifikt ljud:
+ * Filen innehåller deklarationer för klassen sound.
  *
- * - play_attack(): 			default attack ljud
- * - play_attack_up(): 			ljud som spelar när man plockar upp en power_up_attack
- * - play_shield_down(): 		shield_down ljud
- * - play_power_up_bullet: 		effekt ljudet som spelas när man skjudet skott av typen power_up_bullet
- * - play_power_down_bullet: 	slut på power_up bullet ljud
- * - play_power_up_life(): 		ljud som spelas när ett power_up life tas up.
- * - play_background(): 		spelar upp bakgrundsmusiken.
  *
- * - sound_paused(): pausar bakgrundsmusiken.
  */
+
 #ifndef SRC_SOUND_H_
 #define SRC_SOUND_H_
 
 /*
  * REFERERADE BIBLIOTEK OCH MODULER
  */
+
 #include <SDL2/SDL_mixer.h>
 #include <string>
 
@@ -52,7 +44,6 @@ public:
     void play_power_down_bullet();
     void play_power_up_life();
     void play_background();
-    //void play_kill();
     void sound_paused();
 
 private:
@@ -63,9 +54,7 @@ private:
     Mix_Chunk *power_up_bullet_sound = NULL;
     Mix_Chunk *power_down_bullet_sound = NULL;
     Mix_Chunk *power_up_life_sound = NULL;
-    //Mix_Chunk *kill_sound = NULL;
     Mix_Music *background_sound = NULL;
-    Mix_Music *menu_sound = NULL;
 };
 
 #endif /* SRC_SOUND_H_ */
