@@ -11,15 +11,17 @@
  * 				Madeleine Ardic, madar730, 930922-4245
  * Datum:       2014-12-xx
  *
- * BESKRIVNING
- *
+ * BESKRIVNING:
+ * Klassen innehåller två allmänna funktioner och två underklasser.
  * Funktioner:
- * - check_living:
- * - hit:
+ * - check_living: Reducerar meteorites liv med mängden damage som följer med och kollar därefter om den fortfarande lever.
+ * 	 Dör de kontrolleras det om poäng ska delas ut till player, dvs om det var player som dödade den. Detta händer
+ * 	 inte om tex en annan meteorit eller en alien åker in i meteoriten.
+ * - hit: Genomför konsekvenser för om bullet träffar en bullet (check_living) eller om den träffar en power_up (åker rakt igenom).
  *
  * Underklasser:
- * - meteorite_small:
- * - meteorite_medium:
+ * - meteorite_small: konstruktorn skapas i h filen och bild samt mängd poäng tilldelas i cpp filen.
+ * - meteorite_medium: konstruktorn skapas i h filen och bild samt mängd poäng tilldelas i cpp filen.
  */
 
 #ifndef METEORITE_H_

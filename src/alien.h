@@ -12,18 +12,21 @@
  * Datum:       2014-12-xx
  *
  * BESKRIVNING
- *
+ * Klassen alian har tre underklasser och två funktioner.
  * Funktioner:
- * - check_living:
- * - hit:
+ * - check_living: Reducerar aliens liv med mängen damage som följer med och kollar därefter om den fortfarande lever.
+ * 	 Dör de kontrolleras det om poäng ska delas ut till player, dvs om det var player som dödade den. Detta händer
+ * 	 inte om tex om en meteorit eller en annan alien träffar alien.
+ * - hit: Genomför konsekvenserna för en kollision mellan alian och var och ett av de andra objekten. En bullet
+ *   från en annan alian ska åka rakt igenom utan skada.
  *
  * Underklasser:
- * - alien_mk1:
- * - alien_mk2:
- * - alien_mk3:
+ * - alien_mk1: konstruktorn skapas i h filen och bild samt mängd poäng tilldelas i cpp filen.
+ * - alien_mk2: konstruktorn skapas i h filen och bild samt mängd poäng tilldelas i cpp filen.
+ * - alien_mk3: konstruktorn skapas och funktioner i h filen, bild samt mängd poäng tilldelas i cpp filen.
  * 		+ Funktioner:
- * 		  - flying_objects* attack:
- *	 	  - int get_y_speed:
+ * 		  - flying_objects* attack: Skapar ett flying_objects pekare som pekar på en bullet med initialegenskaper.
+ *	 	  - int get_y_speed: Ger alien_mk3 möjlighet att röra sig i y led format som sinus.
  *
  */
 #ifndef ALIEN_H_
