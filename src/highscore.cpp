@@ -54,16 +54,31 @@ void highscore::save_score(int score)
     {
         if (score > list_of_score[i].score)
         {
-            SDL_Color redColor {187, 32, 26, 255};
+            SDL_Event event;
 
+            run = true;
+
+            renderer->render_image("Astronaut.png",0,0,1.0f);
+            SDL_Color whiteColor {255, 255, 255, 255};
             string text = "Congratulations!";
             string text2 = "You entered top 10.";
-            renderer->render_text(text, "Arcade.ttf", redColor, 60, 190, 200);
-            renderer->render_text(text2, "Arcade.ttf", redColor, 60, 140, 250);
+            renderer->render_text(text, "Arcade.ttf", whiteColor, 50, 200, 20);
+            renderer->render_text(text2, "Arcade.ttf", whiteColor, 50, 150, 70);
             renderer->present();
-            SDL_Delay(1500);
-            //Göra spelaren uppmärksam på att den har kommit med på highscore-listan?
-            //Vi har samtidigt tillgång till vilken plats (i+1).
+            while (run)
+            {
+                SDL_WaitEvent(&event);
+                if (event.type == SDL_KEYDOWN)
+                {
+                    SDL_Keycode key = event.key.keysym.sym;
+                    if (key == SDLK_RETURN || key == SDLK_RETURN2)
+                    {
+                        run = false;
+                        break;
+                    }
+                }
+            }
+
             temp.name = enter_name();
             temp.score = score;
             list_of_score.insert(it, temp);
@@ -78,21 +93,19 @@ void highscore::save_score(int score)
 }
 
 //Läser in ett namn från tangentbordet.
-string highscore::enter_name() //Namnet ska vara ett ord (får inte vara tom sträng).
+string highscore::enter_name()
 {
     string name;
-    SDL_Delay(500);
     SDL_Event event;
 
     run = true;
 
-    //Rendera tom ruta
     SDL_Color textColor {255, 255, 255, 255};
 
-    string text = "Write your name without space. Finish with enter.";
-    renderer->render_text(text, "Arcade.ttf", textColor, 30, 50, 150);
+    renderer->render_image("Astronaut.png",0,0,1.0f);
+    string text = "Write your name. Then hit enter.";
+    renderer->render_text(text, "Arcade.ttf", textColor, 40, 50, 20);
     renderer->present();
-
 
     while (run)
     {
@@ -109,31 +122,31 @@ string highscore::enter_name() //Namnet ska vara ett ord (får inte vara tom str
                 }
                 else
                 {
-                    renderer->render_text(text, "Arcade.ttf", textColor, 30, 50, 150);
+                    renderer->render_image("Astronaut.png",0,0,1.0f);
+                    renderer->render_text(text, "Arcade.ttf", textColor, 40, 50, 20);
                 }
             }
             else if (key == SDLK_BACKSPACE)
             {
-                string text = "Write your name without space. Finish with enter.";
-                renderer->render_text(text, "Arcade.ttf", textColor, 30, 50, 150);
+                renderer->render_image("Astronaut.png",0,0,1.0f);
+                renderer->render_text(text, "Arcade.ttf", textColor, 40, 50, 20);
                 if (!name.empty())
                 {
                     name.erase(name.end() - 1);
 
                     if (!name.empty())
                     {
-                        renderer->render_text(name, "Arcade.ttf", textColor, 30, 50, 180);
+                        renderer->render_text(name, "Arcade.ttf", textColor, 40, 50, 70);
                     }
                 }
             }
             else
             {
-                //TODO: kolla att ni får bara får in A-Z om ni vill.
-                string text = "Write your name without space. Finish with enter.";
-                renderer->render_text(text, "Arcade.ttf", textColor, 30, 50, 150);
+                renderer->render_image("Astronaut.png",0,0,1.0f);
+                renderer->render_text(text, "Arcade.ttf", textColor, 40, 50, 20);
                 char c = *(SDL_GetKeyName(key));
                 name += c;
-                renderer->render_text(name, "Arcade.ttf", textColor, 30, 50, 180);
+                renderer->render_text(name, "Arcade.ttf", textColor, 40, 50, 70);
             }
             renderer->present();
         }
@@ -194,7 +207,7 @@ void highscore::show_highscore()
 {
     load();
 
-    renderer->render_image("space_background.png", 0, 0);
+    renderer->render_image("Colorful_space.png", 0, 0, 0.45f);
 
     SDL_Color redColor {187, 32, 26, 255};
 
