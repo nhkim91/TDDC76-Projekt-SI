@@ -115,7 +115,7 @@ void render::render_text(const std::string &text, const std::string &fontFile,
 	return;
 }
 
-void render::render_image(const string &imageFile, int x_pos, int y_pos)
+void render::render_background(const string &imageFile, int x_pos, int y_pos)
 {
 	SDL_Surface* surf = IMG_Load(imageFile.c_str());
 
@@ -150,6 +150,44 @@ cerr << scale << " SCALE\n";
 	SDL_DestroyTexture(texture);
 	SDL_FreeSurface(surf);
 }
+
+
+void render::render_image_2(const string &imageFile, int x_pos, int y_pos)
+{
+	SDL_Surface* surf = IMG_Load(imageFile.c_str());
+
+	SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, surf);
+	if (texture == nullptr)
+	{
+		cout << "Error, kan inte skapa en textur till bilden." << endl;
+	}
+
+	double width_ratio = (double)(surf->w)/screen_width;
+	double height_ratio = (double)(surf->h)/screen_height;
+	double scale;
+	cerr << "WIDTH: " << width_ratio << " Height: " << height_ratio << endl;
+	if(width_ratio <= height_ratio)
+	{
+		scale = 1/width_ratio;
+	}
+	else
+	{
+		scale = 1/height_ratio;
+	}
+cerr << scale << " SCALE\n";
+
+	SDL_Rect image_rect;
+	image_rect.x = x_pos;
+	image_rect.y = y_pos;
+	image_rect.w = (int)(((surf->w) * scale));
+	image_rect.h = (int)(((surf->h) * scale));
+
+	SDL_RenderCopy(renderer, texture, NULL, &image_rect);
+
+	SDL_DestroyTexture(texture);
+	SDL_FreeSurface(surf);
+}
+
 
 void render::present()
 {

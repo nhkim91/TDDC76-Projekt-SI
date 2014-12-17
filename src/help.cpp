@@ -45,13 +45,13 @@ void help::show_help()
     int height = renderer->get_height();
     std::cerr << renderer->get_height() << "<- size"<< std::endl;
 
-    renderer->render_text("Help", "Arcade.ttf", whiteColor, 100, width/2, 30);
-    renderer->render_text(msg, "Arcade.ttf", whiteColor, 30, width/2, 200);
-    renderer->render_text(msg1, "Arcade.ttf", whiteColor, 30, width/2, 250);
-    renderer->render_text(msg2, "Arcade.ttf", whiteColor, 30, width/2, 300);
-    renderer->render_text(msg3, "Arcade.ttf", whiteColor, 30, width/2, 350);
-    renderer->render_text(msg4, "Arcade.ttf", whiteColor, 30, width/2, 400);
-    renderer->render_text("Back to Menu", "Arcade.ttf", redColor, 40, width/2, 550);
+    renderer->render_text("Help", "Arcade.ttf", whiteColor, 100, width/2, height/15);
+    renderer->render_text(msg, "Arcade.ttf", whiteColor, 30, width/2, height/3);
+    renderer->render_text(msg1, "Arcade.ttf", whiteColor, 30, width/2, height/3 + height/12);
+    renderer->render_text(msg2, "Arcade.ttf", whiteColor, 30, width/2, height/3 + 2*height/12);
+    renderer->render_text(msg3, "Arcade.ttf", whiteColor, 30, width/2, height/3 + 3*height/12);
+    renderer->render_text(msg4, "Arcade.ttf", whiteColor, 30, width/2, height/3 + 4*height/12);
+    renderer->render_text("Back to Menu", "Arcade.ttf", redColor, 40, width/2, height/3 + 6*height/12);
 
     renderer->present();
 
