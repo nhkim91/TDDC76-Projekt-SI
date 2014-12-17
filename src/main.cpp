@@ -29,8 +29,8 @@ std::string to_string(T value)
 
 int main(int, char**)
 {
-	int SCREEN_WIDTH{800};
-	int SCREEN_HEIGHT{600};
+	int SCREEN_WIDTH{1200};
+	int SCREEN_HEIGHT{800};
 
 
 	// initialize SDL
@@ -54,7 +54,7 @@ int main(int, char**)
 
 
 	sound all_sounds = sound();
-	render rend;
+	render rend(SCREEN_WIDTH, SCREEN_HEIGHT);
 	rend.set_renderer(renderer);
 	all_sounds.play_background();
 
