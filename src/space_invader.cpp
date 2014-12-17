@@ -218,7 +218,7 @@ bool space_invader::run()
 	// main loop
 	bool dead {false};
 	bool running { true };
-	bool key_down{false};
+
 
 	while (running)
 	{
