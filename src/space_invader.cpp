@@ -1,3 +1,30 @@
+/*
+ * TDDC76 PROJEKT: Space Invader
+ *
+ * IDENTIFIERING
+ *
+ * Filnamn:     space_invader.cpp
+ * Enhetsnamn:  space_invader
+ * Typ:         Definitionsfil för space_invader
+ * Skriven av:  Kim Nguyen Hoang, kimng797, 910112-0260
+ *              Kerstin Soderqvist, kerso255, 911006-0309
+ *              Anton Gifvars, antgi546, 890917-1657
+ * 				Margareta Vi, marvi154,  920809-0309
+ * 				Madeleine Ardic, madar730, 930922-4245
+ *              Niclas Granström, nicgr354, 900519-5376
+ *
+ * Datum:       2014-12-17
+ *
+ * BESKRIVNING
+ *
+ * Härifrån styrs spelet.
+ *
+ */
+
+/*
+ * REFERERADE BIBLIOTEK OCH MODULER
+ */
+
 #include <iostream>
 #include <algorithm>
 #include <SDL2/SDL.h>
@@ -414,9 +441,3 @@ void space_invader::make_alien_attack()
 		}
 	}
 }
-
-
-
-
-
-

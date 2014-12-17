@@ -1,5 +1,48 @@
+/*
+ * TDDC76 PROJEKT: Space Invader
+ *
+ * IDENTIFIERING
+ *
+ * Filnamn:     space_invader.h
+ * Enhetsnamn:  space_invader
+ * Typ:         Deklarationsfil för space_invader
+ * Skriven av:  Kim Nguyen Hoang, kimng797, 910112-0260
+ *              Kerstin Soderqvist, kerso255, 911006-0309
+ *              Anton Gifvars, antgi546, 890917-1657
+ * 				Margareta Vi, marvi154,  920809-0309
+ * 				Madeleine Ardic, madar730, 930922-4245
+ *              Niclas Granström, nicgr354, 900519-5376
+ *
+ * Datum:       2014-12-17
+ *
+ * BESKRIVNING
+ *
+ * Härifrån styrs spelet.
+ *
+ * Funktioner:
+ * - get_objects_to_kill:
+ * - kill_objects:
+ * - my_sort:
+ * - collides:
+ * - check_x_collides:
+ * - check_y_collides:
+ * - run: Körfunktion
+ * - render_things: Renderar objekten
+ * - update_things: Uppdaterar fönstret
+ * - add_object:
+ * - power_up_timer_check:
+ * - get_score:
+ * - make_alien_attack:
+ *
+ */
+
 #ifndef SPACE_INVADER_H
 #define SPACE_INVADER_H
+
+/*
+ * REFERERADE BIBLIOTEK OCH MODULER
+ */
+
 #include <vector>
 #include "flying_objects.h"
 #include "render.h"
@@ -33,6 +76,7 @@ public:
     void power_up_timer_check();
     int get_score();
     void make_alien_attack();
+
 private:
     SDL_Renderer* renderer_;
     render* render_;
