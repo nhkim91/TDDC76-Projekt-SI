@@ -27,6 +27,22 @@ space_invader::space_invader(SDL_Renderer* renderer, render* rend, sound* sound,
 	player* player_ptr;
 	player_ptr = dynamic_cast<player*>(pp3);
 	player_ = player_ptr;
+
+	//Ladda in och skapa en textur för spelbakgrunden.
+	string imageFile{"dark_space.png"};
+	SDL_Surface* background_surf = IMG_Load(imageFile.c_str());
+	background_texture = SDL_CreateTextureFromSurface(renderer_, background_surf);
+	if (background_texture == nullptr)
+	{
+		cout << "Error, kan inte skapa en textur till bilden." << endl;
+	}
+
+	background_rect.x = 0;
+	background_rect.y = 0;
+	background_rect.w = background_surf->w;
+	background_rect.h = background_surf->h;
+
+	SDL_FreeSurface(background_surf);
 }
 
 space_invader::~space_invader()
@@ -34,6 +50,7 @@ space_invader::~space_invader()
 	delete player_;
 	delete level_;
 	displaying_objects_.clear();
+	SDL_DestroyTexture(background_texture);
 }
 
 void space_invader::power_up_timer_check()
@@ -167,8 +184,9 @@ void space_invader::render_things(vector<flying_objects*> render_vector)
 {
 	SDL_Color whiteColor {255, 255, 255, 255};
 	int offset {50};
-	//render_->render_image("space_background.png",0, 0);
-	SDL_SetRenderDrawColor(renderer_, 0, 0, 0, 255);
+	SDL_RenderCopy(renderer_, background_texture, NULL, &background_rect);
+	//render_->render_image("space_background.png",0,0);
+	//SDL_SetRenderDrawColor(renderer_, 0, 0, 0, 255);
 
 	for (unsigned int i = 0; i < render_vector.size(); i++)
 	{
@@ -215,7 +233,6 @@ bool space_invader::run()
 	//level_.set_renderer(render_);
 
 	//För att slumpningen av monster ska få olika utfall.
-
 	srand(time(0));
 
 	// main loop

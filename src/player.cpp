@@ -5,7 +5,7 @@
  *
  * Filnamn:     player.cpp
  * Enhetsnamn:  player
- * Typ:         Definitioner hörande till klassen flying_objects
+ * Typ:         Definitioner hï¿½rande till klassen flying_objects
  * Skriven av:  Anton Gifvars, antgi546, 890917-1657
  * 				Margareta Vi, marvi154,  920809-0309
  * 				Madeleine Ardic, madar730, 930922-4245
@@ -13,7 +13,7 @@
  *
  * BESKRIVNING:
  *
- * Filen innehåller deklarationer för klassen player.
+ * Filen innehÃ¥ller deklarationer fÃ¶r klassen player.
  *
  * REFERERADE BIBLIOTEK OCH MODULER:
  */

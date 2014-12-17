@@ -13,15 +13,16 @@
  *
  * BESKRIVNING:
  *
- * Denna klass är till för bullet, dvs skott som både alien och player använder sig av.
+ * Denna klass ï¿½r till fï¿½r bullet, dvs skott som bï¿½de alien och player anvï¿½nder sig av.
  * Funktioner:
- *  - get_life: hämtar livet på bullet
- *  - check_living: kollar om bullet lever
- *  - movement: en vektor som sparar undan positionerningen i x- och y-led samt hastigheten i x- och y-led.
- *  - get_dmg: retunerar antalet skada som bullet har.
- *  - hit: konsekvensena som hÃ¤nder nÃ¤r bullet krockar med resterande klasser
+ *  - check_living: 	Kollar om bullet lever dvs ha life = 0,
+ *  - get_dmg:			Retunerar antalet skada som bullet har.
+ *  - hit: 				Konsekvensena som hÃ¤nder nÃ¤r bullet krockar med resterande klasser
  *
- *   Innehåller också sub-klasserna bullet_mk1 som är default skottet, bullet_mk2 som fås genom en power up.
+ *
+ *  Subklasser:
+ *  - bullet_mk1 : Default skottet som skapas nÃ¤r man bÃ¶rjar spela spelet.
+ *  - bullet_mk2 : Det skot som skapas nÃ¤r player har tagit upp en power_up.
  *
  */
 
