@@ -4,7 +4,7 @@
  * IDENTIFIERING
  *
  * Filnamn:    bullet.h
- * Enhetsnamn: Bullet
+ * Enhetsnamn: bullet
  * Typ:         Klassdeklaration
  * Skriven av:  Anton Gifvars, antgi546, 890917-1657
  * 				Margareta Vi, marvi154,  920809-0309
@@ -13,7 +13,7 @@
  *
  * BESKRIVNING:
  *
- * Denna klass är till för bullet, dvs skott som bÃ¥de alien och player använder sig av.
+ * Denna klass är till för bullet, dvs skott som både alien och player använder sig av.
  * Funktioner:
  *  - get_life: hämtar livet på bullet
  *  - check_living: kollar om bullet lever
@@ -21,7 +21,7 @@
  *  - get_dmg: retunerar antalet skada som bullet har.
  *  - hit: konsekvensena som hÃ¤nder nÃ¤r bullet krockar med resterande klasser
  *
- *   Innehåller ocksÃ¥ sub-klasserna bullet_mk1 som Ã¤r default skottet, bullet_mk2 som fÃ¥s genom en power up.
+ *   Innehåller också sub-klasserna bullet_mk1 som är default skottet, bullet_mk2 som fås genom en power up.
  *
  */
 
@@ -52,6 +52,7 @@ public:
     ~bullet() = default;
 };
 //////////////////////////////////////////
+
 class bullet_mk1 : public bullet
 {
 public:
@@ -60,15 +61,15 @@ public:
 
     // Funktioner
 };
-
 //////////////////////////////////////////
+
 class bullet_mk2 : public bullet
 {
 public:
     // Konstruktor
     bullet_mk2(int, int, int, int, int, int, SDL_Renderer*);
 
-
-    // Funktioner
 };
+//////////////////////////////////////////
+
 #endif /* BULLET_H_ */

@@ -1,6 +1,24 @@
+/*
+ * TDDC76 PROJEKT: Space Invader
+ *
+ * IDENTIFIERING
+ *
+ * Filnamn:     alien.cpp
+ * Enhetsnamn:  alien
+ * Typ:         Definitioner hörande till klassen flying_objects
+ * Skriven av:  Anton Gifvars, antgi546, 890917-1657
+ * 				Margareta Vi, marvi154,  920809-0309
+ * 				Madeleine Ardic, madar730, 930922-4245
+ * Datum:       2014-12-xx
+ *
+ * BESKRIVNING:
+ *
+ * Filen innhåller deklarationer för klassen meteorite.
+ *
+ * REFERERADE BIBLIOTEK OCH MODULER:
+ */
 #include "linkheader.h"
-//#include "flying_objects.h"
-#include <cmath>
+#include <math.h>
 using namespace std;
 
 bool alien::check_living(int dmg, bool give_points)
@@ -20,7 +38,6 @@ bool alien::check_living(int dmg, bool give_points)
 }
 
 bool alien::hit(flying_objects& other)
-
 {
     flying_objects *ptr_;
     ptr_ = &other;
@@ -50,12 +67,9 @@ bool alien::hit(flying_objects& other)
     	{
     		return check_living(other_obj_3->get_dmg(), true);
     	}
-
     }
-
     return false;
 }
-////////////////////////////////////////////////////
 
 alien::alien(int life, int x_pos, int y_pos, int x_speed, int y_speed, SDL_Renderer* renderer)
 {
@@ -69,7 +83,6 @@ alien::alien(int life, int x_pos, int y_pos, int x_speed, int y_speed, SDL_Rende
     x_speed_ = x_speed;
     y_speed_ = y_speed;
 }
-////////////////////////////////////////////////////
 
 alien_mk1::alien_mk1(int life, int x_pos, int y_pos, int x_speed, int y_speed, SDL_Renderer* renderer):
     alien(life, x_pos, y_pos, x_speed, y_speed, renderer)
@@ -83,7 +96,6 @@ alien_mk1::alien_mk1(int life, int x_pos, int y_pos, int x_speed, int y_speed, S
 
     SDL_FreeSurface(temp);
 }
-////////////////////////////////////////////////////
 
 alien_mk2::alien_mk2(int life, int x_pos, int y_pos, int x_speed, int y_speed, SDL_Renderer* renderer):
     alien(life, x_pos, y_pos, x_speed, y_speed, renderer)
@@ -96,7 +108,6 @@ alien_mk2::alien_mk2(int life, int x_pos, int y_pos, int x_speed, int y_speed, S
     rect_.h = temp->h;
     SDL_FreeSurface(temp);
 }
-////////////////////////////////////////////////////
 
 alien_mk3::alien_mk3(int life, int x_pos, int y_pos, int x_speed, int y_speed, SDL_Renderer* renderer):
     alien(life, x_pos, y_pos, x_speed, y_speed, renderer)
@@ -111,7 +122,6 @@ alien_mk3::alien_mk3(int life, int x_pos, int y_pos, int x_speed, int y_speed, S
     SDL_FreeSurface(temp);
 }
 
-////////////////////////////////////////////////////
 flying_objects* alien_mk3::attack()
 {
     int offset {50};

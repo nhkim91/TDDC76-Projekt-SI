@@ -13,17 +13,14 @@
  *
  * BESKRIVNING:
  *
- * Filen innehÃ¥ller deklarationer för klassen meteorite.
+ * Filen innehåller deklarationer för klassen meteorite.
  *
  * REFERERADE BIBLIOTEK OCH MODULER:
  */
 #include "linkheader.h"
 #include <iostream>
 #include <SDL2/SDL.h>
-//#include <SDL2_image/SDL_image.h>
-
 #include <SDL2/SDL_main.h>
-#include <vector>
 using namespace std;
 
 bool meteorite::check_living(int dmg, bool give_points)
@@ -41,7 +38,6 @@ bool meteorite::check_living(int dmg, bool give_points)
     }
     return false;
 }
-
 
 bool meteorite::hit(flying_objects& other)
 {
@@ -76,7 +72,7 @@ meteorite::meteorite(int life, int x_pos, int y_pos, int x_speed, int y_speed , 
     x_speed_ = x_speed;
     y_speed_ = y_speed;
 }
-/////////////////////////////////////////////////
+
 meteorite_small::meteorite_small(int life, int x_pos, int y_pos, int x_speed, int y_speed, SDL_Renderer* renderer):
     meteorite(life, x_pos, y_pos, x_speed, y_speed, renderer)
 {
@@ -89,7 +85,7 @@ meteorite_small::meteorite_small(int life, int x_pos, int y_pos, int x_speed, in
 
     SDL_FreeSurface(temp);
 }
-/////////////////////////////////////////////////
+
 meteorite_medium::meteorite_medium(int life, int x_pos, int y_pos, int x_speed, int y_speed, SDL_Renderer* renderer):
     meteorite(life, x_pos, y_pos, x_speed, y_speed, renderer)
 {
