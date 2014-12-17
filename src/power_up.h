@@ -12,21 +12,27 @@
  * Datum:       2014-12-xx
  *
  * BESKRIVNING
+ * Filen innehåller deklarationer för klassen power_up.
+ *
+ * Det finns 3 st power_ups som man kan få i spelets gång, power_up_attck, power_up shield, och power_up life.
+ * Power_up_attack och power_up_shield är tidsbaserade, dvs de försvinner efter en viss tid.
  *
  * Funktioner:
- * - get_created_time:
- * - set_created_time:
- * - set_movement:
- * - times_up:
- * - check_living:
- * - hit:
- *
+ * - get_created_time: Returnerar tidpunkten som en viss power_up skapas.
+ * - set_created_time: Tidstämplar created_(den datamedlem som skapas när en power up skapas) till SDL_GetTicks.
+ * - times_up: 		   Ska retunera när en viss power_up ska upphöra( gäller bara för dem tidsbaserade power_ups:en).
+ * - check_living:	   Kollar om power_upen existerar. Returnerar en true/false
+ * - hit:			   Kollar vad power_up har krockat med.
+
  * Underklasser:
  * - power_up_attack:
+ *		+Funktioner:
+ * 		   flying_objects* attack: skapar den bullet som player använder sig av när det har tagit upp en power_up_attack
+ *
  * - power_up_shield:
  * - power_up_life:
  * 		 +Funktioner:
- * 		   + flying_objects* attack:
+ * 		   flying_objects* attack:
  */
 #ifndef POWER_UP_H_
 #define POWER_UP_H_
@@ -52,7 +58,6 @@ public:
     // Funktioner
     int get_created_time();
     void set_created_time();
-    void set_movement();
     bool times_up();
     bool check_living(int);
     bool hit(flying_objects&) override;

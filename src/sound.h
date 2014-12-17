@@ -3,23 +3,27 @@
  *
  * IDENTIFIERING
  *
- * Filnamn:     sound.h
+ * Filnamn:     sound.cpp
  * Enhetsnamn:  sound
- * Typ:         Klassdeklaration
+ * Typ:
  * Skriven av:  Margareta Vi, marvi154,  920809-0309
  * 				Madeleine Ardic, madar730, 930922-4245
  * Datum:       2014-12-xx
  *
  * BESKRIVNING
  *
- * Funktioner:
+ * Filen innehåller deklarationer för klassen sound.
+ *
+ *
  */
+
 #ifndef SRC_SOUND_H_
 #define SRC_SOUND_H_
 
 /*
  * REFERERADE BIBLIOTEK OCH MODULER
  */
+
 #include <SDL2/SDL_mixer.h>
 #include <string>
 
@@ -40,9 +44,7 @@ public:
     void play_power_down_bullet();
     void play_power_up_life();
     void play_background();
-    //void play_kill();
     void sound_paused();
-    void stop_music();
 
 private:
     Mix_Chunk *attack_sound = NULL;
@@ -52,9 +54,7 @@ private:
     Mix_Chunk *power_up_bullet_sound = NULL;
     Mix_Chunk *power_down_bullet_sound = NULL;
     Mix_Chunk *power_up_life_sound = NULL;
-    //Mix_Chunk *kill_sound = NULL;
     Mix_Music *background_sound = NULL;
-    Mix_Music *menu_sound = NULL;
 };
 
 #endif /* SRC_SOUND_H_ */

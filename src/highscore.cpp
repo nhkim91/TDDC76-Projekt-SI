@@ -38,7 +38,7 @@ using namespace std;
 
 void highscore::set_renderer(render* rend)
 {
-    renderer = rend;
+	renderer = rend;
 }
 
 
@@ -46,160 +46,172 @@ void highscore::set_renderer(render* rend)
 //och poängen sparas över till highscore-listan.
 void highscore::save_score(int score)
 {
-    load();
-    highscore_element temp;
-    vector<highscore_element>::iterator it;
-    int i {0};
-    for (it = list_of_score.begin(); it != list_of_score.end(); it++)
-    {
-        if (score > list_of_score[i].score)
-        {
-            SDL_Event event;
+	int screen_width = renderer->get_width();
+	int screen_height = renderer->get_height();
+	load();
+	highscore_element temp;
+	vector<highscore_element>::iterator it;
+	int i {0};
+	renderer->render_background("Astronaut.png",0,0);
+	SDL_Color whiteColor {255, 255, 255, 255};
+	SDL_Event event;
+	for (it = list_of_score.begin(); it != list_of_score.end(); it++)
+	{
+		if (score > list_of_score[i].score)
+		{
+			//SDL_Event event;
 
-            run = true;
+			run = true;
 
-            renderer->render_background("Astronaut.png",0,0);
-            SDL_Color whiteColor {255, 255, 255, 255};
-            string text = "Congratulations!";
-            string text2 = "You entered top 10.";
-            renderer->render_text(text, "Arcade.ttf", whiteColor, 50, 200, 20);
-            renderer->render_text(text2, "Arcade.ttf", whiteColor, 50, 150, 70);
-            renderer->present();
-            while (run)
-            {
-                SDL_WaitEvent(&event);
-                if (event.type == SDL_KEYDOWN)
-                {
-                    SDL_Keycode key = event.key.keysym.sym;
-                    if (key == SDLK_RETURN || key == SDLK_RETURN2)
-                    {
-                        run = false;
-                        break;
-                    }
-                }
-            }
 
-            temp.name = enter_name();
-            temp.score = score;
-            list_of_score.insert(it, temp);
-            list_of_score.pop_back();
-            write();
-            show_highscore();
-            return;
-        }
-        i++;
-    }
-    return;
+			renderer->render_background("Astronaut.png",0,0);
+			SDL_Color whiteColor {255, 255, 255, 255};
+
+			string text = "Congratulations!";
+			string text2 = "You entered top 10.";
+			renderer->render_text(text, "Arcade.ttf", whiteColor, screen_height/12, screen_width/2, screen_height/15);
+			renderer->render_text(text2, "Arcade.ttf", whiteColor, screen_height/12, screen_width/2, screen_height/15);
+			renderer->present();
+			while (run)
+			{
+				SDL_WaitEvent(&event);
+				if (event.type == SDL_KEYDOWN)
+				{
+					SDL_Keycode key = event.key.keysym.sym;
+					if (key == SDLK_RETURN || key == SDLK_RETURN2)
+					{
+						run = false;
+						break;
+					}
+				}
+			}
+
+			temp.name = enter_name();
+			temp.score = score;
+			list_of_score.insert(it, temp);
+			list_of_score.pop_back();
+			write();
+			show_highscore();
+			return;
+		}
+		i++;
+	}
+
+	run = true;
+	string text3 = "Game Over";
+	renderer->render_text(text3, "Arcade.ttf", whiteColor, screen_height/4, screen_width/2, screen_height/8);
+	renderer->present();
+	SDL_Delay(1500);
 }
 
 //Läser in ett namn från tangentbordet.
 string highscore::enter_name()
 {
-    string name;
-    SDL_Event event;
+	string name;
+	SDL_Event event;
 
-    run = true;
+	run = true;
 
-    SDL_Color textColor {255, 255, 255, 255};
+	SDL_Color textColor {255, 255, 255, 255};
 
-    renderer->render_background("Astronaut.png",0,0);
-    string text = "Write your name. Then hit enter.";
-    renderer->render_text(text, "Arcade.ttf", textColor, 40, 50, 20);
-    renderer->present();
+	renderer->render_background("Astronaut.png",0,0);
+	string text = "Write your name. Then hit enter.";
+	renderer->render_text(text, "Arcade.ttf", textColor, 40, 50, 20);
+	renderer->present();
 
-    while (run)
-    {
-        SDL_WaitEvent(&event);
-        if (event.type == SDL_KEYDOWN)
-        {
-            SDL_Keycode key = event.key.keysym.sym;
-            if (key == SDLK_RETURN || key == SDLK_RETURN2)
-            {
-                if (!name.empty())
-                {
-                    run = false;
-                    break;
-                }
-                else
-                {
-                    renderer->render_background("Astronaut.png",0,0);
-                    renderer->render_text(text, "Arcade.ttf", textColor, 40, 50, 20);
-                }
-            }
-            else if (key == SDLK_BACKSPACE)
-            {
-                renderer->render_background("Astronaut.png",0,0);
-                renderer->render_text(text, "Arcade.ttf", textColor, 40, 50, 20);
-                if (!name.empty())
-                {
-                    name.erase(name.end() - 1);
+	while (run)
+	{
+		SDL_WaitEvent(&event);
+		if (event.type == SDL_KEYDOWN)
+		{
+			SDL_Keycode key = event.key.keysym.sym;
+			if (key == SDLK_RETURN || key == SDLK_RETURN2)
+			{
+				if (!name.empty())
+				{
+					run = false;
+					break;
+				}
+				else
+				{
+					renderer->render_background("Astronaut.png",0,0);
+					renderer->render_text(text, "Arcade.ttf", textColor, 40, 50, 20);
+				}
+			}
+			else if (key == SDLK_BACKSPACE)
+			{
+				renderer->render_background("Astronaut.png",0,0);
+				renderer->render_text(text, "Arcade.ttf", textColor, 40, 50, 20);
+				if (!name.empty())
+				{
+					name.erase(name.end() - 1);
 
-                    if (!name.empty())
-                    {
-                        renderer->render_text(name, "Arcade.ttf", textColor, 40, 50, 70);
-                    }
-                }
-            }
-            else
-            {
-                renderer->render_background("Astronaut.png",0,0);
-                renderer->render_text(text, "Arcade.ttf", textColor, 40, 50, 20);
-                char c = *(SDL_GetKeyName(key));
-                name += c;
-                renderer->render_text(name, "Arcade.ttf", textColor, 40, 50, 70);
-            }
-            renderer->present();
-        }
-    }
+					if (!name.empty())
+					{
+						renderer->render_text(name, "Arcade.ttf", textColor, 40, 50, 70);
+					}
+				}
+			}
+			else
+			{
+				renderer->render_background("Astronaut.png",0,0);
+				renderer->render_text(text, "Arcade.ttf", textColor, 40, 50, 20);
+				char c = *(SDL_GetKeyName(key));
+				name += c;
+				renderer->render_text(name, "Arcade.ttf", textColor, 40, 50, 70);
+			}
+			renderer->present();
+		}
+	}
 
-    return name;
+	return name;
 }
 
 //Läser in highscore från fil och sparar över till list_of_score.
 void highscore::load()
 {
-    list_of_score.resize(10);
-    ifstream hs;
-    hs.open("highscore.txt");
-    highscore_element temp;
+	list_of_score.resize(10);
+	ifstream hs;
+	hs.open("highscore.txt");
+	highscore_element temp;
 
-    if (hs.is_open())
-    {
+	if (hs.is_open())
+	{
 
-        for (int i = 0; i < 10; i++)
-        {
-            hs >> temp.name;
-            hs >> temp.score;
-            list_of_score[i] = temp;
-        }
-    }
-    else
-    {
-        cout << "Tom High Score" << endl;
-        return;
-    }
+		for (int i = 0; i < 10; i++)
+		{
+			hs >> temp.name;
+			hs >> temp.score;
+			list_of_score[i] = temp;
+		}
+	}
+	else
+	{
+		cout << "Tom High Score" << endl;
+		return;
+	}
 
-    hs.close();
-    return;
+	hs.close();
+	return;
 }
 
 //Sparar över highscore till fil.
 void highscore::write()
 {
-    ofstream hs;
-    hs.open("highscore.txt", ios::out | ios::trunc);
+	ofstream hs;
+	hs.open("highscore.txt", ios::out | ios::trunc);
 
 
-    for (int i = 0; i < 10; i++)
-    {
-        hs << list_of_score[i].name;
-        hs << " ";
-        hs << list_of_score[i].score;
-        hs << " \n";
-    }
+	for (int i = 0; i < 10; i++)
+	{
+		hs << list_of_score[i].name;
+		hs << " ";
+		hs << list_of_score[i].score;
+		hs << " \n";
+	}
 
-    hs.close();
-    return;
+	hs.close();
+	return;
 }
 
 
@@ -207,49 +219,49 @@ void highscore::show_highscore()
 {
 	int screen_width = renderer->get_width();
 	int screen_height = renderer->get_height();
-    load();
+	load();
 
-    renderer->render_background("Colorful_space.png", 0, 0);
+	renderer->render_background("Colorful_space.png", 0, 0);
 
-    SDL_Color redColor {187, 32, 26, 255};
+	SDL_Color redColor {187, 32, 26, 255};
 
-    renderer->render_text("High Score", "Arcade.ttf", redColor, screen_height/6, screen_width/2, screen_height/12);
+	renderer->render_text("High Score", "Arcade.ttf", redColor, screen_height/6, screen_width/2, screen_height/12);
 
-    SDL_Color whiteColor {255, 255, 255, 255};
+	SDL_Color whiteColor {255, 255, 255, 255};
 
-    for (int i = 0; i < 10; ++i)
-    {
+	for (int i = 0; i < 10; ++i)
+	{
 
-        renderer->render_text((patch::to_string(i + 1) + "."), "Arcade.ttf", whiteColor,
-        		screen_height/30, screen_width/4, screen_height/6 + i * screen_height/15);
+		renderer->render_text((patch::to_string(i + 1) + "."), "Arcade.ttf", whiteColor,
+				screen_height/30, screen_width/4, screen_height/6 + i * screen_height/15);
 
-        renderer->render_text(patch::to_string(list_of_score[i].score), "Arcade.ttf", whiteColor,
-        		screen_height/30, screen_height/2.2, screen_height/6 + i * screen_height/15);
+		renderer->render_text(patch::to_string(list_of_score[i].score), "Arcade.ttf", whiteColor,
+				screen_height/30, screen_height/2.2, screen_height/6 + i * screen_height/15);
 
-        renderer->render_text(list_of_score[i].name, "Arcade.ttf", whiteColor,
-        		screen_height/30, screen_height/1.33, screen_height/6 + i * screen_height/15);
+		renderer->render_text(list_of_score[i].name, "Arcade.ttf", whiteColor,
+				screen_height/30, screen_height/1.33, screen_height/6 + i * screen_height/15);
 
-        renderer->render_text("Back to Menu", "Arcade.ttf", redColor,
-        		screen_height/15, screen_width/2, screen_height/1.1);
+		renderer->render_text("Back to Menu", "Arcade.ttf", redColor,
+				screen_height/15, screen_width/2, screen_height/1.1);
 
-    }
-    renderer->present();
+	}
+	renderer->present();
 
-    run = true;
-    SDL_Event event;
-    while (run)
-    {
-        SDL_WaitEvent(&event);
-        if (event.type == SDL_KEYDOWN)
-        {
-            SDL_Keycode key = event.key.keysym.sym;
-            if (key == SDLK_ESCAPE || key == SDLK_RETURN)
-            {
-                run = false;
-                break;
-            }
-        }
-    }
+	run = true;
+	SDL_Event event;
+	while (run)
+	{
+		SDL_WaitEvent(&event);
+		if (event.type == SDL_KEYDOWN)
+		{
+			SDL_Keycode key = event.key.keysym.sym;
+			if (key == SDLK_ESCAPE || key == SDLK_RETURN)
+			{
+				run = false;
+				break;
+			}
+		}
+	}
 }
 
 /*

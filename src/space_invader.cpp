@@ -184,9 +184,9 @@ void space_invader::render_things(vector<flying_objects*> render_vector)
 {
 
 	SDL_Color whiteColor {255, 255, 255, 255};
+
 	int offset {SCREEN_WIDTH/16};
-	//SDL_RenderCopy(renderer_, background_texture, NULL, &background_rect);
-	//SDL_SetRenderDrawColor(renderer_, 0, 0, 0, 255);
+
 
 	for (unsigned int i = 0; i < render_vector.size(); i++)
 	{

@@ -12,8 +12,9 @@
  * Datum:       2014-12-xx
  *
  * BESKRIVNING:
- *
- * Filen innhåller deklarationer för klassen meteorite.
+ * Filen innhåller definitioner för klassen alien.
+ * Klassen innehåller tre alians mk1-mk3 med olika
+ * funktioner för att ge de deras egenskaper.
  *
  * REFERERADE BIBLIOTEK OCH MODULER:
  */
@@ -122,6 +123,12 @@ alien_mk3::alien_mk3(int life, int x_pos, int y_pos, int x_speed, int y_speed, S
     SDL_FreeSurface(temp);
 }
 
+int alien_mk3::get_y_speed() const
+{
+	double time = SDL_GetTicks()/1000;
+	return (y_speed_* sin(time));
+}
+
 flying_objects* alien_mk3::attack()
 {
     int offset {50};
@@ -130,8 +137,3 @@ flying_objects* alien_mk3::attack()
     return attack_ptr;
 }
 
-int alien_mk3::get_y_speed() const
-{
-	double time = SDL_GetTicks()/1000;
-	return (y_speed_* sin(time));
-}

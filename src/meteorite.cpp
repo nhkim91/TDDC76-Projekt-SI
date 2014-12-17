@@ -12,8 +12,9 @@
  * Datum:       2014-12-xx
  *
  * BESKRIVNING:
- *
- * Filen innehåller deklarationer för klassen meteorite.
+ * Filen innhåller definitioner för klassen alien.
+ * Klassen innehåller två meteoriter, small och medium, med olika
+ * antal liv.
  *
  * REFERERADE BIBLIOTEK OCH MODULER:
  */
