@@ -56,8 +56,6 @@ void highscore::save_score(int score)
 	{
 		if (score > list_of_score[i].score)
 		{
-			//SDL_Event event;
-
 			run = true;
 
 			renderer->render_background("Astronaut.png",0,0);
@@ -93,11 +91,10 @@ void highscore::save_score(int score)
 		i++;
 	}
 
-	run = true;
 	string text3 = "Game Over";
 	renderer->render_text(text3, "Arcade.ttf", whiteColor, screen_height/4, screen_width/2, screen_height/8);
 	renderer->present();
-	SDL_Delay(1500);
+    SDL_Delay(2000);
 }
 
 string highscore::enter_name()
