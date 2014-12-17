@@ -50,16 +50,19 @@ void highscore::save_score(int score)
     highscore_element temp;
     vector<highscore_element>::iterator it;
     int i {0};
+    renderer->render_image("Astronaut.png",0,0,1.0f);
+    SDL_Color whiteColor {255, 255, 255, 255};
+    SDL_Event event;
     for (it = list_of_score.begin(); it != list_of_score.end(); it++)
     {
         if (score > list_of_score[i].score)
         {
-            SDL_Event event;
+            //SDL_Event event;
 
             run = true;
 
-            renderer->render_image("Astronaut.png",0,0,1.0f);
-            SDL_Color whiteColor {255, 255, 255, 255};
+            //renderer->render_image("Astronaut.png",0,0,1.0f);
+            //SDL_Color whiteColor {255, 255, 255, 255};
             string text = "Congratulations!";
             string text2 = "You entered top 10.";
             renderer->render_text(text, "Arcade.ttf", whiteColor, 50, 200, 20);
@@ -89,7 +92,12 @@ void highscore::save_score(int score)
         }
         i++;
     }
-    return;
+
+    run = true;
+    string text3 = "Game Over";
+    renderer->render_text(text3, "Arcade.ttf", whiteColor, 100, 170, 50);
+    renderer->present();
+    SDL_Delay(1500);
 }
 
 //Läser in ett namn från tangentbordet.
