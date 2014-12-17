@@ -8,7 +8,7 @@
  * Typ:         Definitioner hörande till klassen help
  * Skriven av:  Kim Nguyen Hoang 910112-0260 Y3.c kimng797
  *              Kerstin Soderqvist 911006-0309 Y3.c kerso255
- * Datum:       2014-12-xx
+ * Datum:       2014-12-17
  *
  * BESKRIVNING
  *

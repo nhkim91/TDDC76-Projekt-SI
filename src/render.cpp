@@ -8,7 +8,7 @@
  * Typ:         Definitioner hörande till klassen render
  * Skriven av:  Kim Nguyen Hoang 910112-0260 Y3.c kimng797
  *              //Kerstin Soderqvist 911006-0309 Y3.c kerso255
- * Datum:       2014-12-xx
+ * Datum:       2014-12-17
  *
  * BESKRIVNING
  *
@@ -71,8 +71,6 @@ void render::render_power_up(power_up_attack* attack_ptr, power_up_shield* shiel
 		render_image("power_up_shield.png", 4*screen_width/60, screen_height/60);
 	}
 }
-
-
 
 void render::render_text(const std::string &text, const std::string &fontFile,
 		SDL_Color color, int fontSize, int x_pos, int y_pos)

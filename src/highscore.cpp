@@ -8,7 +8,7 @@
  * Typ:         Definitioner hörande till klassen highscore
  * Skriven av:  Kim Nguyen Hoang 910112-0260 Y3.c kimng797
  *              Kerstin Soderqvist 911006-0309 Y3.c kerso255
- * Datum:       2014-12-xx
+ * Datum:       2014-12-17
  *
  * BESKRIVNING
  *
@@ -22,17 +22,17 @@
  * REFERERADE BIBLIOTEK OCH MODULER
  */
 
-#include <string>
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_ttf.h>
+#include <SDL2/SDL_render.h>
+#include <SDL2/SDL_events.h>
+
 #include <fstream>
 #include <sstream>
 #include <iostream>
-#include <SDL2/SDL_ttf.h>
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_render.h>
+
 #include "highscore.h"
 #include "patch.h"
-#include <cctype>
-#include <SDL2/SDL_events.h>
 
 using namespace std;
 
@@ -41,9 +41,6 @@ void highscore::set_renderer(render* rend)
 	renderer = rend;
 }
 
-
-//Jämför score med den redan existerande highscore-listan. Om spelaren placerar sig på listan anropas enter_name()
-//och poängen sparas över till highscore-listan.
 void highscore::save_score(int score)
 {
 	int screen_width = renderer->get_width();
@@ -62,7 +59,6 @@ void highscore::save_score(int score)
 			//SDL_Event event;
 
 			run = true;
-
 
 			renderer->render_background("Astronaut.png",0,0);
 			SDL_Color whiteColor {255, 255, 255, 255};
@@ -104,7 +100,6 @@ void highscore::save_score(int score)
 	SDL_Delay(1500);
 }
 
-//Läser in ett namn från tangentbordet.
 string highscore::enter_name()
 {
 	string name;
@@ -167,7 +162,6 @@ string highscore::enter_name()
 	return name;
 }
 
-//Läser in highscore från fil och sparar över till list_of_score.
 void highscore::load()
 {
 	list_of_score.resize(10);
@@ -195,7 +189,6 @@ void highscore::load()
 	return;
 }
 
-//Sparar över highscore till fil.
 void highscore::write()
 {
 	ofstream hs;
@@ -213,7 +206,6 @@ void highscore::write()
 	hs.close();
 	return;
 }
-
 
 void highscore::show_highscore()
 {
@@ -237,6 +229,7 @@ void highscore::show_highscore()
 
 		renderer->render_text(patch::to_string(list_of_score[i].score), "Arcade.ttf", whiteColor,
 				screen_height/30, screen_height/2.2, screen_height/6 + i * screen_height/15);
+
 
 		renderer->render_text(list_of_score[i].name, "Arcade.ttf", whiteColor,
 				screen_height/30, screen_height/1.33, screen_height/6 + i * screen_height/15);
