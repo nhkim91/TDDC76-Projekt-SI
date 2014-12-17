@@ -1,13 +1,14 @@
 #include <iostream>
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_image.h>
 #include <stdio.h>
+#include <SDL2/SDL.h>
 #include <SDL2/SDL_main.h>
+#include <SDL2/SDL_image.h>
+#include <SDL2/SDL_mixer.h>
 #include "space_invader.h"
 #include "highscore.h"
 #include "menu.h"
 #include "sound.h"
-#include <SDL2/SDL_mixer.h>
+
 
 #include<sstream>
 
@@ -64,10 +65,6 @@ int main(int, char**)
 	help h;
 	h.set_renderer(&rend);
 
-
-
-
-
 	menu m;
 	m.set_renderer(&rend);
 	m.set_highscore(&hs);
@@ -76,11 +73,6 @@ int main(int, char**)
 	m.set_screen_size(SCREEN_WIDTH, SCREEN_HEIGHT);
 	m.run();
 
-
-
-	// free memory
-
-
 	SDL_DestroyRenderer(renderer);
 	SDL_DestroyWindow(window);
 	//förstör all sound
@@ -88,4 +80,3 @@ int main(int, char**)
 
 	return 0;
 }
-
