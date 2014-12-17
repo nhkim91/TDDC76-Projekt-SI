@@ -43,7 +43,6 @@ void help::show_help()
     std::string msg4 = "let the aliens over-run your planet.";
     int width = renderer->get_width();
     int height = renderer->get_height();
-    std::cerr << renderer->get_height() << "<- size"<< std::endl;
 
     renderer->render_text("Help", "Arcade.ttf", whiteColor, height/6, width/2, height/12);
     renderer->render_text(msg, "Arcade.ttf", whiteColor, height/20, width/2, height/3);
