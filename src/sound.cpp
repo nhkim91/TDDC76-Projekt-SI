@@ -10,9 +10,9 @@
  * 				Madeleine Ardic, madar730, 930922-4245
  * Datum:       2014-12-xx
  *
- * BESKRIVNING:
+ * BESKRIVNING
  *
- * Filen innehåller deklarationer för klassen sound.
+ * Filen innehÃ¥ller deklarationer fÃ¶r klassen sound.
  *
  * REFERERADE BIBLIOTEK OCH MODULER:
  */
@@ -32,11 +32,14 @@ sound::~sound()
 	Mix_FreeChunk(power_down_bullet_sound);
 	Mix_FreeChunk(power_up_life_sound);
 	Mix_FreeMusic(background_sound);
-	Mix_FreeMusic(menu_sound);
 	attack_sound = NULL;
 	attack_up_sound = NULL;
+	shield_up_sound = NULL;
+	shield_down_sound = NULL;
+	power_up_bullet_sound = NULL;
+	power_down_bullet_sound = NULL;
+	power_up_life_sound = NULL;
 	background_sound = NULL;
-	menu_sound = NULL;
 }
 
 sound::sound()
@@ -187,7 +190,3 @@ void sound::sound_paused()
 	}
 }
 
-void sound::stop_music()
-{
-	Mix_HaltMusic();
-}

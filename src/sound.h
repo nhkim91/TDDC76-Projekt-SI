@@ -13,6 +13,18 @@
  * BESKRIVNING
  *
  * Funktioner:
+ * - set_sound: när ett spel startas så sätter denna funktion backgrundsljudet.
+ * alla funktioner nedan spelar upp ett specifikt ljud:
+ *
+ * - play_attack(): 			default attack ljud
+ * - play_attack_up(): 			ljud som spelar när man plockar upp en power_up_attack
+ * - play_shield_down(): 		shield_down ljud
+ * - play_power_up_bullet: 		effekt ljudet som spelas när man skjudet skott av typen power_up_bullet
+ * - play_power_down_bullet: 	slut på power_up bullet ljud
+ * - play_power_up_life(): 		ljud som spelas när ett power_up life tas up.
+ * - play_background(): 		spelar upp bakgrundsmusiken.
+ *
+ * - sound_paused(): pausar bakgrundsmusiken.
  */
 #ifndef SRC_SOUND_H_
 #define SRC_SOUND_H_
@@ -42,7 +54,6 @@ public:
     void play_background();
     //void play_kill();
     void sound_paused();
-    void stop_music();
 
 private:
     Mix_Chunk *attack_sound = NULL;
