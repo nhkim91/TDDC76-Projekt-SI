@@ -5,7 +5,7 @@
  *
  * Filnamn:     player.h
  * Enhetsnamn:  player
- * Typ:         Klassdeklaration
+ * Typ:         Deklarationer h�rande till klassen flying_objects
  * Skriven av:  Anton Gifvars, antgi546, 890917-1657
  * 				Margareta Vi, marvi154,  920809-0309
  * 				Madeleine Ardic, madar730, 930922-4245
@@ -13,20 +13,12 @@
  *
  * BESKRIVNING:
  *
- * Funktioner:
- * - check_living:
- * - hit:
- * - clear_power_up_attack:
- * - clear_power_up_shield:
- * - get_power_up_attack:
- * - get_power_up_shield:
- * - attack:
- * - increase_life:
- * - set_special:
- * - power_up_attack* get_power_up_attack:
- * - power_up_shield* get_power_up_shield:
- * - flying_objects* attack:
+ * Filen innehåller deklarationer för klassen player.
+ *
+ * REFERERADE BIBLIOTEK OCH MODULER:
  */
+
+
 #ifndef PLAYER_H_
 #define PLAYER_H_
 
