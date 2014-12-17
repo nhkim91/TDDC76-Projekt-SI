@@ -1,6 +1,30 @@
-#include "space_invader.h"
-#include "linkheader.h"
-#include "flying_objects.h"
+/*
+ * TDDC76 PROJEKT: Space Invader
+ *
+ * IDENTIFIERING
+ *
+ * Filnamn:     space_invader.cpp
+ * Enhetsnamn:  space_invader
+ * Typ:         Definitionsfil för space_invader
+ * Skriven av:  Kim Nguyen Hoang, kimng797, 910112-0260
+ *              Kerstin Soderqvist, kerso255, 911006-0309
+ *              Anton Gifvars, antgi546, 890917-1657
+ * 				Margareta Vi, marvi154,  920809-0309
+ * 				Madeleine Ardic, madar730, 930922-4245
+ *              Niclas Granström, nicgr354, 900519-5376
+ *
+ * Datum:       2014-12-17
+ *
+ * BESKRIVNING
+ *
+ * Härifrån styrs spelet.
+ *
+ */
+
+/*
+ * REFERERADE BIBLIOTEK OCH MODULER
+ */
+
 #include <iostream>
 #include <algorithm>
 #include <SDL2/SDL.h>
@@ -9,6 +33,9 @@
 #include "time.h"
 #include "patch.h"
 #include "sound.h"
+#include "space_invader.h"
+#include "linkheader.h"
+#include "flying_objects.h"
 using namespace std;
 
 space_invader::space_invader(SDL_Renderer* renderer, render* rend, sound* sound,
@@ -108,23 +135,13 @@ void space_invader::kill_objects(vector<unsigned int> to_delete)
 
 	if (to_delete.size() != 0)
 	{
-		//cerr << "före->" << to_delete.size() << endl;
 		sort(to_delete.begin(), to_delete.end(), greater<int>());
 		to_delete.erase(unique(to_delete.begin(), to_delete.end()), to_delete.end());
-		//cerr << "efter->" << to_delete.size() << endl;
 	}
 	for (unsigned int i : to_delete)
 	{
-		try
-		{
-			score_ += displaying_objects_.at(i)->get_score();
-			displaying_objects_.erase(displaying_objects_.begin() + i);
-		}
-		catch (...)
-		{
-			cerr << "i:" << i << endl;
-			throw;
-		}
+		score_ += displaying_objects_.at(i)->get_score();
+		displaying_objects_.erase(displaying_objects_.begin() + i);
 	}
 }
 
@@ -213,7 +230,6 @@ bool space_invader::run()
 	SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "linear");
 	// render at a virtual resolution then stretch to actual resolution
 	SDL_RenderSetLogicalSize(renderer_, SCREEN_WIDTH, SCREEN_HEIGHT);
-	// load figures
 
 
 	const Uint32 target_frame_delay = 10;
@@ -222,15 +238,6 @@ bool space_invader::run()
 
 	const Uint8* keystate;
 	keystate = SDL_GetKeyboardState(NULL);
-	//flying_objects* pp3 {new player{10, 0, 300, 0, 0, renderer_}};
-	//displaying_objects_.push_back(pp3);
-
-	//player* player_ptr;
-	//player_ptr=dynamic_cast<player*>(pp3);
-	//player_ = player_ptr;
-
-	//level level_{SCREEN_WIDTH, SCREEN_HEIGHT, &displaying_objects_, renderer_};
-	//level_.set_renderer(render_);
 
 	//För att slumpningen av monster ska få olika utfall.
 	srand(time(0));
@@ -238,7 +245,7 @@ bool space_invader::run()
 	// main loop
 	bool dead {false};
 	bool running { true };
-	bool key_down{false};
+
 
 	while (running)
 	{
@@ -258,16 +265,6 @@ bool space_invader::run()
 		// handle events
 		SDL_Event event;
 
-
-		if (keystate[SDL_SCANCODE_RETURN])
-		{
-		}
-
-		if (keystate[SDL_SCANCODE_ESCAPE])
-		{
-			running = false;
-		}
-
 		if (keystate[SDL_SCANCODE_SPACE])
 		{
 			add_object(player_->attack());
@@ -276,26 +273,16 @@ bool space_invader::run()
 
 		if (keystate[SDL_SCANCODE_UP])
 		{
-			player_->set_y_speed(-200);
+			player_->set_y_speed(-250);
 		}
 
 		if (keystate[SDL_SCANCODE_DOWN])
 		{
-			player_->set_y_speed(200);
+			player_->set_y_speed(250);
 		}
 
-		if (keystate[SDL_SCANCODE_M])
-		{
-			if( !key_down)
-			{
-				key_down = true;
-				sound_->sound_paused();
-			}
-		}
-		if( !keystate[SDL_SCANCODE_M])
-		{
-			key_down = false;
-		}
+
+
 
 		while (SDL_PollEvent(&event))
 		{
@@ -310,89 +297,30 @@ bool space_invader::run()
 				{
 					running = false;
 				}
-				else if (event.key.keysym.sym == SDLK_UP)
+				else if (event.key.keysym.sym == SDLK_m)
 				{
-
-				}
-				else if (event.key.keysym.sym == SDLK_DOWN)
-				{
-
-				}
-				else if (event.key.keysym.sym == SDLK_SPACE)
-				{
-					//vector<unsigned int> to_kill;
-					//displaying_objects_.erase(displaying_objects_.begin());
-
-				}
-				else if (event.key.keysym.sym == SDLK_p)
-				{
-					flying_objects* p6 {new power_up_shield {1, 200, 400, -100, 0, renderer_}};
-					displaying_objects_.push_back(p6);
-				}
-				else if (event.key.keysym.sym == SDLK_s)
-				{
-					//level_.spawn(score);
-
-					flying_objects* p1 { new alien_mk2 { 1, 500, 400, -100, 0,
-						renderer_
-					}
-					};
-					displaying_objects_.push_back(p1);
-
-					//return;
-				}
-				else if (event.key.keysym.sym == SDLK_u)
-				{
-					flying_objects* p3 {new meteorite_small {3, 500, 300, -200, 0, renderer_}};
-					displaying_objects_.push_back(p3);
-				}
-				else if (event.key.keysym.sym == SDLK_l)
-				{
-					cerr << displaying_objects_.size() << endl;
-					//flying_objects* p6 {new power_up_attack {1, 200, 400, -100, 0, renderer_}};
-					//displaying_objects_.push_back(p6);
-
+					sound_->sound_paused();
 				}
 
-				else if (event.key.keysym.sym == SDLK_o)
-				{
-					flying_objects* p7 {new power_up_life {1, 200, 400, -100, 0, renderer_}};
-					displaying_objects_.push_back(p7);
-				}
 			}
-			else if (event.type == SDL_KEYUP)
-			{
-				if (event.key.keysym.sym == SDLK_UP)
-				{
 
-				}
-				else if (event.key.keysym.sym == SDLK_DOWN)
-				{
-
-				}
-				else if (event.key.keysym.sym == SDLK_SPACE)
-				{
-
-				}
-				else if (event.key.keysym.sym == SDLK_p)
-				{
-
-				}
-				else if (event.key.keysym.sym == SDLK_s)
-				{
-
-				}
-			}
 		}
 
 		get_objects_to_kill();
+
 		update_things(displaying_objects_, delta_time);
+
 		render_->render_background("game_background.png",0,0);
+
 		level_->spawn(score_);
+
 		render_things(displaying_objects_);
+
 		power_up_timer_check();
+
 		// wait before drawing the next frame
 		frame_delay = SDL_GetTicks() - last_frame_time;
+
 		if (target_frame_delay > frame_delay)
 		{
 			Uint32 sleep_time = target_frame_delay - frame_delay;
@@ -400,16 +328,10 @@ bool space_invader::run()
 		}
 
 		make_alien_attack();
-		//SDL_Delay(10);
+
 	}
 
 	return dead;
-	// free memory
-
-	//SDL_DestroyRenderer(renderer_);
-	//SDL_DestroyWindow(window_);
-
-	//SDL_Quit();
 }
 
 void space_invader::update_things(vector<flying_objects*> update_vector, float time_diff)
@@ -434,7 +356,7 @@ void space_invader::update_things(vector<flying_objects*> update_vector, float t
 
 
 		new_x_speed = temp->get_x_speed() * time_diff;
-		//new_y_speed = temp->get_y_speed() * time_diff;
+
 
 		temp->set_x_pos(new_x_speed + temp->get_x_pos());
 		temp->set_y_pos(new_y_speed + temp->get_y_pos());
@@ -462,7 +384,7 @@ void space_invader::update_things(vector<flying_objects*> update_vector, float t
 		{
 			temp->get_rect().y = temp->get_y_pos();
 		}
-		///////////////////////////////////
+
 
 
 		alien* alien_ptr;
@@ -519,9 +441,3 @@ void space_invader::make_alien_attack()
 		}
 	}
 }
-
-
-
-
-
-

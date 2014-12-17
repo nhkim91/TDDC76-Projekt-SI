@@ -8,6 +8,9 @@
  * Typ:         Definitioner hörande till klassen help
  * Skriven av:  Kim Nguyen Hoang 910112-0260 Y3.c kimng797
  *              Kerstin Soderqvist 911006-0309 Y3.c kerso255
+ *              Niclas Granström, nicgr354, 900519-5376
+ *              Anton Gifvars,	antgi546, 890917-1657
+ *
  * Datum:       2014-12-17
  *
  * BESKRIVNING
@@ -43,7 +46,6 @@ void help::show_help()
     std::string msg4 = "let the aliens over-run your planet.";
     int width = renderer->get_width();
     int height = renderer->get_height();
-    std::cerr << renderer->get_height() << "<- size"<< std::endl;
 
     renderer->render_text("Help", "Arcade.ttf", whiteColor, height/6, width/2, height/12);
     renderer->render_text(msg, "Arcade.ttf", whiteColor, height/20, width/2, height/3);

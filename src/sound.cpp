@@ -8,7 +8,8 @@
  * Typ:         Klassdefinitioner
  * Skriven av:  Margareta Vi, marvi154,  920809-0309
  * 				Madeleine Ardic, madar730, 930922-4245
- * Datum:       2014-12-xx
+ *
+ * Datum:       2014-12-17
  *
  * BESKRIVNING
  * 	Innehåller defintioner för klassen sound.

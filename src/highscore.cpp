@@ -8,6 +8,9 @@
  * Typ:         Definitioner hörande till klassen highscore
  * Skriven av:  Kim Nguyen Hoang 910112-0260 Y3.c kimng797
  *              Kerstin Soderqvist 911006-0309 Y3.c kerso255
+ *              Niclas Granström, nicgr354, 900519-5376
+ *              Anton Gifvars,	antgi546, 890917-1657
+ *
  * Datum:       2014-12-17
  *
  * BESKRIVNING
@@ -56,8 +59,6 @@ void highscore::save_score(int score)
 	{
 		if (score > list_of_score[i].score)
 		{
-			//SDL_Event event;
-
 			run = true;
 
 			renderer->render_background("Astronaut.png",0,0);
@@ -66,7 +67,7 @@ void highscore::save_score(int score)
 			string text = "Congratulations!";
 			string text2 = "You entered top 10.";
 			renderer->render_text(text, "Arcade.ttf", whiteColor, screen_height/12, screen_width/2, screen_height/15);
-			renderer->render_text(text2, "Arcade.ttf", whiteColor, screen_height/12, screen_width/2, screen_height/15);
+			renderer->render_text(text2, "Arcade.ttf", whiteColor, screen_height/12, screen_width/2, screen_height/6);
 			renderer->present();
 			while (run)
 			{
@@ -93,15 +94,16 @@ void highscore::save_score(int score)
 		i++;
 	}
 
-	run = true;
 	string text3 = "Game Over";
 	renderer->render_text(text3, "Arcade.ttf", whiteColor, screen_height/4, screen_width/2, screen_height/8);
 	renderer->present();
-	SDL_Delay(1500);
+    SDL_Delay(2000);
 }
 
 string highscore::enter_name()
 {
+	int screen_width = renderer->get_width();
+	int screen_height = renderer->get_height();
 	string name;
 	SDL_Event event;
 
@@ -111,7 +113,7 @@ string highscore::enter_name()
 
 	renderer->render_background("Astronaut.png",0,0);
 	string text = "Write your name. Then hit enter.";
-	renderer->render_text(text, "Arcade.ttf", textColor, 40, 50, 20);
+	renderer->render_text(text, "Arcade.ttf", textColor, screen_height/20, screen_width/2, screen_height/15);
 	renderer->present();
 
 	while (run)
@@ -130,30 +132,30 @@ string highscore::enter_name()
 				else
 				{
 					renderer->render_background("Astronaut.png",0,0);
-					renderer->render_text(text, "Arcade.ttf", textColor, 40, 50, 20);
+					renderer->render_text(text, "Arcade.ttf", textColor, screen_height/20, screen_width/2, screen_height/15);
 				}
 			}
 			else if (key == SDLK_BACKSPACE)
 			{
 				renderer->render_background("Astronaut.png",0,0);
-				renderer->render_text(text, "Arcade.ttf", textColor, 40, 50, 20);
+				renderer->render_text(text, "Arcade.ttf", textColor, screen_height/20, screen_width/2, screen_height/15);
 				if (!name.empty())
 				{
 					name.erase(name.end() - 1);
 
 					if (!name.empty())
 					{
-						renderer->render_text(name, "Arcade.ttf", textColor, 40, 50, 70);
+						renderer->render_text(name, "Arcade.ttf", textColor, screen_height/20, screen_width/2, screen_height/10);
 					}
 				}
 			}
 			else
 			{
 				renderer->render_background("Astronaut.png",0,0);
-				renderer->render_text(text, "Arcade.ttf", textColor, 40, 50, 20);
+				renderer->render_text(text, "Arcade.ttf", textColor, screen_height/20, screen_width/2, screen_height/15);
 				char c = *(SDL_GetKeyName(key));
 				name += c;
-				renderer->render_text(name, "Arcade.ttf", textColor, 40, 50, 70);
+				renderer->render_text(name, "Arcade.ttf", textColor, screen_height/20, screen_width/2, screen_height/10);
 			}
 			renderer->present();
 		}

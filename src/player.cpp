@@ -9,7 +9,9 @@
  * Skriven av:  Anton Gifvars, antgi546, 890917-1657
  * 				Margareta Vi, 	marvi154,  920809-0309
  * 				Madeleine Ardic, madar730, 930922-4245
- * Datum:       2014-12-xx
+ *              Niclas Granström, nicgr354, 900519-5376
+ *
+ * Datum:       2014-12-17
  *
  * BESKRIVNING:
  *

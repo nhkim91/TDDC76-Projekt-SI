@@ -8,6 +8,9 @@
  * Typ:         Definitioner hörande till klassen level
  * Skriven av:  Kim Nguyen Hoang 910112-0260 Y3.c kimng797
  *              Kerstin Soderqvist 911006-0309 Y3.c kerso255
+ *              Niclas Granström, nicgr354, 900519-5376
+ *              Anton Gifvars,	antgi546, 890917-1657
+ *
  * Datum:       2014-12-17
  *
  * BESKRIVNING
@@ -168,7 +171,7 @@ flying_objects* level::get_meteorite_small()
 {
     data[0] = 1;
     data[1] = width;
-    data[2] = rand() % (height - 100)+100;
+    data[2] = rand() % (height - 200) +100;
     data[3] = -100;
     data[4] = 0;
     flying_objects* small {new meteorite_small{data[0], data[1], data[2], data[3], data[4], renderer_}};
@@ -179,7 +182,7 @@ flying_objects* level::get_meteorite_medium()
 {
     data[0] = 6;
     data[1] = width;
-    data[2] = rand() % (height - 150);
+    data[2] = rand() % (height - 200) +100;
     data[3] = -(rand() % 100 + 100);
     data[4] = 0;
     flying_objects* medium {new meteorite_medium{data[0], data[1], data[2], data[3], data[4], renderer_}};
