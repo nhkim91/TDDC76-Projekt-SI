@@ -5,15 +5,15 @@
  *
  * Filnamn:     bullet.cpp
  * Enhetsnamn:  bullet
- * Typ:         Definitioner hörande till klassen flying_objects
- * Skriven av:  Anton Gifvars, antgi546, 890917-1657
- * 				Margareta Vi, marvi154,  920809-0309
- * 				Madeleine Ardic, madar730, 930922-4245
+ * Typ:         Definitioner hï¿½rande till klassen flying_objects
+ * Skriven av:  Anton Gifvars,	antgi546, 890917-1657
+ * 				Margareta Vi,	marvi154, 920809-0309
+ * 				Madeleine Ardic,madar730, 930922-4245
  * Datum:       2014-12-xx
  *
  * BESKRIVNING:
  *
- * Filen innehåller deklarationer för klassen bullet.
+ * Filen innehï¿½ller deklarationer fï¿½r klassen bullet.
  *
  * REFERERADE BIBLIOTEK OCH MODULER:
  */

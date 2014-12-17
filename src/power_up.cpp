@@ -5,7 +5,7 @@
  *
  * Filnamn:     power_up.cpp
  * Enhetsnamn:  power_up
- * Typ:         Definitioner hörande till klassen flying_objects
+ * Typ:         Definitioner hï¿½rande till klassen flying_objects
  * Skriven av:  Anton Gifvars, antgi546, 890917-1657
  * 				Margareta Vi, marvi154,  920809-0309
  * 				Madeleine Ardic, madar730, 930922-4245
@@ -13,7 +13,7 @@
  *
  * BESKRIVNING:
  *
- * Filen innhåller deklarationer för klassen power_up.
+ * Filen innhï¿½ller definitioner fï¿½r klassen power_up.
  *
  * REFERERADE BIBLIOTEK OCH MODULER:
  */
