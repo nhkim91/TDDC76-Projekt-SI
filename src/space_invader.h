@@ -20,19 +20,18 @@
  * Härifrån styrs spelet.
  *
  * Funktioner:
- * - get_objects_to_kill:
- * - kill_objects:
- * - my_sort:
- * - collides:
- * - check_x_collides:
- * - check_y_collides:
+ * - get_objects_to_kill: Kollar vilka objekt i listan(objekts to kill) som ska tas bort
+ * - kill_objects:       Tar bort objekten som finns ovanstående vektor
+ * - collides:          Kollar om två objekt har kolliderat i överhuvudtaget.
+ * - check_x_collides: Kollar om en kollision har hänt i x-led, returnerar en bool
+ * - check_y_collides: Kollar om en kollision har hänt i y-led, returnerar en bool
  * - run: Körfunktion
  * - render_things: Renderar objekten
  * - update_things: Uppdaterar fönstret
- * - add_object:
- * - power_up_timer_check:
- * - get_score:
- * - make_alien_attack:
+ * - add_object: lägger till objekt i listan som används till att rita ut objekt på spelplanen
+ * - power_up_timer_check: Kollar om de tidsbaserade power_upsen ska försvinna.
+ * - get_score: sparar undan players senaste score(den poängen som player har när den dör)
+ * - make_alien_attack: gör att en viss alien attackerar
  *
  */
 
@@ -65,7 +64,6 @@ public:
 
     void get_objects_to_kill();
     void kill_objects(std::vector<unsigned int>);
-    bool my_sort(int i, int j);
     bool collides(const flying_objects&, const flying_objects&);
     bool check_x_collides(SDL_Rect, SDL_Rect);
     bool check_y_collides(SDL_Rect, SDL_Rect);
