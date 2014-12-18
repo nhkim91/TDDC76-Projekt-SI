@@ -74,13 +74,12 @@ void player::clear_power_up_attack()
 	ptr = dynamic_cast<flying_objects*>(power_up_attack_);
 	if (ptr != nullptr)
 	{
-		//delete power_up_attack_;
-		sound_->play_power_down_bullet();
+		delete power_up_attack_;
 		power_up_attack_ = nullptr;
+		sound_->play_power_down_bullet();
 		return;
 	}
 }
-
 void player::clear_power_up_shield()
 {
 	flying_objects* ptr;
@@ -88,13 +87,12 @@ void player::clear_power_up_shield()
 
 	if (ptr != nullptr)
 	{
-		//delete power_up_shield_;
-		sound_->play_shield_down();
+		delete power_up_shield_;
 		power_up_shield_ = nullptr;
+		sound_->play_shield_down();
 		return;
 	}
 }
-
 bool player::check_living(int dmg)
 {
 	life_ = life_ - dmg;

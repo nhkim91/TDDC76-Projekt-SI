@@ -29,11 +29,11 @@
 #include <algorithm>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
+#include "space_invader.h"
 #include "level.h"
 #include "time.h"
 #include "patch.h"
 #include "sound.h"
-#include "space_invader.h"
 #include "linkheader.h"
 #include "flying_objects.h"
 using namespace std;
@@ -55,13 +55,13 @@ space_invader::space_invader(SDL_Renderer* renderer, render* rend, sound* sound,
 	player_ptr = dynamic_cast<player*>(pp3);
 	player_ = player_ptr;
 
-	//Ladda in och skapa en textur för spelbakgrunden.
+    //Laddar in och skapar en textur för spelbakgrunden.
 	string imageFile{"dark_space.png"};
 	SDL_Surface* background_surf = IMG_Load(imageFile.c_str());
 	background_texture = SDL_CreateTextureFromSurface(renderer_, background_surf);
 	if (background_texture == nullptr)
 	{
-		cout << "Error, kan inte skapa en textur till bilden." << endl;
+        cout << "Error, kan inte skapa en textur till bakgrundsbilden." << endl;
 	}
 
 	background_rect.x = 0;
@@ -86,7 +86,7 @@ void space_invader::power_up_timer_check()
 	{
 		if (player_->get_power_up_attack()->times_up())
 		{
-			player_->clear_power_up_attack();
+            player_->clear_power_up_attack();
 		}
 	}
 
@@ -132,7 +132,6 @@ void space_invader::get_objects_to_kill()
 
 void space_invader::kill_objects(vector<unsigned int> to_delete)
 {
-
 	if (to_delete.size() != 0)
 	{
 		sort(to_delete.begin(), to_delete.end(), greater<int>());
@@ -199,11 +198,9 @@ bool space_invader::check_y_collides(SDL_Rect a, SDL_Rect b)
 
 void space_invader::render_things(vector<flying_objects*> render_vector)
 {
-
 	SDL_Color whiteColor {255, 255, 255, 255};
 
 	int offset {SCREEN_WIDTH/16};
-
 
 	for (unsigned int i = 0; i < render_vector.size(); i++)
 	{
@@ -221,7 +218,6 @@ void space_invader::render_things(vector<flying_objects*> render_vector)
 
 	SDL_RenderPresent(renderer_);
 	SDL_RenderClear(renderer_);
-
 }
 
 bool space_invader::run()
@@ -240,12 +236,11 @@ bool space_invader::run()
 	keystate = SDL_GetKeyboardState(NULL);
 
 	//För att slumpningen av monster ska få olika utfall.
-	srand(time(0));
+    srand(time(0));
 
 	// main loop
 	bool dead {false};
 	bool running { true };
-
 
 	while (running)
 	{
@@ -268,7 +263,6 @@ bool space_invader::run()
 		if (keystate[SDL_SCANCODE_SPACE])
 		{
 			add_object(player_->attack());
-
 		}
 
 		if (keystate[SDL_SCANCODE_UP])
@@ -280,9 +274,6 @@ bool space_invader::run()
 		{
 			player_->set_y_speed(250);
 		}
-
-
-
 
 		while (SDL_PollEvent(&event))
 		{
@@ -301,16 +292,14 @@ bool space_invader::run()
 				{
 					sound_->sound_paused();
 				}
-
 			}
-
 		}
 
 		get_objects_to_kill();
 
 		update_things(displaying_objects_, delta_time);
 
-		render_->render_background("game_background.png",0,0);
+        render_->render_game_background(background_texture, &background_rect);
 
 		level_->spawn(score_);
 
@@ -328,7 +317,6 @@ bool space_invader::run()
 		}
 
 		make_alien_attack();
-
 	}
 
 	return dead;
@@ -336,7 +324,6 @@ bool space_invader::run()
 
 void space_invader::update_things(vector<flying_objects*> update_vector, float time_diff)
 {
-
 	vector<unsigned int> to_delete;
 	for (unsigned int i = 0; i < update_vector.size(); i++)
 	{
@@ -354,17 +341,13 @@ void space_invader::update_things(vector<flying_objects*> update_vector, float t
 			new_y_speed = temp->get_y_speed() * time_diff;
 		}
 
-
 		new_x_speed = temp->get_x_speed() * time_diff;
-
 
 		temp->set_x_pos(new_x_speed + temp->get_x_pos());
 		temp->set_y_pos(new_y_speed + temp->get_y_pos());
 
 		temp->get_rect().x = temp->get_x_pos();
 		temp->get_rect().y = temp->get_y_pos();
-
-
 
 		///Uppe och nere////
 		if (temp->get_y_pos() + temp->get_rect().h > SCREEN_HEIGHT)
@@ -384,8 +367,6 @@ void space_invader::update_things(vector<flying_objects*> update_vector, float t
 		{
 			temp->get_rect().y = temp->get_y_pos();
 		}
-
-
 
 		alien* alien_ptr;
 		alien_ptr = dynamic_cast<alien*>(temp);

@@ -47,9 +47,9 @@ class flying_objects
 {
 protected:
 	SDL_Rect rect_;
-	SDL_Texture* texture_;
-	SDL_Texture* texture_special_;
-	SDL_Renderer* renderer_;
+    SDL_Texture* texture_{nullptr};
+    SDL_Texture* texture_special_{nullptr};
+    SDL_Renderer* renderer_;
 	int life_;
 	int x_pos_;
 	int y_pos_;
@@ -117,12 +117,10 @@ public:
 	{
 		if (special_)
 		{
-			//std::cerr << "apa2!" << std::endl;
 			return texture_special_;
 		}
 		else
 		{
-			//std::cerr << "apa3!" << std::endl;
 			return texture_;
 		}
 	}

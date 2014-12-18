@@ -6,8 +6,8 @@
  * Filnamn:         render.h
  * Enhetsnamn:      render
  * Typ:             Klassdeklaration
- * Programmerare:   Kim Nguyen Hoang 910112-0260 Y3.c kimng797
- *                  Kerstin Soderqvist 911006-0309 Y3.c kerso255
+ * Programmerare:   Kim Nguyen Hoang, kimng797, 910112-0260
+ *                  Kerstin Soderqvist, kerso255, 911006-0309
  *                  Niclas Granström, nicgr354, 900519-5376
  *                  Anton Gifvars, antgi546, 890917-1657
  *
@@ -56,6 +56,7 @@ public:
                      SDL_Color color, int fontSize, int x_pos, int y_pos);
     void render_image(const std::string &imageFile, int x_pos, int y_pos);
     void render_background(const std::string &imageFile, int x_pos, int y_pos);
+    void render_game_background(SDL_Texture* background_texture, SDL_Rect* background_rect);
     void render_flying_object(class flying_objects*);
     void render_power_up(class power_up_attack*, class power_up_shield*);
     void present();
