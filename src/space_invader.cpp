@@ -94,8 +94,8 @@ void space_invader::power_up_timer_check()
 	{
 		if (player_->get_power_up_shield()->times_up())
 		{
-			player_->set_special(false);
 			player_->clear_power_up_shield();
+			player_->set_special(false);
 		}
 	}
 	return;
