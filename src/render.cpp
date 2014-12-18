@@ -6,8 +6,8 @@
  * Filnamn:     render.cpp
  * Enhetsnamn:  render
  * Typ:         Definitioner hörande till klassen render
- * Skriven av:  Kim Nguyen Hoang 910112-0260 Y3.c kimng797
- *              Kerstin Soderqvist 911006-0309 Y3.c kerso255
+ * Skriven av:  Kim Nguyen Hoang, kimng797, 910112-0260
+ *              Kerstin Soderqvist, kerso255, 911006-0309
  *              Niclas Granström, nicgr354, 900519-5376
  *              Anton Gifvars,	antgi546, 890917-1657
  *
@@ -53,7 +53,6 @@ void render::render_flying_object(flying_objects* object)
 	SDL_RenderCopy(renderer, object->get_texture(), nullptr, &object->get_rect());
 	return;
 }
-
 
 void render::render_power_up(power_up_attack* attack_ptr, power_up_shield* shield_ptr)
 {
@@ -139,7 +138,6 @@ void render::render_background(const string &imageFile, int x_pos, int y_pos)
 		scale = 1/height_ratio;
 	}
 
-
 	SDL_Rect image_rect;
 	image_rect.x = x_pos;
 	image_rect.y = y_pos;
@@ -149,9 +147,14 @@ void render::render_background(const string &imageFile, int x_pos, int y_pos)
 	SDL_RenderCopy(renderer, texture, NULL, &image_rect);
 
 	SDL_DestroyTexture(texture);
-	SDL_FreeSurface(surf);
+    SDL_FreeSurface(surf);
 }
 
+void render::render_game_background(SDL_Texture* background_texture, SDL_Rect* background_rect)
+{
+    SDL_RenderCopy(renderer, background_texture, NULL, background_rect);
+    return;
+}
 
 void render::render_image(const string &imageFile, int x_pos, int y_pos)
 {
@@ -162,8 +165,6 @@ void render::render_image(const string &imageFile, int x_pos, int y_pos)
 	{
 		cout << "Error, kan inte skapa en textur till bilden." << endl;
 	}
-
-
 
 	SDL_Rect image_rect;
 	image_rect.x = x_pos;
@@ -177,11 +178,9 @@ void render::render_image(const string &imageFile, int x_pos, int y_pos)
 	SDL_FreeSurface(surf);
 }
 
-
 void render::present()
 {
 	SDL_RenderPresent(renderer);
-	//SDL_RenderClear(renderer);
 }
 
 void render::set_renderer(SDL_Renderer* rend)

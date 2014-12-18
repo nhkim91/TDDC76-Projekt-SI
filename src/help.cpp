@@ -6,8 +6,8 @@
  * Filnamn:     help.cpp
  * Enhetsnamn:  help
  * Typ:         Definitioner hörande till klassen help
- * Skriven av:  Kim Nguyen Hoang 910112-0260 Y3.c kimng797
- *              Kerstin Soderqvist 911006-0309 Y3.c kerso255
+ * Skriven av:  Kim Nguyen Hoang, kimng797, 910112-0260
+ *              Kerstin Soderqvist, kerso255, 911006-0309
  *              Niclas Granström, nicgr354, 900519-5376
  *              Anton Gifvars,	antgi546, 890917-1657
  *

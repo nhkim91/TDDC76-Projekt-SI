@@ -6,8 +6,8 @@
  * Filnamn:         menu.h
  * Enhetsnamn:      menu
  * Typ:             Klassdeklaration
- * Programmerare:   Kim Nguyen Hoang 910112-0260 Y3.c kimng797
- *                  Kerstin Soderqvist 911006-0309 Y3.c kerso255
+ * Programmerare:   Kim Nguyen Hoang, kimng797, 910112-0260
+ *                  Kerstin Soderqvist, kerso255, 911006-0309
  *                  Niclas Granström, nicgr354, 900519-5376
  *                  Anton Gifvars, antgi546, 890917-1657
  *

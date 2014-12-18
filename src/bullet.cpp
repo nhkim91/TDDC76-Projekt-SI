@@ -75,6 +75,7 @@ bool bullet::hit(flying_objects& other)
 
 bullet::bullet(int life, int dmg, int x_pos, int y_pos, int x_speed, int y_speed, SDL_Renderer* renderer)
 {
+    renderer_ = renderer;
 	life_ = life;
 	dmg_ = dmg;
 	rect_.x = x_pos;

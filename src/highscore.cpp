@@ -6,8 +6,8 @@
  * Filnamn:     highscore.cpp
  * Enhetsnamn:  highscore
  * Typ:         Definitioner hörande till klassen highscore
- * Skriven av:  Kim Nguyen Hoang 910112-0260 Y3.c kimng797
- *              Kerstin Soderqvist 911006-0309 Y3.c kerso255
+ * Skriven av:  Kim Nguyen Hoang, kimng797, 910112-0260
+ *              Kerstin Soderqvist, kerso255, 911006-0309
  *              Niclas Granström, nicgr354, 900519-5376
  *              Anton Gifvars,	antgi546, 890917-1657
  *
@@ -54,6 +54,7 @@ void highscore::save_score(int score)
 	int i {0};
 	renderer->render_background("Astronaut.png",0,0);
 	SDL_Color whiteColor {255, 255, 255, 255};
+    string text3 = "Press enter to continue.";
 	SDL_Event event;
 	for (it = list_of_score.begin(); it != list_of_score.end(); it++)
 	{
@@ -62,12 +63,12 @@ void highscore::save_score(int score)
 			run = true;
 
 			renderer->render_background("Astronaut.png",0,0);
-			SDL_Color whiteColor {255, 255, 255, 255};
 
 			string text = "Congratulations!";
 			string text2 = "You entered top 10.";
 			renderer->render_text(text, "Arcade.ttf", whiteColor, screen_height/12, screen_width/2, screen_height/15);
 			renderer->render_text(text2, "Arcade.ttf", whiteColor, screen_height/12, screen_width/2, screen_height/6);
+            renderer->render_text(text3, "Arcade.ttf", whiteColor, screen_height/18, screen_width/2, screen_height/2+4*screen_height/9);
 			renderer->present();
 			while (run)
 			{
@@ -94,10 +95,26 @@ void highscore::save_score(int score)
 		i++;
 	}
 
-	string text3 = "Game Over";
-	renderer->render_text(text3, "Arcade.ttf", whiteColor, screen_height/4, screen_width/2, screen_height/8);
+    string text4 = "Game Over";
+    renderer->render_text(text4, "Arcade.ttf", whiteColor, screen_height/4, screen_width/2, screen_height/7);
+    renderer->render_text(text3, "Arcade.ttf", whiteColor, screen_height/18, screen_width/2, screen_height/2+4*screen_height/9);
 	renderer->present();
-    SDL_Delay(2000);
+
+    run = true;
+
+    while (run)
+    {
+        SDL_WaitEvent(&event);
+        if (event.type == SDL_KEYDOWN)
+        {
+            SDL_Keycode key = event.key.keysym.sym;
+            if (key == SDLK_RETURN || key == SDLK_RETURN2)
+            {
+                run = false;
+                break;
+            }
+        }
+    }
 }
 
 string highscore::enter_name()
@@ -109,11 +126,11 @@ string highscore::enter_name()
 
 	run = true;
 
-	SDL_Color textColor {255, 255, 255, 255};
+    SDL_Color whiteColor {255, 255, 255, 255};
 
 	renderer->render_background("Astronaut.png",0,0);
 	string text = "Write your name. Then hit enter.";
-	renderer->render_text(text, "Arcade.ttf", textColor, screen_height/20, screen_width/2, screen_height/15);
+    renderer->render_text(text, "Arcade.ttf", whiteColor, screen_height/20, screen_width/2, screen_height/15);
 	renderer->present();
 
 	while (run)
@@ -132,30 +149,30 @@ string highscore::enter_name()
 				else
 				{
 					renderer->render_background("Astronaut.png",0,0);
-					renderer->render_text(text, "Arcade.ttf", textColor, screen_height/20, screen_width/2, screen_height/15);
+                    renderer->render_text(text, "Arcade.ttf", whiteColor, screen_height/20, screen_width/2, screen_height/15);
 				}
 			}
 			else if (key == SDLK_BACKSPACE)
 			{
 				renderer->render_background("Astronaut.png",0,0);
-				renderer->render_text(text, "Arcade.ttf", textColor, screen_height/20, screen_width/2, screen_height/15);
+                renderer->render_text(text, "Arcade.ttf", whiteColor, screen_height/20, screen_width/2, screen_height/15);
 				if (!name.empty())
 				{
 					name.erase(name.end() - 1);
 
 					if (!name.empty())
 					{
-						renderer->render_text(name, "Arcade.ttf", textColor, screen_height/20, screen_width/2, screen_height/10);
+                        renderer->render_text(name, "Arcade.ttf", whiteColor, screen_height/20, screen_width/2, screen_height/10);
 					}
 				}
 			}
 			else
 			{
 				renderer->render_background("Astronaut.png",0,0);
-				renderer->render_text(text, "Arcade.ttf", textColor, screen_height/20, screen_width/2, screen_height/15);
+                renderer->render_text(text, "Arcade.ttf", whiteColor, screen_height/20, screen_width/2, screen_height/15);
 				char c = *(SDL_GetKeyName(key));
 				name += c;
-				renderer->render_text(name, "Arcade.ttf", textColor, screen_height/20, screen_width/2, screen_height/10);
+                renderer->render_text(name, "Arcade.ttf", whiteColor, screen_height/20, screen_width/2, screen_height/10);
 			}
 			renderer->present();
 		}

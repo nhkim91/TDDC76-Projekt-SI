@@ -70,12 +70,11 @@ int main(int, char**)
 	Mix_AllocateChannels(16);
 
 
-	SDL_Window* window = SDL_CreateWindow("Highscore", SDL_WINDOWPOS_UNDEFINED,
+    SDL_Window* window = SDL_CreateWindow("Space Invader", SDL_WINDOWPOS_UNDEFINED,
 			SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
 
 	SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED |
 			SDL_RENDERER_PRESENTVSYNC);
-
 
 	sound all_sounds = sound();
 	render rend(SCREEN_WIDTH, SCREEN_HEIGHT);
