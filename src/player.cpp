@@ -72,7 +72,7 @@ void player::clear_power_up_attack()
 {
 	flying_objects* ptr;
 	ptr = dynamic_cast<flying_objects*>(power_up_attack_);
-	delete ptr;
+	//delete ptr;
 	sound_->play_power_down_bullet();
 	power_up_attack_ = nullptr;
 	return;
@@ -82,7 +82,7 @@ void player::clear_power_up_shield()
 {
 	flying_objects* ptr;
 	ptr = dynamic_cast<flying_objects*>(power_up_shield_);
-	delete ptr;
+	//delete ptr;
 	sound_->play_shield_down();
 	power_up_shield_ = nullptr;
 	return;

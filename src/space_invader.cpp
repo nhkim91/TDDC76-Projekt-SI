@@ -301,9 +301,7 @@ bool space_invader::run()
 				{
 					sound_->sound_paused();
 				}
-
 			}
-
 		}
 
 		get_objects_to_kill();
@@ -353,18 +351,13 @@ void space_invader::update_things(vector<flying_objects*> update_vector, float t
 		{
 			new_y_speed = temp->get_y_speed() * time_diff;
 		}
-
-
 		new_x_speed = temp->get_x_speed() * time_diff;
-
 
 		temp->set_x_pos(new_x_speed + temp->get_x_pos());
 		temp->set_y_pos(new_y_speed + temp->get_y_pos());
 
 		temp->get_rect().x = temp->get_x_pos();
 		temp->get_rect().y = temp->get_y_pos();
-
-
 
 		///Uppe och nere////
 		if (temp->get_y_pos() + temp->get_rect().h > SCREEN_HEIGHT)
