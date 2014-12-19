@@ -95,7 +95,7 @@ sound::sound()
 		fprintf(stderr, "unable to load life up sound %s\n", Mix_GetError());
 	}
 
-	background_sound = Mix_LoadMUS("background.ogg");
+	background_sound = Mix_LoadMUS("menu_sound.ogg");
 	if (background_sound == NULL)
 	{
 		fprintf(stderr, "unable to load background sound  %s\n", Mix_GetError());

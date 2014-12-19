@@ -70,21 +70,24 @@ player::~player()
 
 void player::clear_power_up_attack()
 {
+	flying_objects* ptr;
+	ptr = dynamic_cast<flying_objects*>(power_up_attack_);
     delete power_up_attack_;
-    power_up_attack_ = nullptr;
 	sound_->play_power_down_bullet();
 	power_up_attack_ = nullptr;
 	return;
 }
-
 void player::clear_power_up_shield()
 {
+	flying_objects* ptr;
+	ptr = dynamic_cast<flying_objects*>(power_up_shield_);
     delete power_up_shield_;
-    power_up_shield_ = nullptr;
 	sound_->play_shield_down();
 	power_up_shield_ = nullptr;
 	return;
 }
+
+
 
 bool player::check_living(int dmg)
 {
