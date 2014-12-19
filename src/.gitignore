@@ -1,4 +1,13 @@
 /Debug/
+highscore.txt
+
+### Qt ###
+*.pro
+*.pro.user
+*.user*
+*.pri
+*.deploy
+*build*
 
 ### Eclipse ###
 *.pydevproject
@@ -14,7 +23,7 @@ tmp/
 local.properties
 .settings/
 .loadpath
-.project 
+.project
 
 # External tool builders
 .externalToolBuilders/
@@ -50,6 +59,7 @@ local.properties
 *.so
 *.dylib
 *.dll
+<<<<<<< Updated upstream
 
 # Fortran module files
 *.mod
@@ -92,3 +102,17 @@ $RECYCLE.BIN/
 
 # KDE directory preferences
 .directory
+=======
+/Debug/
+.settings/
+/Release/
+>>>>>>> Stashed changes
+*.autosave
+
+.DS_Store
+
+framework/SDL2
+
+mergefel.cpp
+
+src/.DS_Store
